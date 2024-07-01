@@ -1,26 +1,53 @@
+/* Reset dei margini per l'intero documento */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color:  #f8f9fa; /* Colore di sfondo grigio */
+    border-bottom: 2px solid #000; /* Bordo nero solid nella parte inferiore */
+    color: #000; /* Colore del testo dell'header */
+    padding: 20px; /* Padding dell'header */
+    text-align: center; /* Allineamento del testo */
+}
+
+footer {
+    background-color: #333; /* Colore di sfondo del footer */
+    color: #fff; /* Colore del testo del footer */
+    padding: 10px; /* Padding del footer */
+    text-align: center; /* Allineamento del testo */
+    margin-top: auto; /* Per allineare il footer in basso */
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    height: 70vh; /* Altezza pari all'altezza della viewport */
+    justify-content: center;
+    height: 60vh; /* Altezza pari all'altezza della viewport */
     text-align: center;
+   
 }
 
-.title {
+.title 
+{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 8em;
-    letter-spacing: -8px;
-    margin-bottom: 30px; /* Spazio sotto al titolo */
+    font-size: 8em; /* Ridotto a 4em per evitare overflow in alcune visualizzazioni */
+    letter-spacing: -8px; /* Leggermente ridotto per migliorare la leggibilità */
+    margin-bottom: 15px; /* Ridotto per un po' di spazio inferiore */
 }
 
 .searchbar {
-    width: 60%; /* Larghezza della barra di ricerca */
-    max-width: 1200px; /* Larghezza massima per la barra di ricerca */
-    padding: 15px;
+    align-self: center;
+    width: 60%;
+    padding: 15px 20px; /* Leggermente aggiustato il padding per un aspetto più bilanciato */
     border-radius: 50px;
     border: 1px solid #ccc;
     font-size: 1.5em;
-    text-align: start; /* Testo centrato all'interno dell'input */
+    text-align: start; /* Allineato a sinistra per iniziare la digitazione dall'inizio */
 }
 
 .searchbar::placeholder {
@@ -31,10 +58,17 @@
 }
 
 .searchbutton {
+    margin-left: -15%;
+    margin-top: 15px; /* Spazio sopra il pulsante */
     padding: 10px 20px;
     font-size: 1.2em;
     border-radius: 25px;
     border: 1px solid #ccc;
-    margin-top: 10px;
-    margin-left: -15%;
+    background-color: #f8f9fa; /* Colore di sfondo simile a Google */
+    transition: background-color 0.3s ease; /* Transizione sul cambio di colore */
 }
+
+.searchbutton:hover {
+    background-color: #00aaff; /* Leggermente più chiaro al passaggio del mouse */
+}
+
