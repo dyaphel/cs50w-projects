@@ -13,9 +13,9 @@ header {
 
 .pageslink{
 color: inherit;
+margin-right: 30px;
 text-decoration: inherit;
-
-font-size: 20px;
+font-size: 18px;
 font-style: normal;
 font-family: Arial, Helvetica, sans-serif;
 }
