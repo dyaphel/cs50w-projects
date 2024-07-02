@@ -41,26 +41,27 @@ footer {
 .searchbar-container {
     position: relative;
     display: inline-block;
-    width: 50%;
+    width: 40%;
 }
 
-.searchbar {
-    width: 80%;
-    padding: 8px 20px 8px 40px; /* Spazio aggiunto a sinistra per l'icona */
-    border-radius: 50px;
-    border: 1px solid #ccc;
-    font-size: 1.5em;
-}
 
-.search-icon {
-    position: absolute;
-    left: 90px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    pointer-events: none; /* Icôna non cliccabile */
-}
+    .searchbar {
+        width: 100%;
+        padding: 8px 20px 8px 40px; /* Spazio aggiunto a sinistra per l'icona */
+        border-radius: 50px;
+        border: 1px solid #ccc;
+        font-size: 1.5em;
+    }
+    
+    .search-icon {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        pointer-events: none; /* Icôna non cliccabile */
+    }
 
 .button {
     margin-top: 25px;
