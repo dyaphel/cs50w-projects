@@ -6,25 +6,25 @@
 }
 
 header {
-    text-align: right; 
-    background-color: #f8f9fa; /* Colore di sfondo grigio */
-    padding: 20px; /* Padding dell'header */
+    text-align: right;
+    background-color: #ffffff; /* Colore di sfondo bianco */
+    padding: 20px;
 }
 
-.pageslink{
-color: inherit;
-margin-right: 30px;
-text-decoration: inherit;
-font-size: 18px;
-font-style: normal;
-font-family: Arial, Helvetica, sans-serif;
+.pageslink {
+    color: inherit;
+    margin-right: 28px;
+    text-decoration: none;
+    font-size: 1vw;
+    font-style: normal;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 footer {
     background-color: #333; /* Colore di sfondo del footer */
     color: #fff; /* Colore del testo del footer */
-    padding: 10px; /* Padding del footer */
-    text-align: center; /* Allineamento del testo */
+    padding: 10px;
+    text-align: center;
     width: 100%;
     bottom: 0;
     position: absolute;
@@ -34,52 +34,85 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 50vh; /* Altezza pari all'altezza della viewport */
+    height: 60vh; /* Altezza pari al 60% della viewport */
     text-align: center;
 }
 
 .title {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 100px; /* Ridotto a 4em per evitare overflow in alcune visualizzazioni */
-    letter-spacing: -4px; /* Leggermente ridotto per migliorare la leggibilità */
-    margin-bottom: 30px; /* Ridotto per un po' di spazio inferiore */
+    font-size: 6vw; /* Dimensione font relativa alla larghezza della viewport */
+    letter-spacing: -0.4vw;
+    margin-bottom: 4vh;
 }
 
 .searchbar-container {
     position: relative;
     display: inline-block;
-    width: 40%;
+    width: 40vw;
+    min-width: 200px; /* Larghezza minima per evitare che si restringa troppo */
 }
 
-
 .searchbar {
-        width: 100%;
-        padding: 8px 20px 8px 40px; /* Spazio aggiunto a sinistra per l'icona */
-        border-radius: 50px;
-        border: 1px solid #ccc;
-        font-size: 1.5em;
-    }
-    
+    width: 100%;
+    padding: 0.5vh 3vw 1vh 2.5vw; /* Spazio aggiunto a sinistra per l'icona */
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    font-size: 1.5vw;
+}
+
 .search-icon {
-        position: absolute;
-        left: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 20px;
-        height: 20px;
-        pointer-events: none; /* Icôna non cliccabile */
-    }
+    position: absolute;
+    left: 1vw;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1vw;
+    height: 1vw;
+    min-width: 20px; /* Larghezza minima per evitare che si restringa troppo */
+    min-height: 20px; /* Altezza minima per evitare che si restringa troppo */
+    pointer-events: none; /* Icona non cliccabile */
+}
 
 .button {
-    margin-top: 25px;
-    margin-right: 15px;
-    padding: 10px 30px;
-    font-size: 1.2em;
+    align-items: center;
+    margin-top: 4vh;
+    margin-right: 5px;
+    padding: 1vh 1vw;
+    font-size: 1.1vw;
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: #f8f9fa; /* Colore di sfondo simile a Google */
-    transition: background-color 0.3s ease; /* Transizione sul cambio di colore */
+    transition: background-color 0.3s ease;
 }
+
 .button:hover {
-    background-color: #00aaff; /* Leggermente più chiaro al passaggio del mouse */
+    background-color: #00aaff; /* Colore al passaggio del mouse */
+}
+
+@media (max-width: 700px) {
+    .pageslink {
+        font-size: 3vw;
+    }
+
+    .title {
+        font-size: 12vw;
+    }
+
+    .searchbar-container {
+        width: 80vw;
+    }
+
+    .searchbar {
+        font-size: 3vw;
+        padding: 0.5vh 5vw 1vh 8vw;
+    }
+
+    .search-icon {
+        width: 1vw;
+        height: 1vw;
+    }
+
+    .button {
+        font-size: 2vw;
+        padding: 1.5vh 5vw;
+    }
 }
