@@ -54,7 +54,7 @@ footer {
 
 .searchbar {
     width: 100%;
-    padding: 0.5vh 3vw 1vh 2.5vw; /* Spazio aggiunto a sinistra per l'icona */
+    padding: 0.8vh 3vw 1vh 2.5vw; /* Spazio aggiunto a sinistra per l'icona */
     border-radius: 50px;
     border: 1px solid #ccc;
     font-size: 1.5vw;
