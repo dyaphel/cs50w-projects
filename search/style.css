@@ -22,7 +22,7 @@
 
 
 .footer {
-    
+    font-size: large;
     background-color: #ffffff; 
     color: #000000; 
     padding: 10px;
@@ -133,5 +133,8 @@
         padding: 1.5vh 1.5vw;
         font-size: 2.8vw;
         
+    }
+    .footer{
+        font-size: small;
     }
 }
