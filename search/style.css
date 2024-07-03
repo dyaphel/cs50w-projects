@@ -34,7 +34,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 60vh; /* Altezza pari al 60% della viewport */
+    height: 50vh; /* Altezza pari al 60% della viewport */
     text-align: center;
 }
 
@@ -85,8 +85,8 @@ footer {
     left: 1.2vw;
     top: 50%;
     transform: translateY(-50%);
-    width: 1vw;
-    height: 1vw;
+    width: 1.2vw;
+    height: 1.2vw;
     min-width: 15px; /* Larghezza minima per evitare che si restringa troppo */
     min-height: 15px; /* Altezza minima per evitare che si restringa troppo */
     pointer-events: none; /* Icona non cliccabile */
