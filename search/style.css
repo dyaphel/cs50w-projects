@@ -1,13 +1,13 @@
-/* Reset dei margini per l'intero documento */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-header {
+.header {
     text-align: right;
-    background-color: #ffffff; /* Colore di sfondo bianco */
+    background-color: #ffffff; 
     padding: 20px;
 }
 
@@ -20,61 +20,61 @@ header {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-footer {
-    background-color: #333; /* Colore di sfondo del footer */
-    color: #fff; /* Colore del testo del footer */
+
+.footer {
+    
+    background-color: #ffffff; 
+    color: #000000; 
     padding: 10px;
     text-align: center;
     width: 100%;
-    bottom: 0;
     position: absolute;
+    bottom: 0;
 }
-
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 50vh; /* Altezza pari al 60% della viewport */
+    height: 50vh; 
     text-align: center;
 }
 
 .title {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 90px; /* Dimensione font relativa alla larghezza della viewport */
+    font-size: 90px; 
     letter-spacing: -0.2vw;
     margin-bottom: 5vh;
 }
 
 .title .g {
-    color: #4285F4; /* Blue */
+    color: #4285F4; 
 }
 
 .title .o1 {
-    color: #EA4335; /* Red */
+    color: #EA4335; 
 }
 
 .title .o2 {
-    color: #FBBC05; /* Yellow */
+    color: #FBBC05; 
 }
 
 .title .l {
-    color: #34A853; /* Green */
+    color: #34A853; 
 }
 
 .title .e {
-    color: #EA4335; /* Red */
+    color: #EA4335;
 }
 
 .searchbar-container {
     position: relative;
     display: inline-block;
     width: 40vw;
-     /* Larghezza minima per evitare che si restringa troppo */
 }
 
 .searchbar {
     width: 100%;
-    padding: 1.5vh 3vw 1vh 2.5vw; /* Spazio aggiunto a sinistra per l'icona */
+    padding: 1.5vh 3vw 1vh 2.5vw; 
     border-radius: 50px;
     border: 1px solid #ccc;
     font-size: 1.5em;
@@ -83,13 +83,12 @@ footer {
 .search-icon {
     position: absolute;
     left: 1.2vw;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 32%;
     width: 1.2vw;
     height: 1.2vw;
-    min-width: 15px; /* Larghezza minima per evitare che si restringa troppo */
-    min-height: 15px; /* Altezza minima per evitare che si restringa troppo */
-    pointer-events: none; /* Icona non cliccabile */
+    min-width: 15px; 
+    min-height: 15px; 
+    pointer-events: none; 
 }
 
 .button {
@@ -100,12 +99,12 @@ footer {
     font-size: 1.1vw;
     border-radius: 5px;
     border:  #ccc;
-    background-color: #f8f9fa; /* Colore di sfondo simile a Google */
-    transition: background-color 0.3s ease;
+    background-color: #f8f9fa;
+    
 }
 
 .button:hover {
-    border: 1px solid #ccc; /* Colore al passaggio del mouse */
+    border: 1px solid #ccc; 
 }
 
 @media (max-width: 800px) {
