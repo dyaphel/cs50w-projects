@@ -8,14 +8,14 @@
 .header {
     text-align: right;
     background-color: #ffffff; 
-    padding: 20px;
+    padding: 40px;
 }
 
 .pageslink {
     color: inherit;
-    margin-right: 28px;
+    margin-right: 2.5vw;
     text-decoration: none;
-    font-size: 1vw;
+    font-size: 20px;
     font-style: normal;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -68,10 +68,11 @@
 .sub-title {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color:#4f8ef5;  /* Colore del sottotitolo */
-    font-size: 20px;
-    margin-top: -40px; /* Spazio superiore */
+    font-size: 22px;
+    margin-top: -55px;
+    margin-left: 240px; /* Spazio superiore */
     position: absolute; /* Posizione assoluta rispetto al titolo */
-    left: 55.5%; /* Centra orizzontalmente */
+    align-self: center; /* Centra orizzontalmente */
 }
 .searchbar-container {
     position: relative;
@@ -102,8 +103,8 @@
     align-items: center;
     margin-top: 3vh;
     margin-right: 5px;
-    padding: 1vh 1vw;
-    font-size: 1.1vw;
+    padding: 10px 10px;
+    font-size: 20px;
     border-radius: 5px;
     border:  #ccc;
     background-color: #f8f9fa;
@@ -116,7 +117,7 @@
 
 @media (max-width: 800px) {
     .pageslink {
-        font-size: 3vw;
+        font-size: 15px;
     }
 
 .title{
@@ -137,8 +138,8 @@
     }
 
     .button {
-        padding: 1.5vh 1.5vw;
-        font-size: 2.8vw;
+        padding: 15px 15px;
+         font-size: 15px;
         
     }
     .footer{
