@@ -40,79 +40,99 @@ footer {
 
 .title {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 6vw; /* Dimensione font relativa alla larghezza della viewport */
-    letter-spacing: -0.4vw;
-    margin-bottom: 4vh;
+    font-size: 90px; /* Dimensione font relativa alla larghezza della viewport */
+    letter-spacing: -0.2vw;
+    margin-bottom: 5vh;
+}
+
+.title .g {
+    color: #4285F4; /* Blue */
+}
+
+.title .o1 {
+    color: #EA4335; /* Red */
+}
+
+.title .o2 {
+    color: #FBBC05; /* Yellow */
+}
+
+.title .l {
+    color: #34A853; /* Green */
+}
+
+.title .e {
+    color: #EA4335; /* Red */
 }
 
 .searchbar-container {
     position: relative;
     display: inline-block;
     width: 40vw;
-    min-width: 200px; /* Larghezza minima per evitare che si restringa troppo */
+     /* Larghezza minima per evitare che si restringa troppo */
 }
 
 .searchbar {
     width: 100%;
-    padding: 0.8vh 3vw 1vh 2.5vw; /* Spazio aggiunto a sinistra per l'icona */
+    padding: 1.5vh 3vw 1vh 2.5vw; /* Spazio aggiunto a sinistra per l'icona */
     border-radius: 50px;
     border: 1px solid #ccc;
-    font-size: 1.5vw;
+    font-size: 1.5em;
 }
 
 .search-icon {
     position: absolute;
-    left: 1vw;
+    left: 1.2vw;
     top: 50%;
     transform: translateY(-50%);
     width: 1vw;
     height: 1vw;
-    min-width: 20px; /* Larghezza minima per evitare che si restringa troppo */
-    min-height: 20px; /* Altezza minima per evitare che si restringa troppo */
+    min-width: 15px; /* Larghezza minima per evitare che si restringa troppo */
+    min-height: 15px; /* Altezza minima per evitare che si restringa troppo */
     pointer-events: none; /* Icona non cliccabile */
 }
 
 .button {
     align-items: center;
-    margin-top: 4vh;
+    margin-top: 3vh;
     margin-right: 5px;
     padding: 1vh 1vw;
     font-size: 1.1vw;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border:  #ccc;
     background-color: #f8f9fa; /* Colore di sfondo simile a Google */
     transition: background-color 0.3s ease;
 }
 
 .button:hover {
-    background-color: #00aaff; /* Colore al passaggio del mouse */
+    border: 1px solid #ccc; /* Colore al passaggio del mouse */
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
     .pageslink {
         font-size: 3vw;
     }
 
-    .title {
-        font-size: 12vw;
-    }
-
+.title{
+        letter-spacing: -0.8vw;
+}
     .searchbar-container {
         width: 80vw;
     }
 
     .searchbar {
-        font-size: 3vw;
-        padding: 0.5vh 5vw 1vh 8vw;
+        padding: 1vh 10vw 1vh 8vw;
     }
 
     .search-icon {
+        left: 2vw;
         width: 1vw;
         height: 1vw;
     }
 
     .button {
-        font-size: 2vw;
-        padding: 1.5vh 5vw;
+        padding: 1.5vh 1.5vw;
+        font-size: 2.8vw;
+        
     }
 }
