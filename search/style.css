@@ -65,7 +65,12 @@
 .title .e {
     color: #EA4335;
 }
-
+.sub-title{
+    font-family: Arial, Helvetica, sans-serif;
+    color: blue;
+    font-size: 30px;
+    margin-top: 20px;
+}
 .searchbar-container {
     position: relative;
     display: inline-block;
