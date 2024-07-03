@@ -9,6 +9,12 @@
     text-align: right;
     background-color: #ffffff; 
     padding: 40px;
+
+}
+
+.header.border{
+    height: auto;
+    border: 1px solid #ccc;
 }
 
 .pageslink {
@@ -38,6 +44,20 @@
     height: 50vh; 
     text-align: center;
 }
+.header-title {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: -40px;
+    text-align: start;
+}
+
+.header-title + h2{
+    margin-top: 50px;
+    margin-bottom: -20px;
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 60px;
+    color: red;
+}
 
 .title {
     font-family: Arial, Helvetica, sans-serif;
@@ -46,23 +66,23 @@
     margin-bottom: 5vh;
 }
 
-.title .g {
+.g {
     color: #4266f4; 
 }
 
-.title .o1 {
+.o1 {
     color: #EA4335; 
 }
 
-.title .o2 {
+.o2 {
     color: #FBBC05; 
 }
 
-.title .l {
+.l {
     color: #34A853; 
 }
 
-.title .e {
+.e {
     color: #EA4335;
 }
 .sub-title {
