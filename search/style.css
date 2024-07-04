@@ -59,6 +59,13 @@
         color: red;
     }
 
+    .intro{
+        font-family: Arial, Helvetica, sans-serif;
+        width: 15%;
+        font-size: 18px;
+        margin: 40px 100px;
+    }
+
     .title {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 90px; 
@@ -109,6 +116,7 @@
         border: 1px solid #ccc;
         font-size: 1.5em;
     }
+
 
     .search-icon {
         position: absolute;
