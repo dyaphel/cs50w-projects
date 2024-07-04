@@ -1,206 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+.header {
+    text-align: right;
+    background-color: #ffffff; 
+    padding: 40px;
+}
 
-    .header {
-        text-align: right;
-        background-color: #ffffff; 
-        padding: 40px;
-    }
+.header.border{
+    height: auto;
+    border: 1px solid #ccc;
+}
 
-    .header.border{
-        height: auto;
-        border: 1px solid #ccc;
-    }
+.pageslink {
+    color: inherit;
+    margin-right: 2.5vw;
+    text-decoration: none;
+    font-size: 17px;
+    font-style: normal;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
+.footer {
+    font-size: large;
+    background-color: #e6e8eb; 
+    color: #000000; 
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 50vh; 
+    text-align: center;
+}
+
+.advancedbox {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    margin-left: 100px;
+}
+
+.header-title {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: -40px;
+    text-align: start;
+}
+
+.header-title + h2 {
+    margin-top: 50px;
+    margin-bottom: -20px;
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 60px;
+    color: red;
+}
+
+.intro {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 15%;
+    font-size: 18px;
+    margin-top: 30px;
+    margin-left: 100px;    
+    margin-bottom: 30px;    
+}
+
+.title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 90px; 
+    letter-spacing: -0.2vw;
+    margin-bottom: 5vh;
+}
+
+.g {
+    color: #4266f4; 
+}
+
+.o1 {
+    color: #EA4335; 
+}
+
+.o2 {
+    color: #FBBC05; 
+}
+
+.l {
+    color: #34A853; 
+}
+
+.e {
+    color: #EA4335;
+}
+
+.sub-title {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #4f8ef5;  
+    font-size: 22px;
+    margin-top: -55px;
+    margin-left: 240px; 
+    position: absolute; 
+    align-self: center; 
+}
+
+.searchbar-container {
+    position: relative;
+    display: inline-block;
+    width: 40vw;
+}
+
+.searchbar {
+    width: 100%;
+    padding: 1.5vh 3vw 1vh 2.8vw; 
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    font-size: 1.3em;
+}
+
+.searchbar.adv {
+    width: 30%; 
+    padding: 1vh 1vw; 
+    border-radius: 2px;
+    font-size: small;
+    margin-left: 30px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1.2vw;
+    top: 32%;
+    width: 1.2vw;
+    height: 1.2vw;
+    min-width: 15px; 
+    min-height: 15px; 
+    pointer-events: none; 
+}
+
+.button {
+    align-items: center;
+    margin-top: 3vh;
+    margin-right: 5px;
+    padding: 10px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ffffff; 
+    background-color: #f8f9fa;
+}
+
+.button:hover {
+    border: 1px solid #ccc; /* Cambia il colore del bordo al passaggio del mouse */
+}
+
+.button.advanced {
+    padding: 8px;
+    font-size: 15px;
+    background-color: #4266f4;
+    color: white;
+}
+
+.button.advanced:hover {
+    border: 1px solid blue;
+    box-shadow: 0 3px 6px black; 
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    min-width: 200px;
+}
+
+@media (max-width: 800px) {
     .pageslink {
-        color: inherit;
-        margin-right: 2.5vw;
-        text-decoration: none;
-        font-size: 18px;
-        font-style: normal;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
-    .footer {
-        font-size: large;
-        background-color: #e6e8eb; 
-        color: #000000; 
-        padding: 10px;
-        text-align: center;
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-    }
-
-    .container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 50vh; 
-        text-align: center;
-    }
-
-    .advancedbox{
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 16px;
-        margin-left: 100px;
-    }
-
-    .header-title {
-        font-family: Arial, Helvetica, sans-serif;
-        margin-top: -40px;
-        text-align: start;
-    }
-
-    .header-title + h2 {
-        margin-top: 50px;
-        margin-bottom: -20px;
-        font-size: 24px;
-        font-family: Arial, Helvetica, sans-serif;
-        margin-left: 60px;
-        color: red;
-    }
-
-    .intro{
-        font-family: Arial, Helvetica, sans-serif;
-        width: 15%;
-        font-size: 18px;
-        margin-top: 30px;
-        margin-left: 100px;    
-        margin-bottom: 30px;    
+        font-size: 15px;
     }
 
     .title {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 90px; 
-        letter-spacing: -0.2vw;
-        margin-bottom: 5vh;
-    }
-
-    .g {
-        color: #4266f4; 
-    }
-
-    .o1 {
-        color: #EA4335; 
-    }
-
-    .o2 {
-        color: #FBBC05; 
-    }
-
-    .l {
-        color: #34A853; 
-    }
-
-    .e {
-        color: #EA4335;
-    }
-
-    .sub-title {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        color:#4f8ef5;  
-        font-size: 22px;
-        margin-top: -55px;
-        margin-left: 240px; 
-        position: absolute; 
-        align-self: center; 
+        letter-spacing: -0.8vw;
     }
 
     .searchbar-container {
-        position: relative;
-        display: inline-block;
-        width: 40vw;
+        width: 80vw;
     }
 
     .searchbar {
-        width: 100%;
-        padding: 1.5vh 3vw 1vh 2.8vw; 
-        border-radius: 50px;
-        border: 1px solid #ccc;
-        font-size: 1.3em;
-    }
-
-    .searchbar.adv{
-        width: 30%; 
-        margin-left: 20px;
-        padding: 1vh 1vw; 
-        border-radius: 5px;
-        font-size: small;
+        padding: 1vh 10vw 1vh 8vw;
     }
 
     .search-icon {
-        position: absolute;
-        left: 1.2vw;
-        top: 32%;
-        width: 1.2vw;
-        height: 1.2vw;
-        min-width: 15px; 
-        min-height: 15px; 
-        pointer-events: none; 
+        left: 2vw;
+        width: 1vw;
+        height: 1vw;
     }
 
     .button {
-        align-items: center;
-        margin-top: 3vh;
-        margin-right: 5px;
-        padding: 10px 10px;
-        font-size: 16px;
-        border-radius: 5px;
-        border: 1px solid #ffffff; 
-        background-color: #f8f9fa;
-        
-    }
-
-    .button:hover {
-        border: 1px solid #ccc; /* Cambia il colore del bordo al passaggio del mouse */
-    }
-
-    .button.advanced{
-        padding: 8px;
+        padding: 15px 15px;
         font-size: 15px;
-        background-color: rgb(56, 56, 242);
-        color: white;
+    }
+    
+    .footer {
+        font-size: small;
     }
 
-    .button.advanced:hover{
-        border: 1px solid blue;
-        box-shadow: 0 3px 6px rgb(72, 72, 72); 
+  .intro{
+    width: 50%;
+    margin-left: 60px;
+  }
+
+    .form-group label {
+        margin-bottom: 5px;
+        margin-left: -50px;
     }
 
-    @media (max-width: 800px) {
-        .pageslink {
-            font-size: 15px;
-        }
-
-        .title{
-            letter-spacing: -0.8vw;
-        }
-        .searchbar-container {
-            width: 80vw;
-        }
-
-        .searchbar {
-            padding: 1vh 10vw 1vh 8vw;
-        }
-
-        .search-icon {
-            left: 2vw;
-            width: 1vw;
-            height: 1vw;
-        }
-
-        .button {
-            padding: 15px 15px;
-            font-size: 15px;
-            
-        }
-        
-        .footer{
-            font-size: small;
-        }
+    .searchbar.adv {
+        width: 50%;
     }
+}
