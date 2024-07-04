@@ -47,6 +47,7 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     margin-left: 100px;
+    width: 45%;
 }
 
 .header-title {
@@ -125,11 +126,16 @@
 }
 
 .searchbar.adv {
-    width: 30%; 
+    width: 500px;
     padding: 1vh 1vw; 
     border-radius: 2px;
     font-size: small;
-    margin-left: 30px;
+    margin-left: 20px;
+    
+}
+
+.searchbar.adv.numbers {
+    width: 236px; 
 }
 
 .search-icon {
@@ -159,6 +165,8 @@
 }
 
 .button.advanced {
+    margin-top: 50px;
+    margin-left: 45vw;
     padding: 8px;
     font-size: 15px;
     background-color: #4266f4;
@@ -174,10 +182,17 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    
 }
 
-.form-group label {
-    min-width: 200px;
+.words {
+    width: 200px;
+}
+
+#singleletter{
+ width: 10px;
+ margin-left: 10px;
+ margin-right: -10px;
 }
 
 @media (max-width: 800px) {
@@ -223,6 +238,14 @@
     }
 
     .searchbar.adv {
-        width: 50%;
+        width: 30vw;
+    }
+
+    .searchbar.adv.numbers {
+        width: 12vw;
+    }
+    
+    #singleletter{
+     justify-content: space-between;
     }
 }
