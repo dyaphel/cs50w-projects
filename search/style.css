@@ -45,9 +45,9 @@
 
 .advancedbox {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    margin-left: 100px;
-    width: 45%;
+    font-size: 13px;
+    margin-left: 60px;
+    width: 60%;
 }
 
 .header-title {
@@ -61,17 +61,17 @@
     margin-bottom: -20px;
     font-size: 24px;
     font-family: Arial, Helvetica, sans-serif;
-    margin-left: 60px;
+    margin-left: 20px;
     color: red;
 }
 
 .intro {
     font-family: Arial, Helvetica, sans-serif;
     width: 15%;
-    font-size: 18px;
-    margin-top: 30px;
-    margin-left: 100px;    
-    margin-bottom: 30px;    
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 60px;    
+    margin-bottom: 15px;    
 }
 
 .title {
@@ -127,15 +127,9 @@
 
 .searchbar.adv {
     width: 500px;
-    padding: 1vh 1vw; 
+    padding: 1.2vh 1vw; 
     border-radius: 2px;
-    font-size: small;
-    margin-left: 20px;
-    
-}
-
-.searchbar.adv.numbers {
-    width: 236px; 
+    font-size: small;    
 }
 
 .search-icon {
@@ -165,10 +159,10 @@
 }
 
 .button.advanced {
-    margin-top: 50px;
+    margin-top: 20px;
     margin-left: 45vw;
     padding: 8px;
-    font-size: 15px;
+    font-size: 14px;
     background-color: #4266f4;
     color: white;
 }
@@ -186,14 +180,11 @@
 }
 
 .words {
-    width: 200px;
-}
+    width: 180px;
+    
+   }
 
-#singleletter{
- width: 10px;
- margin-left: 10px;
- margin-right: -10px;
-}
+
 
 @media (max-width: 800px) {
     .pageslink {
@@ -204,6 +195,9 @@
         letter-spacing: -0.8vw;
     }
 
+    .advancedbox{
+        margin-left: 110px;
+    }
     .searchbar-container {
         width: 80vw;
     }
@@ -227,10 +221,10 @@
         font-size: small;
     }
 
-  .intro{
-    width: 50%;
-    margin-left: 60px;
-  }
+    .intro{
+        width: 50%;
+        margin-left: 60px;
+    }
 
     .form-group label {
         margin-bottom: 5px;
@@ -240,12 +234,5 @@
     .searchbar.adv {
         width: 30vw;
     }
-
-    .searchbar.adv.numbers {
-        width: 12vw;
-    }
-    
-    #singleletter{
-     justify-content: space-between;
-    }
+      
 }
