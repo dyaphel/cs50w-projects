@@ -8,6 +8,7 @@
     text-align: right;
     background-color: #ffffff; 
     padding: 40px;
+
 }
 
 .header.border{
@@ -46,7 +47,7 @@
 .advancedbox {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
-    margin-left: 60px;
+    margin-left: 80px;
     width: 60%;
 }
 
@@ -54,14 +55,16 @@
     font-family: Arial, Helvetica, sans-serif;
     margin-top: -40px;
     text-align: start;
+    font-size: 45px;
+    
 }
 
 .header-title + h2 {
-    margin-top: 50px;
+    margin-top: 40px;
     margin-bottom: -20px;
-    font-size: 24px;
+    font-size: 22px;
     font-family: Arial, Helvetica, sans-serif;
-    margin-left: 20px;
+    margin-left: 40px;
     color: red;
 }
 
@@ -70,7 +73,7 @@
     width: 15%;
     font-size: 16px;
     margin-top: 10px;
-    margin-left: 60px;    
+    margin-left: 80px;    
     margin-bottom: 15px;    
 }
 
