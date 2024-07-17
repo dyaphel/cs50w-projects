@@ -88,8 +88,10 @@ def create(request):
         if form.is_valid():
             title = form.cleaned_data['title']
             content = form.cleaned_data['content']
-            util.save_entry(title, content)
-            return redirect('index')  
+            
+            content_with_title = f"# {title}\n\n{content}"
+            util.save_entry(title, content_with_title)
+            return redirect('entry', title=title)
     else:
         form = NewPageForm()
     return render(request, 'encyclopedia/CreateNewPage.html', {
