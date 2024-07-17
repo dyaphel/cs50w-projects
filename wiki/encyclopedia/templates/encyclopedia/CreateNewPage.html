@@ -7,10 +7,11 @@
 {% block body %}
 <form>
     <h2>Enter Title</h2>
-    <input type="text" name="title" placeholder="Enter the title">
+    <input type="text" name="title" placeholder="Enter the title" class="form-control mb-3">
 
     <h4>Enter page content</h4>
-    <textarea name="content" placeholder="Enter the page content"></textarea>
-    <button type="button">Save</button>
+    <textarea class="form-control"  name="content" placeholder="Enter the page content"></textarea>
+    
+    <button type="button" class="btn btn-primary mt-3">Save</button>
 </form>
 {% endblock %}
