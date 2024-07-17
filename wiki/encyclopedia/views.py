@@ -51,7 +51,7 @@ def search(request):
         })
     
     else:
-        return render(request, 'encyclopedia/EntryNotFound.html', {
+        return render(request, 'encyclopedia/not_found.html', {
             "title": query
         })
 
@@ -65,4 +65,4 @@ def search(request):
     #     "no_results": len(partial) == 0
     #  }) 
 def create(request):
-    return render(request, 'encyclopedia/CreateNewPage.html')
+    return render(request, 'encyclopedia/create.html')
