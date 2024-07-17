@@ -38,7 +38,7 @@ def search(request):
     partial = []
 
     for entry in entries:
-        
+
         if re.fullmatch(query, entry, re.IGNORECASE):
             return redirect('entry', title=entry)
         
@@ -49,6 +49,7 @@ def search(request):
         return render(request, 'encyclopedia/search.html', {
             "entries": partial,
         })
+    
     else:
         return render(request, 'encyclopedia/EntryNotFound.html', {
             "title": query
