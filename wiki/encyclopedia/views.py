@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django import forms
-from django.http import HttpResponse
 from . import util
 import re
 
@@ -88,8 +87,10 @@ def create(request):
         if form.is_valid():
             title = form.cleaned_data['title']
             content = form.cleaned_data['content']
-            
+            # add the #TITLE in the contentof the newly created md page 
             content_with_title = f"# {title}\n\n{content}"
+            #using save its good but this REPLACE the page if it alreday exist i dont remember if its correct
+            # and i need to work whit a markup language find how to do it 
             util.save_entry(title, content_with_title)
             return redirect('entry', title=title)
     else:
