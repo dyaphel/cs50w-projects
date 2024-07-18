@@ -5,6 +5,12 @@
 {% endblock %}
 
 {% block body %}
+    {% if error %}
+        <div class="alert alert-danger w-75">
+            <p>{{ error }}</p>
+        </div>
+    {% endif %}
+
 <form action="{% url 'create' %}" method="post">
         {% csrf_token %}
 

@@ -3,6 +3,7 @@ from django import forms
 from . import util
 import re
 
+
 class NewPageForm(forms.Form):
     title = forms.CharField(
         widget=forms.TextInput(attrs={
@@ -91,10 +92,17 @@ def create(request):
             content_with_title = f"# {title}\n\n{content}"
             #using save its good but this REPLACE the page if it alreday exist i dont remember if its correct
             # and i need to work whit a markup language find how to do it 
-            util.save_entry(title, content_with_title)
-            return redirect('entry', title=title)
+        if not util.create_new_entry(title, content_with_title):
+            error_message = f"The page with the title '{title}' already exists. Please try again with a different title."
+            return render(request, 'encyclopedia/CreateNewPage.html', {
+                'form': form,
+                'error': error_message
+                })
+
+        return redirect('entry', title=title)
     else:
         form = NewPageForm()
+
     return render(request, 'encyclopedia/CreateNewPage.html', {
         'form': NewPageForm
         })
