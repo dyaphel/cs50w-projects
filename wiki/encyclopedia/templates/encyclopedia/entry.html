@@ -5,16 +5,11 @@
 {% endblock %}
 
 {% block body %}
-
-<div class="d-flex align-items-center ">
+<div class="d-flex align-items-center">
     <h1>{{ title }}</h1>
-    
-        <a href="{% url 'edit' title=title %}" class="btn btn-outline-info" role="button" data-bs-toggle="button"
-         style="margin-left: 40px; margin-top: 18px;">
-            <img style="width: 16px; height: 16px; margin-top: -4px; margin-right: 5px;" 
-            src="../../static/encyclopedia/edit.png"> Edit
-        </a>
-    
+    <a href="{% url 'edit' title=title %}" class="btn btn-outline-info" role="button" data-bs-toggle="button" style="margin-left: 40px; margin-top: 18px;">
+        <img style="width: 16px; height: 16px; margin-top: -4px; margin-right: 5px;" src="../../static/encyclopedia/edit.png"> Edit
+    </a>
 </div>
-    <div>{{ content | safe }}</div>
+<div>{{ content | safe }}</div>
 {% endblock %}

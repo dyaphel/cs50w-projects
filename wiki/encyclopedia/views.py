@@ -3,7 +3,7 @@ from django import forms
 from . import util
 import re
 
-
+#THE ONLY FORM IN USE IF IT REMAIN LIKE THIS JUST RENAME WITH PAGEFORM
 class NewPageForm(forms.Form):
     title = forms.CharField(
         required=True,
@@ -82,6 +82,7 @@ def search(request):
     #     "no_results": len(partial) == 0
     #  }) 
 
+#NEED TO BE CLEANED LOOK BELOW BUT BEFOR I NEED TO WORK WITH THE MARKDOWN
 def create(request):
     if request.method == "POST":
         form = NewPageForm(request.POST)
@@ -105,18 +106,23 @@ def create(request):
         'form': NewPageForm
         })
 
+#Added to hold the new line but to remove the extra space at the end and at the start of the new line
+#MAYBE TO BE DELETED AFTER IMPLEMENTING THE MARKDOWN
+def clean_content(content):
+    cleaned_lines = [line.rstrip() for line in content.splitlines()]
+    return "\n".join(cleaned_lines)
 
 def edit(request, title):
     content = util.get_entry(title)
     if request.method == "POST":
         form = NewPageForm(request.POST)
         if form.is_valid():
-            title = form.cleaned_data['title']
-            content = form.cleaned_data['content']
-            util.save_entry(title, content)
+            new_content = form.cleaned_data['content']
+            cleaned_content = clean_content(new_content)
+            util.save_entry(title, cleaned_content)
             return redirect('entry', title=title)
     else:
-        form = NewPageForm({
+        form = NewPageForm(initial={
             'title': title,
             'content': content,
         })
