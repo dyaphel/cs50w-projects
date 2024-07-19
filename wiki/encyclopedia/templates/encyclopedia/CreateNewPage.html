@@ -5,12 +5,25 @@
 {% endblock %}
 
 {% block body %}
-<form>
-    <h2>Enter Title</h2>
-    <input type="text" name="title" placeholder="Enter the title">
+    {% if error %}
+        <div class="alert alert-danger w-75">
+            <p>{{ error }}</p>
+        </div>
+    {% endif %}
 
-    <h4>Enter page content</h4>
-    <textarea name="content" placeholder="Enter the page content"></textarea>
-    <button type="button">Save</button>
+<form action="{% url 'create' %}" method="post">
+        {% csrf_token %}
+
+    <div class="form-group">
+        <h2> Title </h2>
+        {{ form.title }}
+    </div>
+
+    <div class="form-group">
+        <h4> Content </h4>
+        {{ form.content }}
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Save Page</button>
 </form>
 {% endblock %}

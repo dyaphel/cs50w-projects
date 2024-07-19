@@ -4,6 +4,7 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 
 
+
 def list_entries():
     """
     Returns a list of all names of encyclopedia entries.
@@ -35,3 +36,16 @@ def get_entry(title):
         return f.read().decode("utf-8")
     except FileNotFoundError:
         return None
+    
+
+def create_new_entry(title, content):
+    """
+    Create an encyclopedia entry, given its title and Markdown
+    content. If an existing entry with the same title already exists,
+    an ERROR MESSAGE is displayed.
+    """
+    filename = f"entries/{title}.md"
+    if default_storage.exists(filename):
+        return False
+    default_storage.save(filename, ContentFile(content))
+    return True
