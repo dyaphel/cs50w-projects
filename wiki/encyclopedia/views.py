@@ -19,7 +19,6 @@ class NewPageForm(forms.Form):
             })
     )
 
-
 def index(request):
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries()
@@ -111,7 +110,6 @@ def edit(request, title):
     content = util.get_entry(title)
     if request.method == "POST":
         form = NewPageForm(request.POST)
-
         if form.is_valid():
             title = form.cleaned_data['title']
             content = form.cleaned_data['content']
@@ -120,9 +118,9 @@ def edit(request, title):
     else:
         form = NewPageForm({
             'title': title,
-            'content': content
+            'content': content,
         })
-    return render(request,'encyclopedia/edit_page.html',{
+    return render(request, 'encyclopedia/edit_page.html', {
         'title': title,
-        'form': form
+        'form': form,
     })
