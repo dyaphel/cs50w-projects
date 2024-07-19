@@ -29,7 +29,7 @@ def entry(request, title):
     entry = util.get_entry(title)
     
     if entry is None:
-        return render(request, 'encyclopedia/EntryNotFound.html', {
+        return render(request, 'encyclopedia/not_found.html', {
             "title" : title
         })
     return render(request, 'encyclopedia/entry.html', {
@@ -95,7 +95,7 @@ def create(request):
             # and i need to work whit a markup language find how to do it 
         if not util.create_new_entry(title, content_with_title):
             error_message = f"The page with the title '{title}' already exists. Please try again with a different title."
-            return render(request, 'encyclopedia/CreateNewPage.html', {
+            return render(request, 'encyclopedia/create_page.html', {
                 'form': form,
                 'error': error_message
                 })
@@ -104,6 +104,6 @@ def create(request):
     else:
         form = NewPageForm()
 
-    return render(request, 'encyclopedia/CreateNewPage.html', {
+    return render(request, 'encyclopedia/create_page.html', {
         'form': NewPageForm
         })
