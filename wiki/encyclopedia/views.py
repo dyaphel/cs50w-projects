@@ -25,9 +25,9 @@ def index(request):
         "entries": util.list_entries()
     })
 
+
 def entry(request, title):
     entry = util.get_entry(title)
-    
     if entry is None:
         return render(request, 'encyclopedia/not_found.html', {
             "title" : title
@@ -89,10 +89,8 @@ def create(request):
         if form.is_valid():
             title = form.cleaned_data['title']
             content = form.cleaned_data['content']
-            # add the #TITLE in the contentof the newly created md page 
-            content_with_title = f"# {title}\n\n{content}"
-            #using save its good but this REPLACE the page if it alreday exist i dont remember if its correct
-            # and i need to work whit a markup language find how to do it 
+            content_with_title = f"# {title}\n{content}"
+            # need to work whit a markup language find how to do it 
         if not util.create_new_entry(title, content_with_title):
             error_message = f"The page with the title '{title}' already exists. Please try again with a different title."
             return render(request, 'encyclopedia/create_page.html', {
@@ -107,3 +105,24 @@ def create(request):
     return render(request, 'encyclopedia/create_page.html', {
         'form': NewPageForm
         })
+
+
+def edit(request, title):
+    content = util.get_entry(title)
+    if request.method == "POST":
+        form = NewPageForm(request.POST)
+
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            content = form.cleaned_data['content']
+            util.save_entry(title, content)
+            return redirect('entry', title=title)
+    else:
+        form = NewPageForm({
+            'title': title,
+            'content': content
+        })
+    return render(request,'encyclopedia/edit_page.html',{
+        'title': title,
+        'form': form
+    })
