@@ -6,6 +6,7 @@ import re
 
 class NewPageForm(forms.Form):
     title = forms.CharField(
+        required=True,
         widget=forms.TextInput(attrs={
             'class': 'form-control w-25',
             'placeholder': 'Enter title'

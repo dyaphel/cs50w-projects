@@ -1,8 +1,8 @@
 body {
     margin: 0;
     background-color: white;
-    overflow-x: hidden;
-    overflow-y: auto;
+    /* overflow-x: hidden;
+    overflow-y: auto; */
 }
 
 code {
