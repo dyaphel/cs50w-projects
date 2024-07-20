@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django import forms
 from . import util
 import re
+import random
+from markdown2 import Markdown
 
 #THE ONLY FORM IN USE IF IT REMAIN LIKE THIS JUST RENAME WITH PAGEFORM
 class NewPageForm(forms.Form):
@@ -31,11 +33,11 @@ def entry(request, title):
         return render(request, 'encyclopedia/not_found.html', {
             "title" : title
         })
+    entry_html = Markdown().convert(entry)
     return render(request, 'encyclopedia/entry.html', {
         "title": title,
-        "content": entry
+        "content": entry_html
     })
-
 
 def search(request):
 
@@ -122,7 +124,7 @@ def edit(request, title):
             util.save_entry(title, cleaned_content)
             return redirect('entry', title=title)
     else:
-        form = NewPageForm(initial={
+        form = NewPageForm({
             'title': title,
             'content': content,
         })
@@ -130,3 +132,9 @@ def edit(request, title):
         'title': title,
         'form': form,
     })
+
+def random_entry(request):
+    entries = util.list_entries()
+    entry = random.choice(entries)
+    content = util.get_entry(entry)
+    return redirect('entry', title=entry)
