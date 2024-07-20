@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
 from django import forms
 from . import util
+from markdown2 import Markdown
 import re
 import random
-from markdown2 import Markdown
 
-#THE ONLY FORM IN USE IF IT REMAIN LIKE THIS JUST RENAME WITH PAGEFORM
 class NewPageForm(forms.Form):
     title = forms.CharField(
         required=True,
@@ -17,31 +16,39 @@ class NewPageForm(forms.Form):
     content = forms.CharField(
         widget=forms.Textarea(attrs={
             'class': 'form-control w-75',
-            'placeholder':'Enter the page content'
+            'placeholder':'Enter the page content using Markdown format'
             })
     )
+
+class EditPageForm(forms.Form):
+    content = forms.CharField(
+        widget=forms.Textarea(attrs={
+            'class': 'form-control w-75',
+            'placeholder':'Enter the page content using Markdown format'
+            })
+    )
+
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries()
     })
 
-
 def entry(request, title):
-    entry = util.get_entry(title)
-    if entry is None:
-        return render(request, 'encyclopedia/not_found.html', {
-            "title" : title
+    entrymk = util.get_entry(title)
+
+    if entrymk is None:
+        return render(request, "encyclopedia/not_found.html",{
+            'title': title
         })
-    entry_html = Markdown().convert(entry)
-    return render(request, 'encyclopedia/entry.html', {
-        "title": title,
-        "content": entry_html
+    entry = Markdown().convert(entrymk)
+    return render(request, "encyclopedia/entry.html",{
+        'title':title,
+        'content':entry
     })
 
 def search(request):
-
-    # NOT USING RE but using a list of lower TITLES: 'entries_titles' where the query its going to be searched 
+     # NOT USING RE but using a list of lower TITLES: 'entries_titles' where the query its going to be searched 
     # AND USING: '_title' to show the UPPER title of the entry
     # 
     #query = request.GET.get('q').strip().lower()
@@ -82,34 +89,31 @@ def search(request):
     #     "entries": partial,
     #     "query":query,
     #     "no_results": len(partial) == 0
-    #  }) 
+    #  })
 
-#NEED TO BE CLEANED LOOK BELOW BUT BEFOR I NEED TO WORK WITH THE MARKDOWN
 def create(request):
     if request.method == "POST":
         form = NewPageForm(request.POST)
         if form.is_valid():
             title = form.cleaned_data['title']
             content = form.cleaned_data['content']
-            content_with_title = f"# {title}\n{content}"
-            # need to work whit a markup language find how to do it 
+            #automaticly add the title inside the document 
+            content_with_title = f"# {title}\n\n{content}"
         if not util.create_new_entry(title, content_with_title):
             error_message = f"The page with the title '{title}' already exists. Please try again with a different title."
-            return render(request, 'encyclopedia/create_page.html', {
+            return render(request, 'encyclopedia/create.html', {
                 'form': form,
                 'error': error_message
                 })
-
+        
         return redirect('entry', title=title)
     else:
         form = NewPageForm()
-
-    return render(request, 'encyclopedia/create_page.html', {
+    return render(request, 'encyclopedia/create.html', {
         'form': NewPageForm
         })
 
-#Added to hold the new line but to remove the extra space at the end and at the start of the new line
-#MAYBE TO BE DELETED AFTER IMPLEMENTING THE MARKDOWN
+#Clean the file's line
 def clean_content(content):
     cleaned_lines = [line.rstrip() for line in content.splitlines()]
     return "\n".join(cleaned_lines)
@@ -117,18 +121,18 @@ def clean_content(content):
 def edit(request, title):
     content = util.get_entry(title)
     if request.method == "POST":
-        form = NewPageForm(request.POST)
+        form = EditPageForm(request.POST)
         if form.is_valid():
-            new_content = form.cleaned_data['content']
-            cleaned_content = clean_content(new_content)
-            util.save_entry(title, cleaned_content)
+            content = form.cleaned_data['content']
+            cleaned = clean_content(content)
+            util.save_entry(title, cleaned)
             return redirect('entry', title=title)
     else:
-        form = NewPageForm({
+        form = EditPageForm({
             'title': title,
             'content': content,
         })
-    return render(request, 'encyclopedia/edit_page.html', {
+    return render(request, 'encyclopedia/edit.html', {
         'title': title,
         'form': form,
     })
@@ -136,5 +140,4 @@ def edit(request, title):
 def random_entry(request):
     entries = util.list_entries()
     entry = random.choice(entries)
-    content = util.get_entry(entry)
     return redirect('entry', title=entry)
