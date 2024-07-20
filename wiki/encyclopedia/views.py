@@ -113,18 +113,13 @@ def create(request):
         'form': NewPageForm
         })
 
-#Clean the file's line
-def clean_content(content):
-    cleaned_lines = [line.rstrip() for line in content.splitlines()]
-    return "\n".join(cleaned_lines)
-
 def edit(request, title):
     content = util.get_entry(title)
     if request.method == "POST":
         form = EditPageForm(request.POST)
         if form.is_valid():
             content = form.cleaned_data['content']
-            cleaned = clean_content(content)
+            cleaned = util.clean_content(content)
             util.save_entry(title, cleaned)
             return redirect('entry', title=title)
     else:

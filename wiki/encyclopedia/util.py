@@ -47,3 +47,8 @@ def create_new_entry(title, content):
         return False
     default_storage.save(filename, ContentFile(content))
     return True
+
+#Clean the file's line
+def clean_content(content):
+    cleaned_lines = [line.rstrip() for line in content.splitlines()]
+    return "\n".join(cleaned_lines)
