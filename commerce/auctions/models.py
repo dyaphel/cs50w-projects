@@ -31,7 +31,7 @@ class AuctionListings(models.Model):
 def __str__(self):
     return f"{self.title} placed by {self.seller}"
 
-class Bid(models.Model):
+class Bids(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bids")
     time = models.DateTimeField(auto_now_add=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -40,7 +40,7 @@ class Bid(models.Model):
 def __str__(self):
     return f"{self.price} by {self.user} on {self.listing}"
     
-class Comment(models.Model):
+class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
     time = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
