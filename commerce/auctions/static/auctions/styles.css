@@ -1,3 +1,6 @@
 body {
     padding: 10px;
 }
+.form-control {
+    margin-bottom: 10px; /* Adjust spacing between form fields */
+}
