@@ -9,7 +9,7 @@ class AuctionListingForm(forms.ModelForm):
             'placeholder': 'Enter the title'
         })
     )
-    description = forms.TextInput( 
+    description = forms.CharField( 
         required=True, 
         widget=forms.Textarea(attrs={
             'class': 'form-control', 
@@ -18,7 +18,7 @@ class AuctionListingForm(forms.ModelForm):
         })
     )
     
-    starting_bid = forms.NumberInput( 
+    starting_bid = forms.DecimalField( 
         required=True, 
         widget=forms.NumberInput(attrs={
             'class': 'form-control', 
@@ -26,14 +26,14 @@ class AuctionListingForm(forms.ModelForm):
         })
     )
     
-    image_url = forms.CharField( 
+    image_url = forms.URLField( 
         widget=forms.URLInput(attrs={
             'class': 'form-control', 
             'placeholder': 'Enter the image url',
         })
     )
 
-    category = forms.Select( 
+    category = forms.ChoiceField( 
         widget=forms.Select(attrs={
             'class': 'form-control', 
             'placeholder': 'Enter the description',
