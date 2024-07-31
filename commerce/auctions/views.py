@@ -1,12 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .forms import AuctionListingForm
+from django.contrib.auth.decorators import login_required
+from .models import User, AuctionListings, Bids, Comments
 
-
-from .models import User
 
 
 def index(request):
@@ -64,18 +64,18 @@ def register(request):
     else:
         return render(request, "auctions/register.html")
 
-
+@login_required(login_url='login')
 def create(request):
     if request.method == "POST":
         form = AuctionListingForm(request.POST)
-        if form.is_valid():  # Checks if the form data is valid
-            auction_listing = form.save(commit=False)  # Creates an instance but doesn't save it to the database yet
-            auction_listing.seller = request.user  # Sets the seller to the current logged-in user
-            auction_listing.save()  # Saves the instance to the database
-            return redirect('index')  # Redirects to the index page
+        if form.is_valid():
+            auction_listing = form.save(commit=False)
+            auction_listing.seller = request.user
+            auction_listing.save()
+            return redirect('index')
     else:
-        form = AuctionListingForm()  # Creates an empty form
-    
+        form = AuctionListingForm()
+        
     return render(request, "auctions/create.html", {
-        'form': form  # Passes the form to the template
+        'form': form
     })

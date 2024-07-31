@@ -9,6 +9,7 @@ class AuctionListingForm(forms.ModelForm):
             'placeholder': 'Enter the title'
         })
     )
+
     description = forms.CharField( 
         required=True, 
         widget=forms.Textarea(attrs={
@@ -27,6 +28,7 @@ class AuctionListingForm(forms.ModelForm):
     )
     
     image_url = forms.URLField( 
+        required=False, 
         widget=forms.URLInput(attrs={
             'class': 'form-control', 
             'placeholder': 'Enter the image url',
@@ -34,10 +36,10 @@ class AuctionListingForm(forms.ModelForm):
     )
 
     category = forms.ChoiceField( 
+        required=False, 
+        choices= [('', 'Select a category')] + AuctionListings.CATEGORY_LIST,
         widget=forms.Select(attrs={
             'class': 'form-control', 
-            'placeholder': 'Enter the description',
-             'style': 'height: 12vh;'
         })
     )
     class Meta:
