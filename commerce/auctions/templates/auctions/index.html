@@ -12,10 +12,11 @@
                 <h2 class="card-title">{{ listing.title }}</h2>
                 <p class="card-text">{{ listing.description }}</p>
                 <h3 class="card-text bid">
-                    Price: 
                     {% if listing.current_bid %}
+                    Current Bid
                         ${{ listing.current_bid }}
                     {% else %}
+                    Price: 
                         ${{ listing.starting_bid }}
                     {% endif %}
                 </h3>

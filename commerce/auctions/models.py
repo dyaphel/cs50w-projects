@@ -23,7 +23,7 @@ class AuctionListings(models.Model):
     seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name="listings")
     title = models.CharField(max_length=30)
     description = models.TextField()
-    image_url = models.URLField(max_length=500, blank=True, null=True)
+    image_url = models.URLField(max_length=900, blank=True, null=True)
     starting_bid = models.DecimalField(max_digits=10, decimal_places=2)
     current_bid = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     created_at = models.DateTimeField(default=timezone.now())
