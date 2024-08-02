@@ -1,7 +1,28 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <h2>Active Listings</h2>
-
-    TODO
+<h2>Active Listings</h2>
+<div class="container">
+    {% for listing in active_listings %}
+        <div class="card flex-row my-5 custom-card">
+            {% if listing.image_url %}
+                <img src="{{ listing.image_url }}" class="img-fluid custom-image">
+            {% endif %}
+            <div class="card-body d-flex flex-column custom-body">
+                <h2 class="card-title">{{ listing.title }}</h2>
+                <p class="card-text">{{ listing.description }}</p>
+                <h3 class="card-text bid">
+                    Price: 
+                    {% if listing.current_bid %}
+                        ${{ listing.current_bid }}
+                    {% else %}
+                        ${{ listing.starting_bid }}
+                    {% endif %}
+                </h3>
+                <p class="card-text createdat"><strong>Created at:</strong> {{ listing.created_at }}</p>
+                <p class="card-text endat"><strong>End at:</strong> {{ listing.end_time }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
