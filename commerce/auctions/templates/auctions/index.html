@@ -3,35 +3,27 @@
 {% block body %}
 <h2>Active Listings</h2>
 <div class="container">
-{% for listing in active_listings%}
-<div class="card">
-    {% if listing.image_url %}
-    <img class="img-thumbnail" src="{{ listing.image_url }}">
-    {%endif%}
-</div>
-{%endfor%}
+    {% for listing in active_listings %}
+    <div class="card">
+        {% if listing.image_url %}
+        <div class="card-img-container">
+            <img class="card-img" src="{{ listing.image_url }}" alt="{{ listing.title }}">
+        </div>
+        {% endif %}
+        <div class="card-body">
+            <h2 class="card-title">{{ listing.title }}</h2>
+            <p class="card-description">{{ listing.description }}</p>
+            <h3 class="card-bid">
+                {% if listing.current_bid %}
+                Current Bid: ${{ listing.current_bid }}
+                {% else %}
+                Price: ${{ listing.starting_bid }}
+                {% endif %}
+            </h3>
+            <p class="card-createdat"><strong>Created at:</strong> {{ listing.created_at }}</p>
+            <p class="card-endat"><strong>End at:</strong> {{ listing.end_time }}</p>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
-    <!-- {% for listing in active_listings %}
-        <div class="card flex-row my-5 custom-card">
-            {% if listing.image_url %}
-                <img src="{{ listing.image_url }}" class="img-fluid custom-image">
-            {% endif %}
-            <div class="card-body d-flex flex-column custom-body">
-                <h2 class="card-title">{{ listing.title }}</h2>
-                <p class="card-text">{{ listing.description }}</p>
-                <h3 class="card-text bid">
-                    {% if listing.current_bid %}
-                    Current Bid
-                        ${{ listing.current_bid }}
-                    {% else %}
-                    Price: 
-                        ${{ listing.starting_bid }}
-                    {% endif %}
-                </h3>
-                <p class="card-text createdat"><strong>Created at:</strong> {{ listing.created_at }}</p>
-                <p class="card-text endat"><strong>End at:</strong> {{ listing.end_time }}</p>
-            </div>
-        </div>
-    {% endfor %} -->
-
