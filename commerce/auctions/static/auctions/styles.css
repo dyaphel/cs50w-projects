@@ -3,7 +3,11 @@ body {
 }
 
 .custom-card {
-    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    height: 300px;
     border-radius: 10px;
     border: 1px solid black;
     width: 130%; 
@@ -12,9 +16,9 @@ body {
 
 
 .custom-image {
-    width: 200px;
-    height: 210px;
-    margin: 20px;
+    width: 25%;
+    height: 280px;
+    margin: 10px;
     margin-left: 80px;
     object-fit: cover;
 }
