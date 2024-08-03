@@ -3,7 +3,16 @@
 {% block body %}
 <h2>Active Listings</h2>
 <div class="container">
-    {% for listing in active_listings %}
+{% for listing in active_listings%}
+<div class="card">
+    {% if listing.image_url %}
+    <img class="img-thumbnail" src="{{ listing.image_url }}">
+    {%endif%}
+</div>
+{%endfor%}
+</div>
+{% endblock %}
+    <!-- {% for listing in active_listings %}
         <div class="card flex-row my-5 custom-card">
             {% if listing.image_url %}
                 <img src="{{ listing.image_url }}" class="img-fluid custom-image">
@@ -24,6 +33,5 @@
                 <p class="card-text endat"><strong>End at:</strong> {{ listing.end_time }}</p>
             </div>
         </div>
-    {% endfor %}
-</div>
-{% endblock %}
+    {% endfor %} -->
+
