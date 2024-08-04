@@ -78,3 +78,24 @@ body {
     color: #666;
     margin-top: -20px;
 }
+
+
+/* Add this to your CSS file */
+.card-link {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit text color */
+}
+
+.card-link .card {
+    border: 1px solid #ccc;
+    padding: 16px;
+    margin: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+    display: block; /* Ensure the card takes up full width */
+}
+
+.card-link .card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

@@ -1,15 +1,25 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .forms import AuctionListingForm
 from django.contrib.auth.decorators import login_required
 from .models import User, AuctionListings, Bids, Comments
+from django.utils import timezone
 
+
+
+def update_auction_status():
+    today = timezone.now().date()
+    expired_listings = AuctionListings.objects.filter(end_time__date__lte=today, active=True)
+    for listing in expired_listings:
+        listing.active = False
+        listing.save()
 
 
 def index(request):
+    update_auction_status()
     active_listings = AuctionListings.objects.filter(active=True)
     return render(request, "auctions/index.html", {
         'active_listings': active_listings
@@ -17,12 +27,10 @@ def index(request):
 
 def login_view(request):
     if request.method == "POST":
-
         # Attempt to sign user in
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
-
         # Check if authentication successful
         if user is not None:
             login(request, user)
@@ -80,4 +88,11 @@ def create(request):
         
     return render(request, "auctions/create.html", {
         'form': form
+    })
+
+@login_required(login_url='login')
+def listing(request, id):
+    listing = get_object_or_404(AuctionListings, id=id)
+    return render(request, "auctions/listing.html", {
+        'listing': listing
     })

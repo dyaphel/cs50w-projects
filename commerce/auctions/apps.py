@@ -2,6 +2,3 @@ from django.apps import AppConfig
 
 class AuctionsConfig(AppConfig):
     name = 'auctions'
-
-    def ready(self):
-        import auctions.signals  # This ensures that the signal handlers are connected

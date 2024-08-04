@@ -4,7 +4,7 @@
 <h2>Active Listings</h2>
 <div class="container">
     {% for listing in active_listings %}
-    <div class="card">
+    <div class="card" onclick="window.location.href='{% url 'listing' listing.id %}'">
         {% if listing.image_url %}
         <div class="card-img-container">
             <img class="card-img" src="{{ listing.image_url }}" alt="{{ listing.title }}">
