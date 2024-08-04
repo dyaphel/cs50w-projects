@@ -8,8 +8,8 @@ body {
 }
 
 .card {
-    margin-top: 20px;
     width: 130%;
+    margin-top: 10px;
     height: 270px;
     display: flex;
     flex-direction: row;
@@ -28,24 +28,26 @@ body {
     align-items: center;    /* Center-align items horizontally */
     justify-content: center; /* Center-align items vertically */
     flex-shrink: 0;
-    width: 400px;            /* Allow width to adjust based on content */
+    width: 700px;            /* Allow width to adjust based on content */
     height: 250px; 
     margin-top: 10px;
     margin-bottom: 10px;         /* Fixed height for the image container */
     overflow: hidden; 
-    margin-left: 200px;
+    margin-left: 80px;
 }
 
 .card-img {
-    width: auto;        /* Ensure image does not exceed container width */
-    height: 250px;           /* Maintain aspect ratio of the image */
+    width: auto;
+    max-width: 700px; 
+    height: auto;       /* Ensure image does not exceed container width */
+    max-height: 250px;           /* Maintain aspect ratio of the image */
     display: block;         /* Remove any extra space below the image */
 }
 
 .card-body {
     flex-grow: 1;
     padding: 15px;
-    margin-left: 100px;
+    margin-left: 50px;
 }
 
 .card-title {
