@@ -5,14 +5,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .forms import AuctionListingForm
 from django.contrib.auth.decorators import login_required
-from .models import User, AuctionListings, Bids, Comments, WatchList
+from .models import User, AuctionListing, Bid, Comment, Watchlist
 from django.utils import timezone
 
 
 
 def update_auction_status():
     today = timezone.now().date()
-    expired_listings = AuctionListings.objects.filter(end_time__date__lte=today, active=True)
+    expired_listings = AuctionListing.objects.filter(end_time__date__lte=today, active=True)
     for listing in expired_listings:
         listing.active = False
         listing.save()
@@ -20,7 +20,7 @@ def update_auction_status():
 
 def index(request):
     update_auction_status()
-    active_listings = AuctionListings.objects.filter(active=True)
+    active_listings = AuctionListing.objects.filter(active=True)
     return render(request, "auctions/index.html", {
         'active_listings': active_listings
     })
@@ -92,8 +92,8 @@ def create(request):
 
 
 def listing(request, id):
-    category_dict = dict(AuctionListings.CATEGORY_LIST)
-    listing = AuctionListings.objects.get(id=id)
+    category_dict = dict(AuctionListing.CATEGORY_LIST)
+    listing = AuctionListing.objects.get(id=id)
     category = category_dict.get(listing.category)
     return render(request, "auctions/listing.html", {
         'listing': listing,

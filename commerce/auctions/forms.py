@@ -1,5 +1,5 @@
 from django import forms
-from .models import AuctionListings
+from .models import AuctionListing
 
 class AuctionListingForm(forms.ModelForm):
     title = forms.CharField( 
@@ -37,11 +37,11 @@ class AuctionListingForm(forms.ModelForm):
 
     category = forms.ChoiceField( 
         required=False, 
-        choices= [('', 'Select a category')] + AuctionListings.CATEGORY_LIST,
+        choices= [('', 'Select a category')] + AuctionListing.CATEGORY_LIST,
         widget=forms.Select(attrs={
             'class': 'form-control', 
         })
     )
     class Meta:
-        model = AuctionListings 
+        model = AuctionListing
         fields = ['title', 'description', 'starting_bid', 'image_url', 'category'] 

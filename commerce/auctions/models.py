@@ -7,7 +7,7 @@ from datetime import timedelta
 class User(AbstractUser):
     pass
 
-class AuctionListings(models.Model):
+class AuctionListing(models.Model):
     
     CATEGORY_LIST= [
         ("MOT", "Motors"),
@@ -35,27 +35,27 @@ class AuctionListings(models.Model):
 def __str__(self):
     return f"{self.title} placed by {self.seller}"
 
-class WatchList(models.Model):
+class Watchlist(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='watchlisted_by', blank=True)
-    listings = models.ForeignKey(AuctionListings, on_delete=models.CASCADE, related_name='watchlist_listing')
+    listings = models.ForeignKey(AuctionListing, on_delete=models.CASCADE, related_name='watchlist_listing')
 
 def __str__(self):
     return f"{self.user} watches {self.listings}"
 
-class Bids(models.Model):
+class Bid(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bids")
     time = models.DateTimeField(auto_now_add=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    listing = models.ForeignKey(AuctionListings, on_delete=models.CASCADE, related_name="bids")
+    listing = models.ForeignKey(AuctionListing, on_delete=models.CASCADE, related_name="bids")
 
 def __str__(self):
     return f"{self.price} by {self.user} on {self.listing}"
     
-class Comments(models.Model):
+class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
     time = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
-    listing = models.ForeignKey(AuctionListings, on_delete=models.CASCADE, related_name="comments")
+    listing = models.ForeignKey(AuctionListing, on_delete=models.CASCADE, related_name="comments")
 
 def __str__(self):
     return f"Comment by {self.user} on {self.listing}"
