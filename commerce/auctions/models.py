@@ -31,8 +31,13 @@ class AuctionListings(models.Model):
     active = models.BooleanField(default=True)
     category = models.CharField(max_length=3, choices=CATEGORY_LIST)
 
+
 def __str__(self):
     return f"{self.title} placed by {self.seller}"
+
+@property
+def category_name(self):
+    return dict(self.CATEGORY_LIST).get(self.category, 'Unknown Category')
 
 class Bids(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bids")

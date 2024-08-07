@@ -92,7 +92,11 @@ def create(request):
 
 
 def listing(request, id):
+    category_dict = dict(AuctionListings.CATEGORY_LIST)
     listing = AuctionListings.objects.get(id=id)
+    category = category_dict.get(listing.category)
     return render(request, "auctions/listing.html", {
-        'listing': listing
+        'listing': listing,
+        'category_name':category
     })
+

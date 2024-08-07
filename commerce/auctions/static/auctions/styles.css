@@ -106,10 +106,12 @@ body {
 }
 
 .listing-img {
-    max-width: 50%;
+    max-width: auto;
+    height: auto;
     margin-top: 1%;
     margin-bottom: 1%;
 }
+
 .listing-body {
     font-size: 40px;
     width: 90%;
