@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .forms import AuctionListingForm
 from django.contrib.auth.decorators import login_required
-from .models import User, AuctionListings, Bids, Comments
+from .models import User, AuctionListings, Bids, Comments, WatchList
 from django.utils import timezone
 
 

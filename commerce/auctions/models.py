@@ -35,6 +35,13 @@ class AuctionListings(models.Model):
 def __str__(self):
     return f"{self.title} placed by {self.seller}"
 
+class WatchList(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='watchlisted_by', blank=True)
+    listings = models.ForeignKey(AuctionListings, on_delete=models.CASCADE, related_name='watchlist_listing')
+
+def __str__(self):
+    return f"{self.user} watches {self.listing}"
+
 class Bids(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bids")
     time = models.DateTimeField(auto_now_add=True)
@@ -52,3 +59,4 @@ class Comments(models.Model):
 
 def __str__(self):
     return f"Comment by {self.user} on {self.listing}"
+
