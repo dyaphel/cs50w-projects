@@ -80,22 +80,58 @@ body {
 }
 
 
-/* Add this to your CSS file */
-.card-link {
-    text-decoration: none; /* Remove underline from links */
-    color: inherit; /* Inherit text color */
+/* ///////////////////////LISTING///////////////////////// */
+
+.listing-title {
+    text-align: start;
+    font-size: 50px;
+    margin-bottom: 2%;
+    margin-left: 8%;
 }
 
-.card-link .card {
-    border: 1px solid #ccc;
-    padding: 16px;
-    margin: 16px;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s;
-    display: block; /* Ensure the card takes up full width */
+.listing-seller, .listing-email {
+    text-align: start;
+    font-size: 20px;
+    margin-top: -1.2%;
+    margin-left: 8%;
 }
 
-.card-link .card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+.listing-detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    flex-direction: column;
 }
+
+.listing-img {
+    max-width: 50%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.listing-body {
+    font-size: 40px;
+    width: 90%;
+    text-align: left;
+}
+
+.listing-description, .listing-category{ 
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-left: 8%;
+    margin-top: 1%;
+}
+.listing-bid{
+margin-left: 8%;
+font-size: 40px;
+margin-bottom: 3%;
+}
+
+.listing-createdat, .listing-endat {
+    font-size: 20px;
+    margin-top: -1%;
+    margin-left: 8%;
+   color: #666;
+}
+

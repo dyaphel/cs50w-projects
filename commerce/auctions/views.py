@@ -90,9 +90,9 @@ def create(request):
         'form': form
     })
 
-@login_required(login_url='login')
+
 def listing(request, id):
-    listing = get_object_or_404(AuctionListings, id=id)
+    listing = AuctionListings.objects.get(id=id)
     return render(request, "auctions/listing.html", {
         'listing': listing
     })

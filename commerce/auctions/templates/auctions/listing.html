@@ -1,23 +1,27 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-<h1>{{ listing.title }}</h1>
+<h1 class="listing-title">Listing: {{ listing.title }}</h1>
+<p class="listing-seller"><strong>Listed by:</strong> {{ listing.seller }}</p>
+<p class="listing-email"><strong>Email:</strong> {{ listing.seller.email }}</p>
+
+
 <div class="listing-detail">
     {% if listing.image_url %}
-        <img src="{{ listing.image_url }}" >
+        <img class="listing-img" src="{{ listing.image_url }}">
     {% endif %}
-    <div class="listing-body">
-        {{listing.seller}}
-        {{ listing.description }}
-        <h3 class="listing-bid">
-            Starting Price: ${{ listing.starting_bid }}
-            {% if listing.current_bid %}
-            Current Bid: ${{ listing.current_bid }}
-            {% endif %}
-        </h3>
-        <p class="listing-createdat"><strong>Created at:</strong> {{ listing.created_at }}</p>
-        <p class="listing-endat"><strong>End at:</strong> {{ listing.end_time }}</p>
-        {{listing.category}}
-    </div>
+</div>
+
+<div class="listing-body">
+    <p class="listing-description">{{ listing.description }}</p>
+    <h3 class="listing-bid">
+        <p>Starting Price: ${{ listing.starting_bid }}</p>
+        {% if listing.current_bid %}
+        <p>Current Bid: ${{ listing.current_bid }}</p>
+        {% endif %}
+    </h3>
+    <p class="listing-createdat"><strong>Created at:</strong> {{ listing.created_at }}</p>
+    <p class="listing-endat"><strong>End at:</strong> {{ listing.end_time }}</p>
+    <p  class="listing-category"><strong>Category:</strong> {{ listing.category}}</p>
 </div>
 {% endblock %}
