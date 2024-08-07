@@ -106,8 +106,7 @@ body {
 }
 
 .listing-img {
-    max-width: auto;
-    height: auto;
+    max-width: 50%;
     margin-top: 1%;
     margin-bottom: 1%;
 }
