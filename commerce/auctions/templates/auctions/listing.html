@@ -7,6 +7,17 @@
 <p class="listing-seller"><strong>Listed by:</strong> {{ listing.seller }}</p>
 <p class="listing-email"><strong>Email:</strong> {{ listing.seller.email }}</p>
 
+{% if user.is_authenticated %}
+    <form style="margin-left: 8%;" method="POST" action="{% url 'watchlist' listing.id %}">
+        {% csrf_token %}
+        {% if is_watchlisted %}
+            <button type="submit" class="btn btn-danger">Remove from Watchlist</button>
+        {% else %}
+            <button type="submit" class="btn btn-success">Add to Watchlist</button>
+        {% endif %}
+    </form>
+{% endif %}
+
 
 <div class="listing-detail">
     {% if listing.image_url %}
@@ -26,4 +37,6 @@
     <p class="listing-endat"><strong>End at:</strong> {{ listing.end_time }}</p>
     <p  class="listing-category"><strong>Category:</strong> {{ category_name }}</p>
 </div>
+
+
 {% endblock %}

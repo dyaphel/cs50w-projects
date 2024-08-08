@@ -73,6 +73,7 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "auctions/register.html")
+    
 
 @login_required(login_url='login')
 def create(request):
@@ -95,8 +96,22 @@ def listing(request, id):
     category_dict = dict(AuctionListing.CATEGORY_LIST)
     listing = AuctionListing.objects.get(id=id)
     category = category_dict.get(listing.category)
+    is_watchlisted = Watchlist.objects.filter(user=request.user, listings=listing).exists()
     return render(request, "auctions/listing.html", {
         'listing': listing,
-        'category_name':category
+        'category_name':category,
+         'is_watchlisted': is_watchlisted,
     })
+
+@login_required
+def watchlist(request, id):
+    listing = AuctionListing.objects.get(id=id)
+    watchlist_item = Watchlist.objects.filter( user = request.user, listings=listing)
+    if watchlist_item:
+        watchlist_item.delete()
+        return redirect('listing', id=id)
+    else:
+        Watchlist.objects.create(user=request.user, listings=listing)
+        return redirect('listing', id=id)
+     
 
