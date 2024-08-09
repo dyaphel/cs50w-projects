@@ -94,14 +94,18 @@ def create(request):
 
 def listing(request, id):
     category_dict = dict(AuctionListing.CATEGORY_LIST)
-    listing = AuctionListing.objects.get(id=id)
+    listing = get_object_or_404(AuctionListing, id=id)
     category = category_dict.get(listing.category)
-    is_watchlisted = Watchlist.objects.filter(user=request.user, listings=listing).exists()
+    if request.user.is_authenticated:
+        is_watchlisted = Watchlist.objects.filter(user=request.user, listings=listing).exists()
+    else:
+        is_watchlisted = False
     return render(request, "auctions/listing.html", {
         'listing': listing,
-        'category_name':category,
-         'is_watchlisted': is_watchlisted,
+        'category_name': category,
+        'is_watchlisted': is_watchlisted,
     })
+
 
 @login_required
 def watchlist(request, id):
