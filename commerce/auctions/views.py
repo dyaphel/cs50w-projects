@@ -4,9 +4,11 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .forms import AuctionListingForm
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import User, AuctionListing, Bid, Comment, Watchlist
 from django.utils import timezone
+from decimal import Decimal
 
 
 
@@ -117,6 +119,31 @@ def watchlist(request, id):
     else:
         Watchlist.objects.create(user=request.user, listings=listing)
         return redirect('listing', id=id)
-     
+    
+
+# DA SISTEMARE
+@login_required
 def bids(request, id):
-    return redirect('listing', id)
+    listing = AuctionListing.objects.get(id=id)
+    if request.method == "POST":
+        bid = request.POST.get("bid_amount")
+        try:
+            bid_amount = Decimal(bid)
+        except (ValueError, TypeError):
+            messages.error(request, "Invalid bid amount.")
+            return redirect('listing', id=listing.id)
+        if bid_amount < listing.starting_bid:
+            messages.error(request, f"Your bid must be at least the starting bid of ${listing.starting_bid}.")
+            return redirect('listing', id=listing.id)
+        if listing.current_bid and bid_amount <= listing.current_bid:
+            messages.error(request, f"Your bid must be higher than the current highest bid of ${listing.current_bid}.")
+            return redirect('listing', id=listing.id)
+        current_bid = Bid(user=request.user, time=timezone.now(), price=bid_amount, listing=listing)
+        current_bid.save()
+        listing.current_bid = bid_amount
+        listing.save()
+
+        messages.success(request, 'Your bid was successfully placed.')
+        return redirect('listing', id=listing.id)
+
+    return redirect('listing', id=listing.id)

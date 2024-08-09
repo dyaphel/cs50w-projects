@@ -39,13 +39,13 @@
     <form class="row align-item-start" style="margin-left: 7%; margin-top: -35px; margin-bottom: 2%;" method="POST" action="{% url 'bids' listing.id %}">
         {% csrf_token %}
         <div class="col-auto">
-            <label for="bidAmount" style="font-size: 30px; font-weight: bold;">Place your bid: </label>
+            <label for="bidAmount" style="font-size: 30px; font-weight: bold;">Place your bid: A</label>
         </div>
         <div class="col-auto">
             <input type="number" style="margin-top: 8%; width: 150%;" name="bid_amount" class="form-control" id="bidAmount" placeholder="Your bid" min="{{ listing.current_bid|default:listing.starting_bid }}" required>
         </div>
         <div class="col-auto" style="margin-left: 8%;">
-            <button type="submit"  class="btn btn-primary">Submit Bid</button>
+            <button type="submit" class="btn btn-primary">Submit Bid</button>
         </div>
     </form>
 {% endif %}
