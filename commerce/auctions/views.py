@@ -118,4 +118,5 @@ def watchlist(request, id):
         Watchlist.objects.create(user=request.user, listings=listing)
         return redirect('listing', id=id)
      
-
+def bids(request, id):
+    return redirect('listing', id)

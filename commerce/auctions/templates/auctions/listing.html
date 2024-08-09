@@ -27,13 +27,30 @@
 
 <div class="listing-body">
     <p class="listing-description">{{ listing.description }}</p>
-    <h3 class="listing-bid">
+    <h6 class="listing-bid">
         {% if listing.current_bid %}
         <p>Current Bid: ${{ listing.current_bid }}</p>
         {% else %}
         <p>Starting Price: ${{ listing.starting_bid }}</p>
         {% endif %}
-    </h3>
+    </h6>
+    
+    {% if user.is_authenticated %}
+    <form class="row align-item-start" style="margin-left: 7%; margin-top: -35px; margin-bottom: 2%;" method="POST" action="{% url 'bids' listing.id %}">
+        {% csrf_token %}
+        <div class="col-auto">
+            <label for="bidAmount" style="font-size: 30px; font-weight: bold;">Place your bid: </label>
+        </div>
+        <div class="col-auto">
+            <input type="number" style="margin-top: 8%; width: 150%;" name="bid_amount" class="form-control" id="bidAmount" placeholder="Your bid" min="{{ listing.current_bid|default:listing.starting_bid }}" required>
+        </div>
+        <div class="col-auto" style="margin-left: 8%;">
+            <button type="submit"  class="btn btn-primary">Submit Bid</button>
+        </div>
+    </form>
+{% endif %}
+
+
     <p class="listing-createdat"><strong>Created at:</strong> {{ listing.created_at }}</p>
     <p class="listing-endat"><strong>End at:</strong> {{ listing.end_time }}</p>
     <p  class="listing-category"><strong>Category:</strong> {{ category_name }}</p>

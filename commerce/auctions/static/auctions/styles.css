@@ -114,7 +114,7 @@ body {
 
 .listing-body {
     font-size: 40px;
-    width: 90%;
+
     text-align: left;
 }
 
@@ -122,12 +122,18 @@ body {
     font-size: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin-left: 8%;
+    margin-top: -2%;
+}
+.listing-category{
     margin-top: -1%;
 }
+
 .listing-bid{
     margin-left: 8%;
-    font-size: 40px;
+    font-size: 30px;
     margin-bottom: 3%;
+    margin-top: -1%;
+    font-style: italic;
 }
 
 .listing-createdat, .listing-endat {
