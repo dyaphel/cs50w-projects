@@ -28,9 +28,10 @@
 <div class="listing-body">
     <p class="listing-description">{{ listing.description }}</p>
     <h3 class="listing-bid">
-        <p>Starting Price: ${{ listing.starting_bid }}</p>
         {% if listing.current_bid %}
         <p>Current Bid: ${{ listing.current_bid }}</p>
+        {% else %}
+        <p>Starting Price: ${{ listing.starting_bid }}</p>
         {% endif %}
     </h3>
     <p class="listing-createdat"><strong>Created at:</strong> {{ listing.created_at }}</p>

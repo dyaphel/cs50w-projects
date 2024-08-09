@@ -82,14 +82,13 @@ body {
 
 /* ///////////////////////LISTING///////////////////////// */
 
-
-
+ 
 .listing-title {
     text-align: start;
     font-size: 50px;
     margin-bottom: 2%;
     margin-left: 8%;
-}
+} 
 
 .listing-seller, .listing-email {
     text-align: start;
