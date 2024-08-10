@@ -130,14 +130,14 @@ def bids(request, id):
         current_bid = listing.bids.last()
 
         if bid_amount < listing.starting_bid:
-            messages.error(request, f"Your bid must be at least the starting bid of ${listing.starting_bid}.")
+            messages.error(request, f"Your bid must be at least the starting bid of ${listing.starting_bid}")
             return redirect('listing', id=listing.id)
 
-        if bid_amount <= listing.current_bid:
-            messages.error(request, f"Your bid must be higher than the current highest bid of ${listing.current_bid}.")
-            return redirect('listing', id=listing.id)
+        if listing.current_bid and bid_amount <= listing.current_bid:
+                messages.error(request, f"Your bid must be higher than the current highest bid of ${listing.current_bid}")
+                return redirect('listing', id=listing.id)
         
-        if current_bid.user == request.user:
+        if current_bid and current_bid.user == request.user:
             messages.error(request, "You cannot outbid yourself. Please wait for another user to place a bid.")
             return redirect('listing', id=listing.id)
         

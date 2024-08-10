@@ -3,6 +3,22 @@
 
 {% block body %}
 
+
+{% if messages %}
+{% for message in messages %}
+    {% if message.tags == 'error' %}
+        <div class="alert alert-danger" role="alert" style="height: 50px; display: inline-block; margin-left: 8%;">
+            <p style="font-size: 25px; margin-top: -10px; margin-right: 15px;">{{ message }}</p>
+        </div>
+    {% elif message.tags == 'success' %}
+        <div class="alert alert-success" style="height: 50px; display: inline-block; margin-left: 8%;">
+            <p style="font-size: 25px; margin-top: -10px; margin-right: 15px;">{{ message }}</p>
+        </div>
+    {% endif %}
+{% endfor %}
+{% endif %}
+
+
 <h1 class="listing-title">Listing: {{ listing.title }}</h1>
 <p class="listing-seller"><strong>Listed by:</strong> {{ listing.seller }}</p>
 <p class="listing-email"><strong>Email:</strong> {{ listing.seller.email }}</p>
@@ -34,21 +50,6 @@
         <p>Starting Price: ${{ listing.starting_bid }}</p>
         {% endif %}
     </h6>
-
-    {% if messages %}
-    {% for message in messages %}
-        {% if message.tags == 'error' %}
-            <div class="alert alert-danger" style="margin-top: -2%; margin-bottom: 30px; background-color: crimson; height: 50px; width: 65%; margin-left: 8%;">
-                <p style="font-size: 25px; color: aliceblue; margin-top: -10px;">{{ message }}</p>
-            </div>
-        {% elif message.tags == 'success' %}
-            <div class="alert alert-success" style="margin-top: -2%; margin-bottom: 30px; background-color: green; height: 50px; width: 44%; margin-left: 8%;">
-                <p style="font-size: 25px; color: aliceblue; margin-top: -10px;">{{ message }}</p>
-            </div>
-        {% endif %}
-    {% endfor %}
-{% endif %}
-
   
     {% if user.is_authenticated %}
     <form class="row align-item-start" style="margin-left: 7%; margin-top: -35px; margin-bottom: 2%;" method="POST" action="{% url 'bids' listing.id %}">
