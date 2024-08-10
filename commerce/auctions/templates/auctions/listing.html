@@ -34,15 +34,30 @@
         <p>Starting Price: ${{ listing.starting_bid }}</p>
         {% endif %}
     </h6>
-    
+
+    {% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger" style="margin-top: -2%; margin-bottom: 30px; background-color: crimson; height: 50px; width: 65%; margin-left: 8%;">
+                <p style="font-size: 25px; color: aliceblue; margin-top: -10px;">{{ message }}</p>
+            </div>
+        {% elif message.tags == 'success' %}
+            <div class="alert alert-success" style="margin-top: -2%; margin-bottom: 30px; background-color: green; height: 50px; width: 44%; margin-left: 8%;">
+                <p style="font-size: 25px; color: aliceblue; margin-top: -10px;">{{ message }}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+  
     {% if user.is_authenticated %}
     <form class="row align-item-start" style="margin-left: 7%; margin-top: -35px; margin-bottom: 2%;" method="POST" action="{% url 'bids' listing.id %}">
         {% csrf_token %}
         <div class="col-auto">
-            <label for="bidAmount" style="font-size: 30px; font-weight: bold;">Place your bid: A</label>
+            <label for="bidAmount" style="font-size: 30px; font-weight: bold;">Place your bid:</label>
         </div>
         <div class="col-auto">
-            <input type="number" style="margin-top: 8%; width: 150%;" name="bid_amount" class="form-control" id="bidAmount" placeholder="Your bid" min="{{ listing.current_bid|default:listing.starting_bid }}" required>
+            <input type="number" style="margin-top: 8%; width: 150%;" name="bid" class="form-control" id="bidAmount" placeholder="Your bid" required>
         </div>
         <div class="col-auto" style="margin-left: 8%;">
             <button type="submit" class="btn btn-primary">Submit Bid</button>

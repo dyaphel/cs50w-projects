@@ -126,20 +126,23 @@ def watchlist(request, id):
 def bids(request, id):
     listing = AuctionListing.objects.get(id=id)
     if request.method == "POST":
-        bid = request.POST.get("bid_amount")
-        try:
-            bid_amount = Decimal(bid)
-        except (ValueError, TypeError):
-            messages.error(request, "Invalid bid amount.")
-            return redirect('listing', id=listing.id)
+        bid_amount = Decimal(request.POST.get("bid"))
+        current_bid = listing.bids.last()
+
         if bid_amount < listing.starting_bid:
             messages.error(request, f"Your bid must be at least the starting bid of ${listing.starting_bid}.")
             return redirect('listing', id=listing.id)
-        if listing.current_bid and bid_amount <= listing.current_bid:
+
+        if bid_amount <= listing.current_bid:
             messages.error(request, f"Your bid must be higher than the current highest bid of ${listing.current_bid}.")
             return redirect('listing', id=listing.id)
-        current_bid = Bid(user=request.user, time=timezone.now(), price=bid_amount, listing=listing)
-        current_bid.save()
+        
+        if current_bid.user == request.user:
+            messages.error(request, "You cannot outbid yourself. Please wait for another user to place a bid.")
+            return redirect('listing', id=listing.id)
+        
+        new_bid = Bid(user=request.user, price=bid_amount, listing=listing)
+        new_bid.save()
         listing.current_bid = bid_amount
         listing.save()
 
