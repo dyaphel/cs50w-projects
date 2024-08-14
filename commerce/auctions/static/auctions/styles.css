@@ -41,7 +41,8 @@ body {
     max-width: 700px; 
     height: auto;       
     max-height: 250px;           
-    display: block;         
+    display: block;
+      
 }
 
 .card-body {
@@ -122,7 +123,7 @@ body {
     font-size: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin-left: 8%;
-    margin-top: -2%;
+    margin-top: -1%;
 }
 .listing-category{
     margin-top: -1%;
@@ -138,8 +139,42 @@ body {
 
 .listing-createdat, .listing-endat {
     font-size: 20px;
-    margin-top: -1%;
+    margin-top: -2%;
     margin-left: 8%;
     color: #666;
 }
 
+@media (max-width: 768px) {
+
+    .card-img{
+        margin-left: -30%;
+        max-width: 70%;
+    }
+    .listing-createdat{
+        font-size: 20px;
+        margin-top: -2%;
+        margin-left: 8%;
+        color: #666;
+    } 
+    
+    .listing-endat {
+        font-size: 20px;
+        margin-top: -3%;
+        margin-left: 8%;
+        color: #666;
+    }
+
+    .listing-bid{
+        margin-left: 8%;
+        font-size: 30px;
+        margin-bottom: 5%;
+        margin-top: -2%;
+        font-style: italic;
+    }
+    .alert.p{
+        height: 50px; 
+        display: inline-block; 
+        margin-left: 8%;
+        font-size: 1px;
+    }
+}

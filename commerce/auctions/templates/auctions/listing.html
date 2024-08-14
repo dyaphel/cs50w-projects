@@ -7,12 +7,12 @@
 {% if messages %}
 {% for message in messages %}
     {% if message.tags == 'error' %}
-        <div class="alert alert-danger" role="alert" style="height: 50px; display: inline-block; margin-left: 8%;">
-            <p style="font-size: 25px; margin-top: -10px; margin-right: 15px;">{{ message }}</p>
+        <div class="alert alert-danger" role="alert" style="height: 40px; display: inline-block; margin-left: 8%;">
+            <p style="font-size: 20px; margin-top: -10px;">{{ message }}</p>
         </div>
     {% elif message.tags == 'success' %}
-        <div class="alert alert-success" style="height: 50px; display: inline-block; margin-left: 8%;">
-            <p style="font-size: 25px; margin-top: -10px; margin-right: 15px;">{{ message }}</p>
+        <div class="alert alert-success" style="height: 40px; display: inline-block; margin-left: 8%;">
+            <p style="font-size: 20px; margin-top: -10px;">{{ message }}</p>
         </div>
     {% endif %}
 {% endfor %}
@@ -20,11 +20,11 @@
 
 {% if not listing.active %}
 {% if user.is_authenticated and highest_bid and user == highest_bid.user %}
-    <div class="alert alert-success" style="height: 50px; display: inline-block; margin-left: 8%;" role="alert">
+    <div class="alert alert-success" style="height: 40px; display: inline-block; margin-left: 8%;" role="alert">
         Congratulation! You have won this auction with a bid of: ${{ highest_bid.price }}.
     </div>
     {% else %}
-    <div class="alert alert-info" style="height: 50px; display: inline-block; margin-left: 8%;" role="alert">
+    <div class="alert alert-info" style="height: 40px; display: inline-block; margin-left: 8%;" role="alert">
         Auction ended
         {% if highest_bid %}
             The highest bid was: ${{ highest_bid.price }} by: {{ highest_bid.user.username }}.
@@ -85,9 +85,9 @@
             <label for="bidAmount" style="font-size: 30px; font-weight: bold;">Place your bid:</label>
         </div>
         <div class="col-auto">
-            <input type="number" style="margin-top: 8%; width: 150%;" name="bid" class="form-control" id="bidAmount" placeholder="Your bid" required>
+            <input type="number" style="margin-top: 8%; margin-left: -10%; width: 100%;" name="bid" class="form-control" id="bidAmount" placeholder="Your bid" required>
         </div>
-        <div class="col-auto" style="margin-left: 8%;">
+        <div class="col-auto" style="margin-left: -3%;">
             <button type="submit" class="btn btn-primary">Submit Bid</button>
         </div>
     </form>
