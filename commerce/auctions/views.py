@@ -150,3 +150,20 @@ def bids(request, id):
         return redirect('listing', id=listing.id)
 
     return redirect('listing', id=listing.id)
+
+
+@login_required
+def close(request, id):
+    listing = get_object_or_404(AuctionListing, id=id)
+    user = request.user
+    listing.active = False
+    listing.save()
+    highest = Bid.objects.filter(listing=listing).last()
+    if highest and highest.price == listing.current_bid:
+        messages.success(request, f'The listing is closed. The winner is {highest.user.username}')
+    else:
+        messages.info(request, 'The listing is closed. No bids were placed or there was an issue with the highest bid.')
+
+    return redirect('listing', id=listing.id)
+ 
+

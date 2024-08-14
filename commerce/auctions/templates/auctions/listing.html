@@ -19,9 +19,13 @@
 {% endif %}
 
 
+
+
+
 <h1 class="listing-title">Listing: {{ listing.title }}</h1>
 <p class="listing-seller"><strong>Listed by:</strong> {{ listing.seller }}</p>
 <p class="listing-email"><strong>Email:</strong> {{ listing.seller.email }}</p>
+
 
 {% if user.is_authenticated %}
     <form style="margin-left: 8%; margin-top: -10px;" method="POST" action="{% url 'watchlist' listing.id %}">
@@ -34,6 +38,12 @@
     </form>
 {% endif %}
 
+{% if user.is_authenticated and user == listing.seller and listing.active %}
+    <form style="margin-left: 320px; margin-top: -37px;" action="{% url 'close' listing.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Close auction</button>
+    </form>
+{% endif %}
 
 <div class="listing-detail">
     {% if listing.image_url %}
