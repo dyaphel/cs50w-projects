@@ -98,6 +98,8 @@ def listing(request, id):
     category_dict = dict(AuctionListing.CATEGORY_LIST)
     listing = get_object_or_404(AuctionListing, id=id)
     category = category_dict.get(listing.category)
+    highest_bid = Bid.objects.filter(listing = listing).last()
+
     if request.user.is_authenticated:
         is_watchlisted = Watchlist.objects.filter(user=request.user, listings=listing).exists()
     else:
@@ -106,6 +108,7 @@ def listing(request, id):
         'listing': listing,
         'category_name': category,
         'is_watchlisted': is_watchlisted,
+         'highest_bid': highest_bid,
     })
 
 

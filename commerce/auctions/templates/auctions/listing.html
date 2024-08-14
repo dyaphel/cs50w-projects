@@ -18,7 +18,22 @@
 {% endfor %}
 {% endif %}
 
-
+{% if not listing.active %}
+{% if user.is_authenticated and highest_bid and user == highest_bid.user %}
+    <div class="alert alert-success" style="height: 50px; display: inline-block; margin-left: 8%;" role="alert">
+        Congratulation! You have won this auction with a bid of: ${{ highest_bid.price }}.
+    </div>
+    {% else %}
+    <div class="alert alert-info" style="height: 50px; display: inline-block; margin-left: 8%;" role="alert">
+        Auction ended
+        {% if highest_bid %}
+            The highest bid was: ${{ highest_bid.price }} by: {{ highest_bid.user.username }}.
+            {% else %}
+            there were no bids for this listing
+        {% endif %}
+    </div>
+{% endif %}
+{% endif %}
 
 
 
@@ -37,6 +52,8 @@
         {% endif %}
     </form>
 {% endif %}
+
+
 
 {% if user.is_authenticated and user == listing.seller and listing.active %}
     <form style="margin-left: 320px; margin-top: -37px;" action="{% url 'close' listing.id %}">
