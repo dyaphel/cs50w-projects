@@ -106,16 +106,17 @@
         <!-- Comments Display in a Card -->
         <div class="card mb-4">
             <div class="card-header">
-                <h6>Comments</h6>
-                {%for comment in comments %}
-                <p style="font-size: 10px;"><strong>{{ comment.user.username }}</strong>:
-                {%endfor%}
+                <h6>Comments:</h6>
             </div>
             <div class="card-body">
                 {% for comment in comments %}
-                <div class="comment mb-3">
-                <p>{{ comment.content }}</p>
+                <div class="comment mb-3" style="margin-top: -6px;">
+                    <p style="font-size: 16px; margin-left: -10px;">
+                        <strong style="color: #007bff;">{{ comment.user.username }}</strong>: 
+                        <span style="font-size: 15px; margin-left: 20px;">{{ comment.content }}</span>
+                    </p>
                 </div>
+                
                 {% empty %}
                 <p style="font-size: 20px; margin-left: -30px;">No comments yet. Be the first to comment!</p>
                 {% endfor %}
