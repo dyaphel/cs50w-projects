@@ -56,7 +56,7 @@
 
 
 {% if user.is_authenticated and user == listing.seller and listing.active %}
-    <form style="margin-left: 320px; margin-top: -37px;" action="{% url 'close' listing.id %}">
+    <form style="margin-left: 320px; margin-top: 15px;" action="{% url 'close' listing.id %}">
         {% csrf_token %}
         <button type="submit" class="btn btn-primary">Close auction</button>
     </form>
@@ -87,7 +87,7 @@
         <div class="col-auto">
             <input type="number" style="margin-top: 8%; margin-left: -10%; width: 100%;" name="bid" class="form-control" id="bidAmount" placeholder="Your bid" required>
         </div>
-        <div class="col-auto" style="margin-left: -3%; margin-top: -1px;">
+        <div class="col-auto" style="margin-left: -3%; margin-top: 3px;">
             <button type="submit" class="btn btn-primary">Submit Bid</button>
         </div>
     </form>
@@ -100,12 +100,18 @@
     <p  class="listing-category"><strong>Category:</strong> {{ category_name }}</p>
 </div>
 <div class="secondblock">
-    <form>
-        <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    {% if user.is_authenticated%}
+    <form method="POST" action="{% url 'listing' listing.id %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" placeholder="Add a comment" name="comment" class="form-control" id="comment" rows="3"></textarea>
           </div>
+          <button type="submit" class="btn btn-primary">Submit Comment</button>
     </form>
+    {% else %}
+    <p>You must be <a href="{% url 'login' %}">logged in</a> to add a comment.</p>
+    {% endif %}
+
 </div>
 </div>
 </div>

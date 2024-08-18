@@ -155,12 +155,16 @@ body {
     margin-top: 8px;
 }
 .secondblock{
-    margin-top: -12%;
     margin-right: -2%;
     width: 50%;
-
-
 }
+.btn-primary{
+    margin-top: -8%;
+}
+
+
+
+
 @media (max-width: 768px) {
 
     .card-img{
