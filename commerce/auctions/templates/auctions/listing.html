@@ -101,24 +101,27 @@
         <p class="listing-category"><strong>Category:</strong> {{ category_name }}</p>
     </div>
 
+    {% if user.is_authenticated %}
     <div class="secondblock">
         <!-- Comments Display in a Card -->
         <div class="card mb-4">
             <div class="card-header">
                 <h6>Comments</h6>
+                {%for comment in comments %}
+                <p style="font-size: 10px;"><strong>{{ comment.user.username }}</strong>:
+                {%endfor%}
             </div>
             <div class="card-body">
                 {% for comment in comments %}
                 <div class="comment mb-3">
-                    <p><strong>{{ comment.user.username }}</strong>: {{ comment.content }}</p>
-                    <hr>
+                <p>{{ comment.content }}</p>
                 </div>
                 {% empty %}
                 <p style="font-size: 20px; margin-left: -30px;">No comments yet. Be the first to comment!</p>
                 {% endfor %}
             </div>
         </div>
-
+        {% endif %}
         <!-- Comment Form -->
         {% if user.is_authenticated %}
         <form method="POST" action="{% url 'listing' listing.id %}">
@@ -129,7 +132,7 @@
             <button type="submit" class="btn btn-primary" style="margin-top: -30px;">Submit Comment</button>
         </form>
         {% else %}
-        <p style="font-size: 30px;">You must be <a href="{% url 'login' %}">logged in</a> to add a comment.</p>
+        <p style="font-size: 30px; margin-top: -40px; margin-right: 60px;">You must be <a href="{% url 'login' %}">logged in</a> to add a comment.</p>
         {% endif %}
     </div>
 </div>

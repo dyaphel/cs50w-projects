@@ -2,6 +2,7 @@
 
 {% block body %}
 <h2>Active Listings</h2>
+
 <div class="container">
     {% for listing in active_listings %}
     <div class="card" onclick="window.location.href='{% url 'listing' listing.id %}'">

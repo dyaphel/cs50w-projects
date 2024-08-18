@@ -98,17 +98,28 @@ def listing(request, id):
     category_dict = dict(AuctionListing.CATEGORY_LIST)
     listing = get_object_or_404(AuctionListing, id=id)
     category = category_dict.get(listing.category)
-    highest_bid = Bid.objects.filter(listing = listing).last()
+    highest_bid = Bid.objects.filter(listing=listing).last()
+    comments = Comment.objects.filter(listing=listing).order_by('-time')
+    
+    if request.method == "POST" and request.user.is_authenticated:
+        content = request.POST.get("comment")
+        if content:
+            comment = Comment(user=request.user, content=content, listing=listing)
+            comment.save()
+            messages.success(request, "Your comment has been added.")
+        return redirect('listing', id=id)
 
     if request.user.is_authenticated:
         is_watchlisted = Watchlist.objects.filter(user=request.user, listings=listing).exists()
     else:
         is_watchlisted = False
+    
     return render(request, "auctions/listing.html", {
         'listing': listing,
         'category_name': category,
         'is_watchlisted': is_watchlisted,
-         'highest_bid': highest_bid,
+        'highest_bid': highest_bid,
+        'comments': comments,  # Pass the comments to the template
     })
 
 
@@ -124,7 +135,7 @@ def watchlist(request, id):
         return redirect('listing', id=id)
     
 
-# DA SISTEMARE
+
 @login_required
 def bids(request, id):
     listing = AuctionListing.objects.get(id=id)
@@ -157,8 +168,7 @@ def bids(request, id):
 
 @login_required
 def close(request, id):
-    listing = get_object_or_404(AuctionListing, id=id)
-    user = request.user
+    listing = AuctionListing.objects.get(id=id)
     listing.active = False
     listing.save()
     highest = Bid.objects.filter(listing=listing).last()
@@ -168,5 +178,3 @@ def close(request, id):
         messages.info(request, 'The listing is closed. No bids were placed or there was an issue with the highest bid.')
 
     return redirect('listing', id=listing.id)
- 
-

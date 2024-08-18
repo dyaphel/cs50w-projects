@@ -125,6 +125,7 @@ body {
     margin-left: 8%;
     margin-top: 2%;
 }
+
 .listing-category{
     margin-top: -1%;
 }
@@ -166,13 +167,11 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
-
-
-
-
 @media (max-width: 768px) {
 
+    .card{
+        height: 38vh;
+    }
     .card-img{
         margin-left: -30%;
         max-width: 70%;
