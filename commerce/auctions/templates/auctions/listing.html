@@ -93,10 +93,21 @@
     </form>
 {% endif %}
 
-
+<div class="endcontainer">
+    <div class="firstblock">
     <p class="listing-createdat"><strong>Created at:</strong> {{ listing.created_at }}</p>
     <p class="listing-endat"><strong>End at:</strong> {{ listing.end_time }}</p>
     <p  class="listing-category"><strong>Category:</strong> {{ category_name }}</p>
+</div>
+<div class="secondblock">
+    <form>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+    </form>
+</div>
+</div>
 </div>
 
 

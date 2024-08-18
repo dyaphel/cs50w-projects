@@ -139,11 +139,28 @@ body {
 
 .listing-createdat, .listing-endat {
     font-size: 20px;
-    margin-top: -2%;
+    margin-top: -3%;
     margin-left: 8%;
     color: #666;
 }
 
+.endcontainer{
+    display: flex;
+    
+}
+.firstblock{
+    flex-grow: 1;
+    flex-direction: row;
+    margin-left: 4%;
+    margin-top: 8px;
+}
+.secondblock{
+    margin-top: -12%;
+    margin-right: -2%;
+    width: 50%;
+
+
+}
 @media (max-width: 768px) {
 
     .card-img{
