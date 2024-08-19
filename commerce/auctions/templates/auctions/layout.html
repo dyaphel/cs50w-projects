@@ -28,10 +28,14 @@
             {% if user.is_authenticated %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'showatchlist' %}">Watchlist 
+                    {% if counter > 0 %}
                     <span class="position-absolute badge rounded-pill" style="background-color:gainsboro; color: black;">
-                        {{counter}}
-                      </span></a>  
+                        {{ counter }}
+                    </span>
+                    {% endif %}
+                </a>  
             </li>
+            
 
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'create' %}">Create Listing</a>

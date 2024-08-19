@@ -81,6 +81,7 @@ def register(request):
 
 @login_required(login_url='login')
 def create(request):
+    counter = Watchlist.objects.count()
     if request.method == "POST":
         form = AuctionListingForm(request.POST)
         if form.is_valid():
@@ -92,7 +93,8 @@ def create(request):
         form = AuctionListingForm()
         
     return render(request, "auctions/create.html", {
-        'form': form
+        'form': form,
+        'counter':counter,
     })
 
 
@@ -102,6 +104,7 @@ def listing(request, id):
     category = category_dict.get(listing.category)
     highest_bid = Bid.objects.filter(listing=listing).last()
     comments = Comment.objects.filter(listing=listing).order_by('-time')
+    counter = Watchlist.objects.count()
     
     if request.method == "POST" and request.user.is_authenticated:
         content = request.POST.get("comment")
@@ -122,6 +125,7 @@ def listing(request, id):
         'is_watchlisted': is_watchlisted,
         'highest_bid': highest_bid,
         'comments': comments,
+        'counter': counter,
     })
 
 
@@ -186,22 +190,23 @@ def showatchlist(request):
     watchlist_items = Watchlist.objects.filter(user=request.user)
     watchlist_listings = [item.listings for item in watchlist_items]
     return render(request, "auctions/watchlist.html", {
-        "watchlist_listings": watchlist_listings,
+        'watchlist_listings': watchlist_listings,
     })
 
 def categories(request):
-    categories = AuctionListing.CATEGORY_LIST  
+    categories = AuctionListing.CATEGORY_LIST
+    counter = Watchlist.objects.count()
     category_data = []
-
     for code, name in categories:
         count = AuctionListing.objects.filter(category=code, active=True).count() 
         category_data.append((name, count))
-
     return render(request, "auctions/categories.html", {
-        "category_data": category_data 
+        'category_data': category_data,
+        'counter':counter,
     })
 
 def category_items(request, category_name):
+    counter = Watchlist.objects.count()
     category_map = dict(AuctionListing.CATEGORY_LIST)
     category_code = None
     for code, name in category_map.items():
@@ -212,6 +217,7 @@ def category_items(request, category_name):
     items = AuctionListing.objects.filter(category=category_code, active=True)
     
     return render(request, "auctions/category_items.html", {
-        "category_name": category_name,
-        "items": items
+        'category_name': category_name,
+        'items': items,
+        'counter':counter,
     })
