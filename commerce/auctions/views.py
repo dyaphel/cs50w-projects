@@ -23,8 +23,10 @@ def update_auction_status():
 def index(request):
     update_auction_status()
     active_listings = AuctionListing.objects.filter(active=True)
+    counter = Watchlist.objects.count()
     return render(request, "auctions/index.html", {
-        'active_listings': active_listings
+        'active_listings': active_listings,
+        'counter':counter,
     })
 
 def login_view(request):
@@ -119,7 +121,7 @@ def listing(request, id):
         'category_name': category,
         'is_watchlisted': is_watchlisted,
         'highest_bid': highest_bid,
-        'comments': comments,  # Pass the comments to the template
+        'comments': comments,
     })
 
 

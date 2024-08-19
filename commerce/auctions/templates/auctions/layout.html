@@ -27,7 +27,11 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'showatchlist' %}">Watchlist</a>
+                <a class="nav-link" href="{% url 'showatchlist' %}">Watchlist 
+                    <span class="position-absolute badge rounded-pill" style="background-color:gainsboro; color: black;">
+                        {{counter}}
+                      </span></a>
+                 
             </li>
 
             <li class="nav-item">
