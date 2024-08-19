@@ -1,10 +1,12 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-<h2>Items in  <span style=" font-style: italic;">{{ category_name }}: </span></h2>
+
+<h2>Items in <span style="font-style: italic;">{{ category_name }}:</span></h2>
 <div class="container">
-    {% for item in items %}
-            <a  href="{% url 'listing' item.id %}" style="text-decoration: none; color: inherit;">
+    {% if items %}
+        {% for item in items %}
+            <a href="{% url 'listing' item.id %}" style="text-decoration: none; color: inherit;">
                 <div class="card" style="margin-left: -15%;">
                     {% if item.image_url %}
                     <div class="card-img-container">
@@ -26,6 +28,10 @@
                     </div>
                 </div>
             </a>
-    {% endfor %}
+        {% endfor %}
+    {% else %}
+        <h3 style=" margin-left: -8%; font-size: 1.5em; color: gray;">There are no items available in this category.</h3>
+    {% endif %}
 </div>
+
 {% endblock %}
