@@ -188,3 +188,38 @@ def showatchlist(request):
     return render(request, "auctions/watchlist.html", {
         "watchlist_listings": watchlist_listings,
     })
+
+def categories(request):
+    categories = AuctionListing.CATEGORY_LIST  
+    category_data = []
+
+    for code, name in categories:
+        count = AuctionListing.objects.filter(category=code, active=True).count() 
+        category_data.append((name, count))
+
+    return render(request, "auctions/categories.html", {
+        "category_data": category_data 
+    })
+
+def category_items(request, category_name):
+    category_map = dict(AuctionListing.CATEGORY_LIST)
+    category_code = None
+
+    # Trova il codice della categoria in base al nome
+    for code, name in category_map.items():
+        if name == category_name:
+            category_code = code
+            break
+
+    if category_code is None:
+        return render(request, "auctions/error.html", {
+            "message": "Category not found."
+        })
+
+    # Filtra gli items per categoria e attivi
+    items = AuctionListing.objects.filter(category=category_code, active=True)
+    
+    return render(request, "auctions/category_items.html", {
+        "category_name": category_name,
+        "items": items
+    })
