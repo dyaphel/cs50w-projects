@@ -13,11 +13,11 @@ class AuctionListing(models.Model):
         ("MOT", "Motors"),
         ("FAS", "Fashion"),
         ("ELE", "Electronics"),
-        ("ART", "Collectibles & Art"),
-        ("HGA", "Home & Garden"),
+        ("ART", "Collectibles&Art"),
+        ("HGA", "Home&Garden"),
         ("SPO", "Sport"),
         ("TOY", "Toys"),
-        ("BUS", "Business & Industrial"),
+        ("BUS", "Business&Industrial"),
         ("MUS", "Music"),
     ]
     seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name="listings")
