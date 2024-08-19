@@ -1,7 +1,7 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-<h2>Items in {{ category_name }}:</h2>
+<h2>Items in  <span style=" font-style: italic;">{{ category_name }}: </span></h2>
 <div class="container">
     {% for item in items %}
             <a  href="{% url 'listing' item.id %}" style="text-decoration: none; color: inherit;">
