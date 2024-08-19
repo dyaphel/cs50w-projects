@@ -170,21 +170,44 @@ body {
 @media (max-width: 768px) {
 
     .card{
-        height: 38vh;
+        margin-top: 25%;
+        width: 160%;
+        height: 15vh;
+        margin-left: -40%;
+        margin-bottom: -20px;
+    }
+
+    .form-group input{
+        margin-left: -40%;
+        margin-bottom: -56px;
+        width: 90%;
+    }
+
+    .comment{
+        margin-left: -30px;
+    }
+
+    .btn.btn-primary.submit{
+     margin-left: 60%;
+     width: 78%;
+    }
+
+    .card-header{
+        display: none;
     }
     .card-img{
         margin-left: -30%;
         max-width: 70%;
     }
     .listing-createdat{
-        font-size: 20px;
+        font-size: 15px;
         margin-top: -2%;
         margin-left: 8%;
         color: #666;
     } 
     
     .listing-endat {
-        font-size: 20px;
+        font-size: 15px;
         margin-top: -3%;
         margin-left: 8%;
         color: #666;
@@ -197,10 +220,23 @@ body {
         margin-top: -2%;
         font-style: italic;
     }
+
+
+    .col-auto label {
+        margin-left: -5%;
+    }
+
+
+    .col-auto button{
+        margin-left: -455%;
+        margin-top: 60%;
+    }
+
     .alert.p{
         height: 50px; 
         display: inline-block; 
         margin-left: 8%;
         font-size: 1px;
     }
+
 }

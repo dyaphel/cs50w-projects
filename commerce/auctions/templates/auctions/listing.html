@@ -93,7 +93,6 @@
 {% endif %}
 
 <div class="endcontainer">
-    
     <div class="firstblock">
         <p class="listing-createdat"><strong>Created at:</strong> {{ listing.created_at }}</p>
         <p class="listing-endat"><strong>End at:</strong> {{ listing.end_time }}</p>
@@ -128,14 +127,13 @@
             <div class="form-group">
                 <input type="text" placeholder="Add a comment" name="comment" class="form-control" id="comment" style="margin-top: -10px;">
             </div>
-            <button type="submit" class="btn btn-primary" style="margin-top: -30px;">Submit Comment</button>
+            <button type="submit" class="btn btn-primary submit" style="margin-top: -30px;">Submit Comment</button>
         </form>
         {% else %}
         <p style="font-size: 30px; margin-top: -40px; margin-right: 60px;">You must be <a href="{% url 'login' %}">logged in</a> to add a comment.</p>
         {% endif %}
     </div>
 </div>
-
 </div>
 
 
