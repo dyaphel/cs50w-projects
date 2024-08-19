@@ -96,7 +96,7 @@ def create(request):
 
 def listing(request, id):
     category_dict = dict(AuctionListing.CATEGORY_LIST)
-    listing = get_object_or_404(AuctionListing, id=id)
+    listing = AuctionListing.objects.get(id=id)
     category = category_dict.get(listing.category)
     highest_bid = Bid.objects.filter(listing=listing).last()
     comments = Comment.objects.filter(listing=listing).order_by('-time')
@@ -178,3 +178,11 @@ def close(request, id):
         messages.info(request, 'The listing is closed. No bids were placed or there was an issue with the highest bid.')
 
     return redirect('listing', id=listing.id)
+
+@login_required
+def showatchlist(request):
+    watchlist_items = Watchlist.objects.filter(user=request.user)
+    watchlist_listings = [item.listings for item in watchlist_items]
+    return render(request, "auctions/watchlist.html", {
+        "watchlist_listings": watchlist_listings,
+    })
