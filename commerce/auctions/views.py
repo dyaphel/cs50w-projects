@@ -23,10 +23,13 @@ def update_auction_status():
 def index(request):
     update_auction_status()
     active_listings = AuctionListing.objects.filter(active=True)
-    counter = Watchlist.objects.count()
+    if request.user.is_authenticated:
+        counter = Watchlist.objects.filter(user=request.user).count()
+    else:
+        counter = 0
     return render(request, "auctions/index.html", {
         'active_listings': active_listings,
-        'counter':counter,
+        'counter': counter,
     })
 
 def login_view(request):
@@ -81,7 +84,10 @@ def register(request):
 
 @login_required(login_url='login')
 def create(request):
-    counter = Watchlist.objects.count()
+    if request.user.is_authenticated:
+        counter = Watchlist.objects.filter(user=request.user).count()
+    else:
+        counter = 0
     if request.method == "POST":
         form = AuctionListingForm(request.POST)
         if form.is_valid():
@@ -104,7 +110,7 @@ def listing(request, id):
     category = category_dict.get(listing.category)
     highest_bid = Bid.objects.filter(listing=listing).last()
     comments = Comment.objects.filter(listing=listing).order_by('-time')
-    counter = Watchlist.objects.count()
+    counter = Watchlist.objects.filter(user = request.user).count()
     
     if request.method == "POST" and request.user.is_authenticated:
         content = request.POST.get("comment")
@@ -195,7 +201,10 @@ def showatchlist(request):
 
 def categories(request):
     categories = AuctionListing.CATEGORY_LIST
-    counter = Watchlist.objects.count()
+    if request.user.is_authenticated:
+        counter = Watchlist.objects.filter(user=request.user).count()
+    else:
+        counter = 0
     category_data = []
     for code, name in categories:
         count = AuctionListing.objects.filter(category=code, active=True).count() 
@@ -206,7 +215,7 @@ def categories(request):
     })
 
 def category_items(request, category_name):
-    counter = Watchlist.objects.count()
+    counter = Watchlist.objects.filter(user = request.user).count()
     category_map = dict(AuctionListing.CATEGORY_LIST)
     category_code = None
     for code, name in category_map.items():
