@@ -183,6 +183,8 @@ def close(request, id):
     listing = AuctionListing.objects.get(id=id)
     listing.active = False
     listing.save()
+    todelete = Watchlist.objects.filter(listings = listing)
+    todelete.delete()
     highest = Bid.objects.filter(listing=listing).last()
     if highest and highest.price == listing.current_bid:
         messages.success(request, f'The listing is closed. The winner is {highest.user.username}')
@@ -193,7 +195,7 @@ def close(request, id):
 
 @login_required
 def showatchlist(request):
-    watchlist_items = Watchlist.objects.filter(user=request.user)
+    watchlist_items = Watchlist.objects.filter(user=request.user, listings__active = True)
     watchlist_listings = [item.listings for item in watchlist_items]
     return render(request, "auctions/watchlist.html", {
         'watchlist_listings': watchlist_listings,
