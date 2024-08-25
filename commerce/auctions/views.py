@@ -23,10 +23,9 @@ def update_auction_status():
 def index(request):
     update_auction_status()
     active_listings = AuctionListing.objects.filter(active=True)
-    if request.user.is_authenticated:
-        counter = Watchlist.objects.filter(user=request.user).count()
-    else:
-        counter = 0
+    
+    counter = Watchlist.objects.filter(user=request.user).count() if request.user.is_authenticated else 0
+    
     return render(request, "auctions/index.html", {
         'active_listings': active_listings,
         'counter': counter,
@@ -110,8 +109,10 @@ def listing(request, id):
     category = category_dict.get(listing.category)
     highest_bid = Bid.objects.filter(listing=listing).last()
     comments = Comment.objects.filter(listing=listing).order_by('-time')
-    counter = Watchlist.objects.filter(user = request.user).count()
-    
+    if request.user.is_authenticated:
+        counter = Watchlist.objects.filter(user = request.user).count()
+    else:
+        counter = 0 
     if request.method == "POST" and request.user.is_authenticated:
         content = request.POST.get("comment")
         if content:
