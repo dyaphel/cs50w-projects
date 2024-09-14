@@ -32,9 +32,9 @@ fetch(`/emails/${mailbox}`)
     const emailcontainer = document.createElement('div');
     emailcontainer.className = ' email-container';
     emailcontainer.innerHTML =  ` 
-          <strong>From:</strong> ${email.sender} <br>
-          <strong>Subject:</strong> ${email.subject} <br>
-          <strong>Timestamp:</strong> ${email.timestamp}`;
+         &nbsp &nbsp &nbsp &nbsp <strong>From:</strong> ${email.sender} &nbsp &nbsp &nbsp &nbsp 
+         &nbsp &nbsp &nbsp &nbsp <strong>Subject:</strong> ${email.subject} &nbsp &nbsp &nbsp &nbsp 
+         &nbsp &nbsp &nbsp &nbsp <strong>Timestamp:</strong> ${email.timestamp} &nbsp &nbsp &nbsp &nbsp `;
     document.querySelector('#emails-view').append(emailcontainer);
   });
   })
