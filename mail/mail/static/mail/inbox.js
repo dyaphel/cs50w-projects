@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function compose_email() {
 
+  document.querySelector('#singlemail-view').style.display = 'none';
   // Show compose view and hide other views
   document.querySelector('#emails-view').style.display = 'none';
   document.querySelector('#compose-view').style.display = 'block';
@@ -20,6 +21,41 @@ function compose_email() {
   document.querySelector('#compose-body').value = '';
 }
 
+function display(id){
+
+  fetch(`/emails/${id}`)
+  .then(response => response.json())
+  .then(email => {
+      // Print email
+      console.log(email);
+      document.querySelector('#emails-view').style.display = 'none';
+      document.querySelector('#compose-view').style.display = 'none';
+      document.querySelector('#singlemail-view').style.display = 'block';
+
+      if (email.read == false){
+        fetch(`/emails/${id}`, {
+          method: 'PUT',
+          body: JSON.stringify(
+            { read: true }
+          )
+        })
+      }
+
+      document.querySelector('#singlemail-view').innerHTML = '';
+
+      const email_details = document.createElement('div');
+      email_details.className = 'email_details';
+      email_details.innerHTML = `
+          <h2 class="sender">From: ${email.sender}</h2>
+          <h2 class="recipients">to: ${email.recipients.join(', ')}</h2>
+          <h6 class="timestamp">${email.timestamp}</h6>
+          <h3 class="subject">Subject: ${email.subject}</h3>
+          <div class="body-container">${email.body}</div>`;
+      document.querySelector('#singlemail-view').append(email_details);
+  });
+}
+
+
 function load_mailbox(mailbox) {
 
 fetch(`/emails/${mailbox}`)
@@ -27,37 +63,39 @@ fetch(`/emails/${mailbox}`)
 .then(emails => {
     // Print emails
     console.log(`Emails in ${mailbox}:`, emails);
-    
     emails.forEach(email => {
       // CREATE HTML ELEMENT
       const emailcontainer = document.createElement('div');
       emailcontainer.className = 'email-container';
-      // Check if the email has been read
-      if (email.read) {
-        emailcontainer.classList.add('read'); // Add 'read' class if the email is read
+
+      // Debugging: Check the value of email.read
+      console.log(`Email ID: ${email.id}, Read Status: ${email.read}`);
+
+      if( email.read == true){
+        emailcontainer.classList.add('read');
       } else {
-        emailcontainer.classList.add('unread'); // Add 'unread' class if the email is unread
+        emailcontainer.classList.add('unread');
       }
       emailcontainer.innerHTML = `
           <div class="from"><strong>From:</strong> ${email.sender}</div>
           <div class="subject"><strong>Subject:</strong> ${email.subject}</div>
           <div class="timestamp"><strong>Timestamp:</strong> ${email.timestamp}</div>`;
       document.querySelector('#emails-view').append(emailcontainer);
-      
+
       emailcontainer.onclick = function() {
-      email.read = true; 
-      emailcontainer.classList.remove('unread'); 
-      emailcontainer.classList.add('read'); // Add 'read' class to change background color
+      display(email.id)
   };
   });  
   })
+
   // .catch(error => {
   //   console.log('Error:', error);
   // });
-  
+
   // Show the mailbox and hide other views
   document.querySelector('#emails-view').style.display = 'block';
   document.querySelector('#compose-view').style.display = 'none';
+  document.querySelector('#singlemail-view').style.display = 'none';
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
 }

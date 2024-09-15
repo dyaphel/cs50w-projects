@@ -21,8 +21,7 @@ textarea {
 
 .from {
     width: 280px;
-
-   
+  
 }
 
 .subject {
@@ -40,6 +39,50 @@ textarea {
 }
 
 .email-container.read {
-    background-color: grey;
+    background-color: lightgray;
 }
+
+/* SINGLE EMAIL DETAILS*/
+
+#singlemail-view {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.email_details h2 {
+    margin: 5px 0;
+}
+
+.email_details .sender {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.email_details .recipients {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.email_details .subject {
+    font-size: 22px; /* Large size for subject */
+    font-weight: bold; /* Bold for subject */
+    margin-top: 15px;
+}
+
+.email_details .timestamp {
+    font-size: 14px; /* Small size for timestamp */
+    color: darkgray; /* Lighter color for timestamp */
+    margin-bottom: 20px;
+}
+
+.email_details .body-container {
+    margin-top: 20px;
+    border: 1px solid #6f6f6f;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+
 
