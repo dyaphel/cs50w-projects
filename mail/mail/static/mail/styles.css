@@ -8,7 +8,30 @@ textarea {
     width: 80%;
     border: 1px solid black;
     padding: 15px;
-    border-radius: 20px;
-    text-align: center;
+    border-radius: 10px;
+    text-align: start;
 }
+
+.email-container div {
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Ensures long text gets truncated with ellipsis */
+}
+
+.from {
+    width: 30%;
+    margin-left: 4%;
+}
+
+.subject {
+    width: 30%;
+    margin-left: 2%;
+}
+
+.timestamp {
+    width: 260px;
+}
+
 

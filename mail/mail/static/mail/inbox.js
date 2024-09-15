@@ -28,15 +28,15 @@ fetch(`/emails/${mailbox}`)
     // Print emails
     console.log(`Emails in ${mailbox}:`, emails);
     
-  emails.forEach(email => {
-    const emailcontainer = document.createElement('div');
-    emailcontainer.className = ' email-container';
-    emailcontainer.innerHTML =  ` 
-         &nbsp &nbsp &nbsp &nbsp <strong>From:</strong> ${email.sender} &nbsp &nbsp &nbsp &nbsp 
-         &nbsp &nbsp &nbsp &nbsp <strong>Subject:</strong> ${email.subject} &nbsp &nbsp &nbsp &nbsp 
-         &nbsp &nbsp &nbsp &nbsp <strong>Timestamp:</strong> ${email.timestamp} &nbsp &nbsp &nbsp &nbsp `;
-    document.querySelector('#emails-view').append(emailcontainer);
-  });
+    emails.forEach(email => {
+      const emailcontainer = document.createElement('div');
+      emailcontainer.className = 'email-container';
+      emailcontainer.innerHTML = `
+          <div class="from"><strong>From:</strong> ${email.sender}</div>
+          <div class="subject"><strong>Subject:</strong> ${email.subject}</div>
+          <div class="timestamp"><strong>Timestamp:</strong> ${email.timestamp}</div>`;
+      document.querySelector('#emails-view').append(emailcontainer);
+  });  
   })
 
   .catch(error => {
