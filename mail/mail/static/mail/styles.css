@@ -16,22 +16,30 @@ textarea {
     display: inline-block;
     vertical-align: top;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; /* Ensures long text gets truncated with ellipsis */
+    text-overflow: ellipsis; /*long text gets truncated with ellipsis */
 }
 
 .from {
-    width: 30%;
-    margin-left: 4%;
+    width: 280px;
+
+   
 }
 
 .subject {
-    width: 30%;
-    margin-left: 2%;
+    width: 300px;
+   
 }
 
 .timestamp {
     width: 260px;
+    align-items: end;
 }
 
+.email-container.unread {
+    background-color: white; 
+}
+
+.email-container.read {
+    background-color: grey;
+}
 
