@@ -50,6 +50,7 @@ function display(id){
           <h2 class="recipients">to: ${email.recipients.join(', ')}</h2>
           <h6 class="timestamp">${email.timestamp}</h6>
           <h3 class="subject">Subject: ${email.subject}</h3>
+          <h6 class="body"> body: </h6>
           <div class="body-container">${email.body}</div>`;
       document.querySelector('#singlemail-view').append(email_details);
   });

@@ -65,17 +65,23 @@ textarea {
 }
 
 .email_details .subject {
-    font-size: 22px; /* Large size for subject */
-    font-weight: bold; /* Bold for subject */
+    font-size: 22px;
+    font-weight: bold; 
     margin-top: 15px;
 }
 
 .email_details .timestamp {
-    font-size: 14px; /* Small size for timestamp */
-    color: darkgray; /* Lighter color for timestamp */
+    font-size: 15px; 
+    color: darkgray;
     margin-bottom: 20px;
 }
 
+.email_details .body{
+    margin-top: 4%;
+    margin-bottom: -3%;
+    font-size: 18px;
+
+}
 .email_details .body-container {
     margin-top: 20px;
     border: 1px solid #6f6f6f;
