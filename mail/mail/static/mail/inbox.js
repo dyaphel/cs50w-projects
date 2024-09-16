@@ -65,6 +65,7 @@ function display(id){
       archiveButton.id = 'archive-button';
       
       console.log('current mailbox:',currentMailbox);
+
       if (currentMailbox !== 'sent') {
 
         if (email.archived) {
@@ -81,8 +82,42 @@ function display(id){
     } else {
       console.log('Email is in "sent" folder; archive button not added');
     }
+
+    const replyButton = document.createElement('button');
+    console.log('Reply button created:', replyButton);
+    replyButton.className ='btn btn-primary';
+    replyButton.id = 'reply-button';
+    replyButton.innerText = 'Reply';
+
+    replyButton.addEventListener('click',function(){
+      compose_reply(email.sender, email.subject, email.timestamp, email.body);
+    });
+    document.querySelector('#singlemail-view').append(replyButton);
   });
 }
+
+function compose_reply(sender, subject, timestamp, body){
+
+  document.querySelector('#singlemail-view').style.display = 'none';
+  // Show compose view and hide other views
+  document.querySelector('#emails-view').style.display = 'none';
+  document.querySelector('#compose-view').style.display = 'block';
+  // Clear out composition fields
+    let new_subject;
+  if (subject.startsWith('Re:') || subject.startsWith('Re :')) {
+    new_subject = subject;
+  } else {
+    new_subject = 'Re: ' + subject;
+  }
+  let body_message = `On ${timestamp}, ${sender} wrote:\n${body}`;
+
+  document.querySelector('#compose-recipients').value = sender;
+  document.querySelector('#compose-subject').value = new_subject;
+  document.querySelector('#compose-body').value = body_message;
+
+}
+
+
 
 function archive(id, isArchived) {
   fetch(`/emails/${id}`, {

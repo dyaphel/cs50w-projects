@@ -94,3 +94,8 @@ textarea {
     margin-top: 10px;
   }
 
+#reply-button{
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 80px;
+}
