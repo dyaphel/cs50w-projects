@@ -1,3 +1,5 @@
+let currentMailbox = 'inbox';
+
 document.addEventListener('DOMContentLoaded', function() {
   // Use buttons to toggle between views
   document.querySelector('#inbox').addEventListener('click', () => load_mailbox('inbox'));
@@ -7,7 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#compose-form').addEventListener('submit', send)
   // By default, load the inbox
   load_mailbox('inbox');
+
+
 });
+
 
 function compose_email() {
 
@@ -22,7 +27,6 @@ function compose_email() {
 }
 
 function display(id){
-
   fetch(`/emails/${id}`)
   .then(response => response.json())
   .then(email => {
@@ -53,22 +57,56 @@ function display(id){
           <h6 class="body"> body: </h6>
           <div class="body-container">${email.body}</div>`;
       document.querySelector('#singlemail-view').append(email_details);
+
+      const archiveButton = document.createElement('button');
+      console.log('Archive button created:', archiveButton);
+
+      archiveButton.className = 'btn btn-primary';
+      archiveButton.id = 'archive-button';
+      
+      console.log('current mailbox:',currentMailbox);
+      if (currentMailbox !== 'sent') {
+
+        if (email.archived) {
+        archiveButton.innerText = 'Unarchive';
+        archiveButton.style.backgroundColor = 'green';
+        } else {
+        archiveButton.innerText = 'Archive';
+        archiveButton.style.backgroundColor='gray';
+        }
+      archiveButton.addEventListener('click', function() {
+        archive(email.id, email.archived);
+      });
+      document.querySelector('#singlemail-view').append(archiveButton);
+    } else {
+      console.log('Email is in "sent" folder; archive button not added');
+    }
   });
 }
 
+function archive(id, isArchived) {
+  fetch(`/emails/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      archived: !isArchived
+    })
+  })
+  .then(() => {
+     load_mailbox('inbox');
+  });
+}
 
 function load_mailbox(mailbox) {
-
-fetch(`/emails/${mailbox}`)
-.then(response => response.json())
-.then(emails => {
+  currentMailbox = mailbox;
+  fetch(`/emails/${mailbox}`)
+  .then(response => response.json())
+  .then(emails => {
     // Print emails
     console.log(`Emails in ${mailbox}:`, emails);
     emails.forEach(email => {
       // CREATE HTML ELEMENT
       const emailcontainer = document.createElement('div');
       emailcontainer.className = 'email-container';
-
       // Debugging: Check the value of email.read
       console.log(`Email ID: ${email.id}, Read Status: ${email.read}`);
 
@@ -82,17 +120,14 @@ fetch(`/emails/${mailbox}`)
           <div class="subject"><strong>Subject:</strong> ${email.subject}</div>
           <div class="timestamp"><strong>Timestamp:</strong> ${email.timestamp}</div>`;
       document.querySelector('#emails-view').append(emailcontainer);
-
       emailcontainer.onclick = function() {
       display(email.id)
   };
   });  
   })
-
   // .catch(error => {
   //   console.log('Error:', error);
   // });
-
   // Show the mailbox and hide other views
   document.querySelector('#emails-view').style.display = 'block';
   document.querySelector('#compose-view').style.display = 'none';
@@ -103,7 +138,6 @@ fetch(`/emails/${mailbox}`)
 
 
 function send(event){
-
   event.preventDefault();
   const recipients = document.querySelector('#compose-recipients').value;
   const subject = document.querySelector('#compose-subject').value;
