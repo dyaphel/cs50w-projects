@@ -144,9 +144,8 @@ function load_mailbox(mailbox) {
       emailcontainer.className = 'email-container';
       // Debugging: Check the value of email.read
       console.log(`Email ID: ${email.id}, Read Status: ${email.read}`);
-      console.log(currentMailbox);
-      if (email.read == true && currentMailbox != 'sent') {
-        console.log(currentMailbox);
+
+      if( email.read == true && currentMailbox != 'sent'){
         emailcontainer.classList.add('read');
       } else {
         emailcontainer.classList.add('unread');
