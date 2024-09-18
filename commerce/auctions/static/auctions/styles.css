@@ -1,0 +1,308 @@
+body {
+    padding: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card {
+    width: 130%;
+    margin-top: 10px;
+    height: 270px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    align-self: center;
+}
+
+.card-img-container {
+    display: flex;
+    border-color: blue;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center; 
+    flex-shrink: 0;
+    width: 700px;            
+    height: 250px; 
+    margin-top: 10px;
+    margin-bottom: 10px;         
+    overflow: hidden; 
+    margin-left: 80px;
+}
+
+.card-img {
+    width: auto;
+    max-width: 700px; 
+    height: auto;       
+    max-height: 250px;           
+    display: block;
+      
+}
+
+.card-body {
+    flex-grow: 1;
+    padding: 15px;
+    margin-left: 50px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-size: 30px;
+}
+
+.card-description {
+    font-size: 1rem;
+    margin-bottom: 35px;
+    margin-top: -5px;
+}
+
+.card-bid {
+    font-size: 1.25rem;
+    margin-bottom: 40px;
+    font-size: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.card-createdat{
+    font-size: 1rem;
+    color: #666;
+    margin-top: 15px;
+}
+.card-endat {
+    font-size: 1rem;
+    color: #666;
+    margin-top: -20px;
+}
+
+
+/* ///////////////////////LISTING///////////////////////// */
+
+ 
+.listing-title {
+    text-align: start;
+    font-size: 50px;
+    margin-bottom: 2%;
+    margin-left: 8%;
+} 
+
+.listing-seller, .listing-email {
+    text-align: start;
+    font-size: 20px;
+    margin-top: -1.2%;
+    margin-left: 8%;
+}
+
+
+.listing-detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    flex-direction: column;
+}
+
+.listing-img {
+    max-width: 80%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.listing-body {
+    font-size: 40px;
+    width: 90%;
+    text-align: left;
+}
+
+.listing-description, .listing-category{ 
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-left: 8%;
+    margin-top: 2%;
+}
+
+.listing-category{
+    margin-top: -1%;
+}
+
+.listing-bid{
+    margin-left: 8%;
+    font-size: 30px;
+    margin-bottom: 3%;
+    margin-top: -1%;
+    font-style: italic;
+}
+
+.listing-createdat, .listing-endat {
+    font-size: 20px;
+    margin-top: -3%;
+    margin-left: 8%;
+    color: #666;
+}
+
+.endcontainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.firstblock{
+    margin-left: 4%;
+    width: 50%;
+}
+
+.secondblock {
+    width: 30%;
+    margin-right: 10%;
+    margin-top: -14%;
+}
+
+.card.comment{
+    border-radius: 10px;
+    height: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+
+    .card{
+        margin-top: 2%;
+        width: 130%;
+        height: 38vh;
+        margin-left: -40%;
+        margin-bottom: 10px;
+    }
+
+    .form-group input{
+        margin-left: -20%;
+        margin-bottom: -56px;
+        width: 90%;
+    }
+
+    .comment{
+        margin-top: 40px;
+        margin-left: -10px;
+
+    }
+
+    .btn.btn-primary.submit{
+     margin-left: 80%;
+     width: 78%;
+    }
+
+    .card-header{
+        display: none;
+    }
+
+    .card-img{
+        margin-left: -30%;
+        max-width: 70%;
+    }
+
+    .listing-createdat{
+        font-size: 15px;
+        margin-top: -2%;
+        margin-left: 8%;
+        color: #666;
+    } 
+    
+    .listing-endat {
+        font-size: 15px;
+        margin-top: -3%;
+        margin-left: 8%;
+        color: #666;
+    }
+
+    .listing-bid{
+        margin-left: 8%;
+        font-size: 30px;
+        margin-bottom: 5%;
+        margin-top: -2%;
+        font-style: italic;
+    }
+
+
+    .col-auto label {
+        margin-left: -5%;
+    }
+
+
+    .col-auto button{
+        margin-left: -455%;
+        margin-top: 60%;
+    }
+
+    .alert.p{
+        height: 50px; 
+        display: inline-block; 
+        margin-left: 8%;
+        font-size: 1px;
+    }
+
+}
+
+/*//////////////////CATEGORIES///////////////////*/
+/* Stile per la lista delle categorie */
+.category-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.category-list li {
+    margin: 10px 0;
+}
+
+.category-link {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.category-link:hover {
+    background-color: #e2e6ea;
+    text-decoration: none;
+}
+
+.item-count {
+    font-size: 18px;
+    color: #6c757d;
+}
+
+.item-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.item-list li {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+.item-list li:hover {
+    background-color: #e2e6ea;
+}
+
+.item-list h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.item-list p {
+    color: #6c757d;
+    margin: 5px 0 0;
+}
