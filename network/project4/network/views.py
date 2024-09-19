@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils import timezone
 from django.contrib import messages
-from .models import User, Post
+from .models import User, Post, Follow
 
 
 def index(request):
@@ -27,6 +27,17 @@ def newpost(request):
             return redirect('index')  # Redirect to prevent form resubmission on refresh
     
     return render(request, "network/newpost.html")
+
+
+
+
+
+def profile(request, username):
+    user = User.objects.get(username=username)
+    
+    return render(request, 'network/profile.html', {
+        'profile_user': user,
+    })
 
 
 def login_view(request):

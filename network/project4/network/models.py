@@ -11,5 +11,15 @@ class Post ( models.Model):
     body =models.TextField()
     date = models.DateTimeField( default=timezone.now)
     like = models.PositiveIntegerField()
-    def __str__(self):
-        return f"Post by {self.user.username} (ID: {self.id})"
+
+def __str__(self):
+    return f"Post by {self.user.username} (ID: {self.id})"
+
+
+
+class Follow(models.Model):
+    follower = models.ForeignKey(User, related_name="follower", on_delete=models.CASCADE)
+    following = models.ForeignKey(User, related_name="following", on_delete=models.CASCADE)
+
+def __str__(self):
+    return f"{self.follower} follows {self.following}"

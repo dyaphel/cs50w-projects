@@ -5,7 +5,9 @@
 <div class="card-container"> 
     {% for post in posts %}
     <div class="card border-info mb-3" >
-        <div class="card-header border-info">{{ post.user.username }}</div>
+        <div class="card-header border-info">
+            <a style="color: black;" href="{% url 'profile' post.user.username %}">{{ post.user.username }}</a>
+        </div>
         <div class="card-body">
             <h5 class="card-title">{{ post.body }}</h5>
             <p class="card-text">{{ post.date }}</p>
