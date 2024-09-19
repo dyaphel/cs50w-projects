@@ -14,14 +14,17 @@ def index(request):
 
 @login_required(login_url='login')
 def newpost(request):
-  if request.user.is_authenticated and request.method == 'POST':
+    if request.method == 'POST':
         post_body = request.POST.get('body')
         if post_body:
-            post = Post(request.user, body=post_body, date=timezone.now(), like = 0 )
+            # Ensure that request.user is properly evaluated
+            post = Post(user=request.user, body=post_body, date=timezone.now(), like=0)
             post.save()
-            messages.success(request, "Your  post has been published.")
-            return redirect ('newpost')
-  return render(request, "network/newpost.html")
+            messages.success(request, "Your post has been published.")
+            return redirect('index')  # Redirect to prevent form resubmission on refresh
+    
+    return render(request, "network/newpost.html")
+
 
 def login_view(request):
     if request.method == "POST":
