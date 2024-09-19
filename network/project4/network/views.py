@@ -1,15 +1,27 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
-
-from .models import User
+from django.utils import timezone
+from django.contrib import messages
+from .models import User, Post
 
 
 def index(request):
-    return render(request, "network/index.html")
+  return render(request, "network/index.html")
 
+@login_required(login_url='login')
+def newpost(request):
+  if request.user.is_authenticated and request.method == 'POST':
+        post_body = request.POST.get('body')
+        if post_body:
+            post = Post(request.user, body=post_body, date=timezone.now(), like = 0 )
+            post.save()
+            messages.success(request, "Your  post has been published.")
+            return redirect ('newpost')
+  return render(request, "network/newpost.html")
 
 def login_view(request):
     if request.method == "POST":

@@ -11,3 +11,6 @@ class Post ( models.Model):
     body =models.TextField()
     date = models.DateTimeField( default=timezone.now)
     like = models.PositiveIntegerField()
+    
+    def __str__(self):
+        return f"Post by {self.user.username} on {self.date}"
