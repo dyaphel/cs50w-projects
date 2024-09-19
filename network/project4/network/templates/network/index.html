@@ -1,5 +1,18 @@
 {% extends "network/layout.html" %}
 
 {% block body %}
-    
+<div class="card-container"> 
+    {% for post in posts %}
+    <div class="card border-info mb-3" >
+        <div class="card-header border-info">{{ post.user.username }}</div>
+        <div class="card-body">
+            <h5 class="card-title">{{ post.body }}</h5>
+            <p class="card-text">{{ post.date }}</p>
+        </div>
+        <div class="card-footer border-info">{{ post.like }}</div>
+    </div>
+    {% empty %}
+        <p>No posts available.</p>
+    {% endfor %}
+</div>
 {% endblock %}

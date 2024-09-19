@@ -10,7 +10,10 @@ from .models import User, Post
 
 
 def index(request):
-  return render(request, "network/index.html")
+  posts = Post.objects.order_by('-date').all()
+  return render( request, "network/index.html", {
+      'posts': posts
+  })
 
 @login_required(login_url='login')
 def newpost(request):
