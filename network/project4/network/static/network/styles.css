@@ -121,7 +121,7 @@
 /*----------------------- USER PROFILE ----------------- */
 
 .usercontainer {
-    margin-left: 100px;
+    margin-left: 150px;
     margin-top: 40px;
     margin-bottom: 30px;
     text-align: start; 
@@ -144,6 +144,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-left: 40px;
+    margin-top: 10px;
 }
 
 .followers span, .following span {
@@ -156,4 +158,20 @@
     font-size: 1.2rem;
     color: rgb(22, 149, 168)
 }
+
+#follow-btn {
+    margin-left: -190px;
+    margin-top: 60px;
+    padding: 5px 30px;
+    font-size: 1.2rem;
+    background-color:rgb(22, 149, 168);
+    color: white;
+    border: none;
+ 
+}
+
+#follow-btn:hover {
+    background-color: #0056b3;
+}
+
 /*----------------------------------------------------*/

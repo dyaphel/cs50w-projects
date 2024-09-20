@@ -4,6 +4,15 @@
 <div class="usercontainer">
     <div class="user-info">
         <h2 class="username">{{ profile_user.username }}</h2>
+        {% if user.is_authenticated and request.user != profile_user %}
+        <button id="follow-btn" data-username="{{ profile_user.username }}" class="btn btn-primary">
+            {% if isFollowing %}
+                Unfollow
+             {% else %}
+                Follow
+            {% endif %}
+        </button>
+        {% endif %}
         <div class="followers">
             <span>{{ followers }}</span>
             <p>Followers</p>
