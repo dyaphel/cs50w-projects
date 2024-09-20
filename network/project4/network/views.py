@@ -20,11 +20,10 @@ def newpost(request):
     if request.method == 'POST':
         post_body = request.POST.get('body')
         if post_body:
-            # Ensure that request.user is properly evaluated
             post = Post(user=request.user, body=post_body, date=timezone.now(), like=0)
             post.save()
             messages.success(request, "Your post has been published.")
-            return redirect('index')  # Redirect to prevent form resubmission on refresh
+            return redirect('index')
     
     return render(request, "network/newpost.html")
 
@@ -53,6 +52,7 @@ def toggle_follow(request, username):
     user_followed = User.objects.get(username=username)
     # The user who is following (the current logged-in user)
     user_following = request.user
+    
     if user_following != user_followed:
         # Check if a follow relationship already exists
         follow, created = Follow.objects.get_or_create(
