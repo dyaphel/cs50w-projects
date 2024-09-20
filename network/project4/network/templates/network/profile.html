@@ -5,7 +5,7 @@
     <div class="user-info">
         <h2 class="username">{{ profile_user.username }}</h2>
         {% if user.is_authenticated and request.user != profile_user %}
-        <button id="follow-btn" data-username="{{ profile_user.username }}" class="btn btn-primary">
+        <button id="follow-btn" class="btn btn-primary">
             {% if isFollowing %}
                 Unfollow
              {% else %}

@@ -33,7 +33,11 @@ def profile(request, username):
     posts = Post.objects.filter(user=user).order_by('date').all()
     followers = Follow.objects.filter(follower = user).count()
     following = Follow.objects.filter(following = user).count()
-    isFollowing = Follow.objects.filter(follower=request.user, following=user).exists()
+
+    isFollowing = False
+    if request.user.is_authenticated:
+        isFollowing = Follow.objects.filter(follower=request.user, following=user).exists()
+        
     return render(request, 'network/profile.html', {
         'profile_user': user,
         'posts': posts,
