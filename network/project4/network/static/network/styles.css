@@ -144,7 +144,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 40px;
+    margin-left: 60px;
     margin-top: 3px;
 }
 
@@ -155,13 +155,15 @@
 }
 
 .followers p, .following p {
-    font-size: 1.2rem;
+    margin-top: 4px;
+    font-size: 1.3rem;
+    font-weight: 500;
     color: rgb(22, 149, 168)
 }
 
 #follow-btn {
     margin-left: -190px;
-    margin-top: 50px;
+    margin-top: 54px;
     padding: 5px 30px;
     font-size: 1.1rem;
     background-color:rgb(22, 149, 168);
