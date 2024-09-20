@@ -30,7 +30,7 @@ def newpost(request):
 
 def profile(request, username):
     user = User.objects.get(username=username)
-    posts = Post.objects.order_by('date').all()
+    posts = Post.objects.filter(user=user).order_by('date').all()
     followers = Follow.objects.filter(follower = user).count()
     following = Follow.objects.filter(following = user).count()
     return render(request, 'network/profile.html', {
