@@ -28,15 +28,16 @@ def newpost(request):
     
     return render(request, "network/newpost.html")
 
-
-
-
-
 def profile(request, username):
     user = User.objects.get(username=username)
-    
+    posts = Post.objects.order_by('date').all()
+    followers = Follow.objects.filter(follower = user).count()
+    following = Follow.objects.filter(following = user).count()
     return render(request, 'network/profile.html', {
         'profile_user': user,
+        'posts': posts,
+        'followers': followers,
+        'following':following,  
     })
 
 

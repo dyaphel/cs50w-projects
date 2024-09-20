@@ -109,11 +109,51 @@
 .card-text {
     color: gray;
     font-size: 0.85em;
-    position: absolute; /* Fix position relative to card */
-    bottom: 60px; /* Position it above the footer */
-    left: 10px; /* Adjust left position if needed */
-    right: 10px; /* Adjust right position if needed */
+    position: absolute; 
+    bottom: 60px; 
+    left: 10px; 
+    right: 10px; 
 }
 
+/*----------------------------------------------------*/
+
+
+/*----------------------- USER PROFILE ----------------- */
+
+.usercontainer {
+    margin-left: 100px;
+    margin-top: 50px;
+    text-align: start; 
+}
+
+.user-info {
+    display: flex;
+    align-items: start;
+    gap: 100px;
+}
+
+.username {
+    margin-right: 20px;
+    font-size: 40px;
+    font-style: italic;
+    
+}
+
+.followers, .following {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.followers span, .following span {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.followers p, .following p {
+    margin-top: 5px;
+    font-size: 1.2rem;
+    color: rgb(0, 102, 255);
+}
 
 /*----------------------------------------------------*/
