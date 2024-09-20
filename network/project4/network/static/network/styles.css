@@ -162,13 +162,13 @@
 }
 
 .followers span, .following span {
-    margin-top: 5px;
+    margin-top: 3px;
     font-size: 2rem;
     font-weight: bold;
 }
 
 .followers p, .following p {
-    margin-top: 4px;
+    margin-top: 6px;
     font-size: 1.3rem;
     font-weight: 500;
     color: rgb(22, 149, 168);
