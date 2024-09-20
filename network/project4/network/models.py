@@ -18,8 +18,10 @@ def __str__(self):
 
 
 class Follow(models.Model):
-    follower = models.ForeignKey(User, related_name="follower", on_delete=models.CASCADE)
-    following = models.ForeignKey(User, related_name="following", on_delete=models.CASCADE)
+    #user who is being followed so retrived by username
+    users_followed = models.ForeignKey(User, related_name="follower", on_delete=models.CASCADE)
+    #user who is logged in and is following someone else
+    users_following = models.ForeignKey(User, related_name="following", on_delete=models.CASCADE)
 
 def __str__(self):
-    return f"{self.follower} follows {self.following}"
+    return f"{self.users_followed} follows {self.user_following}"

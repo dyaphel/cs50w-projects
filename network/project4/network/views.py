@@ -31,13 +31,14 @@ def newpost(request):
 def profile(request, username):
     user = User.objects.get(username=username)
     posts = Post.objects.filter(user=user).order_by('date').all()
-    followers = Follow.objects.filter(follower = user).count()
-    following = Follow.objects.filter(following = user).count()
+    followers = Follow.objects.filter(users_followed = user).count()
+    following = Follow.objects.filter(users_following = user).count()
 
     isFollowing = False
     if request.user.is_authenticated:
-        isFollowing = Follow.objects.filter(follower=request.user, following=user).exists()
-        
+        isFollowing = Follow.objects.filter(users_followed=user, users_following=request.user).exists()
+
+
     return render(request, 'network/profile.html', {
         'profile_user': user,
         'posts': posts,
@@ -46,6 +47,21 @@ def profile(request, username):
         'isFollowing':isFollowing,
     })
 
+@login_required
+def toggle_follow(request, username):
+    # The user that is being followed (the profile's user)
+    user_followed = User.objects.get(username=username)
+    # The user who is following (the current logged-in user)
+    user_following = request.user
+    if user_following != user_followed:
+        # Check if a follow relationship already exists
+        follow, created = Follow.objects.get_or_create(
+            users_followed= user_followed,
+            users_following = user_following 
+        )
+        if not created:
+            follow.delete()
+    return redirect('profile', username=username)
 
 def login_view(request):
     if request.method == "POST":
