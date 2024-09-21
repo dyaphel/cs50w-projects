@@ -188,7 +188,7 @@
 .pagination-container {
     display: flex;
     justify-content: space-between;
-    gap: 1050px;
+    gap: 60vw;
 
    
 }
@@ -197,8 +197,7 @@
     background-color: rgb(22, 149, 168);
     color: white;
     border: none;
-   
-    padding: 10px 40px;
+    padding: 10px 30px;
     border-radius: 5px;
     margin-left: 20px;
     margin-bottom: 20px;
@@ -210,16 +209,6 @@
     text-decoration: none;
     
 }
-/* #next_button{
-    margin-right: -180%;
-    width: 120px;
-    margin-bottom: 20px;
-}
 
-#previous_button{
-    margin-left: -180%;
-    margin-bottom: 20px;
-    } */
-    
 
 /*----------------------------------------------------*/
