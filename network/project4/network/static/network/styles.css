@@ -180,14 +180,30 @@
 
 .pagenavigation {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    margin: 20px 0; /* Optional: Add some margin for spacing */
+    justify-content: space-between;
 }
 
-.pagination {
-    display: inline-flex; /* Align items in a row */
-    padding-left: 0; /* Remove default padding */
-    list-style: none; /* Remove bullet points */
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Ensures buttons are at opposite ends */
+}
+
+.page-button {
+    background-color: rgb(22, 149, 168);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.page-button:hover {
+    background-color: #0056b3;
+}
+
+#next_button{
+align-items: end;
 }
 
 /*----------------------------------------------------*/
