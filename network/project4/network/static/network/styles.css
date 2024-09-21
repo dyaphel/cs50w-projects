@@ -180,22 +180,21 @@
 
 .pagenavigation {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .pagination-container {
     display: flex;
     justify-content: space-between;
-    width: 100%;
 }
 
 .page-button {
     background-color: rgb(22, 149, 168);
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 40px;
     border-radius: 5px;
-    margin-left: auto; /* Ensures buttons are spaced correctly */
+    margin-left: 20px;
 }
 
 .page-button:hover {
@@ -204,7 +203,16 @@
     text-decoration: none;
     
 }
+#next_button{
+    margin-right: -180%;
+    width: 120px;
+    margin-bottom: 20px;
+}
 
-
+#previous_button{
+    margin-left: -180%;
+    margin-bottom: 20px;
+    }
+    
 
 /*----------------------------------------------------*/
