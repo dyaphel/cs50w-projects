@@ -29,12 +29,14 @@
 </div>
 
 <div class="card-container"> 
-    {% for post in posts %}
-
+    {% for post in page_obj  %}
+    
     {% include "network/posts.html" with show_username=False %}
     
     {% empty %}
         <p>No posts available.</p>
     {% endfor %}
 </div>
+
+{% include "network/page.html" %}
 {% endblock %}

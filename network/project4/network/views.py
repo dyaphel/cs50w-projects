@@ -35,6 +35,10 @@ def newpost(request):
 def profile(request, username):
     user = User.objects.get(username=username)
     posts = Post.objects.filter(user=user).order_by('date').all()
+    paginator = Paginator(posts, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     followers = Follow.objects.filter(users_followed = user).count()
     following = Follow.objects.filter(users_following = user).count()
 
@@ -49,6 +53,7 @@ def profile(request, username):
         'followers': followers,
         'following':following,  
         'isFollowing':isFollowing,
+        'page_obj': page_obj,
     })
 
 @login_required

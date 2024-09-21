@@ -181,16 +181,12 @@
 .pagenavigation {
     display: flex;
     justify-content: center;
-
-    
 }
 
 .pagination-container {
     display: flex;
     justify-content: space-between;
     gap: 60vw;
-
-   
 }
 
 .page-button {
