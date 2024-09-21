@@ -49,7 +49,7 @@ def profile(request, username):
 
     return render(request, 'network/profile.html', {
         'profile_user': user,
-        'posts': posts,
+        #'posts': posts,
         'followers': followers,
         'following':following,  
         'isFollowing':isFollowing,
@@ -76,10 +76,15 @@ def toggle_follow(request, username):
 @login_required
 def following(request):
     following = Follow.objects.filter(users_following=request.user).values_list('users_followed')
-    posts = Post.objects.filter(user__in=following).order_by('-date')
+    posts = Post.objects.filter(user__in=following).order_by('-date').all()
+    paginator = Paginator(posts, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
 
     return render(request, 'network/following.html', {
-        'posts': posts
+        #'posts': posts
+        'page_obj':page_obj,
     })
 
 
