@@ -175,3 +175,19 @@
 }
 
 /*----------------------------------------------------*/
+
+/*---------------------Paginator----------------------*/
+
+.pagenavigation {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    margin: 20px 0; /* Optional: Add some margin for spacing */
+}
+
+.pagination {
+    display: inline-flex; /* Align items in a row */
+    padding-left: 0; /* Remove default padding */
+    list-style: none; /* Remove bullet points */
+}
+
+/*----------------------------------------------------*/
