@@ -7,6 +7,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("profile/<str:username>", views.profile, name="profile"),
     path ("toggle_follow/<str:username>", views.toggle_follow, name="toggle_follow"),
+    path("following", views.following, name="following"),
     path("newpost", views.newpost, name ="newpost"),
     path("login", views.login_view, name="login"),
     path("logout", views.logout_view, name="logout"),
