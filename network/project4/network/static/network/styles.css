@@ -186,7 +186,7 @@
 .pagination-container {
     display: flex;
     justify-content: space-between;
-    width: 100%; /* Ensures buttons are at opposite ends */
+    width: 100%;
 }
 
 .page-button {
@@ -194,16 +194,17 @@
     color: white;
     border: none;
     padding: 10px 20px;
-    text-decoration: none;
     border-radius: 5px;
+    margin-left: auto; /* Ensures buttons are spaced correctly */
 }
 
 .page-button:hover {
     background-color: #0056b3;
+    color: white;
+    text-decoration: none;
+    
 }
 
-#next_button{
-align-items: end;
-}
+
 
 /*----------------------------------------------------*/
