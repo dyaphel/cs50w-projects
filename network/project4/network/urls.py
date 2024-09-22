@@ -11,5 +11,6 @@ urlpatterns = [
     path("newpost", views.newpost, name ="newpost"),
     path("login", views.login_view, name="login"),
     path("logout", views.logout_view, name="logout"),
-    path("register", views.register, name="register")
+    path("register", views.register, name="register"),
+   path('edit-post/<int:post_id>/', views.edit_post, name='edit_post'),
 ]

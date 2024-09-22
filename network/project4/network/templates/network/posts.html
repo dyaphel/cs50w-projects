@@ -23,9 +23,11 @@
         </button>
         <button class="save-btn" id="save-btn-{{ post.id }}" >Save</button>
         {% endif %}
-
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
     </div>
 </div>
+
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.edit-btn').forEach(button => {
@@ -36,25 +38,43 @@ document.addEventListener('DOMContentLoaded', function() {
             const editButton = this;
             const saveButton = document.getElementById(`save-btn-${postId}`);
 
-            // console.log({ postId });
-            // console.log({ postContent });
-            // console.log({ editArea });
-            // console.log({ editButton });
+            // Hide the edit button, show the textarea and save button
+            editButton.style.display = 'none';
+            editArea.style.display = 'block';
+            postContent.style.display = 'none';
+            saveButton.style.display = 'block';
 
-            editButton.style.display='none';
-            editArea.style.display='block';
-            postContent.style.display='none';
-            saveButton.style.display='block';
-
-            console.log('the old content:',postContent.innerHTML)
-
+            // On clicking the save button
             saveButton.onclick = function() {
-                    console.log({ saveButton });
-                    const newContent = editArea.value;
-                    console.log('the new content:',newContent)
+                const newContent = editArea.value;
+
+                // Send the new content to the server via AJAX
+                fetch(`/edit-post/${postId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    },
+                    body: JSON.stringify({
+                        body: newContent
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Update the post content and reset the view
+                        postContent.innerHTML = newContent;
+                        editArea.style.display = 'none';
+                        saveButton.style.display = 'none';
+                        postContent.style.display = 'block';
+                        editButton.style.display = 'block';
+                    } else {
+                        console.error("Failed to update post.");
+                    }
+                })
+                .catch(error => console.error('Error:', error));
             };
         };
     });
 });
-
 </script>
