@@ -1,3 +1,5 @@
+<meta name="csrf-token" content="{{ csrf_token }}">
+
 
 <div class="card border-info mb-3">
     <div class="card-header border-info">
@@ -21,9 +23,10 @@
         <button class="edit-btn" data-post-id="{{ post.id }}" style="background-color: transparent; border-color: transparent; float: right;">
             <img src="../../static/network/pen-fill.svg">
         </button>
-        <button class="save-btn" id="save-btn-{{ post.id }}" >Save</button>
+        <button class="save-btn" id="save-btn-{{ post.id }}" >Save
+            {% csrf_token %}
+        </button>
         {% endif %}
-        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
     </div>
 </div>
 
@@ -52,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 fetch(`/edit-post/${postId}/`, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
                         'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
                     },
                     body: JSON.stringify({
@@ -60,8 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     })
                 })
                 .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
+                .then(result => {
+                    if (result.success) {
                         // Update the post content and reset the view
                         postContent.innerHTML = newContent;
                         editArea.style.display = 'none';

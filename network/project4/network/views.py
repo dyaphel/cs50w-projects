@@ -8,25 +8,10 @@ from django.utils import timezone
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
 import json
 from .models import User, Post, Follow
 
-def edit_post(request, post_id):
-    if request.method == 'POST' and request.user.is_authenticated:
-        try:
-            post = get_object_or_404(Post, id=post_id, user=request.user)
-            data = json.loads(request.body)
-            new_body = data.get('body')
 
-            # Update the post's body and save
-            post.body = new_body
-            post.save()
-
-            return JsonResponse({'success': True})
-        except Exception as e:
-            return JsonResponse({'success': False, 'error': str(e)})
-    return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
 
 def index(request):
   posts = Post.objects.order_by('-date').all()
@@ -37,6 +22,22 @@ def index(request):
       'posts': posts,
       'page_obj': page_obj,
   })
+
+@login_required
+def edit_post(request, post_id):
+    if request.method == 'POST' and request.user.is_authenticated:
+        post = Post.objects.get(id=post_id, user=request.user)
+        data = json.loads(request.body)
+        new_body = data.get('body')
+
+        if(new_body):
+            post.body = new_body
+            post.save()
+            return JsonResponse({'success': True})
+        
+        return JsonResponse({'success': False, 'error': 'No content provided'})
+    return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
+
 
 @login_required(login_url='login')
 def newpost(request):
