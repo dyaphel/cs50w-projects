@@ -33,6 +33,8 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    let activePostId = null;  // Keep track of the currently edited post
+
     document.querySelectorAll('.edit-btn').forEach(button => {
         button.onclick = function() {
             const postId = this.dataset.postId;
@@ -40,6 +42,21 @@ document.addEventListener('DOMContentLoaded', function() {
             const editArea = document.getElementById(`edit-post-${postId}`);
             const editButton = this;
             const saveButton = document.getElementById(`save-btn-${postId}`);
+
+            if (activePostId && activePostId !== postId) {
+                alert("You can only edit one post at a time.");
+                return;
+            }
+            // Hide all other edit buttons
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                if (btn !== editButton) {
+                    btn.style.display = 'none';
+                }
+            });
+
+
+            // Set the active post to the current one being edited
+            activePostId = postId;
 
             // Hide the edit button, show the textarea and save button
             editButton.style.display = 'none';
@@ -70,6 +87,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         saveButton.style.display = 'none';
                         postContent.style.display = 'block';
                         editButton.style.display = 'block';
+                        // Show all edit buttons again after saving
+                        document.querySelectorAll('.edit-btn').forEach(btn => {
+                            btn.style.display = 'block';
+                        });
+
+                        // Reset the active post ID after saving
+                        activePostId = null;
+
                     } else {
                         console.error("Failed to update post.");
                     }
