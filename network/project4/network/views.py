@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils import timezone
@@ -86,7 +86,6 @@ def following(request):
         #'posts': posts
         'page_obj':page_obj,
     })
-
 
 
 def login_view(request):

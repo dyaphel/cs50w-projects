@@ -8,11 +8,20 @@
         {% endif %}
     </div>
     <div class="card-body">
-        <h5 class="card-title">{{ post.body }}</h5>
+        <h5 class="card-title" id="post-content-{{ post.id }}" >{{ post.body }}</h5>
         {% if show_username %}
         <p class="card-text">{{ post.date }}</p>
         {%endif%}
+         <!-- Hidden textarea for editing the post -->
+         <textarea class="edit-area" id="edit-post-{{ post.id }}" style="display:none;">{{ post.body }}</textarea>
     </div>
-    <div class="card-footer border-info">Like: {{ post.like }}</div>
-</div>
+    <div class="card-footer border-info">
+        Like: {{ post.like }}
+        {% if request.user == post.user %}
+        <button class="edit-btn" data-post-id="{{ post.id }}" style="background-color: transparent; border-color: transparent; float: right;">
+            <img src="../../static/network/pen-fill.svg">
+        </button>
+        {% endif %}
 
+    </div>
+</div>
