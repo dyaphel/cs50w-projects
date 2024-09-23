@@ -46,7 +46,7 @@ def like(request, post_id):
 
 
 @login_required
-def edit_post(request, post_id):
+def edit(request, post_id):
     if request.method == 'POST' and request.user.is_authenticated:
         post = Post.objects.get(id=post_id, user=request.user)
         data = json.loads(request.body)

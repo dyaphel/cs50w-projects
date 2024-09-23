@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const newContent = editArea.value;
 
                 // Send the new content to the server via AJAX
-                fetch(`/edit-post/${postId}/`, {
+                fetch(`/edit/${postId}/`, {
+
                     method: 'POST',
                     headers: {
                         'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
