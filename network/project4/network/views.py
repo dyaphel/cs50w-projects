@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 import json
-from .models import User, Post, Follow
+from .models import User, Post, Follow, Like
 
 
 
@@ -22,6 +22,27 @@ def index(request):
       'posts': posts,
       'page_obj': page_obj,
   })
+
+def toggle_like(request, post_id):
+    post = Post.objects.get(id=post_id)
+    user = request.user
+    liked = Like.objects.filter(user=user, post=post).exists()
+    if liked:
+        Like.objects.filter(user=user, post=post).delete()
+        liked = False
+    else:
+        Like.objects.create(user=user, post=post)
+        liked = True
+
+    # Count the total likes on the post
+    like_count = Like.objects.filter(post=post).count()
+
+    # Return a JSON response with the new like count and status
+    return JsonResponse({
+        'likes': like_count,
+        'liked': liked,
+    })
+
 
 @login_required
 def edit_post(request, post_id):

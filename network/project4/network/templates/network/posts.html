@@ -16,12 +16,13 @@
     </div>
     <div class="card-footer border-info">
         <button class="like-btn" data-post-id="{{ post.id }}">
-            <img src="../../static/network/icon/arrow-heart.svg">
-          </button>
-            {{post.like}}          
+            <img id="like-icon-{{ post.id }}" src="../../static/network/icon/arrow-heart.svg">
+        </button>
+        <span id="like-count-{{ post.id }}">{{ like_count }}</span> <!-- Like count span -->
+                
         {% if request.user == post.user %}
         <button class="edit-btn" data-post-id="{{ post.id }}" style="background-color: transparent; border-color: transparent; float: right;">
-            <img src="../../static/network/icon/pen-fill.svg">
+            <img id="like-icon-{{ post.id }}" src="../../static/network/icon/pen-fill.svg">
         </button>
         <button class="save-btn" id="save-btn-{{ post.id }}" >Save
             {% csrf_token %}
@@ -31,4 +32,35 @@
 </div>
 {% block script %}
     <script src="../../static/network/js/post-edit.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.like-btn').forEach(button => {
+        button.onclick = function() {
+            const postId = this.dataset.postId;
+            const likeIcon = document.getElementById(`like-icon-${postId}`);
+            const likeCountElement = document.getElementById(`like-count-${postId}`);
+            fetch(`/like/${postId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                const liked = data.liked;  
+                const likeCount = data.likes;
+
+                if (liked) {
+                    likeIcon.src = "../../static/network/icon/arrow-heart-red.svg";  // Red heart when liked
+                } else {
+                    likeIcon.src = "../../static/network/icon/arrow-heart.svg";  // Blue heart when unliked
+                }
+                likeCountElement.textContent = likeCount;
+            })
+            .catch(error => console.error('Error:', error));
+        };
+    });
+});
+
+</script>
 {% endblock %}
