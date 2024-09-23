@@ -11,10 +11,8 @@ class Post ( models.Model):
     body =models.TextField()
     date = models.DateTimeField( default=timezone.now)
 
-
 def __str__(self):
-    return f"Post by {self.user.username} (ID: {self.id})"
-
+        return f"Post by {self.user.username} (ID: {self.id})"
 
 
 class Follow(models.Model):
