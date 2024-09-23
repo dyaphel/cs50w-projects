@@ -20,17 +20,16 @@ def index(request):
   paginator = Paginator(posts, 10)
   page_number = request.GET.get('page')
   page_obj = paginator.get_page(page_number)
+
   return render( request, "network/index.html", {
       'posts': posts,
       'page_obj': page_obj,
   })
 
 @login_required
-def toggle_like(request, post_id):
+def like(request, post_id):
     post = Post.objects.get(id=post_id)
     user = request.user
-
-    # Toggle like/unlike
     liked = Like.objects.filter(user=user, post=post).exists()
     
     if liked:
@@ -39,11 +38,7 @@ def toggle_like(request, post_id):
     else:
         Like.objects.create(user=user, post=post)
         liked = True
-
-    # Count the total likes for the post
     like_count = Like.objects.filter(post=post).count()
-
-    # Return JSON response with the updated like count and status
     return JsonResponse({
         'likes': like_count,
         'liked': liked,

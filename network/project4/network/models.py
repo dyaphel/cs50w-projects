@@ -10,8 +10,11 @@ class Post ( models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     body =models.TextField()
     date = models.DateTimeField( default=timezone.now)
+    
+    def is_liked_by(self, user):
+        return Like.objects.filter(user=user, post=self).exists()
 
-def __str__(self):
+    def __str__(self):
         return f"Post by {self.user.username} (ID: {self.id})"
 
 

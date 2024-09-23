@@ -16,10 +16,10 @@
     </div>
     <div class="card-footer border-info">
         <button class="like-btn" data-post-id="{{ post.id }}">
-            <img id="like-icon-{{ post.id }}" src="{% if post.is_liked %}../../static/network/icon/arrow-heart-red.svg{% else %}../../static/network/icon/arrow-heart.svg{% endif %}">
+            <img id="like-icon-{{ post.id }}" src="../../static/network/icon/arrow-heart.svg">
         </button>
         <span id="like-count-{{ post.id }}">
-            {{ post.like_count }}
+            {{post.like_count}}
         </span> <!-- Like count span -->
                 
         {% if request.user == post.user %}
@@ -53,9 +53,9 @@
                 const likeCount = data.likes;
 
                 if (liked) {
-                    likeIcon.src = "../../static/network/icon/arrow-heart-red.svg";  // Red heart when liked
+                    likeIcon.src = "../../static/network/icon/arrow-heart-red.svg";
                 } else {
-                    likeIcon.src = "../../static/network/icon/arrow-heart.svg";  // Blue heart when unliked
+                    likeIcon.src = "../../static/network/icon/arrow-heart.svg";
                 }
                 likeCountElement.textContent = likeCount;
             })
