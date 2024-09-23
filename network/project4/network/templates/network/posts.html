@@ -15,7 +15,10 @@
          <textarea class="edit-area" id="edit-post-{{ post.id }}">{{ post.body }}</textarea>
     </div>
     <div class="card-footer border-info">
-        Like: {{ post.like }}
+        <button class="like-btn" data-post-id="{{ post.id }}">
+            <img src="../../static/network/icon/arrow-heart.svg">
+          </button>
+            {{post.like}}          
         {% if request.user == post.user %}
         <button class="edit-btn" data-post-id="{{ post.id }}" style="background-color: transparent; border-color: transparent; float: right;">
             <img src="../../static/network/icon/pen-fill.svg">

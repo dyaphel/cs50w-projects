@@ -146,6 +146,13 @@
     background-color: #0056b3;
 }
 
+.like-btn{
+    border: transparent; 
+    background-color: transparent;
+}
+.like-btn:focus{
+    outline: transparent;
+}
 /*----------------------------------------------------*/
 
 
