@@ -18,7 +18,9 @@
         <button class="like-btn" data-post-id="{{ post.id }}">
             <img id="like-icon-{{ post.id }}" src="../../static/network/icon/arrow-heart.svg">
         </button>
-        <span id="like-count-{{ post.id }}">{{ like_count }}</span> <!-- Like count span -->
+        <span id="like-count-{{ post.id }}">
+            {{ post.like_count }}
+        </span> <!-- Like count span -->
                 
         {% if request.user == post.user %}
         <button class="edit-btn" data-post-id="{{ post.id }}" style="background-color: transparent; border-color: transparent; float: right;">

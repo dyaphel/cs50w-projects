@@ -10,7 +10,7 @@ class Post ( models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     body =models.TextField()
     date = models.DateTimeField( default=timezone.now)
-    like = models.PositiveIntegerField()
+
 
 def __str__(self):
     return f"Post by {self.user.username} (ID: {self.id})"
@@ -27,8 +27,8 @@ def __str__(self):
     return f"{self.users_followed} follows {self.user_following}"
 
 class Like(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='likeByUser')
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='postLiked')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
 
 def __str__(self):
         return f'{self.user} liked this {self.post}'

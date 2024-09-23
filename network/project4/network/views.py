@@ -9,12 +9,14 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 import json
+from django.db.models import Count
 from .models import User, Post, Follow, Like
 
 
 
 def index(request):
   posts = Post.objects.order_by('-date').all()
+  posts = posts.annotate(like_count=Count('likes'))
   paginator = Paginator(posts, 10)
   page_number = request.GET.get('page')
   page_obj = paginator.get_page(page_number)
@@ -23,10 +25,14 @@ def index(request):
       'page_obj': page_obj,
   })
 
+@login_required
 def toggle_like(request, post_id):
     post = Post.objects.get(id=post_id)
     user = request.user
+
+    # Toggle like/unlike
     liked = Like.objects.filter(user=user, post=post).exists()
+    
     if liked:
         Like.objects.filter(user=user, post=post).delete()
         liked = False
@@ -34,10 +40,10 @@ def toggle_like(request, post_id):
         Like.objects.create(user=user, post=post)
         liked = True
 
-    # Count the total likes on the post
+    # Count the total likes for the post
     like_count = Like.objects.filter(post=post).count()
 
-    # Return a JSON response with the new like count and status
+    # Return JSON response with the updated like count and status
     return JsonResponse({
         'likes': like_count,
         'liked': liked,
@@ -65,7 +71,7 @@ def newpost(request):
     if request.method == 'POST':
         post_body = request.POST.get('body')
         if post_body:
-            post = Post(user=request.user, body=post_body, date=timezone.now(), like=0)
+            post = Post(user=request.user, body=post_body, date=timezone.now())
             post.save()
             messages.success(request, "Your post has been published.")
             return redirect('index')
@@ -89,7 +95,6 @@ def profile(request, username):
 
     return render(request, 'network/profile.html', {
         'profile_user': user,
-        #'posts': posts,
         'followers': followers,
         'following':following,  
         'isFollowing':isFollowing,
