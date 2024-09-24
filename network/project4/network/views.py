@@ -14,17 +14,25 @@ from .models import User, Post, Follow, Like
 
 
 
-def index(request):
-  posts = Post.objects.order_by('-date').all()
-  posts = posts.annotate(like_count=Count('likes'))
-  paginator = Paginator(posts, 10)
-  page_number = request.GET.get('page')
-  page_obj = paginator.get_page(page_number)
 
-  return render( request, "network/index.html", {
-      'posts': posts,
-      'page_obj': page_obj,
-  })
+def index(request):
+    posts = Post.objects.order_by('-date').all()
+    posts = posts.annotate(like_count=Count('likes'))
+    
+    if request.user.is_authenticated:
+        user = request.user
+        # Check if the current user has liked each post
+        liked_posts = Like.objects.filter(user=user).values_list('post_id', flat=True)
+    
+    paginator = Paginator(posts, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, "network/index.html", {
+        'posts': posts,
+        'page_obj': page_obj,
+        'liked_posts': liked_posts if request.user.is_authenticated else []
+    })
 
 @login_required
 def like(request, post_id):
