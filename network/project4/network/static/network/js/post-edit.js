@@ -13,30 +13,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert("You can only edit one post at a time.");
                 return;
             }
-            // Hide all other edit buttons
             document.querySelectorAll('.edit-btn').forEach(btn => {
                 if (btn !== editButton) {
                     btn.style.display = 'none';
                 }
             });
 
-
             // Set the active post to the current one being edited
             activePostId = postId;
-
-            // Hide the edit button, show the textarea and save button
             editButton.style.display = 'none';
             editArea.style.display = 'block';
             postContent.style.display = 'none';
             saveButton.style.display = 'block';
-
-            // On clicking the save button
             saveButton.onclick = function() {
                 const newContent = editArea.value;
 
-                // Send the new content to the server via AJAX
                 fetch(`/edit/${postId}/`, {
-
                     method: 'POST',
                     headers: {
                         'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
@@ -48,18 +40,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => response.json())
                 .then(result => {
                     if (result.success) {
-                        // Update the post content and reset the view
                         postContent.innerHTML = newContent;
                         editArea.style.display = 'none';
                         saveButton.style.display = 'none';
                         postContent.style.display = 'block';
                         editButton.style.display = 'block';
-                        // Show all edit buttons again after saving
                         document.querySelectorAll('.edit-btn').forEach(btn => {
                             btn.style.display = 'block';
                         });
-
-                        // Reset the active post ID after saving
                         activePostId = null;
 
                     } else {
