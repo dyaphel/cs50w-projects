@@ -11,7 +11,6 @@
         {% if show_username %}
         <p class="card-text">{{ post.date }}</p>
         {%endif%}
-         <!-- Hidden textarea for editing the post -->
          <textarea class="edit-area" id="edit-post-{{ post.id }}">{{ post.body }}</textarea>
     </div>
     <div class="card-footer border-info">
@@ -20,7 +19,7 @@
         </button>
         <span id="like-count-{{ post.id }}">
             {{post.like_count}}
-        </span> <!-- Like count span -->
+        </span>
                 
         {% if request.user == post.user %}
         <button class="edit-btn" data-post-id="{{ post.id }}" style="background-color: transparent; border-color: transparent; float: right;">

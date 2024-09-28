@@ -5,7 +5,7 @@
     <div class="user-info">
         <h2 class="username">{{ profile_user.username }}</h2>
         {% if user.is_authenticated and request.user != profile_user %}
-        <form method="POST" action="{% url 'toggle_follow' profile_user.username %}">
+        <form method="POST" action="{% url 'follow' profile_user.username %}">
             {% csrf_token %}
             <button type="submit" id="follow-btn" class="btn btn-primary">
                 {% if isFollowing %}

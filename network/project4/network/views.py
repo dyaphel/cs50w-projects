@@ -21,7 +21,6 @@ def index(request):
     
     if request.user.is_authenticated:
         user = request.user
-        # Check if the current user has liked each post
         liked_posts = Like.objects.filter(user=user).values_list('post_id', flat=True)
     
     paginator = Paginator(posts, 10)
@@ -105,7 +104,7 @@ def profile(request, username):
     })
 
 @login_required
-def toggle_follow(request, username):
+def follow(request, username):
     # The user that is being followed (the profile's user)
     user_followed = User.objects.get(username=username)
     # The user who is following (the current logged-in user)
@@ -131,7 +130,6 @@ def following(request):
 
 
     return render(request, 'network/following.html', {
-        #'posts': posts
         'page_obj':page_obj,
     })
 
