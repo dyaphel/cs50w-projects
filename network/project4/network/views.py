@@ -83,6 +83,13 @@ def newpost(request):
 def profile(request, username):
     user = User.objects.get(username=username)
     posts = Post.objects.filter(user=user).order_by('date').all()
+
+    posts = posts.annotate(like_count=Count('likes'))
+    
+    if request.user.is_authenticated:
+        user = request.user
+        liked_posts = Like.objects.filter(user=user).values_list('post_id', flat=True)
+
     paginator = Paginator(posts, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -96,6 +103,8 @@ def profile(request, username):
 
 
     return render(request, 'network/profile.html', {
+        'posts': posts,
+        'liked_posts': liked_posts if request.user.is_authenticated else [],
         'profile_user': user,
         'followers': followers,
         'following':following,  
