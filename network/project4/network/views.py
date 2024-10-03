@@ -87,8 +87,8 @@ def profile(request, username):
     posts = posts.annotate(like_count=Count('likes'))
     
     if request.user.is_authenticated:
-        user = request.user
-        liked_posts = Like.objects.filter(user=user).values_list('post_id', flat=True)
+        logged_in_user = request.user
+        liked_posts = Like.objects.filter(user=logged_in_user).values_list('post_id', flat=True)
 
     paginator = Paginator(posts, 10)
     page_number = request.GET.get('page')
