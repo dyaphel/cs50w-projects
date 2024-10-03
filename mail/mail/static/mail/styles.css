@@ -1,0 +1,101 @@
+textarea {
+    min-height: 400px;
+}
+
+.email-container {
+    margin-left: 10%;
+    margin-top: 2%;
+    width: 80%;
+    border: 1px solid black;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: start;
+}
+
+.email-container div {
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+    text-overflow: ellipsis; /*long text gets truncated with ellipsis */
+}
+
+.from {
+    width: 280px;
+  
+}
+
+.subject {
+    width: 300px;
+   
+}
+
+.timestamp {
+    width: 260px;
+    align-items: end;
+}
+
+.email-container.unread {
+    background-color: white; 
+}
+
+.email-container.read {
+    background-color: lightgray;
+}
+
+/* SINGLE EMAIL DETAILS*/
+
+#singlemail-view {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.email_details h2 {
+    margin: 5px 0;
+}
+
+.email_details .sender {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.email_details .recipients {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.email_details .subject {
+    font-size: 22px;
+    font-weight: bold; 
+    margin-top: 15px;
+}
+
+.email_details .timestamp {
+    font-size: 15px; 
+    color: darkgray;
+    margin-bottom: 20px;
+}
+
+.email_details .body{
+    margin-top: 3%;
+    margin-bottom: -1%;
+    font-size: 18px;
+
+}
+.email_details .body-container {
+    margin-top: 20px;
+    border: 1px solid #6f6f6f;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+#archive-button {
+    margin-top: 10px;
+  }
+
+#reply-button{
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 80px;
+}
