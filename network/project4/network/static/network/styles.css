@@ -1,0 +1,248 @@
+
+/*----------------------- NEW POST----------------- */
+
+/* new post H1 Title*/
+.newpost {
+    margin-top: 40px;
+    text-align: center;
+}
+
+/* new post form */
+.postform {
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+    margin: 20px auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+/* textarea  */
+.postform .postbody {
+    width: 100%;
+    height: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    outline: none;
+}
+
+.postform .postbody:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* submit button */
+.postform button{
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.postform button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .postform {
+        padding: 10px;
+        width: 400px;
+        height: 300px;
+    }
+
+    .postform .postbody {
+        height: 180px;
+    }
+}
+
+/*----------------------------------------------------*/
+
+
+/*----------------------- CARDS POSTs----------------- */
+
+.allpostpage{
+    margin-left: 50px;
+    margin-top: 30px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: start; 
+    gap: 50px;
+    padding: 20px;
+    margin-top: 10px;
+    margin-left: 100px;
+}
+
+.card {
+    width: 25rem; 
+    border: 3px solid; 
+    border-radius: 10px;
+}
+
+
+.card-header {
+    font-weight: bold; 
+    font-size: 20px;
+    background-color: transparent; 
+}
+
+
+.card-title {
+    font-size: 1.8rem;
+    margin-bottom: 25px; 
+}
+
+
+.card-text {
+    color: gray;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 0.85em;
+    position: absolute; 
+    bottom: 40px;
+    left: 10px; 
+    right: 10px; 
+}
+
+.edit-area{
+    display:none; 
+    margin-bottom: 10%;
+    border: 2px solid  rgb(22, 149, 168); 
+    border-radius: 5px; 
+    width: 100%;
+    resize: none; 
+    height: 90%;
+}
+.edit-area:focus {
+    outline-color:#007bff;
+}
+
+.save-btn{
+    display:none; 
+    float: right;
+    outline: none;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.save-btn:hover{
+    background-color: #0056b3;
+}
+
+.like-btn{
+    border: transparent; 
+    background-color: transparent;
+}
+.like-btn:focus{
+    outline: transparent;
+}
+/*----------------------------------------------------*/
+
+
+/*----------------------- USER PROFILE ----------------- */
+
+.usercontainer {
+    margin-left: 150px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    text-align: start; 
+}
+.user-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 80px; 
+    position: relative;
+}
+
+.username {
+    font-size: 40px;
+    font-style: italic;
+    position: relative; 
+}
+
+#follow-btn {
+    position: absolute; 
+    top: 48%;
+    left: 0.1%; 
+    padding: 5px 30px;
+    font-size: 1.1rem;
+    background-color: rgb(22, 149, 168);
+    color: white;
+    border: none;
+}
+
+#follow-btn:hover {
+    background-color: #0056b3;
+}
+
+.followers, .following {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 30px;
+}
+
+.followers span, .following span {
+    margin-top: 3px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.followers p, .following p {
+    margin-top: 6px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: rgb(22, 149, 168);
+}
+
+/*----------------------------------------------------*/
+
+/*---------------------Paginator----------------------*/
+
+.pagenavigation {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 60vw;
+}
+
+.page-button {
+    background-color: rgb(22, 149, 168);
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.page-button:hover {
+    background-color: #0056b3;
+    color: white;
+    text-decoration: none;
+    
+}
+
+
+/*----------------------------------------------------*/
