@@ -15,12 +15,12 @@
 
   /* Stili per la sidebar */
   .sidebar {
-    width: 250px;
+    width: 200px;
     height: 100%;
     background-color: #343a40;
     position: fixed;
     top: 100;
-    left: -250px;
+    left: -200px;
     transition: left 0.3s ease;
 
     display: flex;
@@ -46,16 +46,22 @@
 
 .btn-sidebar {
     display: flex;
-    justify-content: center; /* Centra l'immagine all'interno del pulsante */
-    align-items: center;     /* Centra verticalmente */
+    flex-direction: column; /* Dispone l’immagine e il testo in verticale */
+    align-items: center;    /* Centra orizzontalmente l’immagine e il testo */
     background: none;
     border: none;
-    padding: 0;
+    padding: 20px;
     cursor: pointer;
 }
 
 .sidebar-icon {
-    margin-top: 20px;
     width: 50px;
     height: 50px;
+}
+
+.icon-caption {
+    margin-top: 5px; /* Spazio tra l’immagine e il testo */
+    font-size: 14px;
+    color: #ffffff; /* Colore bianco per il testo */
+    text-align: center;
 }
