@@ -3,13 +3,14 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+import json
+from django.http import JsonResponse
 
-from .models import User
+from .models import User, Contact
 
 
 def index(request):
     return render(request, "contacts/index.html")
-
 
 def login_view(request):
     if request.method == "POST":

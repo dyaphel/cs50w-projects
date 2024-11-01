@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>{% block title %}Social Network{% endblock %}</title>
+        <title>{% block title %}Contacts{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link href="{% static 'contacts/styles.css' %}" rel="stylesheet">
     </head>
@@ -12,12 +12,15 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">          
             <div>
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'index' %}">All Posts</a>
-                </li>
                 {% if user.is_authenticated %}
+                <li class="nav-item">
+                <button id="openSidebarBtn">☰</button>
+            </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'index' %}">Home</a>
+                </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                        <a class="nav-link" href="{% url 'logout' %}"></a>
                     </li>
                 {% else %}
                     <li class="nav-item">
@@ -30,6 +33,23 @@
               </ul>
             </div>
           </nav>
+
+          <div id="sidebar" class="sidebar">
+            <ul class="nav flex-column">
+                {% block sidebar %}
+                {% endblock %}
+            </ul>
+        </div>
+        
+
+        
+        <script>
+            document.getElementById("openSidebarBtn").onclick = function() {
+                document.getElementById("sidebar").classList.toggle("show");
+            };
+        </script>
+        
+
         
         <div class="body">
             {% block body %}
