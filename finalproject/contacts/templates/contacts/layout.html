@@ -9,9 +9,9 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">          
-            <div>
-              <ul class="navbar-nav mr-auto">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex flex-nowrap justify-content-between">          
+            <div class="d-flex">
+                <ul class="navbar-nav mr-auto d-flex flex-row">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                 <button id="openSidebarBtn">☰</button>
