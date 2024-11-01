@@ -1,9 +1,17 @@
 
+
 {% extends "contacts/layout.html" %}
+
+{% load static %}
 {% block title %}Home{% endblock %}
 
 {% block content %}
 {%endblock%}
 
-{%block sidebar%}
-{%endblock%}
+{% block sidebar %}
+<li class="nav-item">
+    <button class="btn btn-sidebar">
+        <img src="../../static/img/add.png" class="sidebar-icon" alt="Plus Icon">
+    </button>
+</li>
+{% endblock %}

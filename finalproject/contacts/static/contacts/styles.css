@@ -3,6 +3,7 @@
     color: rgb(60, 59, 59);
     font-size: large;
     flex-direction: row;
+    margin-right: 20px;
 }
 
 /* Hover effect for the nav items */
@@ -37,4 +38,17 @@
     font-size: 20px;
     left: 30px;
     margin-right: 20px;
+}
+
+.btn-sidebar {
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.sidebar-icon {
+    margin-left: 120%;
+    width: 50px;
+    height: 50px;
 }
