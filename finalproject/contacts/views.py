@@ -9,11 +9,13 @@ from django.http import JsonResponse
 from .models import User, Contacts
 
 def index(request):
-    return render(request, "contacts/index.html")
+    if request.user.is_authenticated:
+        return render(request, "contacts/index.html")
+    else:
+        return render(request, "contacts/login.html")
 
 def login_view(request):
     if request.method == "POST":
-
         # Attempt to sign user in
         username = request.POST["username"]
         password = request.POST["password"]

@@ -1,23 +1,23 @@
+// Move the toggleForm function to the global scope
+function toggleForm() {
+    const form = document.getElementById("add-contact-form");
+    if (form) {
+        console.log("Toggling form visibility.");
+        form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
+    } else {
+        console.error("Form not found.");
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     console.log("JavaScript loaded and DOM content ready.");
-    const csrftoken = '{{ csrf_token }}'; // You'll set the token in the template
+    const csrftoken = '{{ csrf_token }}'; // Set the token in the template
 
     // Ensure that the element .btn-sidebar is correctly selected
     document.querySelector(".btn-sidebar").addEventListener("click", () => {
         console.log("Sidebar button clicked.");
         toggleForm();
     });
-
-    // Toggle the visibility of the contact form
-    function toggleForm() {
-        const form = document.getElementById("add-contact-form");  // Define the form variable here
-        if (form) {
-            console.log("Toggling form visibility.");
-            form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
-        } else {
-            console.error("Form not found.");
-        }
-    }
 
     // JavaScript to handle adding a new contact
     document.getElementById("submit-contact-btn").addEventListener("click", function() {
