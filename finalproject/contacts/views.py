@@ -6,8 +6,7 @@ from django.urls import reverse
 import json
 from django.http import JsonResponse
 
-from .models import User, Contact
-
+from .models import User, Contacts
 
 def index(request):
     return render(request, "contacts/index.html")

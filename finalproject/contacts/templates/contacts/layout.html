@@ -8,7 +8,6 @@
         <link href="{% static 'contacts/styles.css' %}" rel="stylesheet">
     </head>
     <body>
-
         <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex flex-nowrap justify-content-between">          
             <div class="d-flex">
                 <ul class="navbar-nav mr-auto d-flex flex-row">
@@ -36,24 +35,22 @@
 
           <div id="sidebar" class="sidebar">
             <ul class="nav flex-column">
-                {% block sidebar %}
-                {% endblock %}
+                <li class="nav-item">
+                    <button class="btn btn-sidebar">
+                        {% block sidebar %}
+                        {% endblock %}
+                    </button>
+                </li>
             </ul>
         </div>
-        
-
-        
-        <script>
-            document.getElementById("openSidebarBtn").onclick = function() {
-                document.getElementById("sidebar").classList.toggle("show");
-            };
-        </script>
-        
-
-        
+           
         <div class="body">
             {% block body %}
             {% endblock %}
         </div>
+
+        
+        <script src="{% static 'js/sidebar.js' %}"></script>
+
     </body>
 </html>
