@@ -68,7 +68,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect(reverse("login.html"))
+    return HttpResponseRedirect(reverse("login"))
 
 def register(request):
     if request.method == "POST":
