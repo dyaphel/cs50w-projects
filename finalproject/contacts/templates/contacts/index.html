@@ -6,37 +6,41 @@
 {% block body %}
 <div class="header-section">
     <div class="profile-icons">
-        <button><img src="{% static 'img/save.png' %}" class="icon" alt="Save"></button>
-        <button><img src="{% static 'img/edit.png' %}" class="icon" alt="Edit"></button>
+        <button id="saveButton"><img src="{% static 'img/save.png' %}" class="icon" alt="Save">
+            {% csrf_token %}
+        </button>
+        <button id="editButton"><img src="{% static 'img/edit.png' %}" class="icon" alt="Edit"></button>
     </div>
 </div>
-
 
 <div class="profile-container">
     <div class="profile-picture">
-        {{ user.first_name.0|upper }}{{ user.last_name.0|upper }}
+        {{ user_info.name.0|upper }}{{ user_info.surname.0|upper }}
     </div>
 
-    <!-- Authenticated User Information -->
     <div class="user-info">
-        <!-- Name and Surname on the same row -->
         <div class="name-row">
-            <span class="label">Name:</span> {{ user.first_name }} &nbsp;&nbsp; <span class="label">Surname:</span> {{ user.last_name }}
+            <span class="label">Name:</span>
+            <span id="firstName" contenteditable="false">{{ user_info.name }}</span>
+            <span class="label">Surname:</span>
+            <span id="lastName" contenteditable="false">{{ user_info.surname }}</span>
         </div>
-        <p class="nickname" style="color: #6e94bc;;">Nickname:{{ user.nickname }}</p>
-        <!-- Company and Job Position on the same row -->
+
+        <p><strong style="color: #6e94bc">Nickname:</strong> <span id="nickname" contenteditable="false">{{ user_info.username }}</span></p>
         <div class="job-row">
-            <span class="label">Company:</span> {{ user.company }} <span class="label">Position:</span> {{ user.job_position }}
+            <span class="label">Company:</span>
+            <span id="company" contenteditable="false">{{ user_info.company }}</span>
+            <span class="label">Position:</span>
+            <span id="jobPosition" contenteditable="false">{{ user_info.job_position }}</span>
         </div>
-
-        
-        
-
-        
-        <!-- Email and Phone Numbers in separate rows -->
-        <p><strong>Email:</strong> {{ user.email }}</p>
-        <p><strong>Primary Phone:</strong> {{ user.phone_number_1 }}</p>
-        <p><strong>Secondary Phone:</strong> {{ user.phone_number_2|default:"N/A" }}</p>
+        <p><strong>Email:</strong> <span id="email" contenteditable="false">{{ user_info.email }}</span></p>
+        <p><strong>Primary Phone:</strong> <span id="phone1" contenteditable="false">{{ user_info.phone_number_1 }}</span></p>
+        <p><strong>Secondary Phone:</strong> <span id="phone2" contenteditable="false">{{ user_info.phone_number_2|default:"N/A" }}</span></p>
     </div>
 </div>
+
 {% endblock %}
+
+{%block script%}
+<script src="{% static 'js/edit_user.js' %}"></script>
+{%endblock%}
