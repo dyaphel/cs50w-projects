@@ -19,22 +19,38 @@
 }
 
 
-/* Top-right add icon container */
+/* Container for icons */
 .header-section {
     display: flex;
     justify-content: flex-end;
-    padding-top: 2%;
-    margin-top: -2%;
-    margin-bottom: 40px;
-    margin-right: 5%;
+    margin: 10px 20px;
+    padding-top: 10px;
 }
 
-/* Icon styling */
-.profile-icons .icon {
-    width: 30px;
-    height: 30px;
-    opacity: 0.8;
+/* Remove button styling */
+.profile-icons button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    margin-left: 10px;
 }
+
+/* Border for icon images only */
+.profile-icons .icon {
+    width: 50px;
+    height: 50px;
+    padding: 8px;
+    border: 2px solid #A1C6EA; /* Pastel blue border */
+    border-radius: 8px; /* Rounded corners */
+    transition: transform 0.2s ease;
+}
+
+/* Hover effect for icon images */
+.profile-icons .icon:hover {
+    transform: scale(1.05);
+}
+
 
 /* Profile container */
 .profile-container {
