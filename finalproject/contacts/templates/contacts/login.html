@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <h2>Login</h2>
+    <h2 style="margin-top: 5%; margin-bottom: 2%; display: flex; margin-left: 25%;">Login</h2>
 
     {% if message %}
         <div>{{ message }}</div>
@@ -11,13 +11,16 @@
     <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
         <div class="form-group">
-            <input autofocus class="form-control" type="text" name="username" placeholder="username" required> 
+            <input autofocus class="form-control" style="margin-bottom: 20px; width: 50%; display: flex; margin-left: 25%;"
+             type="text" name="username" placeholder="username" required> 
         <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password" required>
+            <input class="form-control"  style="margin-bottom: 20px; width: 50%; display: flex; margin-left: 25%;"
+            type="password" name="password" placeholder="Password" required>
         </div>
-        <input class="btn btn-primary" type="submit" value="Login">
+        <input class="btn btn-primary"  style="margin-bottom: 20px; width: 50%; display: flex; margin-left: 25%;"
+        type="submit" value="Login">
     </form>
 
-    Don't have an account? <a href="{% url 'register' %}">Register here.</a>
+   <p  style="margin-left: 30%; font-size: 18px; margin-top: -1%;"> Don't have an account? <a href="{% url 'register' %}">Register here.</a></p>
 
 {% endblock %}
