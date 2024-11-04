@@ -5,6 +5,16 @@ from django.db import models
 class User(AbstractUser):
     pass
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    nickname = models.CharField(max_length=50)
+    company = models.CharField(max_length=100,blank=True, null=True)
+    job_position = models.CharField(max_length=100)
+    phone_number_1 = models.CharField(max_length=15)
+    phone_number_2 = models.CharField(max_length=15, blank=True, null=True)
+
+    def __str__(self):
+        return self.user.username
 class Contacts(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="contacts")
     first_name = models.CharField(max_length=50)
