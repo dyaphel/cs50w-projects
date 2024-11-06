@@ -57,9 +57,6 @@
     transition: box-shadow 0.3s ease;
 }
 
-.profile-container:hover {
-    box-shadow: 0px 9px 8px rgba(0, 0, 0, 0.12);
-}
 
 /* Profile picture with initials */
 .profile-picture {
