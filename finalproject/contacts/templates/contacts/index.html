@@ -25,16 +25,22 @@
 
     <div class="user-info">
         <div class="name-row">
-            <span class="label">Name:</span>
+            <span class="label">Name:</span> 
             <span id="firstName" contenteditable="false">{{ user_info.name }}</span>
+            &nbsp &nbsp &nbsp &nbsp
             <span class="label">Surname:</span>
             <span id="lastName" contenteditable="false">{{ user_info.surname }}</span>
         </div>
 
-        <p><strong style="color: #6e94bc">Nickname:</strong> <span id="nickname" contenteditable="false">{{ user_info.username }}</span></p>
+        <div class="nickname-row">
+            <span class="label">Nickname:</span> 
+            <span id="nickname" contenteditable="false">{{ user_info.username }}</span>
+        </div>
+        
         <div class="job-row">
             <span class="label">Company:</span>
             <span id="company" contenteditable="false">{{ user_info.company }}</span>
+            &nbsp &nbsp &nbsp &nbsp 
             <span class="label">Position:</span>
             <span id="jobPosition" contenteditable="false">{{ user_info.job_position }}</span>
         </div>
@@ -46,32 +52,50 @@
 {% endblock %}
 
 {% block script %}  
- 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-    // Log to check if script is loading correctly
-    console.log("DOM fully loaded and parsed");
-
-    // Get the buttons
+<script>document.addEventListener("DOMContentLoaded", function() {
     const editButton = document.querySelector('#editButton');
     const saveButton = document.querySelector('#saveButton');
+    const userInfo = document.querySelector('.user-info');
 
-    // Log the buttons to check if they are selected correctly
-    console.log("Edit button:", editButton);
-    console.log("Save button:", saveButton);
+    // Toggle editable mode
+    function enableEditMode() {
+        saveButton.disabled = false;
+        userInfo.classList.add("edit-mode");
+        replaceSpansWithInputs();  // Replace spans with input fields
+    }
 
-    // Add event listener to the Edit button
-    if (editButton) {
-        editButton.addEventListener("click", function() {
-            // Enable the save button when edit button is clicked
-            console.log("Edit button clicked");
-            saveButton.disabled = false;
-            console.log("Save button enabled:", saveButton.disabled);
+    function replaceSpansWithInputs() {
+        document.querySelectorAll('.user-info span[contenteditable="false"]').forEach(span => {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = span.textContent.trim();
+            input.classList.add('editable-field');
+            input.id = span.id;
+            span.replaceWith(input);
         });
-    } else {
-        console.log("Edit button not found");
+    }
+
+    function replaceInputsWithSpans() {
+        document.querySelectorAll('.user-info input.editable-field').forEach(input => {
+            const span = document.createElement('span');
+            span.textContent = input.value.trim();
+            span.id = input.id;
+            span.setAttribute("contenteditable", "false");
+            input.replaceWith(span);
+        });
+        saveButton.disabled = true;
+        userInfo.classList.remove("edit-mode");
+    }
+
+    // Attach event listeners
+    if (editButton) {
+        editButton.addEventListener("click", enableEditMode);
+    }
+    if (saveButton) {
+        saveButton.addEventListener("click", replaceInputsWithSpans);
     }
 });
 
 </script>
 {% endblock %}
+

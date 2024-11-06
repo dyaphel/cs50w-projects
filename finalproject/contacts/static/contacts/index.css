@@ -96,23 +96,44 @@
 
 .job-row {
     margin-top: 4px;
-    font-size: 17px;
+    font-size: 18px;
     color: #555;
     margin-bottom: 10px;
 }
 
-.nickname {
-    font-size: 20px;
+.nickname-row {
+    font-size: 19px;
     font-weight: 600;
-    font-style: italic;
+    margin-bottom: 5px;
 }
 
 .user-info p {
-    font-size: 16px;
+    font-size: 18px;
     color: #555;
     margin: 4px 0;
 }
+/* Column layout for edit mode */
+.edit-mode {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
+.edit-mode .name-row,
+.edit-mode .job-row,
+.edit-mode p {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin: auto;
+}
 
-
-
+/* Input field styling */
+.editable-field {
+    border: 1px solid #6e94bc;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 5px 0;
+}
