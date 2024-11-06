@@ -16,11 +16,6 @@
     margin-top: -20%;
 }
 
-#saveButton[disabled] {
-    opacity: 0.2; /* Makes the button look more opaque when disabled */
-    pointer-events: none; /* Disables any interaction with the button */
-}
-
 /* Border for icon images only */
 .profile-icons .icon {
     width: 50px;
@@ -36,6 +31,15 @@
     transform: scale(1.05);
 }
 
+#saveButton[disabled] {
+    opacity: 0.2; /* Makes the button look more opaque when disabled */
+    pointer-events: none; /* Disables any interaction with the button */
+}
+
+/* Remove the focus outline (black square) on button click */
+.profile-icons button:focus {
+    outline: none;
+}
 
 /* Profile container */
 .profile-container {
