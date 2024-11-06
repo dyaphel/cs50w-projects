@@ -32,21 +32,6 @@ def index(request):
         return render(request, "contacts/login.html")
 
 
-@login_required  
-def update_profile(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        profile = Profile.objects.get(user=request.user)
-        new_body = data.get('body')
-        if(new_body):
-            profile.body = new_body
-            profile.save()
-            return JsonResponse({'success': True})
-        
-        return JsonResponse({'success': False, 'error': 'No content provided'})
-    return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
-
-
 def login_view(request):
     if request.method == "POST":
         # Prova a autenticare l'utente

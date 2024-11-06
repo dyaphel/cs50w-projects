@@ -1,12 +1,17 @@
 {% extends "contacts/layout.html" %}
+
 {% load static %}
 
 {% block title %}Home{% endblock %}
 
+{%block head%}
+<link href="{% static 'contacts/index.css' %}" rel="stylesheet">
+{%endblock%}
+
 {% block body %}
 <div class="header-section">
     <div class="profile-icons">
-        <button id="saveButton"><img src="{% static 'img/save.png' %}" class="icon" alt="Save">
+        <button id="saveButton" disabled="true"><img src="{% static 'img/save.png' %}" class="icon" alt="Save">
             {% csrf_token %}
         </button>
         <button id="editButton"><img src="{% static 'img/edit.png' %}" class="icon" alt="Edit"></button>
@@ -38,9 +43,35 @@
         <p><strong>Secondary Phone:</strong> <span id="phone2" contenteditable="false">{{ user_info.phone_number_2|default:"N/A" }}</span></p>
     </div>
 </div>
-
 {% endblock %}
 
-{%block script%}
-<script src="{% static 'js/edit_user.js' %}"></script>
-{%endblock%}
+{% block script %}  
+ 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    // Log to check if script is loading correctly
+    console.log("DOM fully loaded and parsed");
+
+    // Get the buttons
+    const editButton = document.querySelector('#editButton');
+    const saveButton = document.querySelector('#saveButton');
+
+    // Log the buttons to check if they are selected correctly
+    console.log("Edit button:", editButton);
+    console.log("Save button:", saveButton);
+
+    // Add event listener to the Edit button
+    if (editButton) {
+        editButton.addEventListener("click", function() {
+            // Enable the save button when edit button is clicked
+            console.log("Edit button clicked");
+            saveButton.disabled = false;
+            console.log("Save button enabled:", saveButton.disabled);
+        });
+    } else {
+        console.log("Edit button not found");
+    }
+});
+
+</script>
+{% endblock %}
