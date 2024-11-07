@@ -15,8 +15,8 @@ def update_profile(request):
         data = json.loads(request.body)
 
         user = request.user
-        user.Name = data.get('firstName', user.Name)
-        user.Surname = data.get('lastName', user.Surname)
+        user.fisrt_name = data.get('firstName', user.first_name)
+        user.last_name = data.get('lastName', user.last_name)
         user.Username = data.get('nickname', user.username)
         user.company = data.get('company', user.company)
         user.job_position = data.get('jobPosition', user.job_position)
