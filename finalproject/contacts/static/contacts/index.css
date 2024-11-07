@@ -96,8 +96,7 @@
 
 .job-row {
     margin-top: 4px;
-    font-size: 18px;
-    color: #555;
+    font-size: 20px;
     margin-bottom: 10px;
 }
 
@@ -112,28 +111,41 @@
     color: #555;
     margin: 4px 0;
 }
-/* Column layout for edit mode */
-.edit-mode {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
 
+/* Column layout for edit mode */
+/* General styles for edit mode */
 .edit-mode .name-row,
+.edit-mode .nickname-row,
 .edit-mode .job-row,
 .edit-mode p {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    margin: auto;
 }
 
-/* Input field styling */
+/* Style adjustments for editable fields */
 .editable-field {
     border: 1px solid #6e94bc;
     padding: 5px;
     width: 100%;
     box-sizing: border-box;
     margin: 5px 0;
+}
+
+
+.edit-mode #firstName{
+    margin-bottom: -20px;
+}
+
+.edit-mode #nickname{
+    margin-bottom: 20px;
+}
+
+.edit-mode #company{
+    margin-bottom: -20px;
+}
+
+.edit-mode #jobPosition{
+    margin-bottom: 20px;
 }
