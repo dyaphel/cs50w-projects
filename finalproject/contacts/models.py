@@ -3,8 +3,6 @@ from django.db import models
 
 
 class User(AbstractUser):
-    Name = models.CharField(max_length=50)
-    Surname = models.CharField(max_length=50)
     email = models.EmailField(null=True, blank=True, unique=True) 
     company = models.CharField(max_length=100, blank=True, null=True)
     job_position = models.CharField(max_length=100)

@@ -86,7 +86,6 @@
     font-size: 20px;
     font-weight: 600;
     color: #36454f;
-    margin-bottom: 5px;
 }
 
 .label {
@@ -95,7 +94,7 @@
 }
 
 .job-row {
-    margin-top: 4px;
+    margin-top: 5px;
     font-size: 20px;
     margin-bottom: 10px;
 }

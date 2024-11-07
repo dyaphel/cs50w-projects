@@ -37,8 +37,8 @@ def index(request):
         # Ottieni le informazioni dell'utente
         user_info = {
             'username': request.user.username,
-            'name': request.user.Name,
-            'surname': request.user.Surname,
+            'name': request.user.first_name,
+            'surname': request.user.last_name,
             'email': request.user.email,
             'company': request.user.company,
             'job_position': request.user.job_position,
