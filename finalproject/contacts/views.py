@@ -6,8 +6,8 @@ from django.urls import reverse
 import json
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from .models import User
-import logging
+from .models import User, Contact
+
 
 @login_required
 def update_profile(request):
@@ -30,6 +30,14 @@ def update_profile(request):
         return JsonResponse({'success': True})
 
     return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
+
+@login_required
+def contacts(request):
+    user= request.user
+    user_contacts = Contact.objects.filter(owner=user)
+    return render(request, 'contacts/contact_list.html', {
+        'contacts': user_contacts
+    })
 
 
 def index(request):
