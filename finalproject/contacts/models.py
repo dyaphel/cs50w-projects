@@ -9,16 +9,19 @@ class User(AbstractUser):
     phone_number_1 = models.CharField(max_length=15)
     phone_number_2 = models.CharField(max_length=15, blank=True, null=True)
 
-    REQUIRED_FIELDS = ['Name', 'Surname', 'phone_number_1']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number_1']
 class Contacts(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="contacts")
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    phone_number1 = models.CharField(max_length=20)
-    phone_number2 = models.CharField(max_length=20)
+
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+    name = models.CharField(max_length=255,blank=True)
+    surname = models.CharField(max_length=255)
     email = models.EmailField(blank=True, null=True)
-    association = models.CharField(max_length=30)
-    is_favorite = models.BooleanField(default=False)
+    company = models.CharField(max_length=255, blank=True, null=True)
+    job_position = models.CharField(max_length=255, blank=True, null=True)
+    phone_number_1 = models.CharField(max_length=15, blank=True, null=True)
+    phone_number_2 = models.CharField(max_length=15, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.name} {self.surname} ({self.email or 'N/A'})"
