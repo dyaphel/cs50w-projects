@@ -6,8 +6,30 @@ from django.urls import reverse
 import json
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from .models import User
+import logging
 
-from .models import User, Contacts
+@login_required
+def update_profile(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+
+        user = request.user
+        user.Name = data.get('firstName', user.Name)
+        user.Surname = data.get('lastName', user.Surname)
+        user.Username = data.get('nickname', user.username)
+        user.company = data.get('company', user.company)
+        user.job_position = data.get('jobPosition', user.job_position)
+        user.email = data.get('email', user.email)
+        user.phone_number_1 = data.get('phone1', user.phone_number_1)
+        user.phone_number_2 = data.get('phone2', user.phone_number_2)
+
+        # Save user to database
+        user.save()
+
+        return JsonResponse({'success': True})
+
+    return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
 
 
 def index(request):
