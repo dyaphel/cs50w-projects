@@ -82,33 +82,36 @@
     color: #444;
 }
 
-.name-row {
-    font-size: 20px;
-    font-weight: 600;
-    color: #36454f;
-}
-
 .label {
     font-weight: 600;
     color: #6e94bc;
 }
 
-.job-row {
-    margin-top: 5px;
+.name-row {
+    margin-bottom: 5px;
     font-size: 20px;
-    margin-bottom: 10px;
+    font-weight: 600;
+    color: #36454f;
 }
 
 .nickname-row {
     font-size: 19px;
     font-weight: 600;
     margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.job-row {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 15px;
 }
 
 .user-info p {
     font-size: 18px;
     color: #555;
-    margin: 4px 0;
+    margin: 5px 0;
 }
 
 /* Column layout for edit mode */
