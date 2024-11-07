@@ -137,17 +137,18 @@
 
 
 .edit-mode #firstName{
-    margin-bottom: -20px;
+    margin-bottom: -25px;
 }
-
+.edit-mode #lastName{
+    margin-bottom: -2px;
+}
 .edit-mode #nickname{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
-
 .edit-mode #company{
-    margin-bottom: -20px;
+    margin-bottom: -25px;
 }
 
 .edit-mode #jobPosition{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
