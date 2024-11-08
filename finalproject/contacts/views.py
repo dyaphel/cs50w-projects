@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .models import User, Contact
 from .forms import ContactForm
-
+import random
 
 
 @login_required
@@ -35,11 +35,13 @@ def update_profile(request):
 
 @login_required
 def contacts(request):
-    user= request.user
+    user = request.user
     user_contacts = Contact.objects.filter(owner=user)
+    print(f"Contatti trovati: {user_contacts.count()}")  # Aggiungi questo per verificare il numero di contatti
     return render(request, 'contacts/contact_list.html', {
         'contacts': user_contacts
     })
+
 
 @login_required
 def add_contact(request):

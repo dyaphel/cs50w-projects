@@ -4,13 +4,15 @@
 
 {% block title %}Contacts{% endblock %}
 
-{%block head%}
+{% block head %}
 <link href="{% static 'contacts/contactlist.css' %}" rel="stylesheet">
-{%endblock%}
-{%block body%}
+{% endblock %}
+
+{% block body %}
 <div class="header-section">
     <div class="profile-icons">
-        <button id="saveButton" disabled="true"><img src="{% static 'img/save.png' %}" class="icon" alt="Save">
+        <button id="saveButton" disabled="true">
+            <img src="{% static 'img/save.png' %}" class="icon" alt="Save">
             {% csrf_token %}
         </button>
         <button id="editButton" onclick="window.location.href='{% url 'add_contact' %}'">
@@ -19,4 +21,18 @@
     </div>
 </div>
 
-{%endblock%}
+    {% for contact in contacts %}
+    <div class="profile-container">
+        <div class="profile-picture">
+            {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
+    </div>
+    <div class="user-info">
+        <div class="name-row">
+            <span id="firstName">{{ contact.name }}</span>
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+            <span id="lastName">{{ contact.surname }}</span>
+            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+            <span id="nickname">{{ contact.nickname }}</span>
+        </div>
+    {% endfor %}
+{% endblock %}
