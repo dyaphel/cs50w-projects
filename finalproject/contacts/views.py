@@ -11,6 +11,7 @@ from .forms import ContactForm
 import random
 
 
+
 @login_required
 def update_profile(request):
     if request.method == 'POST':
@@ -32,6 +33,7 @@ def update_profile(request):
         return JsonResponse({'success': True})
 
     return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
+
 
 @login_required
 def contacts(request):
