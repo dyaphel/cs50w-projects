@@ -14,7 +14,6 @@ class Contact(models.Model):
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
-
     name = models.CharField(max_length=255)
     birthday = models.DateTimeField(null=True, blank=True)
     surname = models.CharField(max_length=255)
@@ -27,4 +26,4 @@ class Contact(models.Model):
 
     
     def __str__(self):
-        return f"{self.name} {self.surname} {self.nickname}"
+        return f"{self.name} {self.surname}"

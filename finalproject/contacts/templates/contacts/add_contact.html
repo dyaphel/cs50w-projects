@@ -8,16 +8,25 @@
 {% endblock %}
 
 {% block body %}
+<!-- Position the button outside the form container -->
+<div class="header-section">
+    <div class="profile-icons">
+    <button id="saveButton" type="submit" form="addContactForm">
+        <img src="{% static 'img/save.png' %}" class="icon" alt="Save">
+    </button>
+    </div>
+</div>
+
 <div class="form-container">
     <h2>Add a New Contact</h2>
-    <form method="post" action="{% url 'add_contact' %}">
+    <form id="addContactForm" method="post" action="{% url 'add_contact' %}">
         {% csrf_token %}
 
         <div class="form-group">
             <label>Name</label>
             {{ form.name }}
         </div>
-
+        
         <div class="form-group">
             <label>Surname</label>
             {{ form.surname }}
@@ -26,7 +35,6 @@
         <div class="form-group">
             <label>Nickname</label>
             {{ form.nickname }}
-            <!-- Display errors for nickname if any -->
             {% if form.nickname.errors %}
                 <div class="text-danger">
                     {% for error in form.nickname.errors %}
@@ -65,8 +73,6 @@
             <label>Birthday</label>
             {{ form.birthday }}
         </div>
-
-        <button type="submit" class="submit-button">Save Contact</button>
     </form>
 </div>
 {% endblock %}
