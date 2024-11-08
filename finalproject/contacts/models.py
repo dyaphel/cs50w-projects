@@ -18,6 +18,7 @@ class Contact(models.Model):
     name = models.CharField(max_length=255,blank=True)
     birthday = models.DateTimeField(null=True, blank=True)
     surname = models.CharField(max_length=255)
+    nickname = models.CharField(max_length=255, blank=True)
     email = models.EmailField(blank=True, null=True)
     company = models.CharField(max_length=255, blank=True, null=True)
     job_position = models.CharField(max_length=255, blank=True, null=True)
@@ -25,4 +26,4 @@ class Contact(models.Model):
     phone_number_2 = models.CharField(max_length=15, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.name} {self.surname} ({self.email or 'N/A'})"
+        return f"{self.name} {self.surname}"

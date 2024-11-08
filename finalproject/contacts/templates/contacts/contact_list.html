@@ -5,8 +5,18 @@
 {% block title %}Contacts{% endblock %}
 
 {%block head%}
+<link href="{% static 'contacts/contactlist.css' %}" rel="stylesheet">
 {%endblock%}
-
 {%block body%}
-CIAO
+<div class="header-section">
+    <div class="profile-icons">
+        <button id="saveButton" disabled="true"><img src="{% static 'img/save.png' %}" class="icon" alt="Save">
+            {% csrf_token %}
+        </button>
+        <button id="editButton" onclick="window.location.href='{% url 'add_contact' %}'">
+            <img src="{% static 'img/add.png' %}" class="icon" alt="Edit">
+        </button>
+    </div>
+</div>
+
 {%endblock%}
