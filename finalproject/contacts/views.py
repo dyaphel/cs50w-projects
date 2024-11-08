@@ -47,16 +47,16 @@ def add_contact(request):
         form = ContactForm(request.POST)
         nickname = form.data.get('nickname')
 
-        # Check if the nickname is the same as the user's username
         if Contact.objects.filter(owner=request.user, nickname=nickname).exists():
             form.add_error('nickname', "The nickname must be unique across all your contacts.")
+
         elif nickname == request.user.username:
             form.add_error('nickname', "The nickname cannot be the same as your username.")
         else:
             contact = form.save(commit=False)
             contact.owner = request.user
             contact.save()
-            return redirect('contact_list')
+            return redirect('contacts')
     else:
         form = ContactForm()
 

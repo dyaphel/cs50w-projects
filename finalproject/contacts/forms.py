@@ -16,6 +16,7 @@ class ContactForm(forms.ModelForm):
             'phone_number_2',
             'birthday'
         ]
+
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Full Name'}),
             'surname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Surname'}),
