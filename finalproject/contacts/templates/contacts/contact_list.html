@@ -23,10 +23,12 @@
 
     {% for contact in contacts %}
     <div class="profile-container">
+        <input type="checkbox" checked="checked">
+
         <div class="profile-picture">
             {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
-    </div>
-    <div class="user-info">
+        </div>
+     <div class="user-info">
         <div class="name-row">
             <span id="firstName">{{ contact.name }}</span>
             &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
@@ -34,6 +36,8 @@
             &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
             <span id="nickname">{{ contact.nickname }}</span>
         </div>
+     </div>
+    </div>    
     {% endfor %}
 {% endblock %}
 
