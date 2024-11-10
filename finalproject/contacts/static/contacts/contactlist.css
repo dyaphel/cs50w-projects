@@ -40,7 +40,6 @@
     outline: none;
 }
 
-
 .modal {
     display: none; /* Nasconde il modal di default */
     position: fixed;
@@ -69,8 +68,6 @@
     margin-top: -2px;
 }
 
-
-
 /* Profile container */
 .profile-container {
     display: flex;
@@ -83,6 +80,8 @@
     max-width: 700px;
     margin: 5% auto;
     align-items: center;
+    border-top-left-radius: 10px; 
+    border-top-right-radius: 10px;
 }
 
 .profile-footer {
@@ -93,12 +92,14 @@
     background-color: #f0f0f0;
     color: #a3a3a3;
     border: 1px solid #e0e0e0;
-    margin: 5%;
+    margin-left: 27.25%;
     margin-top: -5%;
     width: 90%;
     max-width: 700px;
     transition: height 1s ease; /* Smooth transition when expanding */
     overflow: hidden; /* Hide overflow when collapsed */
+    border-bottom-left-radius: 10px; /* Arrotonda angolo sinistro in basso */
+    border-bottom-right-radius: 10px; 
 }
 
 .contact-details {
