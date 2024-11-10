@@ -23,6 +23,14 @@
         </button>
     </div>
 </div>
+<!-- Conferma eliminazione -->
+<div id="confirmModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <p>Are you sure to delete the selected contacts?</p>
+        <button class="btn btn-info" id="confirmDeleteButton" onclick="confirmDelete()">OK</button>
+        <button class="btn btn-info" onclick="cancelDelete()">Annulla</button>
+    </div>
+</div>
 
     {% for contact in contacts %}
     <div class="profile-container">
@@ -65,34 +73,50 @@
     }
 
     function deleteSelectedContacts() {
-        const selectedContacts = [];
-        
-        document.querySelectorAll('.checkbox:checked').forEach(checkbox => {
-            selectedContacts.push(checkbox.getAttribute('data-contact-id'));
-        });
+    // Mostra la finestra di conferma
+    document.getElementById('confirmModal').style.display = 'block';
+}
 
-        if (selectedContacts.length > 0) {
-            fetch("{% url 'delete_contacts' %}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRFToken":  document.querySelector('[name=csrfmiddlewaretoken]').value,
-                },
-                body: JSON.stringify({ contacts: selectedContacts })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (!data.success) {
-                console.error("Failed to save profile:", response.error);
-                alert("Failed to save profile: " + response.error);
+function confirmDelete() {
+    // Esegue l'eliminazione dei contatti selezionati
+    const selectedContacts = [];
+    
+    document.querySelectorAll('.checkbox:checked').forEach(checkbox => {
+        selectedContacts.push(checkbox.getAttribute('data-contact-id'));
+    });
+
+    if (selectedContacts.length > 0) {
+        fetch("{% url 'delete_contacts' %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
+            },
+            body: JSON.stringify({ contacts: selectedContacts })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.success) {
+                console.error("Failed to delete contacts:", data.error);
+                alert("Failed to delete contacts: " + data.error);
             } else {
                 window.location.reload();
-                console.log("Profile saved successfully");
+                console.log("Contacts deleted successfully");
             }
-            })
-            .catch(error => console.error("Error:", error));
-        }
+        })
+        .catch(error => console.error("Error:", error));
     }
+
+    // Nasconde la finestra di conferma
+    document.getElementById('confirmModal').style.display = 'none';
+}
+
+function cancelDelete() {
+    // Nasconde la finestra di conferma e resetta i checkbox
+    document.getElementById('confirmModal').style.display = 'none';
+    toggleCheckboxes(); // Nasconde e deseleziona i checkbox
+}
+
 </script>
 {% endblock %}
 
