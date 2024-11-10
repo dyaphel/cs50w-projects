@@ -75,7 +75,7 @@
     width: 120%;
     max-width: 800px;
     margin: 0 auto; /* Centra la wrapper orizzontalmente */
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 70px;
 }
 
@@ -95,7 +95,6 @@
     width: 100%; /* Si adatta alla larghezza della wrapper */
     padding: 10px;
     text-align: center;
-    justify-content: center;
     background-color: #f0f0f0;
     color: #a3a3a3;
     border: 1px solid #e0e0e0;
@@ -103,7 +102,7 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     transition: height 1s ease;
-    box-shadow: 0px 3px 6px rgba(0, 0.2, 0.2, 0.2);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 }
 
