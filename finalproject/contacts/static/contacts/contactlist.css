@@ -40,6 +40,7 @@
     outline: none;
 }
 
+
 .modal {
     display: none; /* Nasconde il modal di default */
     position: fixed;
@@ -65,6 +66,7 @@
 
 .modal-content button {
     margin: 10px;
+    margin-top: -2px;
 }
 
 
@@ -73,17 +75,44 @@
 .profile-container {
     display: flex;
     align-items: flex-start;
+    width: 90%;
+    padding: 15px;
     background-color: #fff;
     border: 1px solid #e0e0e0;
-    border-radius: 10px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    width: 90%;
     max-width: 700px;
     margin: 5% auto;
-    transition: box-shadow 0.3s ease;
     align-items: center;
 }
+
+.profile-footer {
+    width: 90%;
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    color: #666;
+    border: 1px solid #e0e0e0;
+    margin: 5%;
+    margin-top: -5%;
+    width: 90%;
+    max-width: 700px;
+    transition: height 1s ease; /* Smooth transition when expanding */
+    overflow: hidden; /* Hide overflow when collapsed */
+}
+
+.contact-details {
+    padding: 10px;
+    border-radius: 4px;
+
+}
+
+.arrow {
+    font-size: 18px;
+}
+
+
+
 
 .checkbox {
     transform: scale(1.5); /* Ingrandisce la checkbox */
