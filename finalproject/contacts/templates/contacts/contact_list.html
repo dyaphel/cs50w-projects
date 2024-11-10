@@ -86,6 +86,7 @@
                 console.error("Failed to save profile:", response.error);
                 alert("Failed to save profile: " + response.error);
             } else {
+                window.location.reload();
                 console.log("Profile saved successfully");
             }
             })
