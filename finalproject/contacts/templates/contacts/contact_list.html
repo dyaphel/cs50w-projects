@@ -33,6 +33,7 @@
 </div>
 
     {% for contact in contacts %}
+<div class="profile-wrapper">
     <div class="profile-container">
         <input type="checkbox" class="checkbox" hidden data-contact-id="{{ contact.id }}" onchange="updateDeleteButton()">
     
@@ -40,7 +41,6 @@
             {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
         </div>
     
-        <div class="user-info">
             <div class="name-row">
                 <span id="firstName">{{ contact.name }}</span>
                 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
@@ -48,7 +48,6 @@
                 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
                 <span id="nickname">{{ contact.nickname }}</span>
             </div>
-        </div>
     </div>
         <!-- Footer with arrow and contact details inside it -->
         <div class="profile-footer" onclick="toggleContactDetails(this)">
@@ -59,7 +58,7 @@
             </div>
             <span class="arrow">&#9660;</span> <!-- Downward arrow -->
         </div>
-  
+    </div>
     {% endfor %}
 {% endblock %}
 
