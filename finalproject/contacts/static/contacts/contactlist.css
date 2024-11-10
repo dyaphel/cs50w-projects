@@ -30,7 +30,7 @@
     transform: scale(1.05);
 }
 
-#saveButton[disabled] {
+#deleteButton[disabled] {
     opacity: 0.2; /* Makes the button look more opaque when disabled */
     pointer-events: none; /* Disables any interaction with the button */
 }

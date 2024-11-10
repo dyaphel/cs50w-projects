@@ -8,8 +8,29 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .models import User, Contact
 from .forms import ContactForm
-import random
 
+
+
+def index(request):
+    if request.user.is_authenticated:
+        # Ottieni le informazioni dell'utente
+        user_info = {
+            'username': request.user.username,
+            'name': request.user.first_name,
+            'surname': request.user.last_name,
+            'email': request.user.email,
+            'company': request.user.company,
+            'job_position': request.user.job_position,
+            'phone_number_1': request.user.phone_number_1,
+            'phone_number_2': request.user.phone_number_2,
+        }
+        
+        # Passa le informazioni dell'utente al template
+        return render(request, "contacts/index.html", {
+            'user_info': user_info
+        })
+    else:
+        return render(request, "contacts/login.html")
 
 
 @login_required
@@ -66,28 +87,16 @@ def add_contact(request):
 
     return render(request, 'contacts/add_contact.html', {'form': form})
 
-
-
-def index(request):
-    if request.user.is_authenticated:
-        # Ottieni le informazioni dell'utente
-        user_info = {
-            'username': request.user.username,
-            'name': request.user.first_name,
-            'surname': request.user.last_name,
-            'email': request.user.email,
-            'company': request.user.company,
-            'job_position': request.user.job_position,
-            'phone_number_1': request.user.phone_number_1,
-            'phone_number_2': request.user.phone_number_2,
-        }
+@login_required
+def delete_contacts(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        contact_ids = data.get("contacts", [])
         
-        # Passa le informazioni dell'utente al template
-        return render(request, "contacts/index.html", {
-            'user_info': user_info
-        })
-    else:
-        return render(request, "contacts/login.html")
+        # Delete contacts with IDs in contact_ids
+        Contact.objects.filter(id__in=contact_ids).delete()
+        return JsonResponse({"success": True})
+    return JsonResponse({"success": False})
 
 
 def login_view(request):
