@@ -91,7 +91,7 @@
     text-align: center;
     justify-content: center;
     background-color: #f0f0f0;
-    color: #666;
+    color: #a3a3a3;
     border: 1px solid #e0e0e0;
     margin: 5%;
     margin-top: -5%;
@@ -104,11 +104,25 @@
 .contact-details {
     padding: 10px;
     border-radius: 4px;
+   
+}
 
+.label {
+    font-weight: 700;
+    color: #b96c7e;
+    font-size: 20px;
+    margin-left: 5%;
+}
+
+.contact-info {
+    font-size: 18px; /* Font più grande */
+    color: #353535; /* Colore nero */
+    font-weight: 600;
 }
 
 .arrow {
     font-size: 18px;
+    cursor: default; 
 }
 
 
@@ -137,13 +151,8 @@
     text-transform: uppercase;
 }
 
-.user-info {
-    display: flex;
-    color: #444;
-}
-
 .name-row {
     font-size: 20px;
     font-weight: 600;
-    color: #36454f;
+    color: #353535;
 }

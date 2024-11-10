@@ -53,9 +53,9 @@
         <!-- Footer with arrow and contact details inside it -->
         <div class="profile-footer" onclick="toggleContactDetails(this)">
             <div class="contact-details" style="display: none;">
-                <span>Email: {{ contact.email }}</span>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                <span>Phone: {{ contact.phone_number_1 }}</span>
+                <span class="label">Email:</span> <span class="contact-info">{{ contact.email }}</span>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <span class="label">Phone:</span> <span class="contact-info">{{ contact.phone_number_1 }}</span>
             </div>
             <span class="arrow">&#9660;</span> <!-- Downward arrow -->
         </div>
