@@ -11,8 +11,8 @@
 {% block body %}
 <div class="header-section">
     <div class="profile-icons">
-        <button id="saveButton" disabled="true">
-            <img src="{% static 'img/save.png' %}" class="icon" alt="Save">
+        <button id="selectButton" onclick="toggleCheckboxes()">
+            <img src="{% static 'img/select.png' %}" class="icon" alt="Save">
             {% csrf_token %}
         </button>
         <button id="editButton" onclick="window.location.href='{% url 'add_contact' %}'">
@@ -23,7 +23,7 @@
 
     {% for contact in contacts %}
     <div class="profile-container">
-        <input type="checkbox" checked="checked">
+        <input type="checkbox" class="checkbox" hidden>
 
         <div class="profile-picture">
             {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
@@ -39,6 +39,17 @@
      </div>
     </div>    
     {% endfor %}
+{% endblock %}
+
+{% block script %}
+<script>
+    function toggleCheckboxes() {
+        const checkboxes = document.querySelectorAll('.checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.hidden = !checkbox.hidden;
+        });
+    }
+</script>
 {% endblock %}
 
 

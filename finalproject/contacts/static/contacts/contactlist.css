@@ -56,6 +56,11 @@
     align-items: center;
 }
 
+.checkbox {
+    transform: scale(1.5); /* Ingrandisce la checkbox */
+    margin-left: 20px; /* Sposta la checkbox più a destra */
+    margin-right: -10px;
+}
 
 /* Profile picture with initials */
 .profile-picture {
