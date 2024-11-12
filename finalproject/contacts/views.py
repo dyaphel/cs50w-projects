@@ -60,7 +60,7 @@ def update_profile(request):
 def contacts(request):
     user = request.user
     user_contacts = Contact.objects.filter(owner=user)
-    print(f"Contatti trovati: {user_contacts.count()}")  # Aggiungi questo per verificare il numero di contatti
+    #print(f"Contatti trovati: {user_contacts.count()}")
     return render(request, 'contacts/contact_list.html', {
         'contacts': user_contacts
     })
