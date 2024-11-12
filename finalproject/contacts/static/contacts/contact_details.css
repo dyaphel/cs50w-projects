@@ -1,0 +1,148 @@
+
+/* Container for icons */
+.header-section {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 20px;
+}
+
+/* Remove button styling */
+.profile-icons button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-top: -20%;
+}
+
+/* Border for icon images only */
+.profile-icons .icon {
+    width: 50px;
+    height: 50px;
+    padding: 8px;
+    border: 2px solid #A1C6EA; /* Pastel blue border */
+    border-radius: 8px; /* Rounded corners */
+    transition: transform 0.2s ease;
+}
+
+/* Hover effect for icon images */
+.profile-icons .icon:hover {
+    transform: scale(1.05);
+}
+
+#saveButton[disabled] {
+    opacity: 0.2; /* Makes the button look more opaque when disabled */
+    pointer-events: none; /* Disables any interaction with the button */
+}
+
+/* Remove the focus outline (black square) on button click */
+.profile-icons button:focus {
+    outline: none;
+}
+
+/* Profile container */
+.profile-container {
+    display: flex;
+    align-items: flex-start;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 90%;
+    height: auto;
+    max-width: 700px;
+    margin: 2% ;
+    margin-top: -20px;
+    transition: box-shadow 0.3s ease;
+}
+
+/* Profile picture with initials */
+.profile-picture {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #b96c7e; /* Pastel blue */
+    border-radius: 50%;
+    margin-right: 12%;
+    margin-left: 10%;
+    text-transform: uppercase;
+}
+
+/* User info section */
+.user-info {
+    display: flex;
+    flex-direction: column;
+    color: #444;
+}
+
+.label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #b96c7e;
+}
+
+.name-row {
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #36454f;
+}
+
+.nickname-row {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+
+.job-row {
+    margin-top: 15px;
+    font-size: 19px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.birthday-row{
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* Styling for individual contact details */
+.contact-detail {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #36454f;
+    padding: 8px 12px;
+    background-color: #f9f7f6;
+    border-left: 4px solid #b96c7e;
+    border-radius: 8px;
+}
+
+/* Styling for labels within each contact detail */
+.contact-detail .label{
+    font-weight: 700;
+    font-size: 20px;
+    color: #b96c7e;
+    margin-right: 5px;
+}
+
+/* Styling for the values in each contact detail */
+.contact-detail .value {
+    font-size: 20px;
+    color: #36454f;
+    font-weight: 500;
+}
+
+

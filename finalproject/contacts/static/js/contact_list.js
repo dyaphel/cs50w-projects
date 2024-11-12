@@ -1,4 +1,6 @@
 function toggleContactDetails(element) {
+
+    event.stopPropagation();
     // Toggle the expanded class on the profile footer
     const footer = element;
     const details = footer.querySelector('.contact-details');
@@ -12,7 +14,11 @@ function toggleContactDetails(element) {
     }
 }
 
-
+    function openContactDetails(contactId) {
+        // Redirect to the contact detail page
+        window.location.href = `/contact/${contactId}/`; // Assumes URL pattern is '/contact/<id>/'
+    }
+    
     function toggleCheckboxes() {
         const checkboxes = document.querySelectorAll('.checkbox');
         checkboxes.forEach(checkbox => {

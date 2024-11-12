@@ -1,0 +1,71 @@
+{% extends "contacts/layout.html" %}
+
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+<link href="{% static 'contacts/contact_details.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="header-section">
+    <div class="profile-icons">
+        <button id="saveButton" disabled="true"><img src="{% static 'img/save.png' %}" class="icon" alt="Save">
+            {% csrf_token %}
+        </button>
+        <button id="editButton"><img src="{% static 'img/edit.png' %}" class="icon" alt="Edit"></button>
+    </div>
+</div>
+
+<div class="profile-container">
+    <div class="profile-picture">
+        {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
+    </div>
+
+    <div class="user-info">
+        <div class="name-row">
+            <span class="label">Name:</span> 
+            <span id="firstName" contenteditable="false">{{ contact.name }}</span>
+            &nbsp &nbsp &nbsp &nbsp &nbsp
+            <span class="label">Surname:</span>
+            <span id="lastName" contenteditable="false">{{ contact.surname }}</span>
+        </div>
+
+        <div class="nickname-row">
+            <span class="label">Nickname:</span> 
+            <span id="nickname" contenteditable="false">{{ contact.nickname }}</span>
+        </div>
+
+        <div class="job-row">
+            <span class="label">Company:</span>
+            <span id="company" contenteditable="false">{{ contact.company }}</span>
+            &nbsp &nbsp &nbsp &nbsp
+            <span class="label">Position:</span>
+            <span id="jobPosition" contenteditable="false">{{ contact.job_position }}</span>
+        </div>
+
+        <div class="birthday-row">
+            <span class="label">Birthday:</span> 
+            <span id="birthday" contenteditable="false">{{ contact.birthday }}</span>
+        </div>
+<!-- Contact detail section for email, phone, and birthday -->
+<div class="user-info">
+    <div class="contact-detail">
+        <span class="label">Email:</span> 
+        <span id="email" class="value" contenteditable="false">{{ contact.email }}</span>
+    </div>
+
+    <div class="contact-detail">
+        <span class="label">Primary Phone:</span> 
+        <span id="phone1" class="value" contenteditable="false">{{ contact.phone_number_1 }}</span>
+    </div>
+
+    <div class="contact-detail">
+        <span class="label">Secondary Phone:</span> 
+        <span id="phone2" class="value" contenteditable="false">{{ contact.phone_number_2|default:"N/A" }}</span>
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}

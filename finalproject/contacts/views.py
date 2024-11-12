@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 import json
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .models import User, Contact
@@ -63,6 +64,19 @@ def contacts(request):
     #print(f"Contatti trovati: {user_contacts.count()}")
     return render(request, 'contacts/contact_list.html', {
         'contacts': user_contacts
+    })
+
+
+@login_required
+def contact_detail(request, id):
+    try:
+        contact = Contact.objects.get(id=id)
+    except Contact.DoesNotExist:
+        # Redirige a una pagina di errore personalizzata o alla home page
+        return redirect('error_page')  # Assicurati di avere una view per gestire 'error_page'
+    
+    return render(request, 'contacts/contact_detail.html', {
+        'contact': contact
     })
 
 

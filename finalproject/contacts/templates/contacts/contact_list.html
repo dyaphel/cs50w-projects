@@ -23,7 +23,7 @@
         </button>
     </div>
 </div>
-<!-- Conferma eliminazione -->
+<!-- Confirm deletion -->
 <div id="confirmModal" class="modal" style="display: none;">
     <div class="modal-content">
         <p>Are you sure to delete the selected contacts?</p>
@@ -33,7 +33,7 @@
 </div>
 
     {% for contact in contacts %}
-<div class="profile-wrapper">
+<div class="profile-wrapper" onclick="openContactDetails({{ contact.id }})">
     <div class="profile-container">
         <input type="checkbox" class="checkbox" hidden data-contact-id="{{ contact.id }}" onchange="updateDeleteButton()">
     
