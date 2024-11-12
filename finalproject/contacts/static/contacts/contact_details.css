@@ -53,7 +53,7 @@
     width: 90%;
     height: auto;
     max-width: 700px;
-    margin: 2% ;
+    margin: 5% auto;
     margin-top: -20px;
     transition: box-shadow 0.3s ease;
 }
@@ -128,6 +128,7 @@
     background-color: #f9f7f6;
     border-left: 4px solid #b96c7e;
     border-radius: 8px;
+    
 }
 
 /* Styling for labels within each contact detail */
@@ -136,6 +137,7 @@
     font-size: 20px;
     color: #b96c7e;
     margin-right: 5px;
+    
 }
 
 /* Styling for the values in each contact detail */
