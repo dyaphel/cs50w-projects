@@ -75,7 +75,7 @@ def contact_detail(request, id):
         # Redirige a una pagina di errore personalizzata o alla home page
         return redirect('error_page')  # Assicurati di avere una view per gestire 'error_page'
     
-    return render(request, 'contacts/contact_detail.html', {
+    return render(request, 'contacts/contact_details.html', {
         'contact': contact
     })
 
