@@ -59,7 +59,11 @@
     <div class="contact-detail">
         <span class="label">Primary Phone:</span> 
         <span id="phone1" class="value" contenteditable="false">{{ contact.phone_number_1 }}</span>
-        <button id="phoneButton"><img src="{% static 'img/phone.png' %}" class="icon" alt="Edit"></button>
+        <a href="tel:{{ contact.phone_number_1 }}">
+            <button id="phoneButton">
+                <img src="{% static 'img/phone.png' %}" class="icon" alt="Call">
+            </button>
+        </a>
     </div>
 
     {% if contact.phone_number_2  %}
