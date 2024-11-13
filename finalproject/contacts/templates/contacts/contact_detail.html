@@ -59,12 +59,19 @@
     <div class="contact-detail">
         <span class="label">Primary Phone:</span> 
         <span id="phone1" class="value" contenteditable="false">{{ contact.phone_number_1 }}</span>
+        <button id="phoneButton"><img src="{% static 'img/phone.png' %}" class="icon" alt="Edit"></button>
     </div>
 
+    {% if contact.phone_number_2  %}
     <div class="contact-detail">
         <span class="label">Secondary Phone:</span> 
-        <span id="phone2" class="value" contenteditable="false">{{ contact.phone_number_2|default:"N/A" }}</span>
+        <span id="phone2" class="value" contenteditable="false">{{ contact.phone_number_2 }}</span>
+            <button id="phoneButton">
+                <img src="{% static 'img/phone.png' %}" class="icon" alt="Edit">
+            </button>
+        {% endif %}
     </div>
+    
 </div>
 </div>
 </div>

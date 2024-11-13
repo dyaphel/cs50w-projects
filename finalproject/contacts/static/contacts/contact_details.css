@@ -54,7 +54,7 @@
     height: auto;
     max-width: 700px;
     margin: 5% auto;
-    margin-top: -20px;
+    margin-top: 15px;
     transition: box-shadow 0.3s ease;
 }
 
@@ -101,7 +101,7 @@
     font-size: 19px;
     font-weight: 600;
     margin-bottom: 10px;
-    margin-top: 15px;
+    margin-top: 2px;
 }
 
 .job-row {
@@ -150,4 +150,22 @@
     font-weight: 500;
 }
 
+#phoneButton {
+    background-color: transparent; /* Remove default button styling */
+    border: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
 
+#phoneButton:hover {
+    background-color: #e0e0e0;
+    background-color: transparent;
+    border-radius: 4px;
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+#phoneButton img.icon {
+    width: 40px; /* Adjust icon size */
+    height: auto;
+    vertical-align: middle;
+    margin-left: 15px;
+}
