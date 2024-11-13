@@ -60,33 +60,34 @@
 
 /* Profile picture with initials */
 .profile-picture {
-    width: 80px;
-    height: 80px;
+    width: 95px;
+    height: 95px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: bold;
     color: #fff;
-    background-color: #b96c7e; /* Pastel blue */
+    background-color: #bb3e5b;
     border-radius: 50%;
     margin-top: 5%;
-    margin-right: 12%;
-    margin-left: 8%;
+    margin-right: 10%;
+    margin-left: 2%;
     text-transform: uppercase;
+    flex-shrink: 0; /* Prevent the profile picture from shrinking */
 }
 
 /* User info section */
 .user-info {
     display: flex;
     flex-direction: column;
-    color: #444;
+    color: #000000;
 }
 
 .label {
     font-size: 20px;
     font-weight: 600;
-    color: #b96c7e;
+    color: #bb3e5b;
 }
 
 .name-row {
@@ -94,7 +95,7 @@
     margin-bottom: 10px;
     font-size: 20px;
     font-weight: 600;
-    color: #36454f;
+    color: #000000;
 }
 
 .nickname-row {
@@ -124,21 +125,20 @@
     margin-top: 20px;
     font-size: 18px;
     font-weight: 600;
-    color: #36454f;
     padding: 8px 12px;
     background-color: #f9f7f6;
-    border-left: 4px solid #b96c7e;
+    border-left: 4px solid #bb3e5b;
     border-radius: 8px;
-    margin-left: -50%;
+    margin-left: -35%;
     width: auto;
-    max-width: 800px;
+    max-width: 600px;
 }
 
 /* Styling for labels within each contact detail */
 .contact-detail .label{
     font-weight: 700;
     font-size: 20px;
-    color: #b96c7e;
+    color: #bb3e5b;
     margin-right: 5px;
     
 }
@@ -146,12 +146,12 @@
 /* Styling for the values in each contact detail */
 .contact-detail .value {
     font-size: 20px;
-    color: #36454f;
+    color: #000000;
     font-weight: 500;
 }
 
 /* Common button styling for both primary and secondary phone buttons */
-#primaryPhoneButton, #secondaryPhoneButton {
+#primaryPhoneButton, #secondaryPhoneButton{
     background-color: transparent; /* Remove default button styling */
     border: none;
     outline: none;
@@ -159,7 +159,7 @@
 }
 
 /* Hover effect for both primary and secondary phone buttons */
-#primaryPhoneButton:hover, #secondaryPhoneButton:hover {
+#primaryPhoneButton:hover, #secondaryPhoneButton:hover{
     background-color: #e0e0e0;
     background-color: transparent;
     border-radius: 4px;
@@ -167,7 +167,7 @@
 }
 
 /* Icon styling for both buttons */
-#primaryPhoneButton img.icon, #secondaryPhoneButton img.icon {
+#primaryPhoneButton img.icon, #secondaryPhoneButton img.icon{
     width: 40px; /* Adjust icon size */
     height: auto;
     vertical-align: middle;
@@ -175,4 +175,23 @@
     outline: none;
 }
 
+#primaryMessageButton , #secondaryMessageButton{
+    background-color: transparent; /* Remove default button styling */
+    border: none;
+    outline: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
 
+#primaryMessageButton:hover, #secondaryMessageButton:hover {
+    background-color: #e0e0e0;
+    background-color: transparent;
+    border-radius: 4px;
+    transform: scale(1.1); 
+
+}
+
+#primaryMessageButton img.icon, #secondaryMessageButton img.icon {
+    width: 40px; /* Adjust icon size */
+    height: auto;
+    outline: none;
+}
