@@ -1,6 +1,6 @@
-function toggleContactDetails(element) {
+let global = false
 
-    event.stopPropagation();
+    function toggleContactDetails(element) {
     // Toggle the expanded class on the profile footer
     const footer = element;
     const details = footer.querySelector('.contact-details');
@@ -15,11 +15,12 @@ function toggleContactDetails(element) {
 }
 
     function openContactDetails(contactId) {
-        // Redirect to the contact detail page
+        if (global) return; 
         window.location.href = `/contact/${contactId}/`; // Assumes URL pattern is '/contact/<id>/'
     }
     
     function toggleCheckboxes() {
+        global = !global; 
         const checkboxes = document.querySelectorAll('.checkbox');
         checkboxes.forEach(checkbox => {
             checkbox.hidden = !checkbox.hidden;
@@ -31,7 +32,6 @@ function toggleContactDetails(element) {
     function updateDeleteButton() {
         const checkboxes = document.querySelectorAll('.checkbox');
         const deleteButton = document.getElementById('deleteButton');
-        
         // Enable delete button if at least one checkbox is checked
         deleteButton.disabled = !Array.from(checkboxes).some(checkbox => checkbox.checked);
     }
@@ -44,11 +44,9 @@ function toggleContactDetails(element) {
 function confirmDelete() {
     // Esegue l'eliminazione dei contatti selezionati
     const selectedContacts = [];
-    
     document.querySelectorAll('.checkbox:checked').forEach(checkbox => {
         selectedContacts.push(checkbox.getAttribute('data-contact-id'));
     });
-
     if (selectedContacts.length > 0) {
         fetch("{% url 'delete_contacts' %}", {
             method: "POST",
