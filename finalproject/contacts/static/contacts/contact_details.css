@@ -150,22 +150,24 @@
     font-weight: 500;
 }
 
-#phoneButton {
+/* Common button styling for both primary and secondary phone buttons */
+#primaryPhoneButton, #secondaryPhoneButton {
     background-color: transparent; /* Remove default button styling */
     border: none;
     outline: none;
     transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-#phoneButton:hover {
+/* Hover effect for both primary and secondary phone buttons */
+#primaryPhoneButton:hover, #secondaryPhoneButton:hover {
     background-color: #e0e0e0;
     background-color: transparent;
     border-radius: 4px;
-    outline: none;
     transform: scale(1.1); /* Slightly enlarge on hover */
 }
 
-#phoneButton img.icon {
+/* Icon styling for both buttons */
+#primaryPhoneButton img.icon, #secondaryPhoneButton img.icon {
     width: 40px; /* Adjust icon size */
     height: auto;
     vertical-align: middle;

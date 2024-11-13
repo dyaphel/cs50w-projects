@@ -59,24 +59,49 @@
     <div class="contact-detail">
         <span class="label">Primary Phone:</span> 
         <span id="phone1" class="value" contenteditable="false">{{ contact.phone_number_1 }}</span>
-        <a href="tel:{{ contact.phone_number_1 }}">
-            <button id="phoneButton">
-                <img src="{% static 'img/phone.png' %}" class="icon" alt="Call">
-            </button>
-        </a>
+        <button id="primaryPhoneButton">
+            <img src="{% static 'img/phone.png' %}" class="icon" alt="Call Primary">
+        </button>
     </div>
-
-    {% if contact.phone_number_2  %}
+    
+    {% if contact.phone_number_2 %}
     <div class="contact-detail">
         <span class="label">Secondary Phone:</span> 
         <span id="phone2" class="value" contenteditable="false">{{ contact.phone_number_2 }}</span>
-            <button id="phoneButton">
-                <img src="{% static 'img/phone.png' %}" class="icon" alt="Edit">
-            </button>
-        {% endif %}
+        <button id="secondaryPhoneButton">
+            <img src="{% static 'img/phone.png' %}" class="icon" alt="Call Secondary">
+        </button>
     </div>
+    {% endif %}
+    
     
 </div>
 </div>
 </div>
 {% endblock %}
+
+{%block script%}
+<script>
+    document.getElementById("primaryPhoneButton").addEventListener("click", function() {
+        // Create a hidden anchor tag to make the call
+        const phoneLink = document.createElement("a");
+        phoneLink.href = "tel:{{ contact.phone_number_1 }}";
+        phoneLink.style.display = "none";
+        document.body.appendChild(phoneLink);
+        phoneLink.click();
+        document.body.removeChild(phoneLink); // Clean up
+    });
+
+    document.getElementById("secondaryPhoneButton").addEventListener("click", function() {
+        // Create a hidden anchor tag to make the call
+        const phoneLink = document.createElement("a");
+        phoneLink.href = "tel:{{ contact.phone_number_1 }}";
+        phoneLink.style.display = "none";
+        document.body.appendChild(phoneLink);
+        phoneLink.click();
+        document.body.removeChild(phoneLink); // Clean up
+    });
+
+
+    </script>
+{%endblock%}
