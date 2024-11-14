@@ -11,10 +11,10 @@
 {% block body %}
 <div class="header-section">
     <div class="profile-icons">
-        <button id="saveButton" disabled="true"><img src="{% static 'img/save.png' %}" class="icon" alt="Save">
+        <button id="saveButtonContact" disabled="true"><img src="{% static 'img/save.png' %}" class="icon" alt="Save">
             {% csrf_token %}
         </button>
-        <button id="editButton"><img src="{% static 'img/edit.png' %}" class="icon" alt="Edit"></button>
+        <button id="editButtonContact"><img src="{% static 'img/edit.png' %}" class="icon" alt="Edit"></button>
     </div>
 </div>
 
@@ -85,5 +85,6 @@
 {% endblock %}
 
 {%block script%}
-<script src="{% static  'js/contact_details.js' %}"></script>
+<script src="{% static  'js/contact_details.js' %}">
+</script>
 {%endblock%}

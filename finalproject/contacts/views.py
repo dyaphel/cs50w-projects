@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .models import User, Contact
 from .forms import ContactForm
+from django.shortcuts import get_object_or_404
 
 
 
@@ -111,6 +112,32 @@ def delete_contacts(request):
         Contact.objects.filter(id__in=contact_ids).delete()
         return JsonResponse({"success": True})
     return JsonResponse({"success": False})
+
+@login_required
+def edit_contact(request, id):
+    
+    if request.method == 'POST':
+        data = json.loads(request.body)
+
+        # Get the contact by ID
+        contact = get_object_or_404(Contact, id=id)
+
+        # Update fields from the incoming data
+        contact.first_name = data.get('firstName', contact.first_name)
+        contact.last_name = data.get('lastName', contact.last_name)
+        contact.nickname = data.get('nickname', contact.nickname)
+        contact.company = data.get('company', contact.company)
+        contact.job_position = data.get('jobPosition', contact.job_position)
+        contact.email = data.get('email', contact.email)
+        contact.phone_number_1 = data.get('phone1', contact.phone_number_1)
+        contact.phone_number_2 = data.get('phone2', contact.phone_number_2)
+
+        # Save the updated contact
+        contact.save()
+
+        return JsonResponse({'success': True})
+
+    return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
 
 
 def login_view(request):

@@ -21,7 +21,7 @@
     width: 50px;
     height: 50px;
     padding: 8px;
-    border: 2px solid #A1C6EA; /* Pastel blue border */
+    border: 2px solid #bb3e5b; /* Pastel blue border */
     border-radius: 8px; /* Rounded corners */
     transition: transform 0.2s ease;
 }
@@ -31,7 +31,7 @@
     transform: scale(1.05);
 }
 
-#saveButton[disabled] {
+#saveButtonContact[disabled] {
     opacity: 0.2; /* Makes the button look more opaque when disabled */
     pointer-events: none; /* Disables any interaction with the button */
 }
@@ -194,4 +194,45 @@
     width: 40px; /* Adjust icon size */
     height: auto;
     outline: none;
+}
+
+
+/* Column layout for edit mode */
+/* General styles for edit mode */
+.edit-mode .name-row,
+.edit-mode .nickname-row,
+.edit-mode .job-row,
+.edit-mode p {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* Style adjustments for editable fields */
+.editable-field {
+    border: 1px solid #bb3e5b;
+    border-radius: 10px;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 5px 0;
+}
+
+
+.edit-mode #firstName{
+    margin-bottom: -25px;
+}
+.edit-mode #lastName{
+    margin-bottom: -2px;
+}
+.edit-mode #nickname{
+    margin-bottom: 10px;
+}
+.edit-mode #company{
+    margin-bottom: -25px;
+}
+
+.edit-mode #jobPosition{
+    margin-bottom: 10px;
 }
