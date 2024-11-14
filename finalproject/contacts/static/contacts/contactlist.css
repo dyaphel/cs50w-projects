@@ -169,6 +169,7 @@
 }
 
 #FavoriteButton img.Favorite {
+    transition: opacity 0.2s ease;
     width: 100%; /* Ensure the icon scales within the button */
     height: 100%; /* Ensure the icon scales within the button */
 }
