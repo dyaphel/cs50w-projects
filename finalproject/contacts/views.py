@@ -113,18 +113,16 @@ def delete_contacts(request):
         return JsonResponse({"success": True})
     return JsonResponse({"success": False})
 
+
 @login_required
 def edit_contact(request, id):
-    
     if request.method == 'POST':
         data = json.loads(request.body)
-
         # Get the contact by ID
         contact = get_object_or_404(Contact, id=id)
-
         # Update fields from the incoming data
-        contact.first_name = data.get('firstName', contact.first_name)
-        contact.last_name = data.get('lastName', contact.last_name)
+        contact.name = data.get('firstName', contact.name)
+        contact.surname = data.get('lastName', contact.surname)
         contact.nickname = data.get('nickname', contact.nickname)
         contact.company = data.get('company', contact.company)
         contact.job_position = data.get('jobPosition', contact.job_position)
