@@ -172,3 +172,7 @@
     width: 100%; /* Ensure the icon scales within the button */
     height: 100%; /* Ensure the icon scales within the button */
 }
+/* Remove the focus outline (black square) on button click */
+#FavoriteButton:focus {
+    outline: none;
+}
