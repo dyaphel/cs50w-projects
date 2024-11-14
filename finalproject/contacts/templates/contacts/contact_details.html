@@ -17,8 +17,8 @@
         <button id="editButtonContact"><img src="{% static 'img/edit.png' %}" class="icon" alt="Edit"></button>
     </div>
 </div>
-
 <div class="profile-container" data-contact-id="{{ contact.id }}">
+    
     <div class="profile-picture">
         {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
     </div>
