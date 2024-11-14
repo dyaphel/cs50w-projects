@@ -47,11 +47,14 @@ document.addEventListener("DOMContentLoaded", function() {
             span.id = input.id;
             span.setAttribute("contenteditable", "false");
 
-            // Specifically handle phone numbers
-            if (input.id === "phone1" || input.id === "phone2") {
-                span.setAttribute("data-phone", input.value.trim());
+            if (span.id === "nickname" || span.id === "company" || span.id === "jobPosition") {
+                span.style.fontSize = "19px"; // Apply 19px font for nickname, company, and jobPosition
+            } else if (span.id === "birthday") {
+                span.style.fontSize = "18px"; // Apply 18px font for birthday
+            } else {
+                span.style.fontSize = "20px"; // Apply 20px font for other fields
             }
-
+    
             input.replaceWith(span);
             data[span.id] = span.textContent.trim();
         });
