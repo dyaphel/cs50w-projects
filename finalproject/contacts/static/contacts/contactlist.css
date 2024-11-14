@@ -20,7 +20,7 @@
     width: 50px;
     height: 50px;
     padding: 8px;
-    border: 2px solid #A1C6EA; /* Pastel blue border */
+    border: 2px solid #bb3e5b; /* Pastel blue border */
     border-radius: 8px; /* Rounded corners */
     transition: transform 0.2s ease;
 }
@@ -115,9 +115,9 @@
 
 .label {
     font-weight: 700;
-    color: #b96c7e;
+    color: #bb3e5b;
     font-size: 20px;
-    margin-left: 5%;
+
 }
 
 .contact-info {
@@ -147,7 +147,7 @@
     font-size: 24px;
     font-weight: bold;
     color: #fff;
-    background-color:#cf8395;
+    background-color:#bb3e5b;
     border-radius: 50%;
     margin-right: 12%;
     margin-left: 12%;

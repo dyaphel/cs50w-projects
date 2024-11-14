@@ -21,7 +21,7 @@
     width: 50px;
     height: 50px;
     padding: 8px;
-    border: 2px solid #A1C6EA; /* Pastel blue border */
+    border: 2px solid #3870ac; /* Pastel blue border */
     border-radius: 8px; /* Rounded corners */
     transition: transform 0.2s ease;
 }
@@ -68,7 +68,7 @@
     font-size: 28px;
     font-weight: bold;
     color: #fff;
-    background-color: #83a8cf; /* Pastel blue */
+    background-color: #3870ac; 
     border-radius: 50%;
     margin-right: 12%;
     margin-left: 10%;
@@ -79,38 +79,47 @@
 .user-info {
     display: flex;
     flex-direction: column;
-    color: #444;
+    color: #000000;
 }
 
 .label {
     font-weight: 600;
-    color: #6e94bc;
+    color: #3870ac;
 }
 
 .name-row {
     margin-bottom: 5px;
     font-size: 20px;
     font-weight: 600;
-    color: #36454f;
+    color: #000000;
 }
 
 .nickname-row {
     font-size: 19px;
     font-weight: 600;
-    margin-bottom: 5px;
-    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-top: 2px;
 }
 
 .job-row {
     margin-top: 10px;
     font-size: 20px;
     font-weight: 500;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-.user-info p {
+p strong{
+    color: #3870ac;
+    font-size: 20px;
+    font-weight: 600;
+
+}
+
+.user-info p span {
+
     font-size: 18px;
-    color: #555;
+    font-weight: 600;
+    color: #000000;
     margin: 5px 0;
 }
 
@@ -128,7 +137,7 @@
 
 /* Style adjustments for editable fields */
 .editable-field {
-    border: 1px solid #6e94bc;
+    border: 1px solid #3870ac;
     padding: 5px;
     width: 100%;
     box-sizing: border-box;

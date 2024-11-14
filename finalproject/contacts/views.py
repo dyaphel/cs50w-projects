@@ -4,10 +4,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 import json
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .models import User, Contact
 from .forms import ContactForm
+from django.shortcuts import get_object_or_404
 
 
 
@@ -67,6 +69,19 @@ def contacts(request):
 
 
 @login_required
+def contact_detail(request, id):
+    try:
+        contact = Contact.objects.get(id=id)
+    except Contact.DoesNotExist:
+        # Redirige a una pagina di errore personalizzata o alla home page
+        return redirect('error_page')  # Assicurati di avere una view per gestire 'error_page'
+    
+    return render(request, 'contacts/contact_details.html', {
+        'contact': contact
+    })
+
+
+@login_required
 def add_contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -97,6 +112,30 @@ def delete_contacts(request):
         Contact.objects.filter(id__in=contact_ids).delete()
         return JsonResponse({"success": True})
     return JsonResponse({"success": False})
+
+
+@login_required
+def edit_contact(request, id):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        # Get the contact by ID
+        contact = get_object_or_404(Contact, id=id)
+        # Update fields from the incoming data
+        contact.name = data.get('firstName', contact.name)
+        contact.surname = data.get('lastName', contact.surname)
+        contact.nickname = data.get('nickname', contact.nickname)
+        contact.company = data.get('company', contact.company)
+        contact.job_position = data.get('jobPosition', contact.job_position)
+        contact.email = data.get('email', contact.email)
+        contact.phone_number_1 = data.get('phone1', contact.phone_number_1)
+        contact.phone_number_2 = data.get('phone2', contact.phone_number_2)
+
+        # Save the updated contact
+        contact.save()
+
+        return JsonResponse({'success': True})
+
+    return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
 
 
 def login_view(request):
