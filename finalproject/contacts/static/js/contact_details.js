@@ -101,16 +101,18 @@ document.addEventListener("DOMContentLoaded", function() {
         document.body.removeChild(phoneLink); // Clean up
     });
 
-    // Handle the message button click
+
     document.getElementById("primaryMessageButton").addEventListener("click", function() {
         const phoneNumber = document.getElementById("phone1").getAttribute("data-phone");
+        // Open the SMS app with the phone number pre-filled (fallback)
         const messageLink = document.createElement("a");
-        messageLink.href = "sms:" + phoneNumber; // Open SMS with phone number pre-filled
+        messageLink.href = `sms:${phoneNumber}`; // Open SMS with the phone number pre-filled
         messageLink.style.display = "none";
         document.body.appendChild(messageLink);
         messageLink.click();
         document.body.removeChild(messageLink);
     });
+    
 
     // Handle secondary phone and message button click
     document.getElementById("secondaryPhoneButton").addEventListener("click", function() {
