@@ -52,12 +52,12 @@
         
         <div class="contact-detail">
             <span class="label">Email:</span> 
-            <span id="email" contenteditable="false">{{ contact.email }}</span>
+            <span id="email" contenteditable="false" class="value" >{{ contact.email }}</span>
         </div>
 
         <div class="contact-detail">
             <span class="label">Primary Phone:</span> 
-            <span id="phone1" contenteditable="false" data-phone="{{ contact.phone_number_1 }}">{{ contact.phone_number_1 }}</span>
+            <span id="phone1" contenteditable="false" class="value"  data-phone="{{ contact.phone_number_1 }}">{{ contact.phone_number_1 }}</span>
             <button id="primaryPhoneButton">
                 <img src="{% static 'img/phone.png' %}" class="icon" alt="Call Primary">
             </button>
@@ -69,7 +69,7 @@
         {% if contact.phone_number_2 %}
         <div class="contact-detail">
             <span class="label">Secondary Phone:</span> 
-            <span id="phone2" contenteditable="false" data-phone="{{ contact.phone_number_2 }}">{{ contact.phone_number_2 }}</span>
+            <span id="phone2" contenteditable="false" class="value"  data-phone="{{ contact.phone_number_2 }}">{{ contact.phone_number_2 }}</span>
             <button id="secondaryPhoneButton">
                 <img src="{% static 'img/phone.png' %}" class="icon" alt="Call Secondary">
             </button>
