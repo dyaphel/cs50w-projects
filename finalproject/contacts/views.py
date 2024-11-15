@@ -10,8 +10,20 @@ from django.http import JsonResponse
 from .models import User, Contact
 from .forms import ContactForm
 from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
+from .models import Contact
 
 
+def toggle_favorite(request, contact_id):
+    if request.method == 'POST':
+        contact = Contact.objects.get(id=contact_id)
+        # Toggle is_favorite status
+        contact.isFavorite = not contact.isFavorite
+        contact.save()  # Save to ensure the update is persisted
+        return JsonResponse({"success": True, "is_favorite": contact.isFavorite})
+    return JsonResponse({"success": False})
 
 
 def index(request):
@@ -34,6 +46,7 @@ def index(request):
         })
     else:
         return render(request, "contacts/login.html")
+
 
 
 @login_required
@@ -138,19 +151,6 @@ def edit_contact(request, id):
 
     return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
 
-
-@login_required
-def toggle_favorite(request, contact_id):
-    try:
-        contact = Contact.objects.get(id=contact_id)
-        if request.method == 'POST':
-            # Handle favorite toggle logic
-            contact.is_favorite = not contact.is_favorite
-            contact.save()
-            return JsonResponse({"success": True})
-        return JsonResponse({"success": False, "error": "Invalid method"})
-    except Contact.DoesNotExist:
-        return JsonResponse({"success": False, "error": "Contact not found"})
 
 def login_view(request):
     if request.method == "POST":

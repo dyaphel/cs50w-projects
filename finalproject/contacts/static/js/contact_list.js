@@ -80,46 +80,6 @@ function cancelDelete() {
 }
 
 
-function toggleFavorite(button, contactId) {
-    global = true; // Prevent toggling contact details
-
-    const img = button.querySelector("img");
-    const whiteSrc = img.getAttribute("data-white-src");
-    const redSrc = img.getAttribute("data-red-src");
-
-    // Use contactId directly instead of contactContainer
-    // Toggle favorite icon locally
-    const isFavorite = img.src === whiteSrc;
-    img.src = isFavorite ? redSrc : whiteSrc;
-
-    fetch(`/toggle_favorite/${contactId}/`, {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
-        },
-        body: JSON.stringify({ is_favorite: isFavorite })
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Server responded with status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        if (!data.success) {
-            console.error("Failed to update favorite status:", data.error);
-            alert("Failed to update favorite status.");
-            img.src = isFavorite ? whiteSrc : redSrc; // Revert the icon change if there's an error
-        }
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        alert('An error occurred while updating the favorite status.');
-        img.src = isFavorite ? whiteSrc : redSrc; // Revert icon on error
-    });
-    
-}
     
 
 
