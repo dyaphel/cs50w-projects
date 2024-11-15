@@ -5,7 +5,7 @@
 {% block title %}Contacts{% endblock %}
 
 {% block head %}
-<link href="{% static 'contacts/contactlist.css' %}" rel="stylesheet">
+<link href="{% static 'contacts/favorites.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -18,18 +18,6 @@
         <button id="selectButton" onclick="toggleCheckboxes()">
             <img src="{% static 'img/select.png' %}" class="icon" alt="Select">
         </button>
-        <button id="addButton" onclick="window.location.href='{% url 'add_contact' %}'">
-            <img src="{% static 'img/add.png' %}" class="icon" alt="Add">
-        </button>
-    </div>
-</div>
-
-<!-- Confirm deletion -->
-<div id="confirmModal" class="modal" style="display: none;">
-    <div class="modal-content">
-        <p>Are you sure you want to delete the selected contacts?</p>
-        <button class="btn btn-info" id="confirmDeleteButton" onclick="confirmDelete()">OK</button>
-        <button class="btn btn-info" onclick="cancelDelete()">Cancel</button>
     </div>
 </div>
 

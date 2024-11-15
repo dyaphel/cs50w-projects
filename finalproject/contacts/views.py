@@ -149,6 +149,12 @@ def toggle_favorite(request, contact_id):
     return JsonResponse({"success": False})
 
 
+@login_required
+def favorites(request):
+    user_contacts = Contact.objects.filter(owner=request.user, isFavorite=True)
+    return render(request, 'contacts/favorites.html', {
+        'contacts': user_contacts
+    })
 
 def login_view(request):
     if request.method == "POST":
