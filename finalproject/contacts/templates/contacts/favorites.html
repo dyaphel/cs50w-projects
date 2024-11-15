@@ -22,13 +22,13 @@
 </div>
 
 {% for contact in contacts %}
-<div class="profile-wrapper">
+<div class="profile-wrapper" data-contact-id="{{ contact.id }}">
     <div class="profile-container" onclick="openContactDetails({{ contact.id }})">
         <input type="checkbox" class="checkbox" hidden  onchange="updateDeleteButton()">
 
         <button id="FavoriteButton" onclick="toggleFavorite(this, {{ contact.id }})">
             {% if contact.isFavorite %}
-            <img src="{% static 'img/redFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+            <img src="{% static 'img/redFavorite.png' %}" data-favorite="true" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
             {% else %}
             <img src="{% static 'img/whiteFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
             {% endif %}
@@ -61,4 +61,5 @@
 {% block script %}
 <script src="{% static  'js/contact_list.js' %}"></script>
 <script src="{% static  'js/isFavorite.js' %}"></script>
+<script src="{% static  'js/favorite.js' %}"></script>
 {% endblock %}
