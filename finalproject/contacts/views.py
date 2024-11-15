@@ -13,6 +13,7 @@ from django.shortcuts import get_object_or_404
 
 
 
+
 def index(request):
     if request.user.is_authenticated:
         # Ottieni le informazioni dell'utente
@@ -137,6 +138,19 @@ def edit_contact(request, id):
 
     return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
 
+
+@login_required
+def toggle_favorite(request, contact_id):
+    try:
+        contact = Contact.objects.get(id=contact_id)
+        if request.method == 'POST':
+            # Handle favorite toggle logic
+            contact.is_favorite = not contact.is_favorite
+            contact.save()
+            return JsonResponse({"success": True})
+        return JsonResponse({"success": False, "error": "Invalid method"})
+    except Contact.DoesNotExist:
+        return JsonResponse({"success": False, "error": "Contact not found"})
 
 def login_view(request):
     if request.method == "POST":
