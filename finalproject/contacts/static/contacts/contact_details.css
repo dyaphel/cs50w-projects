@@ -56,6 +56,7 @@
     margin: 5% auto;
     margin-top: 15px;
     transition: box-shadow 0.3s ease;
+    position: relative;
 }
 
 /* Profile picture with initials */
@@ -237,3 +238,30 @@
 .edit-mode #jobPosition{
     margin-bottom: 10px;
 }
+
+
+
+#FavoriteButton {
+    position: absolute; /* Positioned absolutely within the .profile-container */
+    top: 30px; /* Adjust vertical position within the profile container */
+    right: 50px; /* Adjust horizontal position within the profile container */
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Ensure button has height for better alignment */
+    background: none; /* Remove button background */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Make it look clickable */
+    z-index: 1; /* Ensure it's above other elements within the profile container */
+}
+
+#FavoriteButton img.Favorite {
+    transition: opacity 0.2s ease;
+    width: 100%; /* Ensure the icon scales within the button */
+    height: 100%; /* Ensure the icon scales within the button */
+    object-fit: contain; /* Ensures the image scales without distortion */
+}
+
+/* Remove the focus outline (black square) on button click */
+#FavoriteButton:focus {
+    outline: none;
+}
+

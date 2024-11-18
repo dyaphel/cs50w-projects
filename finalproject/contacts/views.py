@@ -10,6 +10,11 @@ from django.http import JsonResponse
 from .models import User, Contact
 from .forms import ContactForm
 from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
+from .models import Contact
+
 
 
 
@@ -33,6 +38,7 @@ def index(request):
         })
     else:
         return render(request, "contacts/login.html")
+
 
 
 @login_required
@@ -70,12 +76,7 @@ def contacts(request):
 
 @login_required
 def contact_detail(request, id):
-    try:
-        contact = Contact.objects.get(id=id)
-    except Contact.DoesNotExist:
-        # Redirige a una pagina di errore personalizzata o alla home page
-        return redirect('error_page')  # Assicurati di avere una view per gestire 'error_page'
-    
+    contact = Contact.objects.get(id=id) 
     return render(request, 'contacts/contact_details.html', {
         'contact': contact
     })
@@ -119,7 +120,7 @@ def edit_contact(request, id):
     if request.method == 'POST':
         data = json.loads(request.body)
         # Get the contact by ID
-        contact = get_object_or_404(Contact, id=id)
+        contact = Contact.objects.get(id=id)
         # Update fields from the incoming data
         contact.name = data.get('firstName', contact.name)
         contact.surname = data.get('lastName', contact.surname)
@@ -137,6 +138,23 @@ def edit_contact(request, id):
 
     return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
 
+@login_required
+def toggle_favorite(request, contact_id):
+    if request.method == 'POST':
+        contact = Contact.objects.get(id=contact_id)
+        # Toggle is_favorite status
+        contact.isFavorite = not contact.isFavorite
+        contact.save()  # Save to ensure the update is persisted
+        return JsonResponse({"success": True, "is_favorite": contact.isFavorite})
+    return JsonResponse({"success": False})
+
+
+@login_required
+def favorites(request):
+    user_contacts = Contact.objects.filter(owner=request.user, isFavorite=True)
+    return render(request, 'contacts/favorites.html', {
+        'contacts': user_contacts
+    })
 
 def login_view(request):
     if request.method == "POST":

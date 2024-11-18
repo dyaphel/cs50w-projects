@@ -23,7 +23,7 @@ class Contact(models.Model):
     job_position = models.CharField(max_length=255, blank=True, null=True)
     phone_number_1 = models.CharField(max_length=15)
     phone_number_2 = models.CharField(max_length=15, blank=True, null=True)
-
+    isFavorite = models.BooleanField(default=False)
     
     def __str__(self):
         return f"{self.name} {self.surname}"

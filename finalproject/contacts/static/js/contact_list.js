@@ -1,6 +1,6 @@
 let global = false
 
-    function toggleContactDetails(element) {
+function toggleContactDetails(element) {
     // Toggle the expanded class on the profile footer
     const footer = element;
     const details = footer.querySelector('.contact-details');
@@ -14,29 +14,29 @@ let global = false
     }
 }
 
-    function openContactDetails(contactId) {
-        if (global) return; 
-        window.location.href = `/contact/${contactId}/`; // Assumes URL pattern is '/contact/<id>/'
-    }
+function openContactDetails(contactId) {
+    if (global) return; 
+    window.location.href = `/contact/${contactId}/`; // Assumes URL pattern is '/contact/<id>/'
+}
     
-    function toggleCheckboxes() {
-        global = !global; 
-        const checkboxes = document.querySelectorAll('.checkbox');
-        checkboxes.forEach(checkbox => {
-            checkbox.hidden = !checkbox.hidden;
-            checkbox.checked = false; // Reset checkboxes when toggling
-        });
-        updateDeleteButton(); // Update button status on toggle
-    }
+function toggleCheckboxes() {
+    global = !global; 
+    const checkboxes = document.querySelectorAll('.checkbox');
+    checkboxes.forEach(checkbox => {
+      checkbox.hidden = !checkbox.hidden;
+      checkbox.checked = false; // Reset checkboxes when toggling
+    });
+    updateDeleteButton(); // Update button status on toggle
+}
 
-    function updateDeleteButton() {
+function updateDeleteButton() {
         const checkboxes = document.querySelectorAll('.checkbox');
         const deleteButton = document.getElementById('deleteButton');
         // Enable delete button if at least one checkbox is checked
         deleteButton.disabled = !Array.from(checkboxes).some(checkbox => checkbox.checked);
-    }
+}
 
-    function deleteSelectedContacts() {
+function deleteSelectedContacts() {
     // Mostra la finestra di conferma
     document.getElementById('confirmModal').style.display = 'block';
 }
@@ -78,3 +78,8 @@ function cancelDelete() {
     document.getElementById('confirmModal').style.display = 'none';
     toggleCheckboxes(); // Nasconde e deseleziona i checkbox
 }
+
+
+    
+
+
