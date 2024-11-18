@@ -1,20 +1,15 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 import json
+from django.db.models import Q
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from .models import User, Contact
+from .models import User, Contact, Group
 from .forms import ContactForm
-from django.shortcuts import get_object_or_404
-from django.http import JsonResponse
-from django.views.decorators.http import require_POST
-from django.contrib.auth.decorators import login_required
-from .models import Contact
-
 
 
 
@@ -155,6 +150,20 @@ def favorites(request):
     return render(request, 'contacts/favorites.html', {
         'contacts': user_contacts
     })
+
+@login_required
+def groups(request):
+
+    groups = Group.objects.all()
+
+    # Debugging: Print the groups and their admins
+    print(groups)  # This prints the queryset of groups
+    for group in groups:
+        print(group.name)  # Print the group name
+        print(group.admins.all())  # Print the list of admins for each group
+    
+    return render(request, 'contacts/groups.html', {'groups': groups})
+
 
 def login_view(request):
     if request.method == "POST":

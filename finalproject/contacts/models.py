@@ -10,10 +10,9 @@ class User(AbstractUser):
     phone_number_2 = models.CharField(max_length=15, blank=True)
 
     REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number_1']
+
 class Contact(models.Model):
-
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-
     name = models.CharField(max_length=255)
     birthday = models.DateTimeField(null=True, blank=True)
     surname = models.CharField(max_length=255)
@@ -27,3 +26,12 @@ class Contact(models.Model):
     
     def __str__(self):
         return f"{self.name} {self.surname}"
+
+class Group(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+    admins = models.ManyToManyField(User)
+    contacts = models.ManyToManyField(Contact)
+
+    def __str__(self):
+        return self.name

@@ -1,0 +1,44 @@
+{% extends "contacts/layout.html" %}
+
+
+{% load static %}
+{% block title %}Groups{% endblock %}
+
+{% block head %}
+<link href="{% static 'contacts/groups.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="header-section">
+    <div class="profile-icons">
+        <button id="deleteButton" disabled onclick="deleteSelectedContacts()">
+            <img src="{% static 'img/delete.png' %}" class="icon" alt="Delete">
+            {% csrf_token %}
+        </button>
+        <button id="addButton" onclick="window.location.href='{% url 'add_contact' %}'">
+            <img src="{% static 'img/add.png' %}" class="icon" alt="Add">
+        </button>
+    </div>
+</div>
+
+<h1>Groups</h1>
+<ul>
+    {% for group in groups %}
+        <li>
+            <strong>{{ group.name }}</strong><br>
+            Description: {{ group.description }}<br>
+            Admins: 
+            {% for admin in group.admins.all %}
+                {{ admin.username }}
+            {% endfor %}
+            <br>
+            Contacts:
+            {% for contact in group.contacts.all %}
+                {{ contact.name }} {{ contact.surname }}<br>
+            {% endfor %}
+        </li>
+    {% empty %}
+        <li>No groups found.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
