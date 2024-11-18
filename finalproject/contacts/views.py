@@ -165,6 +165,31 @@ def groups(request):
     return render(request, 'contacts/groups.html', {'groups': groups})
 
 
+@login_required
+def create_group(request):
+    if request.method == "POST":
+        group_name = request.POST.get('name')
+        group_description = request.POST.get('description')
+        selected_contacts = request.POST.getlist('contacts')  # List of selected contact IDs
+
+        # Create the new group
+        new_group = Group.objects.create(name=group_name, description=group_description)
+        
+        # Set the current user as the admin of the group
+        new_group.admins.add(request.user)
+
+        # Add selected contacts to the group
+        for contact_id in selected_contacts:
+            contact = Contact.objects.get(id=contact_id)
+            new_group.contacts.add(contact)
+
+        return redirect('groups')  # Redirect to the groups page after creating the group
+
+    # If GET request, pass contacts to the template
+    contacts = Contact.objects.all()
+    return render(request, 'contacts/groups.html', {'contacts': contacts})
+
+
 def login_view(request):
     if request.method == "POST":
         # Prova a autenticare l'utente

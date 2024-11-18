@@ -1,6 +1,5 @@
 {% extends "contacts/layout.html" %}
 
-
 {% load static %}
 {% block title %}Groups{% endblock %}
 
@@ -15,7 +14,7 @@
             <img src="{% static 'img/delete.png' %}" class="icon" alt="Delete">
             {% csrf_token %}
         </button>
-        <button id="addButton">
+        <button id="addButton" onclick="openAddGroupModal()">
             <img src="{% static 'img/add.png' %}" class="icon" alt="Add">
         </button>
     </div>
@@ -41,4 +40,51 @@
         <li>No groups found.</li>
     {% endfor %}
 </ul>
+
+<!-- Modal for creating a new group -->
+<div id="addGroupModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeAddGroupModal()">&times;</span>
+        <h2>Create New Group</h2>
+        <form method="POST" action="{% url 'create_group' %}">
+            {% csrf_token %}
+            <div>
+                <label for="groupName">Group Name</label>
+                <input type="text" id="groupName" name="name" required>
+            </div>
+            <div>
+                <label for="groupDescription">Description</label>
+                <textarea id="groupDescription" name="description" required></textarea>
+            </div>
+            <div>
+                <label for="contacts">Select Contacts</label><br>
+                {% for contact in contacts %}
+                    <input type="checkbox" name="contacts" value="{{ contact.id }}">
+                    {{ contact.name }} {{ contact.surname }}<br>
+                {% endfor %}
+            </div>
+            <button type="submit">Create Group</button>
+        </form>
+    </div>
+</div>
+
 {% endblock %}
+
+{%block script%}
+<script>
+function openAddGroupModal() {
+    document.getElementById("addGroupModal").style.display = "block";
+}
+
+function closeAddGroupModal() {
+    document.getElementById("addGroupModal").style.display = "none";
+}
+
+// Close the modal if the user clicks anywhere outside of the modal
+window.onclick = function(event) {
+    if (event.target == document.getElementById("addGroupModal")) {
+        closeAddGroupModal();
+    }
+};
+</script>
+{%endblock%}
