@@ -1,6 +1,7 @@
 {% extends "contacts/layout.html" %}
 
 {% load static %}
+
 {% block title %}Groups{% endblock %}
 
 {% block head %}
@@ -10,81 +11,65 @@
 {% block body %}
 <div class="header-section">
     <div class="profile-icons">
-        <button id="deleteButton" disabled onclick="deleteSelectedContacts()">
+        <button id="deleteButton" disabled onclick="deleteSelectedGroup()">
             <img src="{% static 'img/delete.png' %}" class="icon" alt="Delete">
             {% csrf_token %}
         </button>
-        <button id="addButton" onclick="openAddGroupModal()">
+        <button id="selectButton" onclick="toggleCheckboxes()">
+            <img src="{% static 'img/select.png' %}" class="icon" alt="Select">
+        </button>
+        <button id="addButton">
             <img src="{% static 'img/add.png' %}" class="icon" alt="Add">
         </button>
     </div>
 </div>
 
-<h1>Groups</h1>
-<ul>
-    {% for group in groups %}
-        <li>
-            <strong>{{ group.name }}</strong><br>
-            Description: {{ group.description }}<br>
-            Admins: 
-            {% for admin in group.admins.all %}
-                {{ admin.username }}
-            {% endfor %}
-            <br>
-            Contacts:
-            {% for contact in group.contacts.all %}
-                {{ contact.name }} {{ contact.surname }}<br>
-            {% endfor %}
-        </li>
-    {% empty %}
-        <li>No groups found.</li>
-    {% endfor %}
-</ul>
-
-<!-- Modal for creating a new group -->
-<div id="addGroupModal" class="modal">
+<div id="confirmModal" class="modal" style="display: none;">
     <div class="modal-content">
-        <span class="close" onclick="closeAddGroupModal()">&times;</span>
-        <h2>Create New Group</h2>
-        <form method="POST" action="{% url 'create_group' %}">
-            {% csrf_token %}
-            <div>
-                <label for="groupName">Group Name</label>
-                <input type="text" id="groupName" name="name" required>
-            </div>
-            <div>
-                <label for="groupDescription">Description</label>
-                <textarea id="groupDescription" name="description" required></textarea>
-            </div>
-            <div>
-                <label for="contacts">Select Contacts</label><br>
-                {% for contact in contacts %}
-                    <input type="checkbox" name="contacts" value="{{ contact.id }}">
-                    {{ contact.name }} {{ contact.surname }}<br>
-                {% endfor %}
-            </div>
-            <button type="submit">Create Group</button>
-        </form>
+        <p>Are you sure you want to delete the selected group?</p>
+        <button class="btn btn-info" id="confirmDeleteButton" onclick="confirmDelete()">OK</button>
+        <button class="btn btn-info" onclick="cancelDelete()">Cancel</button>
     </div>
 </div>
+
+{% for group in groups %}
+    <div class="profile-wrapper">
+        <div class="profile-container">
+            <!-- Checkbox with group ID -->
+            <input type="checkbox" class="checkbox" hidden data-group-id="{{ group.id }}" onchange="updateDeleteButton()">
+
+            <!-- Group Profile Picture -->
+            <div class="profile-picture">
+                {{ group.name|upper }}
+            </div>
+
+            <!-- Group Name and Description -->
+            <div class="text-container">
+                <span id="name">
+                    {{ group.name|upper }}
+                    <span class="member-count">({{ group.members.count }} Members)</span>
+                </span>
+                <span id="description">{{ group.description }}</span>
+            </div>
+        </div>
+
+        <!-- Group Footer with Expandable Details -->
+        <div class="profile-footer" onclick="toggleGroupDetails(this)">
+            <div class="details" style="display: none;">
+                <span class="label">Message:</span>
+                <span class="groupmessage">{{ group.pinned_message }}</span>
+            </div>
+            <span class="arrow">&#9660;</span>
+        </div>
+    </div>
+{% empty %}
+    <li>No groups found.</li>
+{% endfor %}
+
+
 
 {% endblock %}
 
 {%block script%}
-<script>
-function openAddGroupModal() {
-    document.getElementById("addGroupModal").style.display = "block";
-}
-
-function closeAddGroupModal() {
-    document.getElementById("addGroupModal").style.display = "none";
-}
-
-// Close the modal if the user clicks anywhere outside of the modal
-window.onclick = function(event) {
-    if (event.target == document.getElementById("addGroupModal")) {
-        closeAddGroupModal();
-    }
-};
-</script>
+<script src="{% static  'js/group_list.js' %}"></script>
 {%endblock%}

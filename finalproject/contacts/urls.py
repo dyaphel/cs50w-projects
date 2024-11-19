@@ -17,7 +17,7 @@ urlpatterns = [
     path('favorites',views.favorites, name="favorites"),
 
     path('groups',views.groups, name="groups"),
-    path('create_group/', views.create_group, name='create_group'),
+    path('delete_groups', views.delete_groups, name='delete_groups'),
     
     path("login", views.login_view, name="login"),
     path("logout", views.logout_view, name="logout"),

@@ -40,3 +40,167 @@
     outline: none;
 }
 
+.checkbox {
+    transform: scale(1.5); /* Ingrandisce la checkbox */
+    margin-left: 20px; /* Sposta la checkbox più a destra */
+    margin-right: -10px;
+}
+.profile-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Allinea al centro del contenitore */
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto; /* Centra la wrapper orizzontalmente */
+    margin-top: 20px;
+    margin-bottom: 70px;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: row; /* Organizza elementi in riga */
+    align-items: center; /* Allinea verticalmente al centro */
+    position: relative; /* Added to position the favorite button relative to this container */
+    width: 100%;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.profile-picture {
+    width: 30%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #933ebb;
+    margin-right: 12%;
+    margin-left: 12%;
+    text-transform: uppercase;
+    border-radius: 8px;
+}
+
+.profile-footer {
+    width: 100%; /* Si adatta alla larghezza della wrapper */
+    padding: 10px;
+    text-align: center;
+    background-color: #f0f0f0;
+    color: #a3a3a3;
+    border: 1px solid #e0e0e0;
+    border-top: none; /* Rimuove il bordo superiore per un aspetto continuo */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: height 1s ease;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.details {
+    padding: 10px;
+    margin-top: -2px;
+}
+
+.label {
+    font-weight: 700;
+    color: #933ebb;
+    font-size: 20px;
+}
+
+.arrow {
+    font-size: 18px;
+    cursor: default;
+}
+
+.groupmessage {
+    font-size: 18px; /* Font più grande */
+    color: #353535; /* Colore nero */
+    font-weight: 600;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center;
+    align-items: flex-start; /* Align text to the left */
+    width: 100%;
+}
+
+/* Group Name Styling */
+#name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+}
+
+/* Member Count Styling */
+.member-count {
+    font-size: 18px;
+    font-weight: 400;
+    color: #353535;
+    margin-left: 8px; /* Space between name and member count */
+}
+
+/* Group Description Styling */
+#description {
+    font-size: 18px;
+    font-weight: 400;
+    color: #353535;
+    white-space: normal; /* Allow wrapping */
+    overflow: visible; /* No truncation */
+    margin-top: 5px; /* Space between name and description */
+}
+
+
+#FavoriteButton {
+    position: absolute; /* Positioned absolutely within the .profile-container */
+    top: 2px; /* Adjust top position as needed */
+    right: 10px; /* Adjust right position as needed */
+    width: 40px; /* Adjust size as needed */
+    background: none; /* Remove button background */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Optional: make it look clickable */
+}
+
+#FavoriteButton img.Favorite {
+    transition: opacity 0.2s ease;
+    width: 100%; /* Ensure the icon scales within the button */
+    height: 100%; /* Ensure the icon scales within the button */
+}
+/* Remove the focus outline (black square) on button click */
+#FavoriteButton:focus {
+    outline: none;
+}
+
+
+.modal {
+    display: none; /* Nasconde il modal di default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 350px;
+    text-align: center;
+}
+
+.modal-content button {
+    margin: 10px;
+    margin-top: -2px;
+}
