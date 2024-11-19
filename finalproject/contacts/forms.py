@@ -18,7 +18,7 @@ class ContactForm(forms.ModelForm):
         ]
 
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Full Name'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Fisrt Name'}),
             'surname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Surname'}),
             'nickname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Unique Nickname'}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'example@example.com'}),
