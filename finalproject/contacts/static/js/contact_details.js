@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const editButton = document.querySelector('#editButtonContact');
     const saveButton = document.querySelector('#saveButtonContact');
     const userInfo = document.querySelector('.user-info');
+    const favorite = document.querySelector('#FavoriteButton');
     
     if (!editButton || !saveButton || !userInfo) {
         console.error("Required elements not found in the DOM");
@@ -14,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Enable edit mode
     function enableEditMode() {
+        favorite.disabled = true;
+        favorite.style.display = 'none';
         saveButton.disabled = false;
         userInfo.classList.add("edit-mode");
         replaceSpansWithInputs();
@@ -66,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         saveButton.disabled = true;
         userInfo.classList.remove("edit-mode");
+        favorite.style.display = 'inline';
 
         fetch(`/contact/${contactId}/edit_contact/`, {
             method: 'POST',
