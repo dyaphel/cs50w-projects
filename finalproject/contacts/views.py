@@ -134,7 +134,7 @@ def edit_contact(request, id):
     return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
 
 @login_required
-def toggle_favorite(request, contact_id):
+def toggle_favorite_contact(request, contact_id):
     if request.method == 'POST':
         contact = Contact.objects.get(id=contact_id)
         # Toggle is_favorite status
@@ -187,7 +187,31 @@ def add_group(request):
     
     # Pass the form and a list of the user's contacts to the template
     contacts = Contact.objects.filter(owner=request.user)
-    return render(request, 'contacts/add_group.html', {'form': form, 'contacts': contacts})
+    return render(request, 'contacts/add_group.html', 
+                  {'form': form, 
+                   'members': contacts})
+
+
+@login_required
+def toggle_favorite_group(request, group_id):
+    if request.method == 'POST':
+        print(f"Received request to toggle favorite for Group ID: {group_id}")  # Debug log
+        try:
+            group = Group.objects.get(id=group_id)
+            group.isFavorite = not group.isFavorite
+            group.save()
+            return JsonResponse({"success": True, "is_favorite": group.isFavorite})
+        except Group.DoesNotExist:
+            print(f"Group ID {group_id} not found")  # Debug log
+            return JsonResponse({"success": False, "error": "Group not found"})
+    print("Invalid request method")  # Debug log
+    return JsonResponse({"success": False, "error": "Invalid request method"})
+
+
+
+
+
+
 
 def login_view(request):
     if request.method == "POST":

@@ -38,6 +38,15 @@
             <!-- Checkbox with group ID -->
             <input type="checkbox" class="checkbox" hidden data-group-id="{{ group.id }}" onchange="updateDeleteButton()">
 
+            <button id="FavoriteButton" onclick="toggleFavoriteGroup(this,{{group.id}})">
+                {% if group.isFavorite %}
+                <img src="{% static 'img/redFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+                {% else %}
+                <img src="{% static 'img/whiteFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+                {% endif %}
+            </button>
+            
+            
             <!-- Group Profile Picture -->
             <div class="profile-picture">
                 {{ group.name|upper }}
@@ -72,4 +81,42 @@
 
 {%block script%}
 <script src="{% static  'js/group_list.js' %}"></script>
+<script>
+    function toggleFavoriteGroup(button, groupId) {
+    console.log(`Toggle called for Group ID: ${groupId}`); // Debugging log
+
+    const img = button.querySelector("img");
+    const whiteSrc = img.getAttribute("data-white-src");
+    const redSrc = img.getAttribute("data-red-src");
+
+    const isFavorite = img.src.endsWith("whiteFavorite.png");
+
+    img.src = isFavorite ? redSrc : whiteSrc;
+
+    fetch(`/toggle_favorite_groups/${groupId}/`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
+        },
+        body: JSON.stringify({ is_favorite: isFavorite })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Server responded with status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+        if (!data.success) {
+            alert("Failed to update favorite status.");
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert('An error occurred while updating the favorite status.');
+    });
+}
+</script>
 {%endblock%}

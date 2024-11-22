@@ -47,5 +47,5 @@ class GroupForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
             'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Description'}),
             'pinned_message': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Pinned message'}),
-            'members': forms.CheckboxSelectMultiple(),  # Use a multi-select widget for members
+            'members': forms.CheckboxSelectMultiple(), 
         }

@@ -4,7 +4,7 @@
 {% block title %}Add Group{% endblock %}
 
 {% block head %}
-<link href="{% static 'contacts/add_contact.css' %}" rel="stylesheet">
+<link href="{% static 'contacts/add_group.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -38,8 +38,33 @@
         
         <div class="form-group">
             <label>Members</label>
-            {{ form.members }}
+            {% for contact in members %}
+            <div class="profile-wrapper">
+                <div class="profile-container">
+                    <!-- Checkbox -->
+                    <input type="checkbox" class="checkbox" name="members" value="{{ contact.id }}">
+                    
+                    <!-- Profile Picture -->
+                    <div class="profile-picture">
+                        {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
+                    </div>
+                    
+                    <!-- Name and Details -->
+                    <div class="name-row">
+                        <div class="main-info">
+                            <span class="name">{{ contact.name }}</span>
+                            <span class="surname">{{ contact.surname }}</span>
+                        </div>
+                        <div class="sub-info">
+                            <span class="nickname">{{ contact.nickname }}</span>
+                            <span class="phone">{{ contact.phone_number_1 }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
+        
     </form>
 </div>
 {% endblock %}

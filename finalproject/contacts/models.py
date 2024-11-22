@@ -14,7 +14,7 @@ class User(AbstractUser):
 class Contact(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    birthday = models.DateTimeField(null=True, blank=True)
+    birthday = models.DateField(null=True, blank=True)
     surname = models.CharField(max_length=255)
     nickname = models.CharField(max_length=255, blank=True)
     email = models.EmailField(blank=True, null=True)
