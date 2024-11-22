@@ -147,8 +147,10 @@ def toggle_favorite_contact(request, contact_id):
 @login_required
 def favorites(request):
     user_contacts = Contact.objects.filter(owner=request.user, isFavorite=True)
+    groups = Group.objects.filter(isFavorite=True)
     return render(request, 'contacts/favorites.html', {
-        'contacts': user_contacts
+        'contacts': user_contacts,
+        'groups': groups,
     })
 
 @login_required
