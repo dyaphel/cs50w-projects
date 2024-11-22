@@ -1,0 +1,45 @@
+{% extends "contacts/layout.html" %}
+{% load static %}
+
+{% block title %}Add Group{% endblock %}
+
+{% block head %}
+<link href="{% static 'contacts/add_contact.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="header-section">
+    <div class="profile-icons">
+        <button id="saveButton" type="submit" form="addGroupForm">
+            <img src="{% static 'img/save.png' %}" class="icon" alt="Save">
+        </button>
+    </div>
+</div>
+
+<div class="form-container">
+    <h2>Add a New Group</h2>
+    <form id="addGroupForm" method="post" action="{% url 'add_group' %}">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label>Name</label>
+            {{ form.name }}
+        </div>
+        
+        <div class="form-group">
+            <label>Description</label>
+            {{ form.description }}
+        </div>
+        
+        <div class="form-group">
+            <label>Pinned Message</label>
+            {{ form.pinned_message }}
+        </div>
+        
+        <div class="form-group">
+            <label>Members</label>
+            {{ form.members }}
+        </div>
+    </form>
+</div>
+{% endblock %}

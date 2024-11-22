@@ -18,7 +18,7 @@
         <button id="selectButton" onclick="toggleCheckboxes()">
             <img src="{% static 'img/select.png' %}" class="icon" alt="Select">
         </button>
-        <button id="addButton">
+        <button id="addButton" onclick="window.location.href='{% url 'add_group' %}'">
             <img src="{% static 'img/add.png' %}" class="icon" alt="Add">
         </button>
     </div>

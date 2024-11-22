@@ -9,7 +9,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .models import User, Contact, Group
-from .forms import ContactForm
+from .forms import ContactForm, GroupForm
 
 
 
@@ -172,7 +172,22 @@ def delete_groups(request):
             return JsonResponse({"success": False, "error": str(e)})
     return JsonResponse({"success": False, "error": "Invalid request method"})
 
-
+@login_required
+def add_group(request):
+    if request.method == 'POST':
+        form = GroupForm(request.POST)
+        if form.is_valid():
+            group = form.save(commit=False)
+            group.save()  # Save the group instance first
+            form.save_m2m()  # Save ManyToMany relationships (members)
+            group.admins.add(request.user)  # Automatically make the logged-in user an admin
+            return redirect('groups')  # Redirect to a relevant page (e.g., a list of groups)
+    else:
+        form = GroupForm()
+    
+    # Pass the form and a list of the user's contacts to the template
+    contacts = Contact.objects.filter(owner=request.user)
+    return render(request, 'contacts/add_group.html', {'form': form, 'contacts': contacts})
 
 def login_view(request):
     if request.method == "POST":
