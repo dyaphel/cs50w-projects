@@ -20,7 +20,7 @@
     width: 50px;
     height: 50px;
     padding: 8px;
-    border: 2px solid #A1C6EA; /* Pastel blue border */
+    border: 2px solid #bb3e5b; /* Pastel blue border */
     border-radius: 8px; /* Rounded corners */
     transition: transform 0.2s ease;
 }
@@ -28,11 +28,6 @@
 /* Hover effect for icon images */
 .profile-icons .icon:hover {
     transform: scale(1.05);
-}
-
-#saveButton[disabled] {
-    opacity: 0.2; /* Makes the button look more opaque when disabled */
-    pointer-events: none; /* Disables any interaction with the button */
 }
 
 /* Remove the focus outline (black square) on button click */
@@ -46,7 +41,7 @@
     max-width: 600px;
     margin: auto;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #bb3e5b;
     border-radius: 8px;
     background-color: #f9f9f9;
     margin-top: 20px;
@@ -70,18 +65,4 @@
     border-radius: 4px;
 }
 
-.submit-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #6e94bc;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
 
-.submit-button:hover {
-    background-color: #5b82a3;
-}

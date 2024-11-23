@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import User, Contact
+from .models import User, Contact, Group
 
 admin.site.register(User)
 admin.site.register(Contact)
-# Register your models here.
+admin.site.register(Group)

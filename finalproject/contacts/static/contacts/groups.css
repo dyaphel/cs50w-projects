@@ -20,7 +20,7 @@
     width: 50px;
     height: 50px;
     padding: 8px;
-    border: 2px solid #bb3e5b; /* Pastel blue border */
+    border: 2px solid #933ebb; /* Pastel blue border */
     border-radius: 8px; /* Rounded corners */
     transition: transform 0.2s ease;
 }
@@ -40,34 +40,11 @@
     outline: none;
 }
 
-.modal {
-    display: none; /* Nasconde il modal di default */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
+.checkbox {
+    transform: scale(1.5); /* Ingrandisce la checkbox */
+    margin-left: 20px; /* Sposta la checkbox più a destra */
+    margin-right: -10px;
 }
-
-.modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 350px;
-    text-align: center;
-}
-
-.modal-content button {
-    margin: 10px;
-    margin-top: -2px;
-}
-
 .profile-wrapper {
     display: flex;
     flex-direction: column;
@@ -92,67 +69,7 @@
     border-top-right-radius: 10px;
 }
 
-.profile-footer {
-    width: 100%; /* Si adatta alla larghezza della wrapper */
-    padding: 10px;
-    text-align: center;
-    background-color: #f0f0f0;
-    color: #a3a3a3;
-    border: 1px solid #e0e0e0;
-    border-top: none; /* Rimuove il bordo superiore per un aspetto continuo */
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    transition: height 1s ease;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-}
-
-.contact-details {
-    padding: 10px;
-    margin-top: -2px;
-}
-
-.label {
-    font-weight: 700;
-    color: #bb3e5b;
-    font-size: 20px;
-}
-
-.contact-info {
-    font-size: 18px; /* Font più grande */
-    color: #353535; /* Colore nero */
-    font-weight: 600;
-}
-
-.arrow {
-    font-size: 18px;
-    cursor: default;
-}
-
-.checkbox {
-    transform: scale(1.5); /* Ingrandisce la checkbox */
-    margin-left: 20px; /* Sposta la checkbox più a destra */
-    margin-right: -10px;
-}
-
-/* Profile picture with initials */
 .profile-picture {
-    width: 65px;
-    height: 65px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: #fff;
-    background-color:#bb3e5b;
-    border-radius: 50%;
-    margin-right: 12%;
-    margin-left: 12%;
-    text-transform: uppercase;
-}
-
-.picture-group{
     width: 30%;
     height: 60px;
     display: flex;
@@ -168,22 +85,35 @@
     border-radius: 8px;
 }
 
-.name-row {
-    font-size: 20px;
-    font-weight: 600;
-    color: #353535;
+.profile-footer {
+    width: 100%; /* Si adatta alla larghezza della wrapper */
+    padding: 10px;
+    text-align: center;
+    background-color: #f0f0f0;
+    color: #a3a3a3;
+    border: 1px solid #e0e0e0;
+    border-top: none; /* Rimuove il bordo superiore per un aspetto continuo */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: height 1s ease;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
-
 
 .details {
     padding: 10px;
     margin-top: -2px;
 }
 
-.message {
+.label {
     font-weight: 700;
     color: #933ebb;
     font-size: 20px;
+}
+
+.arrow {
+    font-size: 18px;
+    cursor: default;
 }
 
 .groupmessage {
@@ -225,6 +155,7 @@
     margin-top: 5px; /* Space between name and description */
 }
 
+
 #FavoriteButton {
     position: absolute; /* Positioned absolutely within the .profile-container */
     top: 2px; /* Adjust top position as needed */
@@ -246,24 +177,30 @@
 }
 
 
-
-
-#FavoriteButtonGroup {
-    position: absolute; /* Positioned absolutely within the .profile-container */
-    top: 2px; /* Adjust top position as needed */
-    right: 10px; /* Adjust right position as needed */
-    width: 40px; /* Adjust size as needed */
-    background: none; /* Remove button background */
-    border: none; /* Remove button border */
-    cursor: pointer; /* Optional: make it look clickable */
+.modal {
+    display: none; /* Nasconde il modal di default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
 }
 
-#FavoriteButtonGroup img.Favorite {
-    transition: opacity 0.2s ease;
-    width: 100%; /* Ensure the icon scales within the button */
-    height: 100%; /* Ensure the icon scales within the button */
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 350px;
+    text-align: center;
 }
 
-#FavoriteButtonGroup:focus {
-    outline: none;
+.modal-content button {
+    margin: 10px;
+    margin-top: -2px;
 }

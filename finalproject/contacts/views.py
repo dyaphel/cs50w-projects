@@ -1,20 +1,15 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 import json
+from django.db.models import Q
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from .models import User, Contact
-from .forms import ContactForm
-from django.shortcuts import get_object_or_404
-from django.http import JsonResponse
-from django.views.decorators.http import require_POST
-from django.contrib.auth.decorators import login_required
-from .models import Contact
-
+from .models import User, Contact, Group
+from .forms import ContactForm, GroupForm
 
 
 
@@ -139,7 +134,7 @@ def edit_contact(request, id):
     return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
 
 @login_required
-def toggle_favorite(request, contact_id):
+def toggle_favorite_contact(request, contact_id):
     if request.method == 'POST':
         contact = Contact.objects.get(id=contact_id)
         # Toggle is_favorite status
@@ -152,9 +147,73 @@ def toggle_favorite(request, contact_id):
 @login_required
 def favorites(request):
     user_contacts = Contact.objects.filter(owner=request.user, isFavorite=True)
+    groups = Group.objects.filter(isFavorite=True)
     return render(request, 'contacts/favorites.html', {
-        'contacts': user_contacts
+        'contacts': user_contacts,
+        'groups': groups,
     })
+
+@login_required
+def groups(request):
+    groups = Group.objects.filter(admins=request.user)
+    return render(request, 'contacts/groups.html', {
+        'groups': groups
+    })
+
+@login_required
+def delete_groups(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            group_ids = data.get("group", [])  # Get group IDs from the request body
+            
+            # Delete groups with IDs in group_ids
+            Group.objects.filter(id__in=group_ids).delete()
+            return JsonResponse({"success": True})
+        except Exception as e:
+            return JsonResponse({"success": False, "error": str(e)})
+    return JsonResponse({"success": False, "error": "Invalid request method"})
+
+@login_required
+def add_group(request):
+    if request.method == 'POST':
+        form = GroupForm(request.POST)
+        if form.is_valid():
+            group = form.save(commit=False)
+            group.save()  # Save the group instance first
+            form.save_m2m()  # Save ManyToMany relationships (members)
+            group.admins.add(request.user)  # Automatically make the logged-in user an admin
+            return redirect('groups')  # Redirect to a relevant page (e.g., a list of groups)
+    else:
+        form = GroupForm()
+    
+    # Pass the form and a list of the user's contacts to the template
+    contacts = Contact.objects.filter(owner=request.user)
+    return render(request, 'contacts/add_group.html', 
+                  {'form': form, 
+                   'members': contacts})
+
+
+@login_required
+def toggle_favorite_group(request, group_id):
+    if request.method == 'POST':
+        print(f"Received request to toggle favorite for Group ID: {group_id}")  # Debug log
+        try:
+            group = Group.objects.get(id=group_id)
+            group.isFavorite = not group.isFavorite
+            group.save()
+            return JsonResponse({"success": True, "is_favorite": group.isFavorite})
+        except Group.DoesNotExist:
+            print(f"Group ID {group_id} not found")  # Debug log
+            return JsonResponse({"success": False, "error": "Group not found"})
+    print("Invalid request method")  # Debug log
+    return JsonResponse({"success": False, "error": "Invalid request method"})
+
+
+
+
+
+
 
 def login_view(request):
     if request.method == "POST":

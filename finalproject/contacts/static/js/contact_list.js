@@ -48,14 +48,15 @@ function confirmDelete() {
         selectedContacts.push(checkbox.getAttribute('data-contact-id'));
     });
     if (selectedContacts.length > 0) {
-        fetch("{% url 'delete_contacts' %}", {
+        
+        fetch("delete_contacts", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
             },
             body: JSON.stringify({ contacts: selectedContacts })
-        })
+        })        
         .then(response => response.json())
         .then(data => {
             if (!data.success) {

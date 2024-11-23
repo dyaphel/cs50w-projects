@@ -1,0 +1,70 @@
+{% extends "contacts/layout.html" %}
+{% load static %}
+
+{% block title %}Add Group{% endblock %}
+
+{% block head %}
+<link href="{% static 'contacts/add_group.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="header-section">
+    <div class="profile-icons">
+        <button id="saveButton" type="submit" form="addGroupForm">
+            <img src="{% static 'img/save.png' %}" class="icon" alt="Save">
+        </button>
+    </div>
+</div>
+
+<div class="form-container">
+    <h2>Add a New Group</h2>
+    <form id="addGroupForm" method="post" action="{% url 'add_group' %}">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label>Name</label>
+            {{ form.name }}
+        </div>
+        
+        <div class="form-group">
+            <label>Description</label>
+            {{ form.description }}
+        </div>
+        
+        <div class="form-group">
+            <label>Pinned Message</label>
+            {{ form.pinned_message }}
+        </div>
+        
+        <div class="form-group">
+            <label>Members</label>
+            {% for contact in members %}
+            <div class="profile-wrapper">
+                <div class="profile-container">
+                    <!-- Checkbox -->
+                    <input type="checkbox" class="checkbox" name="members" value="{{ contact.id }}">
+                    
+                    <!-- Profile Picture -->
+                    <div class="profile-picture">
+                        {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
+                    </div>
+                    
+                    <!-- Name and Details -->
+                    <div class="name-row">
+                        <div class="main-info">
+                            <span class="name">{{ contact.name }}</span>
+                            <span class="surname">{{ contact.surname }}</span>
+                        </div>
+                        <div class="sub-info">
+                            <span class="nickname">{{ contact.nickname }}</span>
+                            <span class="phone">{{ contact.phone_number_1 }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </form>
+</div>
+{% endblock %}

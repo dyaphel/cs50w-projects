@@ -56,10 +56,53 @@
     </div>
 </div>
 {% endfor %}
+
+{% for group in groups %}
+    <div class="profile-wrapper">
+        <div class="profile-container">
+            <!-- Checkbox with group ID -->
+            <input type="checkbox" class="checkbox" hidden data-group-id="{{ group.id }}" onchange="updateDeleteButton()">
+
+            <button id="FavoriteButtonGroup" onclick="toggleFavoriteGroup(this,{{ group.id }})">
+                {% if group.isFavorite %}
+                <img src="{% static 'img/redFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+                {% else %}
+                <img src="{% static 'img/whiteFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+                {% endif %}
+            </button>
+            
+            
+            <!-- Group Profile Picture -->
+            <div class="picture-group">
+                {{ group.name|upper }}
+            </div>
+
+            <!-- Group Name and Description -->
+            <div class="text-container">
+                <span id="name">
+                    {{ group.name|upper }}
+                    <span class="member-count">({{ group.members.count }} Members)</span>
+                </span>
+                <span id="description">{{ group.description }}</span>
+            </div>
+        </div>
+
+        <!-- Group Footer with Expandable Details -->
+        <div class="profile-footer" onclick="toggleGroupDetails(this)">
+            <div class="details" style="display: none;">
+                <span class="message">Message:</span>
+                <span class="groupmessage">{{ group.pinned_message }}</span>
+            </div>
+            <span class="arrow">&#9660;</span>
+        </div>
+    </div>
+{% endfor %}
+
 {% endblock %}
 
 {% block script %}
 <script src="{% static  'js/contact_list.js' %}"></script>
+<script src="{% static  'js/group_list.js' %}"></script>
 <script src="{% static  'js/isFavorite.js' %}"></script>
 <script src="{% static  'js/favorite.js' %}"></script>
 {% endblock %}
