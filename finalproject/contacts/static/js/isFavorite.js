@@ -1,5 +1,5 @@
 
-function toggleFavorite(button, contactId) {
+function toggleFavoriteContact(button, contactId) {
     global = true; // Prevent toggling contact details
 
     const img = button.querySelector("img");
@@ -10,7 +10,7 @@ function toggleFavorite(button, contactId) {
     
     img.src = isFavorite ? redSrc : whiteSrc;
 
-    fetch(`/toggle_favorite/${contactId}/`, {
+    fetch(`/toggle_favorite_contacts/${contactId}/`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -38,14 +38,15 @@ function toggleFavorite(button, contactId) {
     });
 }
 
-function toggleFavoriteGroup(button, groupId) {
-    console.log(`Toggle called for Group ID: ${groupId}`); // Debugging log
 
+
+function toggleFavoriteGroup(button, groupId) {
     const img = button.querySelector("img");
     const whiteSrc = img.getAttribute("data-white-src");
     const redSrc = img.getAttribute("data-red-src");
 
-    const isFavorite = img.src.endsWith("whiteFavorite.png");
+    const currentSrc = img.src.split('/').pop(); // Extract the file name
+    const isFavorite = currentSrc === "whiteFavorite.png";
 
     img.src = isFavorite ? redSrc : whiteSrc;
 
@@ -64,7 +65,6 @@ function toggleFavoriteGroup(button, groupId) {
         return response.json();
     })
     .then(data => {
-        console.log(data);
         if (!data.success) {
             alert("Failed to update favorite status.");
         }

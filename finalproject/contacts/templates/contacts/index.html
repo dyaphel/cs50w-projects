@@ -1,11 +1,11 @@
-{% extends "contacts/layout.html" %}
+{% extends "standard/layout.html" %}
 
 {% load static %}
 
 {% block title %}Home{% endblock %}
 
 {%block head%}
-<link href="{% static 'contacts/index.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/contacts/index.css' %}" rel="stylesheet">
 {%endblock%}
 
 {% block body %}
@@ -52,7 +52,7 @@
 {% endblock %}
 
 {% block script %}
-<script src="{% static  'js/edit_profile.js' %}"></script>
+<script src="{% static  'js/contacts/edit_profile.js' %}"></script>
 {% endblock %}
 
 

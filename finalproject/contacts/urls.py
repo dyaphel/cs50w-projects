@@ -12,7 +12,8 @@ urlpatterns = [
     path('delete_contacts', views.delete_contacts, name='delete_contacts'),
     path('contact/<int:id>/', views.contact_detail, name='contact_detail'),
     path('contact/<int:id>/edit_contact/', views.edit_contact, name='edit_contact'),
-    path('toggle_favorite/<int:contact_id>/', views.toggle_favorite_contact, name='toggle_favorite_contact'),
+    path('toggle_favorite_contacts/<int:contact_id>/', views.toggle_favorite_contact, name='toggle_favorite_contact'),
+
 
     path('favorites',views.favorites, name="favorites"),
 

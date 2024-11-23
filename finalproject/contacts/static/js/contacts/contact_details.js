@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const editButton = document.querySelector('#editButtonContact');
     const saveButton = document.querySelector('#saveButtonContact');
     const userInfo = document.querySelector('.user-info');
-    const favorite = document.querySelector('#FavoriteButton');
+    const favorite = document.querySelector('#FavoriteButtonContact');
     
     if (!editButton || !saveButton || !userInfo) {
         console.error("Required elements not found in the DOM");

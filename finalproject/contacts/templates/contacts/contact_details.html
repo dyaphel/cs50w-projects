@@ -1,11 +1,11 @@
-{% extends "contacts/layout.html" %}
+{% extends "standard/layout.html" %}
 
 {% load static %}
 
 {% block title %}Contact{% endblock %}
 
 {% block head %}
-<link href="{% static 'contacts/contact_details.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/contacts/contact_details.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -25,7 +25,7 @@
         {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
     </div>
 
-    <button id="FavoriteButton"  onclick="toggleFavorite(this, {{ contact.id }})">
+    <button id="FavoriteButtonContact"  onclick="toggleFavoriteContact(this, {{ contact.id }})">
         {% if contact.isFavorite %}
         <img src="{% static 'img/redFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
         {% else %}
@@ -93,6 +93,6 @@
 {% endblock %}
 
 {% block script %}
-<script src="{% static 'js/contact_details.js' %}"></script>
+<script src="{% static 'js/contacts/contact_details.js' %}"></script>
 <script src="{% static 'js/isFavorite.js' %}"></script>
 {% endblock %}

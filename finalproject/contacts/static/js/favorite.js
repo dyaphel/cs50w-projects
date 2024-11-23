@@ -1,19 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll("#FavoriteButton").forEach(button => {
+    // Select both Favorite buttons for contacts and groups
+    document.querySelectorAll("#FavoriteButtonContact, #FavoriteButtonGroup").forEach(button => {
         button.addEventListener("click", function (event) {
-            event.stopPropagation();
-            const contactWrapper = button.closest(".profile-wrapper");
+            event.stopPropagation(); // Prevent the click from triggering other events
+            const profileWrapper = button.closest(".profile-wrapper");
             const img = button.querySelector("img");
             const isFavorite = img.getAttribute("data-favorite") === "true";
 
+            // Toggle favorite status
             if (isFavorite) {
                 img.setAttribute("data-favorite", "false");
                 img.src = img.getAttribute("data-white-src");
-                contactWrapper.remove();
             } else {
                 img.setAttribute("data-favorite", "true");
                 img.src = img.getAttribute("data-red-src");
             }
+
+            // Remove the element from the DOM
+            profileWrapper.remove();
         });
     });
 });

@@ -225,7 +225,7 @@
     margin-top: 5px; /* Space between name and description */
 }
 
-#FavoriteButton {
+#FavoriteButtonContact {
     position: absolute; /* Positioned absolutely within the .profile-container */
     top: 2px; /* Adjust top position as needed */
     right: 10px; /* Adjust right position as needed */
@@ -235,17 +235,15 @@
     cursor: pointer; /* Optional: make it look clickable */
 }
 
-#FavoriteButton img.Favorite {
+#FavoriteButtonContact img.Favorite {
     transition: opacity 0.2s ease;
     width: 100%; /* Ensure the icon scales within the button */
     height: 100%; /* Ensure the icon scales within the button */
 }
 /* Remove the focus outline (black square) on button click */
-#FavoriteButton:focus {
+#FavoriteButtonContact:focus {
     outline: none;
 }
-
-
 
 
 #FavoriteButtonGroup {
@@ -263,7 +261,13 @@
     width: 100%; /* Ensure the icon scales within the button */
     height: 100%; /* Ensure the icon scales within the button */
 }
-
+/* Remove the focus outline (black square) on button click */
 #FavoriteButtonGroup:focus {
     outline: none;
 }
+
+
+
+
+
+

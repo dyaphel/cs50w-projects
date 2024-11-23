@@ -1,11 +1,11 @@
-{% extends "contacts/layout.html" %}
+{% extends "standard/layout.html" %}
 
 {% load static %}
 
 {% block title %}Contacts{% endblock %}
 
 {% block head %}
-<link href="{% static 'contacts/favorites.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/favorites.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -26,7 +26,7 @@
     <div class="profile-container" onclick="openContactDetails({{ contact.id }})">
         <input type="checkbox" class="checkbox" hidden  onchange="updateDeleteButton()">
 
-        <button id="FavoriteButton" onclick="toggleFavorite(this, {{ contact.id }})">
+        <button id="FavoriteButtonContact" onclick="toggleFavoriteContact(this, {{ contact.id }})">
             {% if contact.isFavorite %}
             <img src="{% static 'img/redFavorite.png' %}" data-favorite="true" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
             {% else %}
@@ -101,8 +101,8 @@
 {% endblock %}
 
 {% block script %}
-<script src="{% static  'js/contact_list.js' %}"></script>
-<script src="{% static  'js/group_list.js' %}"></script>
+<script src="{% static  'js/contacts/contact_list.js' %}"></script>
+<script src="{% static  'js/groups/group_list.js' %}"></script>
 <script src="{% static  'js/isFavorite.js' %}"></script>
 <script src="{% static  'js/favorite.js' %}"></script>
 {% endblock %}
