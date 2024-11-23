@@ -32,7 +32,7 @@ def index(request):
             'user_info': user_info
         })
     else:
-        return render(request, "login.html")
+        return render(request, "standard/login.html")
 
 
 
@@ -95,7 +95,6 @@ def add_contact(request):
             return redirect('contacts')
     else:
         form = ContactForm()
-
     return render(request, 'contacts/add_contact.html', {'form': form})
 
 @login_required
@@ -103,7 +102,6 @@ def delete_contacts(request):
     if request.method == "POST":
         data = json.loads(request.body)
         contact_ids = data.get("contacts", [])
-        
         # Delete contacts with IDs in contact_ids
         Contact.objects.filter(id__in=contact_ids).delete()
         return JsonResponse({"success": True})
@@ -125,12 +123,9 @@ def edit_contact(request, id):
         contact.email = data.get('email', contact.email)
         contact.phone_number_1 = data.get('phone1', contact.phone_number_1)
         contact.phone_number_2 = data.get('phone2', contact.phone_number_2)
-
         # Save the updated contact
         contact.save()
-
         return JsonResponse({'success': True})
-
     return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
 
 @login_required
@@ -140,7 +135,10 @@ def toggle_favorite_contact(request, contact_id):
         # Toggle is_favorite status
         contact.isFavorite = not contact.isFavorite
         contact.save()  # Save to ensure the update is persisted
-        return JsonResponse({"success": True, "is_favorite": contact.isFavorite})
+        return JsonResponse({
+            "success": True, 
+            "is_favorite": contact.isFavorite
+            })
     return JsonResponse({"success": False})
 
 
@@ -207,8 +205,6 @@ def toggle_favorite_group(request, group_id):
 
 
 
-
-
 def login_view(request):
     if request.method == "POST":
         # Prova a autenticare l'utente
@@ -221,11 +217,11 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
         else:
-            return render(request, "contacts/login.html", {
+            return render(request, "standard/login.html", {
                 "message": "Nickname e/o password non validi."
             })
     else:
-        return render(request, "login.html")
+        return render(request, "standard/login.html")
 
 
 def logout_view(request):
@@ -248,7 +244,7 @@ def register(request):
         
         # Assicurati che le password corrispondano
         if password != confirmation:
-            return render(request, "register.html", {
+            return render(request, "standard/register.html", {
                 "message": "Le password devono corrispondere."
             })
 
@@ -267,11 +263,11 @@ def register(request):
             )
             user.save()
         except IntegrityError:
-            return render(request, "register.html", {
+            return render(request, "standard/register.html", {
                 "message": "Nickname già in uso."
             })
         
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
-        return render(request, "register.html")
+        return render(request, "standard/register.html")
