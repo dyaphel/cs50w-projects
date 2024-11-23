@@ -26,7 +26,7 @@
     <div class="profile-container" onclick="openContactDetails({{ contact.id }})">
         <input type="checkbox" class="checkbox" hidden  onchange="updateDeleteButton()">
 
-        <button id="FavoriteButton" onclick="toggleFavoriteContact(this, {{ contact.id }})">
+        <button id="FavoriteButtonContact" onclick="toggleFavoriteContact(this, {{ contact.id }})">
             {% if contact.isFavorite %}
             <img src="{% static 'img/redFavorite.png' %}" data-favorite="true" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
             {% else %}

@@ -38,18 +38,19 @@ function toggleFavoriteContact(button, contactId) {
     });
 }
 
-function toggleFavoriteGroup(button, groupId) {
-    console.log(`Toggle called for Group ID: ${groupId}`); // Debugging log
 
+
+function toggleFavoriteGroup(button, groupId) {
     const img = button.querySelector("img");
     const whiteSrc = img.getAttribute("data-white-src");
     const redSrc = img.getAttribute("data-red-src");
 
-    const isFavorite = img.src.endsWith("whiteFavorite.png");
+    const currentSrc = img.src.split('/').pop(); // Extract the file name
+    const isFavorite = currentSrc === "whiteFavorite.png";
 
     img.src = isFavorite ? redSrc : whiteSrc;
 
-    fetch(`toggle_favorite_groups/${groupId}/`, {
+    fetch(`/toggle_favorite_groups/${groupId}/`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -64,7 +65,6 @@ function toggleFavoriteGroup(button, groupId) {
         return response.json();
     })
     .then(data => {
-        console.log(data);
         if (!data.success) {
             alert("Failed to update favorite status.");
         }
