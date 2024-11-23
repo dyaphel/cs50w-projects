@@ -5,7 +5,7 @@
 {% block title %}Contact{% endblock %}
 
 {% block head %}
-<link href="{% static 'contacts/contact_details.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/contact_details.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -25,7 +25,7 @@
         {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
     </div>
 
-    <button id="FavoriteButton"  onclick="toggleFavorite(this, {{ contact.id }})">
+    <button id="FavoriteButton"  onclick="toggleFavoriteContact(this, {{ contact.id }})">
         {% if contact.isFavorite %}
         <img src="{% static 'img/redFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
         {% else %}

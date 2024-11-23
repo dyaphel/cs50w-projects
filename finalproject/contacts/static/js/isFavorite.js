@@ -1,5 +1,5 @@
 
-function toggleFavorite(button, contactId) {
+function toggleFavoriteContact(button, contactId) {
     global = true; // Prevent toggling contact details
 
     const img = button.querySelector("img");
@@ -10,7 +10,7 @@ function toggleFavorite(button, contactId) {
     
     img.src = isFavorite ? redSrc : whiteSrc;
 
-    fetch(`/toggle_favorite_contact/${contactId}/`, {
+    fetch(`/toggle_favorite_contacts/${contactId}/`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -49,7 +49,7 @@ function toggleFavoriteGroup(button, groupId) {
 
     img.src = isFavorite ? redSrc : whiteSrc;
 
-    fetch(`/toggle_favorite/${groupId}/`, {
+    fetch(`toggle_favorite_groups/${groupId}/`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
