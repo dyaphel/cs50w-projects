@@ -10,7 +10,7 @@ function toggleFavorite(button, contactId) {
     
     img.src = isFavorite ? redSrc : whiteSrc;
 
-    fetch(`/toggle_favorite/${contactId}/`, {
+    fetch(`/toggle_favorite_contact/${contactId}/`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -49,7 +49,7 @@ function toggleFavoriteGroup(button, groupId) {
 
     img.src = isFavorite ? redSrc : whiteSrc;
 
-    fetch(`/toggle_favorite_groups/${groupId}/`, {
+    fetch(`/toggle_favorite/${groupId}/`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",

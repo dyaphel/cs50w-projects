@@ -32,7 +32,7 @@ def index(request):
             'user_info': user_info
         })
     else:
-        return render(request, "contacts/login.html")
+        return render(request, "login.html")
 
 
 
@@ -148,7 +148,7 @@ def toggle_favorite_contact(request, contact_id):
 def favorites(request):
     user_contacts = Contact.objects.filter(owner=request.user, isFavorite=True)
     groups = Group.objects.filter(isFavorite=True)
-    return render(request, 'contacts/favorites.html', {
+    return render(request, 'favorites.html', {
         'contacts': user_contacts,
         'groups': groups,
     })
@@ -156,7 +156,7 @@ def favorites(request):
 @login_required
 def groups(request):
     groups = Group.objects.filter(admins=request.user)
-    return render(request, 'contacts/groups.html', {
+    return render(request, 'groups/groups.html', {
         'groups': groups
     })
 
@@ -189,7 +189,7 @@ def add_group(request):
     
     # Pass the form and a list of the user's contacts to the template
     contacts = Contact.objects.filter(owner=request.user)
-    return render(request, 'contacts/add_group.html', 
+    return render(request, 'groups/add_group.html', 
                   {'form': form, 
                    'members': contacts})
 
@@ -197,16 +197,10 @@ def add_group(request):
 @login_required
 def toggle_favorite_group(request, group_id):
     if request.method == 'POST':
-        print(f"Received request to toggle favorite for Group ID: {group_id}")  # Debug log
-        try:
-            group = Group.objects.get(id=group_id)
-            group.isFavorite = not group.isFavorite
-            group.save()
-            return JsonResponse({"success": True, "is_favorite": group.isFavorite})
-        except Group.DoesNotExist:
-            print(f"Group ID {group_id} not found")  # Debug log
-            return JsonResponse({"success": False, "error": "Group not found"})
-    print("Invalid request method")  # Debug log
+        group = Group.objects.get(id=group_id)
+        group.isFavorite = not group.isFavorite
+        group.save()
+        return JsonResponse({"success": True, "is_favorite": group.isFavorite})
     return JsonResponse({"success": False, "error": "Invalid request method"})
 
 
@@ -231,7 +225,7 @@ def login_view(request):
                 "message": "Nickname e/o password non validi."
             })
     else:
-        return render(request, "contacts/login.html")
+        return render(request, "login.html")
 
 
 def logout_view(request):
@@ -254,7 +248,7 @@ def register(request):
         
         # Assicurati che le password corrispondano
         if password != confirmation:
-            return render(request, "contacts/register.html", {
+            return render(request, "register.html", {
                 "message": "Le password devono corrispondere."
             })
 
@@ -273,11 +267,11 @@ def register(request):
             )
             user.save()
         except IntegrityError:
-            return render(request, "contacts/register.html", {
+            return render(request, "register.html", {
                 "message": "Nickname già in uso."
             })
         
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
-        return render(request, "contacts/register.html")
+        return render(request, "register.html")
