@@ -241,7 +241,7 @@
 
 
 
-#FavoriteButton {
+#FavoriteButtonContact {
     position: absolute; /* Positioned absolutely within the .profile-container */
     top: 30px; /* Adjust vertical position within the profile container */
     right: 50px; /* Adjust horizontal position within the profile container */
@@ -253,7 +253,7 @@
     z-index: 1; /* Ensure it's above other elements within the profile container */
 }
 
-#FavoriteButton img.Favorite {
+#FavoriteButtonContact img.Favorite {
     transition: opacity 0.2s ease;
     width: 100%; /* Ensure the icon scales within the button */
     height: 100%; /* Ensure the icon scales within the button */
@@ -261,7 +261,7 @@
 }
 
 /* Remove the focus outline (black square) on button click */
-#FavoriteButton:focus {
+#FavoriteButtonContact:focus {
     outline: none;
 }
 

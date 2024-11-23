@@ -156,7 +156,7 @@
 }
 
 
-#FavoriteButton {
+#FavoriteButtonGroup {
     position: absolute; /* Positioned absolutely within the .profile-container */
     top: 2px; /* Adjust top position as needed */
     right: 10px; /* Adjust right position as needed */
@@ -166,13 +166,13 @@
     cursor: pointer; /* Optional: make it look clickable */
 }
 
-#FavoriteButton img.Favorite {
+#FavoriteButtonGroup img.Favorite {
     transition: opacity 0.2s ease;
     width: 100%; /* Ensure the icon scales within the button */
     height: 100%; /* Ensure the icon scales within the button */
 }
 /* Remove the focus outline (black square) on button click */
-#FavoriteButton:focus {
+#FavoriteButtonGroup:focus {
     outline: none;
 }
 
