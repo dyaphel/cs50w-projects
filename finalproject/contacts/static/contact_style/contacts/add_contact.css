@@ -1,31 +1,7 @@
 
-/* Form container styling */
 .form-container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
     border: 1px solid #bb3e5b;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    margin-top: 20px;
-    margin-bottom: 50px;
 }
 
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-}
-
-.form-group input, .form-group select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
 
 
