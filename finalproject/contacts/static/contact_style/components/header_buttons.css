@@ -40,7 +40,8 @@
     outline: none;
 }
 
-#saveButton[disabled] {
+#saveButton[disabled], #saveButtonContact[disabled]{
     opacity: 0.2; /* Makes the button look more opaque when disabled */
     pointer-events: none; /* Disables any interaction with the button */
 }
+
