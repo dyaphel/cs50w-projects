@@ -1,73 +1,7 @@
-/* Container for icons */
-.header-section {
-    display: flex;
-    justify-content: flex-end;
-    margin: 10px 20px;
-}
-
-/* Remove button styling */
-.profile-icons button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    margin-left: 10px;
-    margin-top: -20%;
-}
-
 /* Border for icon images only */
 .profile-icons .icon {
-    width: 50px;
-    height: 50px;
-    padding: 8px;
-    border: 2px solid #bb3e5b; /* Pastel blue border */
-    border-radius: 8px; /* Rounded corners */
-    transition: transform 0.2s ease;
+    border: 2px solid #bb833e; 
 }
-
-/* Hover effect for icon images */
-.profile-icons .icon:hover {
-    transform: scale(1.05);
-}
-
-#deleteButton[disabled] {
-    opacity: 0.2; /* Makes the button look more opaque when disabled */
-    pointer-events: none; /* Disables any interaction with the button */
-}
-
-/* Remove the focus outline (black square) on button click */
-.profile-icons button:focus {
-    outline: none;
-}
-
-.modal {
-    display: none; /* Nasconde il modal di default */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
-}
-
-.modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 350px;
-    text-align: center;
-}
-
-.modal-content button {
-    margin: 10px;
-    margin-top: -2px;
-}
-
 
 
 .contact-details {
