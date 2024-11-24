@@ -9,21 +9,7 @@
     margin-right: -10px;
 }
 
-.profile-picture {
-    width: 30%;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #933ebb;
-    margin-right: 12%;
-    margin-left: 12%;
-    text-transform: uppercase;
-    border-radius: 8px;
-}
+
 
 .details {
     padding: 10px;

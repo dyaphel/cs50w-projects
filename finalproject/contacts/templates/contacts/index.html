@@ -7,6 +7,7 @@
 {%block head%}
 <link href="{% static 'contact_style/contacts/index.css' %}" rel="stylesheet">
 <link href="{% static 'contact_style/components/header_buttons.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/profile_pictures.css' %}" rel="stylesheet">
 {%endblock%}
 
 {% block body %}
@@ -20,7 +21,7 @@
 </div>
 
 <div class="profile-container">
-    <div class="profile-picture">
+    <div class="profile-picture-personal">
         {{ user_info.name.0|upper }}{{ user_info.surname.0|upper }}
     </div>
 

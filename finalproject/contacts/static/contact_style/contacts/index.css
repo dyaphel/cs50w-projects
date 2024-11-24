@@ -21,22 +21,7 @@
 }
 
 
-/* Profile picture with initials */
-.profile-picture {
-    width: 80px;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #3870ac; 
-    border-radius: 50%;
-    margin-right: 12%;
-    margin-left: 10%;
-    text-transform: uppercase;
-}
+
 
 /* User info section */
 .user-info {

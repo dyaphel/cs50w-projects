@@ -10,6 +10,7 @@
 <link href="{% static 'contact_style/components/list_card.css' %}" rel="stylesheet">
 <link href="{% static 'contact_style/components/modal.css' %}" rel="stylesheet">
 <link href="{% static 'contact_style/components/header_buttons.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/profile_pictures.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -38,7 +39,7 @@
             {% endif %}
         </button>
         
-        <div class="profile-picture">
+        <div class="profile-picture-contact-list">
             {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
         </div>
         <div class="name-row">
@@ -77,7 +78,7 @@
             
             
             <!-- Group Profile Picture -->
-            <div class="picture-group">
+            <div class="profile-picture-group-list ">
                 {{ group.name|upper }}
             </div>
 

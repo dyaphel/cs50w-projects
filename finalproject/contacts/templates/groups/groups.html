@@ -10,6 +10,7 @@
 <link href="{% static 'contact_style/components/list_card.css' %}" rel="stylesheet">
 <link href="{% static 'contact_style/components/modal.css' %}" rel="stylesheet">
 <link href="{% static 'contact_style/components/header_buttons.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/profile_pictures.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -52,7 +53,7 @@
             
             
             <!-- Group Profile Picture -->
-            <div class="profile-picture">
+            <div class="profile-picture-group-list">
                 {{ group.name|upper }}
             </div>
 
