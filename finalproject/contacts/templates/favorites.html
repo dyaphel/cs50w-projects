@@ -5,6 +5,7 @@
 {% block title %}Contacts{% endblock %}
 
 {% block head %}
+{% csrf_token %}
 <link href="{% static 'contact_style/favorites.css' %}" rel="stylesheet">
 <link href="{% static 'contact_style/components/favoritebutton.css' %}" rel="stylesheet">
 <link href="{% static 'contact_style/components/list_card.css' %}" rel="stylesheet">
@@ -14,22 +15,12 @@
 {% endblock %}
 
 {% block body %}
-<div class="header-section">
-    <div class="profile-icons">
-        <button id="deleteButton" disabled onclick="deleteSelectedContacts()">
-            <img src="{% static 'img/delete.png' %} " class="icon" alt="Delete">
-            {% csrf_token %}
-        </button>
-        <button id="selectButton" onclick="toggleCheckboxes()">
-            <img src="{% static 'img/select.png' %}" class="icon" alt="Select">
-        </button>
-    </div>
-</div>
+
 
 {% for contact in contacts %}
 <div class="profile-wrapper" data-contact-id="{{ contact.id }}">
+
     <div class="profile-container" onclick="openContactDetails({{ contact.id }})">
-        <input type="checkbox" class="checkbox" hidden  onchange="updateDeleteButton()">
 
         <button id="FavoriteButtonContact" onclick="toggleFavoriteContact(this, {{ contact.id }})">
             {% if contact.isFavorite %}
@@ -65,8 +56,6 @@
 {% for group in groups %}
     <div class="profile-wrapper">
         <div class="profile-container">
-            <!-- Checkbox with group ID -->
-            <input type="checkbox" class="checkbox" hidden data-group-id="{{ group.id }}" onchange="updateDeleteButton()">
 
             <button id="FavoriteButtonGroup" onclick="toggleFavoriteGroup(this,{{ group.id }})">
                 {% if group.isFavorite %}

@@ -41,7 +41,7 @@
 {% for contact in contacts %}
 <div class="profile-wrapper">
     <div class="profile-container" onclick="openContactDetails({{ contact.id }})">
-        <input type="checkbox" class="checkbox" hidden  data-contact-id="{{ contact.id }}" onchange="updateDeleteButton()">
+        <input type="checkbox" class="checkbox" hidden data-contact-id="{{ contact.id }}" onchange="updateDeleteButton()">
 
         <button id="FavoriteButtonContact" onclick="toggleFavoriteContact(this, {{ contact.id }})">
             {% if contact.isFavorite %}
