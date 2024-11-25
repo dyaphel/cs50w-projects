@@ -1,0 +1,41 @@
+
+#FavoriteButtonContact {
+    position: absolute; /* Positioned absolutely within the .profile-container */
+    top: 2px; /* Adjust top position as needed */
+    right: 10px; /* Adjust right position as needed */
+    width: 40px; /* Adjust size as needed */
+    background: none; /* Remove button background */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Optional: make it look clickable */
+}
+
+#FavoriteButtonContact img.Favorite {
+    transition: opacity 0.2s ease;
+    width: 100%; /* Ensure the icon scales within the button */
+    height: 100%; /* Ensure the icon scales within the button */
+}
+/* Remove the focus outline (black square) on button click */
+#FavoriteButtonContact:focus {
+    outline: none;
+}
+
+
+#FavoriteButtonGroup {
+    position: absolute; /* Positioned absolutely within the .profile-container */
+    top: 2px; /* Adjust top position as needed */
+    right: 10px; /* Adjust right position as needed */
+    width: 40px; /* Adjust size as needed */
+    background: none; /* Remove button background */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Optional: make it look clickable */
+}
+
+#FavoriteButtonGroup img.Favorite {
+    transition: opacity 0.2s ease;
+    width: 100%; /* Ensure the icon scales within the button */
+    height: 100%; /* Ensure the icon scales within the button */
+}
+/* Remove the focus outline (black square) on button click */
+#FavoriteButtonGroup:focus {
+    outline: none;
+}

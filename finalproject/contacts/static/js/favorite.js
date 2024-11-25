@@ -19,5 +19,5 @@ document.addEventListener("DOMContentLoaded", function () {
             // Remove the element from the DOM
             profileWrapper.remove();
         });
-    });
+    });    
 });

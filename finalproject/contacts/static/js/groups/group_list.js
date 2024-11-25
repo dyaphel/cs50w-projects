@@ -29,12 +29,6 @@ function updateDeleteButton() {
     deleteButton.disabled = !Array.from(checkboxes).some(checkbox => checkbox.checked);
 }
 
-function updateDeleteButton() {
-    const checkboxes = document.querySelectorAll('.checkbox');
-    const deleteButton = document.getElementById('deleteButton');
-    // Enable delete button if at least one checkbox is checked
-    deleteButton.disabled = !Array.from(checkboxes).some(checkbox => checkbox.checked);
-}
 
 function deleteSelectedGroup() {
     // Show the confirmation modal

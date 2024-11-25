@@ -1,44 +1,7 @@
 
-/* Container for icons */
-.header-section {
-    display: flex;
-    justify-content: flex-end;
-    margin: 10px 20px;
-}
-
-/* Remove button styling */
-.profile-icons button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    margin-left: 10px;
-    margin-top: -20%;
-}
-
 /* Border for icon images only */
 .profile-icons .icon {
-    width: 50px;
-    height: 50px;
-    padding: 8px;
-    border: 2px solid #bb3e5b; /* Pastel blue border */
-    border-radius: 8px; /* Rounded corners */
-    transition: transform 0.2s ease;
-}
-
-/* Hover effect for icon images */
-.profile-icons .icon:hover {
-    transform: scale(1.05);
-}
-
-#saveButtonContact[disabled] {
-    opacity: 0.2; /* Makes the button look more opaque when disabled */
-    pointer-events: none; /* Disables any interaction with the button */
-}
-
-/* Remove the focus outline (black square) on button click */
-.profile-icons button:focus {
-    outline: none;
+    border: 2px solid #bb3e5b; 
 }
 
 /* Profile container */
@@ -58,26 +21,6 @@
     transition: box-shadow 0.3s ease;
     position: relative;
 }
-
-/* Profile picture with initials */
-.profile-picture {
-    width: 95px;
-    height: 95px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #bb3e5b;
-    border-radius: 50%;
-    margin-top: 5%;
-    margin-right: 10%;
-    margin-left: 2%;
-    text-transform: uppercase;
-    flex-shrink: 0; /* Prevent the profile picture from shrinking */
-}
-
 /* User info section */
 .user-info {
     display: flex;

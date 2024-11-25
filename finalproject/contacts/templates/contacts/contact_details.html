@@ -6,6 +6,8 @@
 
 {% block head %}
 <link href="{% static 'contact_style/contacts/contact_details.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/header_buttons.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/profile_pictures.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -21,7 +23,7 @@
 
 <div class="profile-container" data-contact-id="{{ contact.id }}">
 
-    <div class="profile-picture">
+    <div class="profile-picture-contact-details">
         {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
     </div>
 

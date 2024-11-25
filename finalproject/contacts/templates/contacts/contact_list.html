@@ -6,6 +6,11 @@
 
 {% block head %}
 <link href="{% static 'contact_style/contacts/contactlist.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/favoritebutton.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/list_card.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/modal.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/header_buttons.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/profile_pictures.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -36,7 +41,7 @@
 {% for contact in contacts %}
 <div class="profile-wrapper">
     <div class="profile-container" onclick="openContactDetails({{ contact.id }})">
-        <input type="checkbox" class="checkbox" hidden  data-contact-id="{{ contact.id }}" onchange="updateDeleteButton()">
+        <input type="checkbox" class="checkbox" hidden data-contact-id="{{ contact.id }}" onchange="updateDeleteButton()">
 
         <button id="FavoriteButtonContact" onclick="toggleFavoriteContact(this, {{ contact.id }})">
             {% if contact.isFavorite %}
@@ -46,7 +51,7 @@
             {% endif %}
         </button>
         
-        <div class="profile-picture">
+        <div class="profile-picture-contact-list">
             {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
         </div>
         <div class="name-row">

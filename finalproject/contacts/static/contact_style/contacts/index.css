@@ -1,44 +1,7 @@
-
-/* Container for icons */
-.header-section {
-    display: flex;
-    justify-content: flex-end;
-    margin: 10px 20px;
-}
-
-/* Remove button styling */
-.profile-icons button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    margin-left: 10px;
-    margin-top: -20%;
-}
-
 /* Border for icon images only */
 .profile-icons .icon {
-    width: 50px;
-    height: 50px;
-    padding: 8px;
     border: 2px solid #3870ac; /* Pastel blue border */
-    border-radius: 8px; /* Rounded corners */
-    transition: transform 0.2s ease;
-}
 
-/* Hover effect for icon images */
-.profile-icons .icon:hover {
-    transform: scale(1.05);
-}
-
-#saveButton[disabled] {
-    opacity: 0.2; /* Makes the button look more opaque when disabled */
-    pointer-events: none; /* Disables any interaction with the button */
-}
-
-/* Remove the focus outline (black square) on button click */
-.profile-icons button:focus {
-    outline: none;
 }
 
 /* Profile container */
@@ -58,22 +21,7 @@
 }
 
 
-/* Profile picture with initials */
-.profile-picture {
-    width: 80px;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #3870ac; 
-    border-radius: 50%;
-    margin-right: 12%;
-    margin-left: 10%;
-    text-transform: uppercase;
-}
+
 
 /* User info section */
 .user-info {
