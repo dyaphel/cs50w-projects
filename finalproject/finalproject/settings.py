@@ -24,7 +24,6 @@ SECRET_KEY = 'django-insecure-!nsgrwweat%is#ih##8r0p=e=sti45(#vgnep^z&t1!7az@5e%
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
 
@@ -51,6 +50,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'finalproject.urls'
+
 
 TEMPLATES = [
     {

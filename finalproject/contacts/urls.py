@@ -22,8 +22,6 @@ urlpatterns = [
     path("add_group",views.add_group, name="add_group"),
     path('toggle_favorite_groups/<int:group_id>/', views.toggle_favorite_group, name='toggle_favorite_group'),
 
-
-
     path("login", views.login_view, name="login"),
     path("logout", views.logout_view, name="logout"),
     path("register", views.register, name="register"),
