@@ -78,7 +78,10 @@ textarea {
     font-weight: 600;
     margin-top: -20px;
     margin-bottom: -15px;
+}
 
+#pinned-message{
+    margin-left: -20px;
 }
 
 /* Wrapper for individual profiles */
@@ -124,6 +127,7 @@ textarea {
     flex-direction: column;
     gap: 5px;
     flex-grow: 1;
+
 }
 
 /* Main name info */
