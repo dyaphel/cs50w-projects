@@ -212,9 +212,12 @@ def toggle_favorite_group(request, group_id):
 def group_detail(request, id):
     group = Group.objects.get(id=id)
     memebers = group.members.all()
+    admins = group.admins.all()
+    print("Admins:", admins)
     return render(request, 'groups/group_details.html', {
         'group': group,
-        'members':memebers
+        'members':memebers,
+        'admins':admins
     })
 
 

@@ -40,8 +40,10 @@
     <div class="group-info">
 
         <div class="name-row">
-                <span class="label">Name:</span> 
-                <span contenteditable="false">{{ group.name }}</span>
+                <span class="label">Admin:</span> 
+                {% for admin in admins %}
+                <span contenteditable="false">{{ admin.username }}</span>
+                {%endfor%}
             </div>
         
         <div  class="under-pictures" >
