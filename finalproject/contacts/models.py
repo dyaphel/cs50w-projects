@@ -13,13 +13,13 @@ class User(AbstractUser):
 
 class Contact(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=10)
     birthday = models.DateField(null=True, blank=True)
-    surname = models.CharField(max_length=255)
-    nickname = models.CharField(max_length=255, blank=True)
+    surname = models.CharField(max_length=10)
+    nickname = models.CharField(max_length=20, blank=True)
     email = models.EmailField(blank=True, null=True)
-    company = models.CharField(max_length=255, blank=True, null=True)
-    job_position = models.CharField(max_length=255, blank=True, null=True)
+    company = models.CharField(max_length=20, blank=True, null=True)
+    job_position = models.CharField(max_length=20, blank=True, null=True)
     phone_number_1 = models.CharField(max_length=15)
     phone_number_2 = models.CharField(max_length=15, blank=True, null=True)
     isFavorite = models.BooleanField(default=False)
@@ -28,7 +28,7 @@ class Contact(models.Model):
         return f"{self.name} {self.surname}"
 
 class Group(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=10)
     description = models.TextField(blank=True, null=True)
     admins = models.ManyToManyField(User)
     members = models.ManyToManyField(Contact)
