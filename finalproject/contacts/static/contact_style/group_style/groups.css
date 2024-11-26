@@ -61,6 +61,7 @@ textarea {
     font-weight: 400; /* Keep text weight normal */
     color: #353535; /* Text color */
     width: 100%; /* Full width of the container */
+    cursor: default;
 }
 
 /* Specific Styling for Description Textarea */

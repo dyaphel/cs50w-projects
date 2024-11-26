@@ -46,6 +46,7 @@ textarea {
     font-weight: 400; /* Keep text weight normal */
     color: #000000; /* Text color */
     width: 100%; /* Full width of the container */
+    cursor: default;
 }
     
 
