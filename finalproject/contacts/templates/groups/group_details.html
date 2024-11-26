@@ -47,12 +47,12 @@
         <div  class="under-pictures" >
             <div class="description-row">
                 <span class="label">Description:</span> 
-                <span contenteditable="false">{{ group.description }}</span>
+                <textarea contenteditable="false">{{ group.description }}</textarea>
             </div>
             
             <div class="pinned-message-row">
-                <span class="label">Pinned message:</span> 
-                <span id="nickname" contenteditable="false">{{ group.pinned_message }}</span>
+                <span class="label">Message:</span> 
+                <textarea id="pinned-message" contenteditable="false">{{ group.pinned_message }}</textarea>
             </div>
         </div>
         
