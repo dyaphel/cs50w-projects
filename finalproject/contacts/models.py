@@ -16,7 +16,7 @@ class Contact(models.Model):
     name = models.CharField(max_length=10)
     birthday = models.DateField(null=True, blank=True)
     surname = models.CharField(max_length=10)
-    nickname = models.CharField(max_length=20, blank=True)
+    nickname = models.CharField(max_length=20, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     company = models.CharField(max_length=20, blank=True, null=True)
     job_position = models.CharField(max_length=20, blank=True, null=True)

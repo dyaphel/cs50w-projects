@@ -35,7 +35,7 @@ function toggleCheckboxes() {
 
 function updateDeleteButton() {
     const checkboxes = document.querySelectorAll('.checkbox');
-    const deleteButton = document.getElementById('deleteButton');
+    const deleteButton = document.getElementById('deleteButtonGroup');
     // Enable delete button if at least one checkbox is checked
     deleteButton.disabled = !Array.from(checkboxes).some(checkbox => checkbox.checked);
 }

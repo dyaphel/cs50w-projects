@@ -30,7 +30,7 @@
     transform: scale(1.05);
 }
 
-#deleteButton[disabled] {
+#deleteButtonContact[disabled], #deleteButtonGroup[disabled] {
     opacity: 0.2; /* Makes the button look more opaque when disabled */
     pointer-events: none; /* Disables any interaction with the button */
 }
@@ -40,7 +40,7 @@
     outline: none;
 }
 
-#saveButton[disabled], #saveButtonContact[disabled]{
+#saveButton[disabled], #saveButtonContact[disabled], #saveButtonGroup[disabled]{
     opacity: 0.2; /* Makes the button look more opaque when disabled */
     pointer-events: none; /* Disables any interaction with the button */
 }

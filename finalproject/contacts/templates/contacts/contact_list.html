@@ -16,14 +16,14 @@
 {% block body %}
 <div class="header-section">
     <div class="profile-icons">
-        <button id="deleteButton" disabled onclick="deleteSelectedContacts()">
+        <button id="deleteButtonContact" disabled onclick="deleteSelectedContacts()">
             <img src="{% static 'img/delete.png' %} " class="icon" alt="Delete">
             {% csrf_token %}
         </button>
-        <button id="selectButton" onclick="toggleCheckboxes()">
+        <button id="selectButtonContact" onclick="toggleCheckboxes()">
             <img src="{% static 'img/select.png' %}" class="icon" alt="Select">
         </button>
-        <button id="addButton" onclick="window.location.href='{% url 'add_contact' %}'">
+        <button id="addButtonContact" onclick="window.location.href='{% url 'add_contact' %}'">
             <img src="{% static 'img/add.png' %}" class="icon" alt="Add">
         </button>
     </div>

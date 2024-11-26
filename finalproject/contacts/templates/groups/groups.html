@@ -16,11 +16,11 @@
 {% block body %}
 <div class="header-section">
     <div class="profile-icons">
-        <button id="deleteButton" disabled onclick="deleteSelectedGroup()">
+        <button id="deleteButtonGroup" disabled onclick="deleteSelectedGroup()">
             <img src="{% static 'img/delete.png' %}" class="icon" alt="Delete">
             {% csrf_token %}
         </button>
-        <button id="selectButton" onclick="toggleCheckboxes()">
+        <button id="selectButtonGroup" onclick="toggleCheckboxes()">
             <img src="{% static 'img/select.png' %}" class="icon" alt="Select">
         </button>
         <button id="addButton" onclick="window.location.href='{% url 'add_group' %}'">
