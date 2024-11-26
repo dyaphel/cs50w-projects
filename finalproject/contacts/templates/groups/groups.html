@@ -62,7 +62,7 @@
                     {{ group.name|upper }}
                     <span class="member-count">({{ group.members.count }} Members)</span>
                 </span>
-                <textarea id="description">{{ group.description }}</textarea>
+                <textarea id="description" readonly >{{ group.description }}</textarea>
             </div>
         </div>
 
@@ -70,7 +70,7 @@
         <div class="profile-footer" onclick="toggleGroupDetails(this)">
             <div class="details" style="display: none;">
                 <span class="label">Message:</span>
-                <textarea class="groupmessage">{{ group.pinned_message }}</textarea>
+                <textarea class="groupmessage" readonly>{{ group.pinned_message }}</textarea>
             </div>
             <span class="arrow">&#9660;</span>
         </div>
