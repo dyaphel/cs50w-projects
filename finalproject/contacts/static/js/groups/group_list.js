@@ -1,9 +1,10 @@
-let global = false
+let groupglobal = false
 
 function toggleGroupDetails(element) {
     // Toggle the expanded class on the profile footer
     const footer = element;
     const details = footer.querySelector('.details');
+    console.log("Toggling details:", details);
 
     if (details.style.display === "none" || details.style.display === "") {
         details.style.display = "block"; // Show the contact details
@@ -15,14 +16,15 @@ function toggleGroupDetails(element) {
 }
 
 function openGroupDetails(groupId) {
+    console.log("Group ID:", groupId);
     console.log("Global state before opening group:", global);
-    if (global) return; 
+    if (groupglobal) return; 
     window.location.href = `/group/${groupId}/`; // Assumes URL pattern is '/contact/<id>/'
  }
 
 
 function toggleCheckboxes() {
-    global = !global; 
+    groupglobal = !groupglobal; 
     const checkboxes = document.querySelectorAll('.checkbox');
     checkboxes.forEach(checkbox => {
       checkbox.hidden = !checkbox.hidden;
