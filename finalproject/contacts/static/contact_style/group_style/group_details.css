@@ -1,0 +1,158 @@
+.profile-icons .icon {
+    border: 2px solid #933ebb; 
+}
+
+.profile-container {
+    border: 1px solid #933ebb;
+    display: flex;
+    align-items: flex-start;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 90%;
+    height: auto;
+    max-width: 700px;
+    margin: 5% auto;
+    margin-top: 15px;
+    transition: box-shadow 0.3s ease;
+    position: relative;
+}
+
+.group-info {
+    display: flex;
+    flex-direction: column;
+    color: #000000;
+}
+
+.label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #933ebb;
+}
+
+.under-pictures{
+    margin-top: 20px;
+    margin-left: -82%;
+}
+
+.name-row {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: -5%;
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.description-row {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+
+.pinned-message-row {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 2px;
+}
+
+/* Wrapper for individual profiles */
+.profile-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto; /* Centered in the container */
+    
+}
+
+.profile-container-member {
+    display: flex;
+    justify-content: center;
+    margin-left: -112%;
+    width: 150%;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 20px; /* Space between items */
+}
+
+.profile-picture-member {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #bb3e5b;
+    border-radius: 50%;
+    text-transform: uppercase;
+}
+
+
+/* Name row container */
+.memeber-name-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-grow: 1;
+}
+
+/* Main name info */
+.main-info {
+    display: flex;
+    gap: 40px; /* Space between name and surname */
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 40px;
+    color: #353535;
+}
+
+/* Smaller font for nickname and phone */
+.memeber-sub-info {
+    font-size: 14px;
+    color: #555;
+    gap: 30px; 
+    display: flex;
+    margin-left: 40px;
+}
+
+/* Individual text styling */
+.nickname {
+    font-weight: 500;
+}
+
+.phone {
+    font-weight: 500;
+}
+
+
+#FavoriteButtonGroup {
+    position: absolute; /* Positioned absolutely within the .profile-container */
+    top: 30px; /* Adjust vertical position within the profile container */
+    right: 50px; /* Adjust horizontal position within the profile container */
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Ensure button has height for better alignment */
+    background: none; /* Remove button background */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Make it look clickable */
+    z-index: 1; /* Ensure it's above other elements within the profile container */
+}
+
+#FavoriteButtonGroup img.Favorite {
+    transition: opacity 0.2s ease;
+    width: 100%; /* Ensure the icon scales within the button */
+    height: 100%; /* Ensure the icon scales within the button */
+    object-fit: contain; /* Ensures the image scales without distortion */
+}
+
+/* Remove the focus outline (black square) on button click */
+#FavoriteButtonGroup:focus {
+    outline: none;
+}

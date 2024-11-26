@@ -39,8 +39,7 @@
 
 {% for group in groups %}
     <div class="profile-wrapper">
-        <div class="profile-container">
-            <!-- Checkbox with group ID -->
+        <div class="profile-container" onclick="openGroupDetails({{ group.id }})">
             <input type="checkbox" class="checkbox" hidden data-group-id="{{ group.id }}" onchange="updateDeleteButton()">
 
             <button id="FavoriteButtonGroup" onclick="toggleFavoriteGroup(this,{{group.id}})">

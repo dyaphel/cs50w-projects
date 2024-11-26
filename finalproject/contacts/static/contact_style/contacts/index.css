@@ -4,12 +4,13 @@
 
 }
 
+
 /* Profile container */
 .profile-container {
     display: flex;
     align-items: flex-start;
     background-color: #fff;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #3870ac;
     border-radius: 10px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;

@@ -1,3 +1,5 @@
+let global = false
+
 function toggleGroupDetails(element) {
     // Toggle the expanded class on the profile footer
     const footer = element;
@@ -12,8 +14,15 @@ function toggleGroupDetails(element) {
     }
 }
 
+function openGroupDetails(groupId) {
+    console.log("Global state before opening group:", global);
+    if (global) return; 
+    window.location.href = `/group/${groupId}/`; // Assumes URL pattern is '/contact/<id>/'
+ }
+
 
 function toggleCheckboxes() {
+    global = !global; 
     const checkboxes = document.querySelectorAll('.checkbox');
     checkboxes.forEach(checkbox => {
       checkbox.hidden = !checkbox.hidden;
@@ -31,7 +40,6 @@ function updateDeleteButton() {
 
 
 function deleteSelectedGroup() {
-    // Show the confirmation modal
     document.getElementById('confirmModal').style.display = 'block';
 }
 
@@ -41,7 +49,6 @@ function confirmDelete() {
     document.querySelectorAll('.checkbox:checked').forEach(checkbox => {
         selectedGroups.push(checkbox.getAttribute('data-group-id')); // Collect group IDs
     });
-
     if (selectedGroups.length > 0) {
 
         fetch("delete_groups", {

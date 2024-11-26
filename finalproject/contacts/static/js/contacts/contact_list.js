@@ -37,7 +37,6 @@ function updateDeleteButton() {
 }
 
 function deleteSelectedContacts() {
-    // Mostra la finestra di conferma
     document.getElementById('confirmModal').style.display = 'block';
 }
 

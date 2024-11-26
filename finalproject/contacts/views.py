@@ -95,7 +95,10 @@ def add_contact(request):
             return redirect('contacts')
     else:
         form = ContactForm()
-    return render(request, 'contacts/add_contact.html', {'form': form})
+    return render(request, 'contacts/add_contact.html', {
+        'form': form
+        })
+
 
 @login_required
 def delete_contacts(request):
@@ -127,6 +130,7 @@ def edit_contact(request, id):
         contact.save()
         return JsonResponse({'success': True})
     return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
+
 
 @login_required
 def toggle_favorite_contact(request, contact_id):
@@ -172,6 +176,7 @@ def delete_groups(request):
             return JsonResponse({"success": False, "error": str(e)})
     return JsonResponse({"success": False, "error": "Invalid request method"})
 
+
 @login_required
 def add_group(request):
     if request.method == 'POST':
@@ -187,9 +192,10 @@ def add_group(request):
     
     # Pass the form and a list of the user's contacts to the template
     contacts = Contact.objects.filter(owner=request.user)
-    return render(request, 'groups/add_group.html', 
-                  {'form': form, 
-                   'members': contacts})
+    return render(request, 'groups/add_group.html', {
+        'form': form, 
+        'members': contacts
+        })
 
 
 @login_required
@@ -200,6 +206,16 @@ def toggle_favorite_group(request, group_id):
         group.save()
         return JsonResponse({"success": True, "is_favorite": group.isFavorite})
     return JsonResponse({"success": False, "error": "Invalid request method"})
+
+
+@login_required
+def group_detail(request, id):
+    group = Group.objects.get(id=id)
+    memebers = group.members.all()
+    return render(request, 'groups/group_details.html', {
+        'group': group,
+        'members':memebers
+    })
 
 
 

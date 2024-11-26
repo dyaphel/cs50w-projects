@@ -1,0 +1,90 @@
+{% extends "standard/layout.html" %}
+
+{% load static %}
+
+{% block title %}Contact{% endblock %}
+
+{% block head %}
+<link href="{% static 'contact_style/group_style/group_details.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/header_buttons.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/profile_pictures.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/add_card.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+
+<div class="header-section">
+    <div class="profile-icons">
+        <button id="saveButton" disabled="true"><img src="{% static 'img/save.png' %}" class="icon" alt="Save">
+            {% csrf_token %}
+        </button>
+        <button id="editButton"><img src="{% static 'img/edit.png' %}" class="icon" alt="Edit">
+        </button>
+    </div>
+</div>
+
+<div class="profile-container" data-contact-id="{{ group.id }}">
+    <div class="profile-picture-group-list">
+        {{ group.name|upper }}
+    </div>
+
+    <button id="FavoriteButtonGroup"  onclick="toggleFavoriteGroup(this, {{ group.id }})">
+        {% if group.isFavorite %}
+        <img src="{% static 'img/redFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+        {% else %}
+        <img src="{% static 'img/whiteFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+        {% endif %}
+    </button>  
+
+    <div class="group-info">
+
+        <div class="name-row">
+                <span class="label">Name:</span> 
+                <span contenteditable="false">{{ group.name }}</span>
+            </div>
+        
+        <div  class="under-pictures" >
+            <div class="description-row">
+                <span class="label">Description:</span> 
+                <span contenteditable="false">{{ group.description }}</span>
+            </div>
+            
+            <div class="pinned-message-row">
+                <span class="label">Pinned message:</span> 
+                <span id="nickname" contenteditable="false">{{ group.pinned_message }}</span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            {% for contact in members %}
+            <div class="profile-wrapper">
+                <div class="profile-container-member">
+                    <div class="profile-picture-member">
+                        {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
+                    </div>
+                    
+                    <!-- Name and Details -->
+                    <div class="memeber-name-row">
+                        <div class="main-info">
+                            <span class="name">{{ contact.name }}</span>
+                            <span class="surname">{{ contact.surname }}</span>
+                        </div>
+                        <div class="memeber-sub-info">
+                            <span class="nickname">{{ contact.nickname }}</span>
+                            <span class="phone">{{ contact.phone_number_1 }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/contacts/contact_details.js' %}"></script>
+<script src="{% static 'js/isFavorite.js' %}"></script>
+{% endblock %}
