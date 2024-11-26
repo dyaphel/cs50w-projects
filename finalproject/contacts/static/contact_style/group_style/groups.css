@@ -65,6 +65,7 @@ textarea {
 
 /* Specific Styling for Description Textarea */
 #description {
+    margin-bottom: -10%;
     font-size: 18px;
     font-weight: 400;
     color: #353535;
