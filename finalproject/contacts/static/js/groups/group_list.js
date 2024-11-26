@@ -17,7 +17,7 @@ function toggleGroupDetails(element) {
 
 function openGroupDetails(groupId) {
     console.log("Group ID:", groupId);
-    console.log("Global state before opening group:", global);
+    console.log("Global state before opening group:", groupglobal);
     if (groupglobal) return; 
     window.location.href = `/group/${groupId}/`; // Assumes URL pattern is '/contact/<id>/'
  }
