@@ -83,6 +83,7 @@
 
 /* Group Description Styling */
 #description {
+    margin-bottom: -10%;
     font-size: 18px;
     font-weight: 400;
     color: #353535;
@@ -91,6 +92,16 @@
     margin-top: 5px; /* Space between name and description */
 }
 
+textarea {
+    border: none; /* Remove the border */
+    outline: none; /* Remove the focus outline */
+    resize: none; /* Disable resizing */
+    background-color: transparent; /* Match background to parent */
+    font-size: 18px; /* Match font size to surrounding text */
+    font-weight: 400; /* Keep text weight normal */
+    color: #353535; /* Text color */
+    width: 100%; /* Full width of the container */
+}
 
 
 
