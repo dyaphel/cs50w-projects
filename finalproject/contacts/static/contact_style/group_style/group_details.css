@@ -217,8 +217,9 @@ textarea {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px 20px; /* Adjust padding */
+    padding: 10px 20px;
     width: 120%;
+    height: auto;
     transition: box-shadow 0.3s ease;
     margin-left: 50px;
 }
@@ -227,6 +228,7 @@ textarea {
     border: 1px solid #933ebb;
     padding: 5px;
     margin-top: 10px;
+    margin-bottom: 10px;
     width: 150px; /* Let the input take up the remaining space */
     border-radius: 10px; /* Match input's border radius */
     box-sizing: border-box; /* Ensure padding doesn't affect width */
