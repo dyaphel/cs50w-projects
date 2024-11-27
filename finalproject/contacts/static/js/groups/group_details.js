@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const profilePicture = document.querySelector(".profile-picture-group-list");
     const nameContainer = document.querySelector(".group-name-container");
     const nameInput = document.querySelector("#group-name");
+    const admin = document.querySelector('.name-row')
 
     // Retrieve contact ID from the data attribute
     const groupContainer = document.querySelector('.profile-container');
@@ -17,6 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
         nameContainer.style.display = 'block';  // Show name input
         favorite.disabled = true;
         favorite.style.display = 'none';
+        admin.disabled = true;
+        admin.style.display = 'none';
         profilePicture.style.display = 'none';  // Hide profile picture
         saveButtonGroup.disabled = false;
         groupInfo.classList.add("edit-mode");
@@ -40,7 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
         favorite.style.display = 'block';
         profilePicture.style.display = 'block';  // Show profile picture again
         nameContainer.style.display = 'none';  // Hide name input again
-
+        admin.disabled = false;
+        admin.style.display = 'block';
         saveButtonGroup.disabled = true;
         groupInfo.classList.remove("edit-mode");
         disableTextAreas();

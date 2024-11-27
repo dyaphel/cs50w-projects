@@ -29,9 +29,6 @@
     font-size: 20px;
     font-weight: 600;
     color: #933ebb;
-    font-size: 20px;
-    font-weight: 600;
-    color: #933ebb;
     width: 120px; /* Set a fixed width to align all labels */
     margin-right: 10px; /* Add space between the label and textarea */
 
@@ -186,41 +183,51 @@ textarea {
 }
 
 
-.edit-mode .name-row{
-    margin-left: 20%;
-}
+
 
 .edit-mode .under-pictures{
-    margin-top: 20%;
+    margin-top: 25%;
+    margin-bottom: 5%;
+
+}
+.edit-mode .description-row, 
+.edit-mode .pinned-message-row{
+    margin-top: 5%;
+
 }
 
-
-
+.edit-mode textarea{
+    border: 1px solid #933ebb; /* Remove the border */
+    background-color: transparent; /* Match background to parent */
+    font-size: 18px; /* Match font size to surrounding text */
+    font-weight: 400; /* Keep text weight normal */
+    color: #000000; /* Text color */
+    width: 50%; /* Full width of the container */
+    cursor: default;
+    border-radius: 10px;
+    height: auto;
+    resize: vertical;
+}
 
 .group-name-container {
-    border: 1px solid #933ebb;
     display: flex;
-    align-items: center; /* Align items horizontally */
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #933ebb;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
     padding: 10px 20px; /* Adjust padding */
-    width: 90%;
-    max-width: 700px;
-    margin-top: 15px;
-    margin-left: 8%;
+    width: 120%;
     transition: box-shadow 0.3s ease;
-    position: relative;
+    margin-left: 50px;
 }
-
-
 
 .group-name-container input {
     border: 1px solid #933ebb;
-    width: 10px;
+    padding: 5px;
     margin-top: 10px;
-    width: 100%; /* Let the input take up the remaining space */
-    padding: 5px; /* Add padding to input */
+    width: 150px; /* Let the input take up the remaining space */
     border-radius: 10px; /* Match input's border radius */
     box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
