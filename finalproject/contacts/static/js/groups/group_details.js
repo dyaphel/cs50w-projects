@@ -1,97 +1,55 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const editButton = document.querySelector('#editButtonGroup');
-    const saveButton = document.querySelector('#saveButtonGroup');
-    const userInfo = document.querySelector('.user-info');
+document.addEventListener("DOMContentLoaded", function () {
+    const editButtonGroup = document.querySelector('#editButtonGroup');
+    const saveButtonGroup = document.querySelector('#saveButtonGroup');
+    const groupInfo = document.querySelector('.group-info');
     const favorite = document.querySelector('#FavoriteButtonGroup');
-    
-    if (!editButton || !saveButton || !userInfo) {
-        console.error("Required elements not found in the DOM");
-        return;
-    }
+    const profilePicture = document.querySelector(".profile-picture-group-list");
+    const nameContainer = document.querySelector(".group-name-container");
+    const nameInput = document.querySelector("#group-name");
 
     // Retrieve contact ID from the data attribute
-    const contactContainer = document.querySelector('.profile-container');
-    const contactId = contactContainer.getAttribute('data-group-id');
+    const groupContainer = document.querySelector('.profile-container');
+    const groupId = groupContainer.getAttribute('data-group-id');
 
     // Enable edit mode
     function enableEditMode() {
+        // Show the group name input only in edit mode
+        nameContainer.style.display = 'block';  // Show name input
         favorite.disabled = true;
         favorite.style.display = 'none';
-        saveButton.disabled = false;
-        userInfo.classList.add("edit-mode");
-        replaceSpansWithInputs();
+        profilePicture.style.display = 'none';  // Hide profile picture
+        saveButtonGroup.disabled = false;
+        groupInfo.classList.add("edit-mode");
+        enableTextAreas();
     }
 
-    // Convert spans to inputs
-    function replaceSpansWithInputs() {
-        document.querySelectorAll('.group-info span[contenteditable="false"]').forEach(span => {
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.value = span.textContent.trim();
-            input.classList.add('editable-field');
-            input.id = span.id;
-
-            if (textarea.id === "pinned-message") {
-                input.setAttribute("data-phone", span.getAttribute("data-phone"));
-            }
-
-            span.replaceWith(input);
+    // Function to enable textareas by removing the readonly attribute
+    function enableTextAreas() {
+        document.querySelectorAll('.group-info textarea[readonly]').forEach(textarea => {
+            textarea.removeAttribute('readonly'); // Remove readonly to allow editing
         });
     }
 
-    // Save changes and send data to the backend
-    function replaceInputsWithSpans() {
-        const data = {};
+    // Attach event listeners to edit and save buttons
+    editButtonGroup.addEventListener("click", enableEditMode);
+    saveButtonGroup.addEventListener("click", disableEditMode);
 
-        document.querySelectorAll('.user-info input.editable-field').forEach(input => {
-            const span = document.createElement('span');
-            span.textContent = input.value.trim();
-            span.id = input.id;
-            span.setAttribute("contenteditable", "false");
+    // Disable edit mode and restore readonly
+    function disableEditMode() {
+        favorite.disabled = false;
+        favorite.style.display = 'block';
+        profilePicture.style.display = 'block';  // Show profile picture again
+        nameContainer.style.display = 'none';  // Hide name input again
 
-            if (span.id === "nickname" || span.id === "company" || span.id === "jobPosition") {
-                span.style.fontSize = "19px"; // Apply 19px font for nickname, company, and jobPosition
-            } else if (span.id === "birthday") {
-                span.style.fontSize = "18px"; // Apply 18px font for birthday
-            } else {
-                span.style.fontSize = "20px"; // Apply 20px font for other fields
-            }
-    
-            input.replaceWith(span);
-            data[span.id] = span.textContent.trim();
-        });
-
-        if (Object.keys(data).length === 0) {
-            alert("No data to save! Please make sure all fields are filled.");
-            return;
-        }
-
-        saveButton.disabled = true;
-        userInfo.classList.remove("edit-mode");
-        favorite.style.display = 'inline';
-
-        fetch(`/group/${groupId}/edit_group/`, {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.ok ? response.json() : Promise.reject(`Server error: ${response.status}`))
-        .then(response => {
-            if (!response.success) {
-                console.error("Failed to save contact:", response.error);
-            } else {
-                console.log("Contact saved successfully");
-            }
-        })
-        .catch(error => console.error("Error:", error));
+        saveButtonGroup.disabled = true;
+        groupInfo.classList.remove("edit-mode");
+        disableTextAreas();
     }
 
-    // Attach events to the edit and save buttons
-    editButton.addEventListener("click", enableEditMode);
-    saveButton.addEventListener("click", replaceInputsWithSpans);
-    
-   
+    // Function to restore readonly on textareas
+    function disableTextAreas() {
+        document.querySelectorAll('.group-info textarea').forEach(textarea => {
+            textarea.setAttribute('readonly', 'true'); // Re-add readonly to prevent further edits
+        });
+    }
 });

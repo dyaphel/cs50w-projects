@@ -29,6 +29,14 @@
         {{ group.name|upper }}
     </div>
 
+    {% if disable == false %}
+        <div class="group-name-container" id="group-name-container" style="display: none;">
+            <span class="label">Name:</span>
+            <input id="group-name" value="{{ group.name }}" />
+        </div>
+    {% endif %}
+    
+
     <button id="FavoriteButtonGroup"  onclick="toggleFavoriteGroup(this, {{ group.id }})">
         {% if group.isFavorite %}
         <img src="{% static 'img/redFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
@@ -49,7 +57,7 @@
         <div  class="under-pictures" >
             <div class="description-row">
                 <span class="label">Description:</span> 
-                <textarea contenteditable="false" readonly>{{ group.description }}</textarea>
+                <textarea id="description" contenteditable="false" readonly>{{ group.description }}</textarea>
             </div>
             
             <div class="pinned-message-row">
@@ -88,4 +96,5 @@
 
 {% block script %}
 <script src="{% static 'js/isFavorite.js' %}"></script>
+<script src="{% static 'js/groups/group_details.js' %}"></script>
 {% endblock %}

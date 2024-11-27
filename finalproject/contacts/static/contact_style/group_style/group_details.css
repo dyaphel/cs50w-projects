@@ -184,3 +184,45 @@ textarea {
 #FavoriteButtonGroup:focus {
     outline: none;
 }
+
+
+.edit-mode .name-row{
+    margin-left: 20%;
+}
+
+.edit-mode .under-pictures{
+    margin-top: 20%;
+}
+
+
+
+
+.group-name-container {
+    border: 1px solid #933ebb;
+    display: flex;
+    align-items: center; /* Align items horizontally */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px; /* Adjust padding */
+    width: 90%;
+    max-width: 700px;
+    margin-top: 15px;
+    margin-left: 8%;
+    transition: box-shadow 0.3s ease;
+    position: relative;
+}
+
+
+
+.group-name-container input {
+    border: 1px solid #933ebb;
+    width: 10px;
+    margin-top: 10px;
+    width: 100%; /* Let the input take up the remaining space */
+    padding: 5px; /* Add padding to input */
+    border-radius: 10px; /* Match input's border radius */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+
