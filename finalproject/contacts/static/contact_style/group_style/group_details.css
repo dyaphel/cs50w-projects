@@ -187,12 +187,12 @@ textarea {
 
 .edit-mode .under-pictures{
     margin-top: 20%;
-    margin-bottom: 5%;
-
+    
 }
 .edit-mode .description-row, 
 .edit-mode .pinned-message-row{
     margin-top: 5%;
+    margin-bottom: 5%;
 
 }
 
@@ -213,12 +213,9 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #933ebb;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px 20px;
-    width: 120%;
+    width: 100%;
     height: auto;
     transition: box-shadow 0.3s ease;
     margin-left: 50px;
