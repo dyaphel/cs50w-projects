@@ -191,7 +191,6 @@ textarea {
 }
 .edit-mode .description-row, 
 .edit-mode .pinned-message-row{
-    margin-top: 5%;
     margin-bottom: 5%;
 
 }
@@ -242,7 +241,7 @@ textarea {
 .edit-mode .profile-container-member {
     display: flex;
     justify-content: center;
-    width: 180%;
+    width: 150%;
     padding: 15px;
     background-color: #fff;
     border: 1px solid #e0e0e0;
