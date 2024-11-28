@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const nameInput = document.querySelector("#group-name");
     const admin = document.querySelector('.name-row')
 
+    const memberActions = document.querySelector('.member-actions');
+
     // Retrieve contact ID from the data attribute
     const groupContainer = document.querySelector('.profile-container');
     const groupId = groupContainer.getAttribute('data-group-id');
@@ -24,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         saveButtonGroup.disabled = false;
         groupInfo.classList.add("edit-mode");
         enableTextAreas();
+        memberActions.style.display = 'flex';  
     }
 
     // Function to enable textareas by removing the readonly attribute

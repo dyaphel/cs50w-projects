@@ -232,3 +232,30 @@ textarea {
 }
 
 
+/* Style for the member action buttons */
+.member-actions {
+    display: grid;
+    justify-content: center;
+    margin-left: -100%;
+    gap: 50px;
+    margin-bottom: 20px;
+    width: auto;  /* Ensures it takes up full width of the card */
+}
+
+.action-button {
+    padding: 10px 20px;
+    background-color: #933ebb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: #7a2e9b;
+}
+
+
+
