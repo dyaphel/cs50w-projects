@@ -187,6 +187,7 @@ textarea {
 
 .edit-mode .under-pictures{
     margin-top: 20%;
+    align-items: center;
     
 }
 .edit-mode .description-row, 
@@ -218,6 +219,7 @@ textarea {
     height: auto;
     transition: box-shadow 0.3s ease;
     margin-left: 50px;
+   
 }
 
 .group-name-container input {
@@ -278,6 +280,12 @@ textarea {
 .action-button:hover {
     background-color: #7a2e9b;
 }
+
+
+
+
+
+
 
 
 

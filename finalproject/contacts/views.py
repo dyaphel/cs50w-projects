@@ -225,18 +225,13 @@ def group_detail(request, id):
 def edit_group(request, id):
     if request.method == 'POST':
         data = json.loads(request.body)
-        # Get the contact by ID
         group = Group.objects.get(id=id)
-        # Update fields from the incoming data
-        group.name = data.get('tName', group.name)
+        group.name = data.get('name', group.name)
         group.description = data.get('description', group.description)
-        group.pinned_message = data.get('pinned_message', group.pinned_message )
-
+        group.pinned_message = data.get('pinned_message', group.pinned_message)
         group.save()
         return JsonResponse({'success': True})
     return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
-
-
 
 def login_view(request):
     if request.method == "POST":

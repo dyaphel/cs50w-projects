@@ -1,6 +1,7 @@
 
 function toggleFavoriteContact(button, contactId) {
-    global = true; // Prevent toggling contact details
+    global = true;
+     // Prevent toggling contact details
 
     const img = button.querySelector("img");
     const whiteSrc = img.getAttribute("data-white-src");
@@ -35,12 +36,17 @@ function toggleFavoriteContact(button, contactId) {
     .catch(error => {
         console.error("Error:", error);
         alert('An error occurred while updating the favorite status.');
+    })
+    .finally(() => {
+        global = false;
     });
 }
 
 
 
 function toggleFavoriteGroup(button, groupId) {
+    groupglobal = true;
+
     const img = button.querySelector("img");
     const whiteSrc = img.getAttribute("data-white-src");
     const redSrc = img.getAttribute("data-red-src");
@@ -72,5 +78,10 @@ function toggleFavoriteGroup(button, groupId) {
     .catch(error => {
         console.error("Error:", error);
         alert('An error occurred while updating the favorite status.');
+    })
+    .finally(() => {
+        groupglobal = false;
     });
-}
+
+} 
+

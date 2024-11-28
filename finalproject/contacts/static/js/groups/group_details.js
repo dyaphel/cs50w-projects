@@ -6,17 +6,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const profilePicture = document.querySelector(".profile-picture-group-list");
     const nameContainer = document.querySelector(".group-name-container");
     const nameInput = document.querySelector("#group-name");
-    const admin = document.querySelector('.name-row')
-
+    const admin = document.querySelector('.name-row');
     const memberActions = document.querySelector('.member-actions');
 
-    // Retrieve contact ID from the data attribute
+    // Retrieve group ID from the data attribute
     const groupContainer = document.querySelector('.profile-container');
     const groupId = groupContainer.getAttribute('data-group-id');
 
     // Enable edit mode
     function enableEditMode() {
-        // Show the group name input only in edit mode
         nameContainer.style.display = 'block';  // Show name input
         favorite.disabled = true;
         favorite.style.display = 'none';
@@ -26,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
         saveButtonGroup.disabled = false;
         groupInfo.classList.add("edit-mode");
         enableTextAreas();
-        memberActions.style.display = 'flex';  
     }
 
     // Function to enable textareas by removing the readonly attribute
@@ -38,7 +35,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Attach event listeners to edit and save buttons
     editButtonGroup.addEventListener("click", enableEditMode);
-    saveButtonGroup.addEventListener("click", disableEditMode);
+    saveButtonGroup.addEventListener("click", saveData);
+
+    // Function to save data
+    function saveData() {
+        const groupName = document.querySelector("#group-name").value;
+        const description = document.querySelector("#description").value;
+        const pinnedMessage = document.querySelector("#pinned-message").value;
+
+        // Create a data object to send to the server
+        const data = {
+            'name': groupName,
+            'description': description,
+            'pinned_message': pinnedMessage,
+        };
+
+        // Send data via AJAX
+        fetch(`/group/${groupId}/edit_group/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                disableEditMode();
+               // Exit edit mode after successful save
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
 
     // Disable edit mode and restore readonly
     function disableEditMode() {
@@ -51,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         saveButtonGroup.disabled = true;
         groupInfo.classList.remove("edit-mode");
         disableTextAreas();
+        location.reload();
     }
 
     // Function to restore readonly on textareas
