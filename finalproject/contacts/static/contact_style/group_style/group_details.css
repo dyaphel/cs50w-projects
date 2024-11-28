@@ -234,15 +234,19 @@ textarea {
 
 /* Style for the member action buttons */
 .member-actions {
-    display: grid;
-    justify-content: center;
-    margin-left: -100%;
-    gap: 50px;
-    margin-bottom: 20px;
-    width: auto;  /* Ensures it takes up full width of the card */
+    display: flex;                  /* Use Flexbox for better centering */
+    justify-content: center;        /* Center the buttons horizontally */
+    align-items: center;            /* Center the buttons vertically (if needed) */
+    gap: 50px;    
+    margin-left: -60%;                  /* Space between the buttons */
+    margin-bottom: 20px;            /* Space below the buttons */
+    width: 120%;                    /* Ensure it takes up full width */
 }
 
+/* Individual action button styling */
 .action-button {
+    align-items: center; 
+    justify-content: center; 
     padding: 10px 20px;
     background-color: #933ebb;
     color: white;
@@ -256,6 +260,7 @@ textarea {
 .action-button:hover {
     background-color: #7a2e9b;
 }
+
 
 
 
