@@ -233,6 +233,13 @@ def edit_group(request, id):
         return JsonResponse({'success': True})
     return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
 
+
+@login_required
+def calendar(request):
+    return render (request, 'calendar/calendar.html')
+
+
+
 def login_view(request):
     if request.method == "POST":
         # Prova a autenticare l'utente
