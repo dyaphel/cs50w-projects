@@ -103,7 +103,7 @@ textarea {
 .profile-picture-member {
     width: 50px;
     height: 50px;
-    margin-left: 20px;
+    margin-left: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -305,16 +305,17 @@ textarea {
 /* Ensure the layout doesn't shift when checkbox appears */
 .profile-container-member {
     display: flex;
-    justify-content: flex-end;  /* Adjust if needed */
-    gap: 20px;
+    justify-content: flex-end;  /* Keeps alignment as is */
+    gap: 30px;  /* Increase gap between items */
     padding: 15px;
     background-color: #fff;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    align-items: center;  /* Keep the items aligned */
-    position: relative; /* Relative to allow absolute positioning of checkbox */
+    align-items: center;
+    position: relative;
 }
+
 
 
 
