@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const addMemberButton = document.querySelector('#addMemeberButtonGroup');
     const deleteMemberButton = document.querySelector('#DeleteMemberButtonGroup');
     const contactsWrapper = document.querySelector('#contactsWrapper');
-    const checkbox = document.querySelector('.select-checkbox');
+    
     
     let isSelected = false;
     
@@ -19,42 +19,43 @@ document.addEventListener("DOMContentLoaded", function () {
     // Retrieve group ID from the data attribute
     const groupContainer = document.querySelector('.profile-container');
     const groupId = groupContainer.getAttribute('data-group-id');
+    const memberId = groupContainer.getAttribute('data-contact-id');
 
-    // Function to show/hide buttons on select click
+   
 // Function to show/hide buttons and contacts on select click
-function selectClick() {
-    isSelected = !isSelected;  // Toggle the state
+// function selectClick() {
+//     isSelected = !isSelected;  // Toggle the state
     
-    // Show or hide the contacts based on the button click
-    if (isSelected) {
-        contactsWrapper.style.display = 'block';  // Show contacts
-        const checkboxes = document.querySelectorAll('.select-checkbox'); // Select all checkboxes
-        checkboxes.forEach(function (checkbox) {
-            checkbox.style.display = 'inline-block';  // Show all checkboxes
-        });
-        selectButton.textContent = "Deselect Member";  // Change button text
-    } else {
-        contactsWrapper.style.display = 'none';  // Hide contacts
-        selectButton.textContent = "Select Member";  // Reset button text
-        const checkboxes = document.querySelectorAll('.select-checkbox'); // Select all checkboxes
-        checkboxes.forEach(function (checkbox) {
-            checkbox.style.display = 'none';  // Hide all checkboxes
-        });
-    }
+//     // Show or hide the contacts based on the button click
+//     if (isSelected) {
+//         contactsWrapper.style.display = 'block';  // Show contacts
+//         const checkboxes = document.querySelectorAll('.select-checkbox'); // Select all checkboxes
+//         checkboxes.forEach(function (checkbox) {
+//             checkbox.style.display = 'inline-block';  // Show all checkboxes
+//         });
+//         selectButton.textContent = "Deselect Member";  // Change button text
+//     } else {
+//         contactsWrapper.style.display = 'none';  // Hide contacts
+//         selectButton.textContent = "Select Member";  // Reset button text
+//         const checkboxes = document.querySelectorAll('.select-checkbox'); // Select all checkboxes
+//         checkboxes.forEach(function (checkbox) {
+//             checkbox.style.display = 'none';  // Hide all checkboxes
+//         });
+//     }
 
-    // Show the add and delete buttons, and hide select button
-    if (addMemberButton.style.display === 'none' && deleteMemberButton.style.display === 'none') {
-        addMemberButton.style.display = 'block';
-        deleteMemberButton.style.display = 'block';
-        selectButton.style.display = 'none';
-    }
-}
+//     // Show the add and delete buttons, and hide select button
+//     if (addMemberButton.style.display === 'none' && deleteMemberButton.style.display === 'none') {
+//         addMemberButton.style.display = 'block';
+//         deleteMemberButton.style.display = 'block';
+//         selectButton.style.display = 'none';
+//     }
+// }
 
 
-// Attach event listener to select button once when DOM is loaded
-if (selectButton) {
-    selectButton.addEventListener("click", selectClick);
-}
+// // Attach event listener to select button once when DOM is loaded
+// if (selectButton) {
+//     selectButton.addEventListener("click", selectClick);
+// }
 
     // Enable edit mode
     function enableEditMode() {
@@ -118,6 +119,38 @@ if (selectButton) {
         });
     }
 
+//     function deleteselectedMember(groupId,memberId){
+//         const selectedContacts = [];
+//     document.querySelectorAll('.checkbox:checked').forEach(checkbox => {
+//         selectedContacts.push(checkbox.getAttribute('data-contact-id'));
+//     });
+//     if (selectedContacts.length > 0) {
+        
+//         fetch(`group/${groupId}/remove/${memberId}`, {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
+//             },
+//             body: JSON.stringify({ contacts: selectedContacts })
+//         })        
+//         .then(response => response.json())
+//         .then(data => {
+//             if (!data.success) {
+//                 console.error("Failed to delete contacts:", data.error);
+//                 alert("Failed to delete contacts: " + data.error);
+//             } else {
+//                 window.location.reload();
+//                 console.log("Contacts deleted successfully");
+//             }
+//         })
+//         .catch(error => console.error("Error:", error));
+//     }
+
+// }
+
+    
+
     // Disable edit mode and restore readonly
     function disableEditMode() {
         favorite.disabled = false;
@@ -140,5 +173,5 @@ if (selectButton) {
     }
 
     // Ensure that the select button is visible when the document is ready
-    selectButton.addEventListener("click", selectClick); // Add event listener to select button
+    //selectButton.addEventListener("click", selectClick); // Add event listener to select button
 });

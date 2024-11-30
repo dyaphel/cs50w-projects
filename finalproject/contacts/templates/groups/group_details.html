@@ -37,7 +37,7 @@
     {% endif %}
     
 
-    <button id="FavoriteButtonGroup"  onclick="toggleFavoriteGroup(this, {{ group.id }})">
+    <button id="FavoriteButtonGroup"  onclick="toggleFavoriteGroup(this, '{{ group.id }}')">
         {% if group.isFavorite %}
         <img src="{% static 'img/redFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
         {% else %}
@@ -68,11 +68,11 @@
         
         <div class="form-group">
 
-            <button id="selectButtonGroup" style="display: none;" onclick="selectClick()">Select Member</button>
+            <button id="selectButtonGroup" style="display: none;">Select Member</button>
 
             <div class="member-action">
-                <button id="addMemeberButtonGroup" style="display: none;">Delete Member</button>
-                <button id="DeleteMemberButtonGroup" style="display: none;">Add Member</button>
+                <button id="addMemeberButtonGroup" style="display: none;">Add Member</button>
+                <button id="DeleteMemberButtonGroup" style="display: none;">Delete Member</button>
             </div>
             {% for contact in members %}
                 <div class="profile-wrapper contact-info" data-contact-id="{{ contact.id }}" 
@@ -139,4 +139,5 @@
 {% block script %}
 <script src="{% static 'js/isFavorite.js' %}"></script>
 <script src="{% static 'js/groups/group_details.js' %}"></script>
+<script src="{% static 'js/groups/edit_buttons.js' %}"></script>
 {% endblock %}

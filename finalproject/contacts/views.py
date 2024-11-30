@@ -8,6 +8,7 @@ from django.db.models import Q
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.core.exceptions import ObjectDoesNotExist
 from .models import User, Contact, Group
 from .forms import ContactForm, GroupForm
 
@@ -235,6 +236,41 @@ def edit_group(request, id):
         group.save()
         return JsonResponse({'success': True})
     return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
+
+
+def remove_members(request, id):  # Change group_id to id
+    if request.method == "POST":
+        data = json.loads(request.body)
+        selected_contacts = data.get("contacts", [])
+        
+        try:
+            # Use the passed 'id' variable instead of 'group_id'
+            group = Group.objects.get(id=id)  # Use 'id' here
+            
+            if selected_contacts:
+                # Remove the selected contacts from the group
+                for contact_id in selected_contacts:
+                    try:
+                        contact = Contact.objects.get(id=contact_id)
+                        group.members.remove(contact)
+                    except Contact.DoesNotExist:
+                        return JsonResponse({"success": False, "error": f"Contact with ID {contact_id} does not exist"})
+                
+                return JsonResponse({"success": True})
+            
+            return JsonResponse({"success": False, "error": "No contacts selected"})
+        
+        except Group.DoesNotExist:
+            return JsonResponse({"success": False, "error": f"Group with ID {id} does not exist"})
+        except json.JSONDecodeError:
+            return JsonResponse({"success": False, "error": "Invalid JSON format"})
+        except Exception as e:
+            return JsonResponse({"success": False, "error": str(e)})
+    
+    return JsonResponse({"success": False, "error": "Invalid method"})
+
+
+
 
 
 @login_required
