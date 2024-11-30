@@ -200,9 +200,9 @@ def add_group(request):
 
 
 @login_required
-def toggle_favorite_group(request, group_id):
+def toggle_favorite_group(request, id):
     if request.method == 'POST':
-        group = Group.objects.get(id=group_id)
+        group = Group.objects.get(id=id)
         group.isFavorite = not group.isFavorite
         group.save()
         return JsonResponse({"success": True, "is_favorite": group.isFavorite})
