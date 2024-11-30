@@ -237,38 +237,36 @@ def edit_group(request, id):
         return JsonResponse({'success': True})
     return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
 
-
-def remove_members(request, id):  # Change group_id to id
+@login_required
+def remove_members(request, id): 
     if request.method == "POST":
         data = json.loads(request.body)
         selected_contacts = data.get("contacts", [])
-        
-        try:
-            # Use the passed 'id' variable instead of 'group_id'
-            group = Group.objects.get(id=id)  # Use 'id' here
-            
-            if selected_contacts:
-                # Remove the selected contacts from the group
-                for contact_id in selected_contacts:
-                    try:
-                        contact = Contact.objects.get(id=contact_id)
-                        group.members.remove(contact)
-                    except Contact.DoesNotExist:
-                        return JsonResponse({"success": False, "error": f"Contact with ID {contact_id} does not exist"})
-                
-                return JsonResponse({"success": True})
-            
-            return JsonResponse({"success": False, "error": "No contacts selected"})
-        
-        except Group.DoesNotExist:
-            return JsonResponse({"success": False, "error": f"Group with ID {id} does not exist"})
-        except json.JSONDecodeError:
-            return JsonResponse({"success": False, "error": "Invalid JSON format"})
-        except Exception as e:
-            return JsonResponse({"success": False, "error": str(e)})
-    
-    return JsonResponse({"success": False, "error": "Invalid method"})
+        group = Group.objects.get(id=id)
 
+        not_in_group = []
+        for contact_id in selected_contacts:
+            contact = Contact.objects.filter(id=contact_id).first()
+            if not contact or contact not in group.members.all():
+                not_in_group.append(contact)
+
+        if not_in_group:
+            not_in_group_names = ", ".join([contact.name for contact in not_in_group if contact])  # Evita contatti nulli
+            return JsonResponse({"success": False, "error": f"Some selected memebers are not in the group: {not_in_group_names}"})
+
+        # Verifica se il gruppo sarà vuoto dopo la rimozione
+        if len(group.members.all()) <= len(selected_contacts):
+            return JsonResponse({"success": False, "error": "this is the last memeber just delete the group"})
+
+        # Rimuovi i membri selezionati dal gruppo
+        for contact_id in selected_contacts:
+            contact = Contact.objects.filter(id=contact_id).first()
+            if contact:
+                group.members.remove(contact)
+
+        return JsonResponse({"success": True})
+
+    return JsonResponse({"success": False, "error": "Not valid"})
 
 
 
