@@ -268,6 +268,33 @@ def remove_members(request, id):
 
     return JsonResponse({"success": False, "error": "Not valid"})
 
+@login_required
+def add_members(request, id):  # Same 'id' parameter to get the group
+    if request.method == "POST":
+        data = json.loads(request.body)
+        selected_contacts = data.get("contacts", [])
+        group = Group.objects.get(id=id)  # Get the group by ID
+
+        # List to store contacts that are not already in the group
+        not_in_group = []
+
+        # Check if each selected contact is already a member of the group
+        for contact_id in selected_contacts:
+            contact = Contact.objects.filter(id=contact_id).first()  # Safely get the contact
+            if contact and contact not in group.members.all():
+                not_in_group.append(contact)
+
+        # If there are contacts that aren't in the group, add them
+        if not_in_group:
+            for contact in not_in_group:
+                group.members.add(contact)  # Add the contact to the group's members
+        
+            return JsonResponse({"success": True, "message": "Members added succesfully"})
+        
+        # If all members are already in the group
+        return JsonResponse({"success": False, "error": "Selected members are already in the group"})
+
+    return JsonResponse({"success": False, "error": "Not valid"})
 
 
 

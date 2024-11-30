@@ -24,6 +24,8 @@ urlpatterns = [
     path('toggle_favorite_groups/<int:id>/', views.toggle_favorite_group, name='toggle_favorite_group'),
 
     path("group/<int:id>/remove/",views.remove_members, name="remove_members"),
+    path("group/<int:id>/add/", views.add_members, name="add_members"),
+
 
     path('calendar', views.calendar, name="calendar"),
 

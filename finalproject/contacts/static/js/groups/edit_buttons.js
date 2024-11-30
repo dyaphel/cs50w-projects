@@ -1,12 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     // DOM Elements
-    const editButtonGroup = document.querySelector('#editButtonGroup');
-    const saveButtonGroup = document.querySelector('#saveButtonGroup');
-    const groupInfo = document.querySelector('.group-info');
-    const favorite = document.querySelector('#FavoriteButtonGroup');
-    const profilePicture = document.querySelector(".profile-picture-group-list");
-    const nameContainer = document.querySelector(".group-name-container");
-    const admin = document.querySelector('.name-row');
     const selectButton = document.querySelector('#selectButtonGroup');
     const addMemberButton = document.querySelector('#addMemeberButtonGroup');
     const deleteMemberButton = document.querySelector('#DeleteMemberButtonGroup');
@@ -101,5 +94,51 @@ if (deleteMemberButton) {
         const groupId = document.querySelector('.profile-container').getAttribute('data-group-id');
         deleteselectedMember(groupId);
     });
+}
+
+
+function addSelectedMembers() {
+    const selectedContacts = [];
+
+    // Get the contacts that are checked (those to be added)
+    document.querySelectorAll('.select-contact-checkbox:checked').forEach(checkbox => {
+        selectedContacts.push(checkbox.getAttribute('data-contact-id'));
+    });
+
+    // If there are selected contacts
+    if (selectedContacts.length > 0) {
+        fetch(`/group/${groupId}/add/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
+            },
+            body: JSON.stringify({ contacts: selectedContacts })  // Send selected contacts in JSON format
+        })
+        .then(response => response.json())  // Expect JSON response
+        .then(data => {
+            if (data.success) {
+                alert(data.message);  // Success message from backend
+                // Optionally, update the UI to reflect the changes (add the contacts to the UI)
+                selectedContacts.forEach(contactId => {
+                    // For example, remove the added member's checkbox or mark it as added
+                    document.querySelector(`[data-contact-id="${contactId}"]`).remove();
+                });
+            } else {
+                alert(data.error);  // Error message from backend
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Errore durante l'aggiunta dei membri");
+        });
+    } else {
+        alert("Nessun membro selezionato per l'aggiunta.");
+    }
+}
+
+// Attach event listener to the 'Add Members' button
+if (addMemberButton) {
+    addMemberButton.addEventListener("click", addSelectedMembers);
 }
 });
