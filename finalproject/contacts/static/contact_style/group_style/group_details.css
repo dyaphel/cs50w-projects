@@ -1,3 +1,5 @@
+/* General styling remains the same */
+
 .profile-icons .icon {
     border: 2px solid #933ebb; 
 }
@@ -30,23 +32,20 @@
     font-weight: 600;
     color: #933ebb;
     width: 120px; /* Set a fixed width to align all labels */
-    margin-right: 10px; /* Add space between the label and textarea */
-
+    margin-right: 10px;
 }
 
 textarea {
-    border: none; /* Remove the border */
-    outline: none; /* Remove the focus outline */
-    resize: none; /* Disable resizing */
-    background-color: transparent; /* Match background to parent */
-    font-size: 18px; /* Match font size to surrounding text */
-    font-weight: 400; /* Keep text weight normal */
-    color: #000000; /* Text color */
-    width: 100%; /* Full width of the container */
+    border: none;
+    outline: none;
+    resize: none;
+    background-color: transparent;
+    font-size: 18px;
+    font-weight: 400;
+    color: #000000;
+    width: 100%;
     cursor: default;
 }
-    
-
 
 .under-pictures{
     margin-top: 20px;
@@ -63,14 +62,14 @@ textarea {
 }
 
 .description-row {
-    display: flex; /* Use flexbox for alignment */
+    display: flex;
     align-items: flex-start;
     font-size: 19px;
     font-weight: 600;
 }
 
 .pinned-message-row {
-    display: flex; /* Use flexbox for alignment */
+    display: flex;
     align-items: flex-start;
     font-size: 19px;
     font-weight: 600;
@@ -82,18 +81,16 @@ textarea {
     margin-left: -20px;
 }
 
-/* Wrapper for individual profiles */
 .profile-wrapper {
     display: flex;
     justify-content: center;
-    margin: 20px auto; /* Centered in the container */
-    
+    margin: 20px auto;
 }
 
 .profile-container-member {
     display: flex;
     justify-content: center;
-    margin-left: -112%;
+    margin-left: -110%;
     width: 150%;
     padding: 15px;
     background-color: #fff;
@@ -118,27 +115,22 @@ textarea {
     text-transform: uppercase;
 }
 
-
-/* Name row container */
 .memeber-name-row {
     display: flex;
     flex-direction: column;
     gap: 5px;
     flex-grow: 1;
-
 }
 
-/* Main name info */
 .main-info {
     display: flex;
-    gap: 40px; /* Space between name and surname */
+    gap: 40px;
     font-size: 18px;
     font-weight: 600;
     margin-left: 40px;
     color: #353535;
 }
 
-/* Smaller font for nickname and phone */
 .memeber-sub-info {
     font-size: 14px;
     color: #555;
@@ -147,7 +139,6 @@ textarea {
     margin-left: 40px;
 }
 
-/* Individual text styling */
 .nickname {
     font-weight: 500;
 }
@@ -157,56 +148,55 @@ textarea {
 }
 
 
-
 #FavoriteButtonGroup {
-    position: absolute; /* Positioned absolutely within the .profile-container */
-    top: 30px; /* Adjust vertical position within the profile container */
-    right: 50px; /* Adjust horizontal position within the profile container */
-    width: 50px; /* Adjust size as needed */
-    height: 50px; /* Ensure button has height for better alignment */
-    background: none; /* Remove button background */
-    border: none; /* Remove button border */
-    cursor: pointer; /* Make it look clickable */
-    z-index: 1; /* Ensure it's above other elements within the profile container */
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    width: 50px;
+    height: 50px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
 }
 
 #FavoriteButtonGroup img.Favorite {
     transition: opacity 0.2s ease;
-    width: 100%; /* Ensure the icon scales within the button */
-    height: 100%; /* Ensure the icon scales within the button */
-    object-fit: contain; /* Ensures the image scales without distortion */
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
-/* Remove the focus outline (black square) on button click */
 #FavoriteButtonGroup:focus {
     outline: none;
 }
 
-
-
-
-.edit-mode .under-pictures{
+/* Edit Mode Styles */
+.edit-mode .under-pictures {
     margin-top: 20%;
     align-items: center;
-    
 }
+
 .edit-mode .description-row, 
-.edit-mode .pinned-message-row{
+.edit-mode .pinned-message-row {
     margin-bottom: 5%;
-
 }
 
-.edit-mode textarea{
-    border: 1px solid #933ebb; /* Remove the border */
-    background-color: transparent; /* Match background to parent */
-    font-size: 18px; /* Match font size to surrounding text */
-    font-weight: 400; /* Keep text weight normal */
-    color: #000000; /* Text color */
-    width: 50%; /* Full width of the container */
+.edit-mode textarea {
+    border: 1px solid #933ebb;
+    background-color: transparent;
+    font-size: 18px;
+    font-weight: 400;
+    color: #000000;
+    width: 50%;
     cursor: default;
     border-radius: 10px;
     height: auto;
     resize: vertical;
+}
+
+.edit-mode .profile-wrapper{
+    margin-left: 10%;
 }
 
 .group-name-container {
@@ -219,7 +209,6 @@ textarea {
     height: auto;
     transition: box-shadow 0.3s ease;
     margin-left: 50px;
-   
 }
 
 .group-name-container input {
@@ -227,64 +216,105 @@ textarea {
     padding: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 150px; /* Let the input take up the remaining space */
-    border-radius: 10px; /* Match input's border radius */
-    box-sizing: border-box; /* Ensure padding doesn't affect width */
+    width: 150px;
+    border-radius: 10px;
+    box-sizing: border-box;
 }
 
-
-.edit-mode .profile-wrapper {
-    display: flex;
-    justify-content: center;
-    margin: 20px auto;
-    margin-left: 10%; 
+/* New Button Styles */
+#selectButtonGroup {
+    width: 150px;
+    height: 50px;
+    background-color: #933ebb;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 5%;
+    margin-left: -70px;
+    transition: background-color 0.3s ease;
 }
 
-.edit-mode .profile-container-member {
+#selectButtonGroup:hover {
+    background-color: #772a9d;
+}
+
+#selectButtonGroup:focus {
+    outline: none;
+}
+
+/* Styling for the member action buttons */
+.member-action {
     display: flex;
-    justify-content: center;
-    width: 150%;
+    justify-content: space-between; /* Space out the buttons */
+    gap: 15px; /* Add space between the buttons */
+    width: 100%; /* Make sure buttons take the full width of their container */
+    margin-top: 20px; 
+    align-items: center;
+    margin-left: -50%;/* Adjust as needed */
+}
+
+/* Button styles */
+#addMemeberButtonGroup, #DeleteMemberButtonGroup {
+    padding: 10px 20px; /* Add padding for button size */
+    background-color: #933ebb; /* Button background color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer; /* Show pointer on hover */
+    font-size: 16px; /* Font size */
+    width: auto; /* Buttons will fit their content */
+    transition: background-color 0.3s ease;
+    display: none; /* Initially hidden */
+}
+
+/* Hover effect */
+#addMemeberButtonGroup:hover, 
+#DeleteMemberButtonGroup:hover {
+    background-color: #772a9d; /* Change color on hover */
+}
+
+/* Focus effect to remove outline */
+#addMemeberButtonGroup:focus, 
+#DeleteMemberButtonGroup:focus {
+    outline: none;
+}
+
+/* Ensure checkbox does not disrupt layout */
+.select-checkbox {
+    margin-right: 60% ;
+    position: absolute; /* Position it absolutely so it doesn't affect layout */
+    top: 50%; /* Adjust as needed */
+    left: 10px; /* Adjust left position */
+    transform: translateY(-50%); /* Center vertically */
+}
+
+/* Adjust checkbox size */
+.select-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* Optionally, style the checkbox when it is checked */
+.select-checkbox input[type="checkbox"]:checked {
+    background-color: #933ebb;
+}
+
+/* Ensure the layout doesn't shift when checkbox appears */
+.profile-container-member {
+    display: flex;
+    justify-content: flex-end;  /* Adjust if needed */
+    gap: 20px;
     padding: 15px;
     background-color: #fff;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    gap: 20px;
+    align-items: center;  /* Keep the items aligned */
+    position: relative; /* Relative to allow absolute positioning of checkbox */
 }
-
-/* Style for the member action buttons */
-.member-actions {
-    display: flex;                  /* Use Flexbox for better centering */
-    justify-content: center;        /* Center the buttons horizontally */
-    align-items: center;            /* Center the buttons vertically (if needed) */
-    gap: 50px;    
-    margin-left: -60%;                  /* Space between the buttons */
-    margin-bottom: 20px;            /* Space below the buttons */
-    width: 120%;                    /* Ensure it takes up full width */
-}
-
-/* Individual action button styling */
-.action-button {
-    align-items: center; 
-    justify-content: center; 
-    padding: 10px 20px;
-    background-color: #933ebb;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.action-button:hover {
-    background-color: #7a2e9b;
-}
-
-
-
-
-
 
 
 

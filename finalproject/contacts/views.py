@@ -211,13 +211,16 @@ def toggle_favorite_group(request, group_id):
 @login_required
 def group_detail(request, id):
     group = Group.objects.get(id=id)
-    memebers = group.members.all()
+    members = group.members.all()
     admins = group.admins.all()
-    print("Admins:", admins)
+    contactall= Contact.objects.all()
+    contacts = contactall.exclude(id__in=members.values_list('id', flat=True))
+
     return render(request, 'groups/group_details.html', {
         'group': group,
-        'members':memebers,
-        'admins':admins
+        'members':members,
+        'admins':admins,
+        'contacts':contacts,
     })
 
 
