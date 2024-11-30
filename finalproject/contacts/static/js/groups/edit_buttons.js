@@ -73,9 +73,9 @@ function deleteselectedMember(groupId) {
             if (data.success) {
                 // Remove the members from the UI after successful deletion
                 selectedContacts.forEach(contactId => {
-                    document.querySelector(`[data-contact-id="${contactId}"]`).remove();
+                    document.querySelector(`[data-contact-id="${contactId}"]`).remove(); 
                 });
-                alert("Contacts deleted successfully");
+                 alert("Contacts deleted successfully");
             } else {
                 alert("Failed to delete contacts: " + data.error);
             }
@@ -94,6 +94,7 @@ if (deleteMemberButton) {
         const groupId = document.querySelector('.profile-container').getAttribute('data-group-id');
         deleteselectedMember(groupId);
     });
+
 }
 
 
@@ -140,5 +141,6 @@ function addSelectedMembers() {
 // Attach event listener to the 'Add Members' button
 if (addMemberButton) {
     addMemberButton.addEventListener("click", addSelectedMembers);
+    
 }
 });
