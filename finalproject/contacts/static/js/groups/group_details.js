@@ -11,10 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const addMemberButton = document.querySelector('#addMemeberButtonGroup');
     const deleteMemberButton = document.querySelector('#DeleteMemberButtonGroup');
     const contactsWrapper = document.querySelector('#contactsWrapper');
-    
-    
-    let isSelected = false;
-    
+    const meeting = document.querySelector('.Meeting-row')
 
     // Retrieve group ID from the data attribute
     const groupContainer = document.querySelector('.profile-container');
@@ -24,11 +21,11 @@ document.addEventListener("DOMContentLoaded", function () {
    
     // Enable edit mode
     function enableEditMode() {
-        window.location.hash = 'edit';
         selectButton.style.display = 'block';
         if (addMemberButton.style.display === 'block' && deleteMemberButton.style.display === 'block') {
             selectButton.style.display = 'none'; // Ensure it shows when not in use
         } 
+        meeting.style.display = 'none'
         nameContainer.style.display = 'block';  // Show name input
         favorite.disabled = true;
         favorite.style.display = 'none';
@@ -88,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Disable edit mode and restore readonly
     function disableEditMode() {
-        window.location.hash = '';
         favorite.disabled = false;
         favorite.style.display = 'block';
         profilePicture.style.display = 'block';  // Show profile picture again

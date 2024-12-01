@@ -64,8 +64,18 @@
                 <span class="label">Message:</span> 
                 <textarea id="pinned-message" contenteditable="false" readonly>{{ group.pinned_message }}</textarea>
             </div>
+            <!--TO DO --> 
+            <div class="Meeting-row">
+                <span class="label">Meeting:</span> 
+                <button id="meeting">
+                    <img src="{% static 'img/meeting.png' %}" class="icon" alt="Edit">
+                </button>
+            </div>
         </div>
         
+
+
+
         <div class="form-group">
 
             <button id="selectButtonGroup" style="display: none;">Select Member</button>

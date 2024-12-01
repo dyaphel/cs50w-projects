@@ -39,6 +39,7 @@ textarea {
     border: none;
     outline: none;
     resize: none;
+    height: auto;
     background-color: transparent;
     font-size: 18px;
     font-weight: 400;
@@ -75,10 +76,59 @@ textarea {
     font-weight: 600;
     margin-top: -20px;
     margin-bottom: -15px;
+    
 }
 
-#pinned-message{
-    margin-left: -20px;
+/* Style the Meeting Row container */
+.Meeting-row {
+    display: flex;
+    margin-top: 5%;
+    margin-bottom: 10px; /* Adds some spacing below the row */
+    font-size: 16px; /* Set the font size */
+}
+
+
+/* Style the button */
+#meeting {
+    background-color: #f4f4f4; /* Light gray background for the button */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 5px 10px; /* Padding inside the button */
+    cursor: pointer; /* Change cursor on hover */
+    display: flex; /* Align the icon inside the button */
+
+}
+
+/* Button Icon styling */
+#meeting img.icon {
+    width: 40px; /* Adjust icon size */
+    height: auto;
+    outline: none;
+    transform: scale(1.4);
+    margin-left: -80%;
+    margin-top: -5px;
+}
+
+/* Add hover effect for the button */
+#meeting:hover {
+    background-color: #e0e0e0;
+    background-color: transparent;
+    border-radius: 4px;
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+#meeting:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Blue outline on focus */
+}
+
+
+
+#meeting{
+    background-color: transparent; /* Remove default button styling */
+    border: none;
+    outline: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .profile-wrapper {

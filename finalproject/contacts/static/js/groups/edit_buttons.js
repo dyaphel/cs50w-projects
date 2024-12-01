@@ -132,10 +132,10 @@ function addSelectedMembers() {
         })
         .catch(error => {
             console.error('Error:', error);
-            alert("Errore durante l'aggiunta dei membri");
+            alert("Error during the adding");
         });
     } else {
-        alert("Nessun membro selezionato per l'aggiunta.");
+        alert("No member selected to add.");
     }
 }
 
