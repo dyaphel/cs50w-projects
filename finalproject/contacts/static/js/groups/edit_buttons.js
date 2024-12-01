@@ -93,8 +93,9 @@ if (deleteMemberButton) {
     deleteMemberButton.addEventListener("click", function () {
         const groupId = document.querySelector('.profile-container').getAttribute('data-group-id');
         deleteselectedMember(groupId);
+        
     });
-
+    
 }
 
 
@@ -141,6 +142,6 @@ function addSelectedMembers() {
 // Attach event listener to the 'Add Members' button
 if (addMemberButton) {
     addMemberButton.addEventListener("click", addSelectedMembers);
-    
 }
+
 });
