@@ -82,6 +82,8 @@ textarea {
 /* Style the Meeting Row container */
 .Meeting-row {
     display: flex;
+    border: none;
+    outline: none;
     margin-top: 5%;
     margin-bottom: 10px; /* Adds some spacing below the row */
     font-size: 16px; /* Set the font size */
@@ -107,19 +109,24 @@ textarea {
     transform: scale(1.4);
     margin-left: -80%;
     margin-top: -5px;
+    border: none;
+   
 }
 
 /* Add hover effect for the button */
 #meeting:hover {
     background-color: #e0e0e0;
     background-color: transparent;
+    border: none;
+    outline: none; 
     border-radius: 4px;
     transform: scale(1.1); /* Slightly enlarge on hover */
 }
 
 #meeting:focus {
+    border: none;
     outline: none; /* Remove default outline */
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Blue outline on focus */
+   
 }
 
 
