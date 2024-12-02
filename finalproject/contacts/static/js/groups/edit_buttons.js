@@ -10,12 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Retrieve group ID from the data attribute
     const groupContainer = document.querySelector('.profile-container');
     const groupId = groupContainer.getAttribute('data-group-id');
-    const memberId = groupContainer.getAttribute('data-contact-id');
+
 
     // Function to show/hide buttons and contacts on select click
     function selectClick() {
         isSelected = !isSelected; 
-        window.location.hash = 'edit'; // Toggle the state
         
         // Show or hide the contacts based on the button click
         if (isSelected) {
@@ -24,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
             checkboxes.forEach(function (checkbox) {
                 checkbox.style.display = 'inline-block';  // Show all checkboxes
             });
-            selectButton.textContent = "Deselect Member";  // Change button text
         } else {
             contactsWrapper.style.display = 'none';  // Hide contacts
             selectButton.textContent = "Select Member";  // Reset button text
@@ -46,6 +44,16 @@ document.addEventListener("DOMContentLoaded", function () {
     if (selectButton) {
         selectButton.addEventListener("click", selectClick);
     }
+
+
+
+    // Function to clear checkboxes
+    function clearCheckboxes() {
+        document.querySelectorAll('.select-contact-checkbox').forEach(checkbox => {
+            checkbox.checked = false;  // Uncheck the checkbox
+        });
+    }
+
 
     // Function to add selected members
     function addSelectedMembers() {
@@ -75,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         contactElement.remove();  // Remove the contact from the available contacts list
                         addContactToMembers(contactElement);  // Add the contact to the member list
                     });
+                    clearCheckboxes();  // Clear all checkboxes
                 } else {
                     alert(data.error);
                 }
@@ -88,17 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Function to handle adding a contact to the members list
-    function addContactToMembers(contactElement) {
-        const contactsList = document.querySelector('.members');  // Available contacts
-        contactsList.appendChild(contactElement);  
-    }
 
-    // Function to add a contact to the contacts list
-    function addContactToContacts(contactElement) {
-        const contactsList = document.querySelector('.contacts-wrapper');  // Available contacts
-        contactsList.appendChild(contactElement);  // Add the contact back to the list
-    }
 
     // Function to delete selected members
     function deleteSelectedMembers() {
@@ -128,6 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         contactElement.remove();  // Remove contact from the member list
                         addContactToContacts(contactElement);  // Add back to the available contacts list
                     });
+                    clearCheckboxes(); 
                 } else {
                     alert(data.error);
                 }
@@ -149,4 +149,17 @@ document.addEventListener("DOMContentLoaded", function () {
     if (deleteMemberButton) {
         deleteMemberButton.addEventListener("click", deleteSelectedMembers);
     }
+
+        // Function to handle adding a contact to the members list
+    function addContactToMembers(contactElement) {
+        const contactsList = document.querySelector('.members');  // Available contacts
+        contactsList.appendChild(contactElement);  
+    }
+    
+        // Function to add a contact to the contacts list
+    function addContactToContacts(contactElement) {
+        const contactsList = document.querySelector('.contacts-wrapper');  // Available contacts
+        contactsList.appendChild(contactElement);  // Add the contact back to the list
+    }
+
 });
