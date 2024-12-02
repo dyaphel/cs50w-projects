@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const groupContainer = document.querySelector('.profile-container');
     const groupId = groupContainer.getAttribute('data-group-id');
 
-
+ 
     // Function to show/hide buttons and contacts on select click
     function selectClick() {
         isSelected = !isSelected; 
@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
             deleteMemberButton.style.display = 'block';
             selectButton.style.display = 'none';
         }
+        
     }
 
     // Attach event listener to select button once when DOM is loaded
@@ -153,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Function to handle adding a contact to the members list
     function addContactToMembers(contactElement) {
         const contactsList = document.querySelector('.members');  // Available contacts
-        contactsList.appendChild(contactElement);  
+        contactsList.appendChild(contactElement); 
     }
     
         // Function to add a contact to the contacts list
@@ -161,5 +162,4 @@ document.addEventListener("DOMContentLoaded", function () {
         const contactsList = document.querySelector('.contacts-wrapper');  // Available contacts
         contactsList.appendChild(contactElement);  // Add the contact back to the list
     }
-
 });
