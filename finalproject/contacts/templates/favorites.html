@@ -55,7 +55,7 @@
 
 {% for group in groups %}
     <div class="profile-wrapper">
-        <div class="profile-container">
+        <div class="profile-container" onclick="openGroupDetails({{ group.id }})">
 
             <button id="FavoriteButtonGroup" onclick="toggleFavoriteGroup(this,{{ group.id }})">
                 {% if group.isFavorite %}
@@ -77,7 +77,7 @@
                     {{ group.name|upper }}
                     <span class="member-count">({{ group.members.count }} Members)</span>
                 </span>
-                <span id="description">{{ group.description }}</span>
+                <textarea id="description" readonly>{{ group.description }}</textarea>
             </div>
         </div>
 
@@ -85,7 +85,7 @@
         <div class="profile-footer" onclick="toggleGroupDetails(this)">
             <div class="details" style="display: none;">
                 <span class="message">Message:</span>
-                <span class="groupmessage">{{ group.pinned_message }}</span>
+                <textarea class="groupmessage" readonly>{{ group.pinned_message }}</textarea>
             </div>
             <span class="arrow">&#9660;</span>
         </div>
@@ -96,7 +96,7 @@
 
 {% block script %}
 <script src="{% static  'js/contacts/contact_list.js' %}"></script>
-<script src="{% static  'js/groups/group_list.js' %}"></script>
+<script src="{% static 'js/groups/group_list.js' %}"></script>
 <script src="{% static  'js/isFavorite.js' %}"></script>
 <script src="{% static  'js/favorite.js' %}"></script>
 {% endblock %}

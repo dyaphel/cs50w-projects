@@ -1,0 +1,155 @@
+{% extends "standard/layout.html" %}
+
+{% load static %}
+
+{% block title %}Contact{% endblock %}
+
+{% block head %}
+<link href="{% static 'contact_style/group_style/group_details.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/header_buttons.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/profile_pictures.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/add_card.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+
+<div class="header-section">
+    <div class="profile-icons">
+        <button id="saveButtonGroup" disabled="true"><img src="{% static 'img/save.png' %}" class="icon" alt="Save">
+            {% csrf_token %}
+        </button>
+        <button id="editButtonGroup"><img src="{% static 'img/edit.png' %}" class="icon" alt="Edit">
+        </button>
+    </div>
+</div>
+
+<div class="profile-container" data-group-id="{{ group.id }}">
+    <div class="profile-picture-group-list">
+        {{ group.name|upper }}
+    </div>
+
+    {% if disable == false %}
+        <div class="group-name-container" id="group-name-container" style="display: none;">
+            <span class="label">Name:</span>
+            <input id="group-name" value="{{ group.name }}" />
+        </div>
+    {% endif %}
+    
+
+    <button id="FavoriteButtonGroup"  onclick="toggleFavoriteGroup(this, '{{ group.id }}')">
+        {% if group.isFavorite %}
+        <img src="{% static 'img/redFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+        {% else %}
+        <img src="{% static 'img/whiteFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+        {% endif %}
+    </button>  
+
+    <div class="group-info">
+
+        <div class="name-row">
+                <span class="label">Admin:</span> 
+                {% for admin in admins %}
+                <span contenteditable="false">{{ admin.username }}</span>
+                {%endfor%}
+            </div>
+        
+        <div  class="under-pictures" >
+            <div class="description-row">
+                <span class="label">Description:</span> 
+                <textarea id="description" contenteditable="false" readonly>{{ group.description }}</textarea>
+            </div>
+            
+            <div class="pinned-message-row">
+                <span class="label">Message:</span> 
+                <textarea id="pinned-message" contenteditable="false" readonly>{{ group.pinned_message }}</textarea>
+            </div>
+            <!--TO DO --> 
+            <div class="Meeting-row">
+                <span class="label">Meeting:</span> 
+                <button id="meeting">
+                    <img src="{% static 'img/meeting.png' %}" class="icon" alt="Edit">
+                </button>
+            </div>
+        </div>
+        
+
+
+
+        <div class="form-group">
+
+            <button id="selectButtonGroup" style="display: none;">Select Member</button>
+
+            <div class="member-action">
+                <button id="addMemeberButtonGroup" style="display: none;">Add Member</button>
+                <button id="DeleteMemberButtonGroup" style="display: none;">Delete Member</button>
+            </div>
+        <div class="members">
+            {% for contact in members %}
+                <div class="profile-wrapper contact-info" data-contact-id="{{ contact.id }}" 
+                     data-name="{{ contact.name }}" data-surname="{{ contact.surname }}">
+                    <div class="profile-container-member">
+                      <!-- Hidden by default, will appear on button click -->
+                            <div class="select-checkbox" style="display: none;">
+                                <input type="checkbox" class="select-contact-checkbox" data-contact-id="{{ contact.id }}">
+                            </div>
+                        <div class="profile-picture-member">
+                            {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
+                        </div>
+        
+                        <div class="memeber-name-row">
+                            <div class="main-info">
+                                <span class="name">{{ contact.name }}</span>
+                                <span class="surname">{{ contact.surname }}</span>
+                            </div>
+                            <div class="memeber-sub-info">
+                                <span class="nickname">{{ contact.nickname }}</span>
+                                <span class="phone">{{ contact.phone_number_1 }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>       
+
+
+
+        <div id="contactsWrapper" class="contacts-wrapper" style="display: none;">
+            <p style="display: flex; align-self: start; margin-left: -60%;">Add the following contacts:</p>
+            {% for contact in contacts %}
+            <div class="profile-wrapper contact-info" data-contact-id="{{ contact.id }}" 
+                 data-name="{{ contact.name }}" data-surname="{{ contact.surname }}">
+                <div class="profile-container-member">
+
+                    <div class="select-checkbox">
+                        <input type="checkbox" class="select-contact-checkbox" data-contact-id="{{ contact.id }}">
+                    </div>
+
+                    <div class="profile-picture-member">
+                        {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
+                    </div>
+    
+                    <div class="memeber-name-row">
+                        <div class="main-info">
+                            <span class="name">{{ contact.name }}</span>
+                            <span class="surname">{{ contact.surname }}</span>
+                        </div>
+                        <div class="memeber-sub-info">
+                            <span class="nickname">{{ contact.nickname }}</span>
+                            <span class="phone">{{ contact.phone_number_1 }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}      
+    </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/isFavorite.js' %}"></script>
+<script src="{% static 'js/groups/group_details.js' %}"></script>
+<script src="{% static 'js/groups/edit_buttons.js' %}"></script>
+{% endblock %}

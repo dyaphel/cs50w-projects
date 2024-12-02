@@ -1,0 +1,380 @@
+/* General styling remains the same */
+
+.profile-icons .icon {
+    border: 2px solid #933ebb; 
+}
+
+.profile-container {
+    border: 1px solid #933ebb;
+    display: flex;
+    align-items: flex-start;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 90%;
+    height: auto;
+    max-width: 700px;
+    margin: 5% auto;
+    margin-top: 15px;
+    transition: box-shadow 0.3s ease;
+    position: relative;
+}
+
+.group-info {
+    display: flex;
+    flex-direction: column;
+    color: #000000;
+}
+
+.label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #933ebb;
+    width: 120px; /* Set a fixed width to align all labels */
+    margin-right: 10px;
+}
+
+textarea {
+    border: none;
+    outline: none;
+    resize: none;
+    height: auto;
+    background-color: transparent;
+    font-size: 18px;
+    font-weight: 400;
+    color: #000000;
+    width: 100%;
+    cursor: default;
+}
+
+.under-pictures{
+    margin-top: 20px;
+    margin-left: -80%;
+}
+
+.name-row {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: -5%;
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.description-row {
+    display: flex;
+    align-items: flex-start;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.pinned-message-row {
+    display: flex;
+    align-items: flex-start;
+    font-size: 19px;
+    font-weight: 600;
+    margin-top: -20px;
+    margin-bottom: -15px;
+    
+}
+
+/* Style the Meeting Row container */
+.Meeting-row {
+    display: flex;
+    border: none;
+    outline: none;
+    margin-top: 5%;
+    margin-bottom: 10px; /* Adds some spacing below the row */
+    font-size: 16px; /* Set the font size */
+}
+
+
+/* Style the button */
+#meeting {
+    background-color: #f4f4f4; /* Light gray background for the button */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 5px 10px; /* Padding inside the button */
+    cursor: pointer; /* Change cursor on hover */
+    display: flex; /* Align the icon inside the button */
+
+}
+
+/* Button Icon styling */
+#meeting img.icon {
+    width: 40px; /* Adjust icon size */
+    height: auto;
+    outline: none;
+    transform: scale(1.4);
+    margin-left: -80%;
+    margin-top: -5px;
+    border: none;
+   
+}
+
+/* Add hover effect for the button */
+#meeting:hover {
+    background-color: #e0e0e0;
+    background-color: transparent;
+    border: none;
+    outline: none; 
+    border-radius: 4px;
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+#meeting:focus {
+    border: none;
+    outline: none; /* Remove default outline */
+   
+}
+
+
+
+#meeting{
+    background-color: transparent; /* Remove default button styling */
+    border: none;
+    outline: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.profile-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.profile-container-member {
+    display: flex;
+    justify-content: center;
+    margin-left: -110%;
+    width: 150%;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+}
+
+.profile-picture-member {
+    width: 50px;
+    height: 50px;
+    margin-left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #bb3e5b;
+    border-radius: 50%;
+    text-transform: uppercase;
+}
+
+.memeber-name-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-grow: 1;
+}
+
+.main-info {
+    display: flex;
+    gap: 40px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 40px;
+    color: #353535;
+}
+
+.memeber-sub-info {
+    font-size: 14px;
+    color: #555;
+    gap: 30px; 
+    display: flex;
+    margin-left: 40px;
+}
+
+.nickname {
+    font-weight: 500;
+}
+
+.phone {
+    font-weight: 500;
+}
+
+
+#FavoriteButtonGroup {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    width: 50px;
+    height: 50px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+#FavoriteButtonGroup img.Favorite {
+    transition: opacity 0.2s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#FavoriteButtonGroup:focus {
+    outline: none;
+}
+
+/* Edit Mode Styles */
+.edit-mode .under-pictures {
+    margin-top: 20%;
+    align-items: center;
+}
+
+.edit-mode .description-row, 
+.edit-mode .pinned-message-row {
+    margin-bottom: 5%;
+}
+
+.edit-mode textarea {
+    border: 1px solid #933ebb;
+    background-color: transparent;
+    font-size: 18px;
+    font-weight: 400;
+    color: #000000;
+    width: 50%;
+    cursor: default;
+    border-radius: 10px;
+    height: auto;
+    resize: vertical;
+}
+
+.edit-mode .profile-wrapper{
+    margin-left: 10%;
+}
+
+.group-name-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    transition: box-shadow 0.3s ease;
+    margin-left: 70px;
+}
+
+.group-name-container input {
+    border: 1px solid #933ebb;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 150px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+/* New Button Styles */
+#selectButtonGroup {
+    width: 150px;
+    height: 50px;
+    background-color: #933ebb;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-left: -70px;
+    margin-bottom: -5%;
+    transition: background-color 0.3s ease;
+}
+
+#selectButtonGroup:hover {
+    background-color: #772a9d;
+}
+
+#selectButtonGroup:focus {
+    outline: none;
+}
+
+/* Styling for the member action buttons */
+.member-action {
+    display: flex;
+    justify-content: space-between; /* Space out the buttons */
+    gap: 15px; /* Add space between the buttons */
+    width: 100%; /* Make sure buttons take the full width of their container */
+    margin-top: 20px; 
+    align-items: center;
+    margin-left: -50%;/* Adjust as needed */
+}
+
+/* Button styles */
+#addMemeberButtonGroup, #DeleteMemberButtonGroup {
+    padding: 10px 20px; /* Add padding for button size */
+    background-color: #933ebb; /* Button background color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer; /* Show pointer on hover */
+    font-size: 16px; /* Font size */
+    width: auto; /* Buttons will fit their content */
+    transition: background-color 0.3s ease;
+    display: none; /* Initially hidden */
+}
+
+/* Hover effect */
+#addMemeberButtonGroup:hover, 
+#DeleteMemberButtonGroup:hover {
+    background-color: #772a9d; /* Change color on hover */
+}
+
+/* Focus effect to remove outline */
+#addMemeberButtonGroup:focus, 
+#DeleteMemberButtonGroup:focus {
+    outline: none;
+}
+
+/* Ensure checkbox does not disrupt layout */
+.select-checkbox {
+    margin-right: 60% ;
+    position: absolute; /* Position it absolutely so it doesn't affect layout */
+    top: 50%; /* Adjust as needed */
+    left: 10px; /* Adjust left position */
+    transform: translateY(-50%); /* Center vertically */
+}
+
+/* Adjust checkbox size */
+.select-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* Optionally, style the checkbox when it is checked */
+.select-checkbox input[type="checkbox"]:checked {
+    background-color: #933ebb;
+}
+
+/* Ensure the layout doesn't shift when checkbox appears */
+.profile-container-member {
+    display: flex;
+    justify-content: flex-end;  /* Keeps alignment as is */
+    gap: 30px;  /* Increase gap between items */
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    position: relative;
+}
+
+
+
+
+
+

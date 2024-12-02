@@ -8,6 +8,7 @@ from django.db.models import Q
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.core.exceptions import ObjectDoesNotExist
 from .models import User, Contact, Group
 from .forms import ContactForm, GroupForm
 
@@ -95,7 +96,10 @@ def add_contact(request):
             return redirect('contacts')
     else:
         form = ContactForm()
-    return render(request, 'contacts/add_contact.html', {'form': form})
+    return render(request, 'contacts/add_contact.html', {
+        'form': form
+        })
+
 
 @login_required
 def delete_contacts(request):
@@ -127,6 +131,7 @@ def edit_contact(request, id):
         contact.save()
         return JsonResponse({'success': True})
     return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
+
 
 @login_required
 def toggle_favorite_contact(request, contact_id):
@@ -172,6 +177,7 @@ def delete_groups(request):
             return JsonResponse({"success": False, "error": str(e)})
     return JsonResponse({"success": False, "error": "Invalid request method"})
 
+
 @login_required
 def add_group(request):
     if request.method == 'POST':
@@ -187,21 +193,126 @@ def add_group(request):
     
     # Pass the form and a list of the user's contacts to the template
     contacts = Contact.objects.filter(owner=request.user)
-    return render(request, 'groups/add_group.html', 
-                  {'form': form, 
-                   'members': contacts})
+    return render(request, 'groups/add_group.html', {
+        'form': form, 
+        'members': contacts
+        })
 
 
 @login_required
-def toggle_favorite_group(request, group_id):
+def toggle_favorite_group(request, id):
     if request.method == 'POST':
-        group = Group.objects.get(id=group_id)
+        group = Group.objects.get(id=id)
         group.isFavorite = not group.isFavorite
         group.save()
         return JsonResponse({"success": True, "is_favorite": group.isFavorite})
     return JsonResponse({"success": False, "error": "Invalid request method"})
 
 
+@login_required
+def group_detail(request, id):
+    group = Group.objects.get(id=id)
+    members = group.members.all()
+    admins = group.admins.all()
+    contactall= Contact.objects.all()
+    contacts = contactall.exclude(id__in=members.values_list('id', flat=True))
+
+    return render(request, 'groups/group_details.html', {
+        'group': group,
+        'members':members,
+        'admins':admins,
+        'contacts':contacts,
+    })
+
+
+@login_required
+def edit_group(request, id):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        group = Group.objects.get(id=id)
+        group.name = data.get('name', group.name)
+        group.description = data.get('description', group.description)
+        group.pinned_message = data.get('pinned_message', group.pinned_message)
+        group.save()
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
+
+@login_required
+def remove_members(request, id): 
+    if request.method == "POST":
+        data = json.loads(request.body)
+        selected_contacts = data.get("contacts", [])
+        group = Group.objects.get(id=id)
+
+        not_in_group = []
+        for contact_id in selected_contacts:
+            contact = Contact.objects.filter(id=contact_id).first()
+            if not contact or contact not in group.members.all():
+                not_in_group.append(contact)
+
+        if not_in_group:
+            not_in_group_names = ", ".join([contact.name for contact in not_in_group if contact])  # Evita contatti nulli
+            return JsonResponse({"success": False, "error": f"Some selected memebers are not in the group: {not_in_group_names}"})
+
+        # Verifica se il gruppo sarà vuoto dopo la rimozione
+        if len(group.members.all()) <= len(selected_contacts):
+            return JsonResponse({"success": False, "error": "this is the last memeber just delete the group"})
+
+        # Rimuovi i membri selezionati dal gruppo
+        for contact_id in selected_contacts:
+            contact = Contact.objects.filter(id=contact_id).first()
+            if contact:
+                group.members.remove(contact)
+
+        return JsonResponse({"success": True})
+
+    return JsonResponse({"success": False, "error": "Not valid"})
+
+
+@login_required
+def add_members(request, id):  # Same 'id' parameter to get the group
+    if request.method == "POST":
+        data = json.loads(request.body)
+        selected_contacts = data.get("contacts", [])
+        group = Group.objects.get(id=id)  # Get the group by ID
+
+        # Lists to separate contacts already in the group and those not in the group
+        already_in_group = []
+        not_in_group = []
+
+        # Check each selected contact
+        for contact_id in selected_contacts:
+            contact = Contact.objects.filter(id=contact_id).first()  # Safely get the contact
+            if contact:
+                if contact in group.members.all():
+                    already_in_group.append(contact)
+                else:
+                    not_in_group.append(contact)
+
+        # If there are any contacts already in the group, return an error
+        if already_in_group:
+            return JsonResponse({
+                "success": False,
+                "error": "Some selected members are already in the group",
+                "already_in_group": [contact.id for contact in already_in_group]
+            })
+
+        # If no contacts are already in the group, add the ones that aren't
+        if not_in_group:
+            for contact in not_in_group:
+                group.members.add(contact)  # Add the contact to the group's members
+            return JsonResponse({"success": True, "message": "Members added successfully"})
+
+        # If no contacts are selected to add
+        return JsonResponse({"success": False, "error": "No members selected to add"})
+
+    return JsonResponse({"success": False, "error": "Invalid request method"})
+
+
+
+@login_required
+def calendar(request):
+    return render (request, 'calendar/calendar.html')
 
 
 

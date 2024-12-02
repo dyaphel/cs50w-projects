@@ -16,11 +16,11 @@
 {% block body %}
 <div class="header-section">
     <div class="profile-icons">
-        <button id="deleteButton" disabled onclick="deleteSelectedGroup()">
+        <button id="deleteButtonGroup" disabled onclick="deleteSelectedGroup()">
             <img src="{% static 'img/delete.png' %}" class="icon" alt="Delete">
             {% csrf_token %}
         </button>
-        <button id="selectButton" onclick="toggleCheckboxes()">
+        <button id="selectButtonGroup" onclick="toggleCheckboxes()">
             <img src="{% static 'img/select.png' %}" class="icon" alt="Select">
         </button>
         <button id="addButton" onclick="window.location.href='{% url 'add_group' %}'">
@@ -39,8 +39,7 @@
 
 {% for group in groups %}
     <div class="profile-wrapper">
-        <div class="profile-container">
-            <!-- Checkbox with group ID -->
+        <div class="profile-container" onclick="openGroupDetails({{ group.id }})">
             <input type="checkbox" class="checkbox" hidden data-group-id="{{ group.id }}" onchange="updateDeleteButton()">
 
             <button id="FavoriteButtonGroup" onclick="toggleFavoriteGroup(this,{{group.id}})">
@@ -63,7 +62,7 @@
                     {{ group.name|upper }}
                     <span class="member-count">({{ group.members.count }} Members)</span>
                 </span>
-                <span id="description">{{ group.description }}</span>
+                <textarea id="description" readonly >{{ group.description }}</textarea>
             </div>
         </div>
 
@@ -71,7 +70,7 @@
         <div class="profile-footer" onclick="toggleGroupDetails(this)">
             <div class="details" style="display: none;">
                 <span class="label">Message:</span>
-                <span class="groupmessage">{{ group.pinned_message }}</span>
+                <textarea class="groupmessage" readonly>{{ group.pinned_message }}</textarea>
             </div>
             <span class="arrow">&#9660;</span>
         </div>

@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
     const editButton = document.querySelector('#editButtonContact');
-    console.log(editButton); 
     const saveButton = document.querySelector('#saveButtonContact');
     const userInfo = document.querySelector('.user-info');
     const favorite = document.querySelector('#FavoriteButtonContact');
