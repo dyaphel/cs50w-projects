@@ -276,26 +276,37 @@ def add_members(request, id):  # Same 'id' parameter to get the group
         selected_contacts = data.get("contacts", [])
         group = Group.objects.get(id=id)  # Get the group by ID
 
-        # List to store contacts that are not already in the group
+        # Lists to separate contacts already in the group and those not in the group
+        already_in_group = []
         not_in_group = []
 
-        # Check if each selected contact is already a member of the group
+        # Check each selected contact
         for contact_id in selected_contacts:
             contact = Contact.objects.filter(id=contact_id).first()  # Safely get the contact
-            if contact and contact not in group.members.all():
-                not_in_group.append(contact)
+            if contact:
+                if contact in group.members.all():
+                    already_in_group.append(contact)
+                else:
+                    not_in_group.append(contact)
 
-        # If there are contacts that aren't in the group, add them
+        # If there are any contacts already in the group, return an error
+        if already_in_group:
+            return JsonResponse({
+                "success": False,
+                "error": "Some selected members are already in the group",
+                "already_in_group": [contact.id for contact in already_in_group]
+            })
+
+        # If no contacts are already in the group, add the ones that aren't
         if not_in_group:
             for contact in not_in_group:
                 group.members.add(contact)  # Add the contact to the group's members
-        
-            return JsonResponse({"success": True, "message": "Members added succesfully"})
-        
-        # If all members are already in the group
-        return JsonResponse({"success": False, "error": "Selected members are already in the group"})
+            return JsonResponse({"success": True, "message": "Members added successfully"})
 
-    return JsonResponse({"success": False, "error": "Not valid"})
+        # If no contacts are selected to add
+        return JsonResponse({"success": False, "error": "No members selected to add"})
+
+    return JsonResponse({"success": False, "error": "Invalid request method"})
 
 
 
