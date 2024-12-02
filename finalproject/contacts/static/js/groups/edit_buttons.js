@@ -5,143 +5,148 @@ document.addEventListener("DOMContentLoaded", function () {
     const deleteMemberButton = document.querySelector('#DeleteMemberButtonGroup');
     const contactsWrapper = document.querySelector('#contactsWrapper');
     
-    
     let isSelected = false;
     
-
     // Retrieve group ID from the data attribute
     const groupContainer = document.querySelector('.profile-container');
     const groupId = groupContainer.getAttribute('data-group-id');
     const memberId = groupContainer.getAttribute('data-contact-id');
 
-   
-// Function to show/hide buttons and contacts on select click
-function selectClick() {
-    isSelected = !isSelected;  // Toggle the state
-    
-    // Show or hide the contacts based on the button click
-    if (isSelected) {
-        contactsWrapper.style.display = 'block';  // Show contacts
-        const checkboxes = document.querySelectorAll('.select-checkbox'); // Select all checkboxes
-        checkboxes.forEach(function (checkbox) {
-            checkbox.style.display = 'inline-block';  // Show all checkboxes
-        });
-        selectButton.textContent = "Deselect Member";  // Change button text
-    } else {
-        contactsWrapper.style.display = 'none';  // Hide contacts
-        selectButton.textContent = "Select Member";  // Reset button text
-        const checkboxes = document.querySelectorAll('.select-checkbox'); // Select all checkboxes
-        checkboxes.forEach(function (checkbox) {
-            checkbox.style.display = 'none';  // Hide all checkboxes
-        });
-    }
-
-    // Show the add and delete buttons, and hide select button
-    if (addMemberButton.style.display === 'none' && deleteMemberButton.style.display === 'none') {
-        addMemberButton.style.display = 'block';
-        deleteMemberButton.style.display = 'block';
-        selectButton.style.display = 'none';
-    }
-}
-
-
-// Attach event listener to select button once when DOM is loaded
-if (selectButton) {
-    selectButton.addEventListener("click", selectClick);
-}
-
-function deleteselectedMember(groupId) {
-    const selectedContacts = [];
-    
-    // Get selected contacts (those with checked checkboxes)
-    document.querySelectorAll('.select-contact-checkbox:checked').forEach(checkbox => {
-        selectedContacts.push(checkbox.getAttribute('data-contact-id'));
-    });
-
-    if (selectedContacts.length > 0) {
-        fetch(`/group/${groupId}/remove/`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
-            },
-            body: JSON.stringify({ contacts: selectedContacts })  // Send selected contacts in JSON format
-        })
+    // Function to show/hide buttons and contacts on select click
+    function selectClick() {
+        isSelected = !isSelected; 
+        window.location.hash = 'edit'; // Toggle the state
         
-        .then(response => response.json())  // Expect JSON response
-        .then(data => {
-            if (data.success) {
-                // Remove the members from the UI after successful deletion
-                selectedContacts.forEach(contactId => {
-                    document.querySelector(`[data-contact-id="${contactId}"]`).remove(); 
-                });
-                 alert("Contacts deleted successfully");
-            } else {
-                alert("Failed to delete contacts: " + data.error);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    } else {
-        alert("No contacts selected to delete.");
-    }
-}
+        // Show or hide the contacts based on the button click
+        if (isSelected) {
+            contactsWrapper.style.display = 'block';  // Show contacts
+            const checkboxes = document.querySelectorAll('.select-checkbox'); // Select all checkboxes
+            checkboxes.forEach(function (checkbox) {
+                checkbox.style.display = 'inline-block';  // Show all checkboxes
+            });
+            selectButton.textContent = "Deselect Member";  // Change button text
+        } else {
+            contactsWrapper.style.display = 'none';  // Hide contacts
+            selectButton.textContent = "Select Member";  // Reset button text
+            const checkboxes = document.querySelectorAll('.select-checkbox'); // Select all checkboxes
+            checkboxes.forEach(function (checkbox) {
+                checkbox.style.display = 'none';  // Hide all checkboxes
+            });
+        }
 
-// Event listener for deleting members
-if (deleteMemberButton) {
-    deleteMemberButton.addEventListener("click", function () {
-        const groupId = document.querySelector('.profile-container').getAttribute('data-group-id');
-        deleteselectedMember(groupId);
+        // Show the add and delete buttons, and hide select button
+        if (addMemberButton.style.display === 'none' && deleteMemberButton.style.display === 'none') {
+            addMemberButton.style.display = 'block';
+            deleteMemberButton.style.display = 'block';
+            selectButton.style.display = 'none';
+        }
+    }
+
+    // Attach event listener to select button once when DOM is loaded
+    if (selectButton) {
+        selectButton.addEventListener("click", selectClick);
+    }
+
+    // Function to add selected members
+    function addSelectedMembers() {
+        const selectedContacts = [];
+
+        // Retrieve selected contacts
+        document.querySelectorAll('.select-contact-checkbox:checked').forEach(checkbox => {
+            selectedContacts.push(checkbox.getAttribute('data-contact-id'));
+        });
+
+        if (selectedContacts.length > 0) {
+            fetch(`/group/${groupId}/add/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
+                },
+                body: JSON.stringify({ contacts: selectedContacts })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Contacts added successfully');
+                    // Update the member list (add the new member)
+                    selectedContacts.forEach(contactId => {
+                        const contactElement = document.querySelector(`[data-contact-id="${contactId}"]`);
+                        contactElement.remove();  // Remove the contact from the available contacts list
+                        addContactToMembers(contactElement);  // Add the contact to the member list
+                    });
+                } else {
+                    alert(data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error adding contacts');
+            });
+        } else {
+            alert('No member selected to add.');
+        }
+    }
+
+    // Function to handle adding a contact to the members list
+    function addContactToMembers(contactElement) {
+        const contactsList = document.querySelector('.members');  // Available contacts
+        contactsList.appendChild(contactElement);  
+    }
+
+    // Function to add a contact to the contacts list
+    function addContactToContacts(contactElement) {
+        const contactsList = document.querySelector('.contacts-wrapper');  // Available contacts
+        contactsList.appendChild(contactElement);  // Add the contact back to the list
+    }
+
+    // Function to delete selected members
+    function deleteSelectedMembers() {
+        const selectedContacts = [];
         
-    });
-    
-}
-
-
-function addSelectedMembers() {
-    const selectedContacts = [];
-
-    // Get the contacts that are checked (those to be added)
-    document.querySelectorAll('.select-contact-checkbox:checked').forEach(checkbox => {
-        selectedContacts.push(checkbox.getAttribute('data-contact-id'));
-    });
-
-    // If there are selected contacts
-    if (selectedContacts.length > 0) {
-        fetch(`/group/${groupId}/add/`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
-            },
-            body: JSON.stringify({ contacts: selectedContacts })  // Send selected contacts in JSON format
-        })
-        .then(response => response.json())  // Expect JSON response
-        .then(data => {
-            if (data.success) {
-                alert(data.message);  // Success message from backend
-                // Optionally, update the UI to reflect the changes (add the contacts to the UI)
-                selectedContacts.forEach(contactId => {
-                    // For example, remove the added member's checkbox or mark it as added
-                    document.querySelector(`[data-contact-id="${contactId}"]`).remove();
-                });
-            } else {
-                alert(data.error);  // Error message from backend
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert("Error during the adding");
+        // Retrieve selected contacts for deletion
+        document.querySelectorAll('.select-contact-checkbox:checked').forEach(checkbox => {
+            selectedContacts.push(checkbox.getAttribute('data-contact-id'));
         });
-    } else {
-        alert("No member selected to add.");
+
+        if (selectedContacts.length > 0) {
+            fetch(`/group/${groupId}/remove/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
+                },
+                body: JSON.stringify({ contacts: selectedContacts })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Contacts deleted successfully');
+                    // Remove selected members from the members list
+                    selectedContacts.forEach(contactId => {
+                        const contactElement = document.querySelector(`[data-contact-id="${contactId}"]`);
+                        contactElement.remove();  // Remove contact from the member list
+                        addContactToContacts(contactElement);  // Add back to the available contacts list
+                    });
+                } else {
+                    alert(data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error deleting contacts');
+            });
+        } else {
+            alert('No contacts selected to delete.');
+        }
     }
-}
 
-// Attach event listener to the 'Add Members' button
-if (addMemberButton) {
-    addMemberButton.addEventListener("click", addSelectedMembers);
-}
+    // Attach event listeners for add and delete member buttons
+    if (addMemberButton) {
+        addMemberButton.addEventListener("click", addSelectedMembers);
+    }
 
+    if (deleteMemberButton) {
+        deleteMemberButton.addEventListener("click", deleteSelectedMembers);
+    }
 });

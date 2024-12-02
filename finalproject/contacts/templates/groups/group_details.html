@@ -84,6 +84,7 @@
                 <button id="addMemeberButtonGroup" style="display: none;">Add Member</button>
                 <button id="DeleteMemberButtonGroup" style="display: none;">Delete Member</button>
             </div>
+        <div class="members">
             {% for contact in members %}
                 <div class="profile-wrapper contact-info" data-contact-id="{{ contact.id }}" 
                      data-name="{{ contact.name }}" data-surname="{{ contact.surname }}">
@@ -109,7 +110,7 @@
                     </div>
                 </div>
             {% endfor %}
-
+        </div>       
 
 
 

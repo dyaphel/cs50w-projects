@@ -268,6 +268,7 @@ def remove_members(request, id):
 
     return JsonResponse({"success": False, "error": "Not valid"})
 
+
 @login_required
 def add_members(request, id):  # Same 'id' parameter to get the group
     if request.method == "POST":
