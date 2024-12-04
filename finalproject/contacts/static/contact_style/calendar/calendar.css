@@ -4,16 +4,19 @@
     color: #333;
 }
 
+/* Add !important to change */
 .fc-button {
-    background-color: #e24a89; /* Button background */
-    color: white; /* Button text */
-    border: none;
-    border-radius: 4px;
+    background-color: #2200fd ; /* Button background */
+    color: white ; /* Button text */
+    border: none ;
+    border-radius: 4px ;
 }
 
 .fc-button:hover {
-    background-color: #357abd; /* Hover effect for buttons */
+    background-color: #bd3535 !; /* Hover effect for buttons */
 }
+
+/*///////////////////////////////////*/
 
 /* Day Headers */
 .fc-col-header-cell {
@@ -24,12 +27,12 @@
 
 /* Today's Date Highlight */
 .fc-day-today {
-    background-color: #b5b5ff !important; /* Highlight for today */
+    background-color: #ffe4b5  /* Highlight for today */
 }
 
 /* Event Colors */
 .fc-event {
-    background-color: #4a90e2; /* Default event background */
+    background-color: #f77ce5; /* Default event background */
     color: white; /* Default event text */
     border: none; /* Remove borders */
 }
