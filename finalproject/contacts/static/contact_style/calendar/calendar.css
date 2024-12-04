@@ -1,13 +1,39 @@
-.calendar-container {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
+/* Calendar Base */
 #calendar {
     font-family: 'Arial', sans-serif;
     color: #333;
+}
+
+.fc-button {
+    background-color: #e24a89; /* Button background */
+    color: white; /* Button text */
+    border: none;
+    border-radius: 4px;
+}
+
+.fc-button:hover {
+    background-color: #357abd; /* Hover effect for buttons */
+}
+
+/* Day Headers */
+.fc-col-header-cell {
+    background-color: #e6e6e6; /* Header background */
+    color: #333; /* Header text */
+    font-weight: bold;
+}
+
+/* Today's Date Highlight */
+.fc-day-today {
+    background-color: #b5b5ff !important; /* Highlight for today */
+}
+
+/* Event Colors */
+.fc-event {
+    background-color: #4a90e2; /* Default event background */
+    color: white; /* Default event text */
+    border: none; /* Remove borders */
+}
+
+.fc-event:hover {
+    background-color: #357abd; /* Hover effect for events */
 }

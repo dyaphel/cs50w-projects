@@ -317,19 +317,19 @@ def calendar(request):
 
 
 def calendar_events_api(request):
-    # Dummy data for events
-    events = [
-        {
-            "title": "Meeting with Team",
-            "start": (datetime.now() + timedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%S'),
-            "end": (datetime.now() + timedelta(days=1, hours=2)).strftime('%Y-%m-%dT%H:%M:%S')
-        },
-        {
-            "title": "Project Deadline",
-            "start": (datetime.now() + timedelta(days=3)).strftime('%Y-%m-%dT%H:%M:%S'),
-        },
-    ]
-    return JsonResponse(events, safe=False)
+     # Dummy data for events
+     events = [
+         {
+             "title": "Meeting with Team",
+             "start": (datetime.now() + timedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%S'),
+             "end": (datetime.now() + timedelta(days=1, hours=2)).strftime('%Y-%m-%dT%H:%M:%S')
+         },
+         {
+             "title": "Project Deadline",
+             "start": (datetime.now() + timedelta(days=3)).strftime('%Y-%m-%dT%H:%M:%S'),
+         },
+     ]
+     return JsonResponse(events, safe=False)
 
 
 def login_view(request):
