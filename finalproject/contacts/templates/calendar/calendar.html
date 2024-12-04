@@ -1,12 +1,28 @@
 {% extends "standard/layout.html" %}
+
 {% load static %}
 
 {% block title %}Calendar{% endblock %}
 
 {% block head %}
+<link href="{% static 'css/calendar.css' %}" rel="stylesheet">
+<!-- Add FullCalendar CSS -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
 
 {% endblock %}
 
 {% block body %}
+<div class="calendar-container">
+    <div id="calendar"></div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/calendar/calendar.js' %}"></script>
+
+<!-- Add FullCalendar JS -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
 {% endblock %}
+
+

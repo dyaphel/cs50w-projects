@@ -28,6 +28,7 @@ urlpatterns = [
 
 
     path('calendar', views.calendar, name="calendar"),
+    path('api/calendar-events/', views.calendar_events_api, name='calendar_events_api'),
 
     path("login", views.login_view, name="login"),
     path("logout", views.logout_view, name="logout"),

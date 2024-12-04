@@ -4,11 +4,10 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 import json
-from django.db.models import Q
+from datetime import datetime, timedelta
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.core.exceptions import ObjectDoesNotExist
 from .models import User, Contact, Group
 from .forms import ContactForm, GroupForm
 
@@ -314,6 +313,23 @@ def add_members(request, id):  # Same 'id' parameter to get the group
 def calendar(request):
     return render (request, 'calendar/calendar.html')
 
+
+
+
+def calendar_events_api(request):
+    # Dummy data for events
+    events = [
+        {
+            "title": "Meeting with Team",
+            "start": (datetime.now() + timedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%S'),
+            "end": (datetime.now() + timedelta(days=1, hours=2)).strftime('%Y-%m-%dT%H:%M:%S')
+        },
+        {
+            "title": "Project Deadline",
+            "start": (datetime.now() + timedelta(days=3)).strftime('%Y-%m-%dT%H:%M:%S'),
+        },
+    ]
+    return JsonResponse(events, safe=False)
 
 
 def login_view(request):
