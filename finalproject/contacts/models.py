@@ -37,3 +37,13 @@ class Group(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Event(models.Model):
+    title = models.CharField(max_length=200)
+    start = models.DateTimeField()
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE, null = True)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, null = True)
+
+    def __str__(self):
+        return f"{self.title} ({self.start})"

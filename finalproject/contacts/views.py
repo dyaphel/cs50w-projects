@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from .models import User, Contact, Group
+from .models import User, Contact, Group, Event
 from .forms import ContactForm, GroupForm
 
 
@@ -236,6 +236,7 @@ def edit_group(request, id):
         return JsonResponse({'success': True})
     return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
 
+
 @login_required
 def remove_members(request, id): 
     if request.method == "POST":
@@ -317,20 +318,23 @@ def calendar(request):
 
 
 def calendar_events_api(request):
-     # Dummy data for events
-     events = [
-         {
-             "title": "Meeting with Team",
-             "start": (datetime.now() + timedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%S'),
-             "end": (datetime.now() + timedelta(days=1, hours=2)).strftime('%Y-%m-%dT%H:%M:%S')
-         },
-         {
-             "title": "Project Deadline",
-             "start": (datetime.now() + timedelta(days=3)).strftime('%Y-%m-%dT%H:%M:%S'),
-         },
-     ]
-     return JsonResponse(events, safe=False)
+    events = list(Event.objects.values("title", "start"))  # Fetch all events
+    return JsonResponse(events, safe=False)
 
+
+def add_event(request):
+    """Add a new event to the database."""
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            title = data['title']
+            start = data['start']
+            Event.objects.create(title=title, start=start)
+            return JsonResponse({'success': True})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=400)
+
+    return JsonResponse({'success': False}, status=400)
 
 def login_view(request):
     if request.method == "POST":
