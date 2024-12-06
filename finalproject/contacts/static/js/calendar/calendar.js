@@ -12,14 +12,20 @@ document.addEventListener('DOMContentLoaded', function () {
         locale: 'en',
         events: '/api/calendar-events/', // Fetch events from Django API
         dateClick: function (info) {
+            const currentDateTime = new Date(); 
+            const clickedDate = new Date(info.dateStr);
             console.log('Date clicked:', info.dateStr);
+            if (clickedDate < currentDateTime.setHours(0, 0, 0, 0)) {
+                alert("You cannot add events in the past!");
+                return; // Stop the form from opening
+            }
             // Open modal for adding an event
             showEventForm(info.dateStr);
         },
         eventClassNames: function (arg) {
             const currentDate = new Date();
             const eventDate = new Date(arg.event.start);
-    
+
             // Compare event date with current date
             if (eventDate < currentDate) {
                 return ['fc-event-past']; // Apply the past event class
@@ -34,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Opening modal for:', date);
         const existingModal = document.getElementById('event-modal');
         if (existingModal) existingModal.remove();
-    
+
         // Fetch contacts and groups via API calls
         Promise.all([
             fetch('/api/contacts/').then(response => response.json()),
@@ -43,11 +49,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const contactsOptions = contacts.map(contact =>
                 `<option value="${contact.id}">${contact.name}</option>`
             ).join('');
-    
+
             const groupsOptions = groups.map(group =>
                 `<option value="${group.id}">${group.name}</option>`
             ).join('');
-    
+
             // Create modal HTML
             const modalHTML = `
                 <div id="event-modal" class="modal">
@@ -59,7 +65,15 @@ document.addEventListener('DOMContentLoaded', function () {
                             <input type="text" id="event-title" name="title" required>
                             
                             <label for="event-time">Time:</label>
-                            <input type="time" id="event-time" name="time" required>
+                            <div style="display: flex; align-items: center;">
+                                <input type="number" id="event-hour" name="hour" min="1" max="12" required placeholder="HH">
+                                
+                                <input type="number" id="event-minute" name="minute" min="0" max="59" required placeholder="MM">
+                                <select id="event-period" name="period">
+                                    <option value="AM">AM</option>
+                                    <option value="PM">PM</option>
+                                </select>
+                            </div>
     
                             <label for="event-contact">Contact:</label>
                             <select id="event-contact" name="contact">
@@ -78,31 +92,51 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
             `;
-    
+
             document.body.insertAdjacentHTML('beforeend', modalHTML);
             const modal = document.getElementById('event-modal');
             modal.style.display = 'block';
-    
+
             // Close modal functionality
             modal.querySelector('.close').addEventListener('click', () => modal.remove());
-    
+
             // Handle form submission
             document.getElementById('event-form').addEventListener('submit', function (e) {
                 e.preventDefault();
                 const title = document.getElementById('event-title').value;
-                const time = document.getElementById('event-time').value;
+                const hour = parseInt(document.getElementById('event-hour').value, 10);
+                const minute = parseInt(document.getElementById('event-minute').value, 10);
+                const period = document.getElementById('event-period').value;
                 const contact = document.getElementById('event-contact').value;
                 const group = document.getElementById('event-group').value;
-    
+
+                if (isNaN(hour) || isNaN(minute) || hour < 1 || hour > 12 || minute < 0 || minute > 59) {
+                    alert("Invalid time input!");
+                    return;
+                }
+
+                // Convert to 24-hour format
+                let adjustedHour = hour;
+                if (period === 'PM' && hour < 12) adjustedHour += 12;
+                if (period === 'AM' && hour === 12) adjustedHour = 0;
+
                 // Combine date and time
-                const startDateTime = `${date}T${time}:00`;
+                const startDateTime = new Date(`${date}T${String(adjustedHour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:00`);
+                const currentDateTime = new Date();
+
+                // Validate against the current date and time
+                if (startDateTime < currentDateTime) {
+                    alert("You cannot add an event in the past!");
+                    return; // Stop submission
+                }
+
                 fetch('/api/add-event/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
                     },
-                    body: JSON.stringify({ title, start: startDateTime, contact, group })
+                    body: JSON.stringify({ title, start: startDateTime.toISOString(), contact, group })
                 })
                 .then(response => {
                     if (!response.ok) throw new Error(response.statusText);
@@ -122,4 +156,4 @@ document.addEventListener('DOMContentLoaded', function () {
         }).catch(error => console.error('Error fetching contacts or groups:', error));
     }
 
-});    
+});

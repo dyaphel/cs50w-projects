@@ -66,34 +66,91 @@
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 1000; /* Higher priority */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.6); /* Darker background overlay */
+    backdrop-filter: blur(5px); /* Add a subtle blur effect */
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
+    background: linear-gradient(145deg, #ffffff, #f3f3f3); /* Subtle gradient */
+    margin: 10% auto; /* Adjusted for better centering */
+    padding: 25px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Modern shadow effect */
     width: 50%;
+    max-width: 600px; /* Limit width on large screens */
+    animation: fadeIn 0.3s ease-out; /* Smooth animation */
 }
 
 .close {
-    color: #aaa;
+    color: #555;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: #ff6b6b; /* A vibrant hover color */
     text-decoration: none;
     cursor: pointer;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333; /* Enhanced text contrast */
+}
+
+input,
+select,
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease;
+    margin-right: 2%;
+}
+
+input:focus,
+select:focus {
+    box-shadow: 0 0 8px rgba(63, 81, 181, 0.5); /* Blue focus glow */
+    outline: none;
+}
+
+button {
+    background-color: #3f51b5; /* Primary button color */
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #5c6bc0; /* Slightly lighter hover effect */
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
