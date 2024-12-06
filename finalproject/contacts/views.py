@@ -316,12 +316,12 @@ def calendar(request):
 
 
 
-
+@login_required
 def calendar_events_api(request):
     events = list(Event.objects.values("title", "start"))  # Fetch all events
     return JsonResponse(events, safe=False)
 
-
+@login_required
 def add_event(request):
     """Add a new event to the database."""
     if request.method == 'POST':
@@ -342,14 +342,25 @@ def add_event(request):
 
     return JsonResponse({'success': False}, status=400)
 
-
+@login_required
 def contacts_api(request):
     contacts = list(Contact.objects.values("id", "name"))
     return JsonResponse(contacts, safe=False)
 
+@login_required
 def groups_api(request):
     groups = list(Group.objects.values("id", "name"))
     return JsonResponse(groups, safe=False)
+
+# @login_required
+# def event_details(request, id):
+#     event = Event.objects.get(id=id)
+#     return render(request,'event_details.html', {
+#         'event': event
+#     })
+
+
+
 
 
 

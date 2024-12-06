@@ -31,7 +31,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 return ['fc-event-past']; // Apply the past event class
             }
             return []; // No extra class for future or current events
-        }
+        },
+        // eventClick: function (info) {
+        //     console.log(info.event); 
+        //     const eventId = info.event._def.sourceId; // Assuming each event has a unique ID
+            
+        //     console.log(`Event clicked: ${eventId}`);
+        //     // Redirect to a new page with the event ID
+        //     window.location.href = `event-details/${eventId}/`;
+        // }
     });
 
     calendar.render();

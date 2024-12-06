@@ -1,0 +1,19 @@
+{% extends "standard/layout.html" %}
+
+{% load static %}
+
+{% block title %}Contacts{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<h1>Event Details</h1>
+    <p><strong>Title:</strong> {{ event.title }}</p>
+    <p><strong>Date:</strong> {{ event.start }}</p>
+    <p><strong>Description:</strong> {{ event.description }}</p>
+{% endblock %}
+
+{% block script %}
+{% endblock %}
