@@ -329,12 +329,29 @@ def add_event(request):
             data = json.loads(request.body)
             title = data['title']
             start = data['start']
+            contact_id = data.get('contact')
+            group_id = data.get('group')
+
+            contact = Contact.objects.get(id=contact_id) if contact_id else None
+            group = Group.objects.get(id=group_id) if group_id else None
+
             Event.objects.create(title=title, start=start)
             return JsonResponse({'success': True})
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)}, status=400)
 
     return JsonResponse({'success': False}, status=400)
+
+
+def contacts_api(request):
+    contacts = list(Contact.objects.values("id", "name"))
+    return JsonResponse(contacts, safe=False)
+
+def groups_api(request):
+    groups = list(Group.objects.values("id", "name"))
+    return JsonResponse(groups, safe=False)
+
+
 
 def login_view(request):
     if request.method == "POST":
