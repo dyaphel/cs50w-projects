@@ -41,6 +41,25 @@
     background-color: #357abd; /* Hover effect for events */
 }
 
+/* Past Event Colors */
+.fc-event-past {
+    background-color: gray; /* Gray background for past events */
+    color: white; /* Text color for contrast */
+    border: none; /* Remove borders */
+    opacity: 0.6; /* Slightly faded appearance */
+}
+
+/* Remove the blue dot for past events */
+.fc-event-past::before {
+    display: none; /* Removes any pseudo-elements like dots */
+}
+/* Change the blue dot to black or gray for past events */
+.fc-event-past .fc-daygrid-event-dot {
+    background-color: black !important; /* Make the dot black */
+    border-color: black !important;    /* Ensure the border matches */
+}
+
+
 
 /*////////////////////////////////////*/
 

@@ -16,6 +16,16 @@ document.addEventListener('DOMContentLoaded', function () {
             // Open modal for adding an event
             showEventForm(info.dateStr);
         },
+        eventClassNames: function (arg) {
+            const currentDate = new Date();
+            const eventDate = new Date(arg.event.start);
+    
+            // Compare event date with current date
+            if (eventDate < currentDate) {
+                return ['fc-event-past']; // Apply the past event class
+            }
+            return []; // No extra class for future or current events
+        }
     });
 
     calendar.render();
@@ -111,4 +121,5 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }).catch(error => console.error('Error fetching contacts or groups:', error));
     }
+
 });    
