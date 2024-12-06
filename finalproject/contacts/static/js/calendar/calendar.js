@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         locale: 'en',
         events: '/api/calendar-events/', // Fetch events from Django API
+        eventTimeFormat: { // Customize how time is displayed
+            hour: '2-digit',
+            minute: '2-digit',
+            meridiem: 'short' // Display AM/PM
+        },
         dateClick: function (info) {
             const currentDateTime = new Date(); 
             const clickedDate = new Date(info.dateStr);
