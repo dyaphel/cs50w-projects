@@ -2,19 +2,89 @@
 
 {% load static %}
 
-{% block title %}Contacts{% endblock %}
+{% block title %}Contact{% endblock %}
 
 {% block head %}
+<link href="{% static 'contact_style/calendar/events_details.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/header_buttons.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/profile_pictures.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/add_card.css' %}" rel="stylesheet">
 
 {% endblock %}
 
 {% block body %}
-<h1>Event Details</h1>
-    <p><strong>Title:</strong> {{ event.title }}</p>
-    <p><strong>Date:</strong> {{ event.start.time }} - {{ event.end.time }}</p>
-    <p><strong>Day:</strong> {{ event.start.date}}</p>
-    
+
+<div class="header-section">
+    <div class="profile-icons">
+        <button id="deleteButtonGroup">
+            <img src="{% static 'img/delete.png' %}" class="icon" alt="Delete">
+            {% csrf_token %}
+        </button>
+    </div>
+</div>
+
+<div class="profile-container">
+    <div class="profile-picture-group-list">
+        {{ event.title|upper }}
+    </div>
+
+   
+    <div class="group-info">
+            <div class="description-row">
+                <span class="label">Start:</span> 
+                <label id="description">{{ event.start.time }}</label>
+            </div>
+            
+            <div class="pinned-message-row">
+                <span class="label">end:</span> 
+                <label id="pinned-message">{{ event.end.time }}</label>
+            </div>
+        
+        <div class="members">
+            {% for contact in event.contact %}
+                <div class="profile-wrapper contact-info" data-contact-id="{{ contact.id }}" 
+                     data-name="{{ contact.name }}" data-surname="{{ contact.surname }}">
+                    <div class="profile-container-member">
+                      <!-- Hidden by default, will appear on button click -->
+                            <div class="select-checkbox" style="display: none;">
+                                <input type="checkbox" class="select-contact-checkbox" data-contact-id="{{ contact.id }}">
+                            </div>
+                        <div class="profile-picture-member">
+                            {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
+                        </div>
+        
+                        <div class="memeber-name-row">
+                            <div class="main-info">
+                                <span class="name">{{ contact.name }}</span>
+                                <span class="surname">{{ contact.surname }}</span>
+                            </div>
+                            <div class="memeber-sub-info">
+                                <span class="nickname">{{ contact.nickname }}</span>
+                                <span class="phone">{{ contact.phone_number_1 }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>       
+
+
+
+        <div class="members">
+            {% for contact in event.group %}
+                <div class="profile-wrapper contact-info">
+                    <div class="profile-container-member">
+                        <div class="profile-picture-member">
+                            {{ contact.name.0|upper }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block script %}
+
 {% endblock %}
