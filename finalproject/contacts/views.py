@@ -352,6 +352,28 @@ def groups_api(request):
     groups = list(Group.objects.values("id", "name"))
     return JsonResponse(groups, safe=False)
 
+
+def event_conflict(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        requested_datetime = data.get('date')
+        requested_datetime = datetime.fromisoformat(requested_datetime)
+
+        # Check for events at the same time (same day)
+        existing_events = Event.objects.filter(
+            start__year=requested_datetime.year,
+            start__month=requested_datetime.month,
+            start__day=requested_datetime.day,
+            start__hour=requested_datetime.hour,
+            start__minute=requested_datetime.minute
+        )
+
+        # If there's an event with the same time, return a conflict response
+        if existing_events.exists():
+            return JsonResponse({'conflict': True})
+        else:
+            return JsonResponse({'conflict': False})
+
 # @login_required
 # def event_details(request, id):
 #     event = Event.objects.get(id=id)

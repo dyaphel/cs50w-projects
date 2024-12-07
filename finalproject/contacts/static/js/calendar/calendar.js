@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     console.log("DOM load");
+
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -20,10 +21,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const currentDateTime = new Date(); 
             const clickedDate = new Date(info.dateStr);
             console.log('Date clicked:', info.dateStr);
+
+            // Prevent adding events in the past
             if (clickedDate < currentDateTime.setHours(0, 0, 0, 0)) {
                 alert("You cannot add events in the past!");
                 return; // Stop the form from opening
             }
+
             // Open modal for adding an event
             showEventForm(info.dateStr);
         },
@@ -31,20 +35,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const currentDate = new Date();
             const eventDate = new Date(arg.event.start);
 
-            // Compare event date with current date
+            // Add class for past events
             if (eventDate < currentDate) {
-                return ['fc-event-past']; // Apply the past event class
+                return ['fc-event-past'];
             }
-            return []; // No extra class for future or current events
-        },
-        // eventClick: function (info) {
-        //     console.log(info.event); 
-        //     const eventId = info.event._def.sourceId; // Assuming each event has a unique ID
-            
-        //     console.log(`Event clicked: ${eventId}`);
-        //     // Redirect to a new page with the event ID
-        //     window.location.href = `event-details/${eventId}/`;
-        // }
+            return [];
+        }
     });
 
     calendar.render();
@@ -80,7 +76,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             <label for="event-time">Time:</label>
                             <div style="display: flex; align-items: center;">
                                 <input type="number" id="event-hour" name="hour" min="1" max="12" required placeholder="HH">
-                                
                                 <input type="number" id="event-minute" name="minute" min="0" max="59" required placeholder="MM">
                                 <select id="event-period" name="period">
                                     <option value="AM">AM</option>
@@ -116,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Handle form submission
             document.getElementById('event-form').addEventListener('submit', function (e) {
                 e.preventDefault();
+
                 const title = document.getElementById('event-title').value;
                 const hour = parseInt(document.getElementById('event-hour').value, 10);
                 const minute = parseInt(document.getElementById('event-minute').value, 10);
@@ -123,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const contact = document.getElementById('event-contact').value;
                 const group = document.getElementById('event-group').value;
 
+                // Validate time input
                 if (isNaN(hour) || isNaN(minute) || hour < 1 || hour > 12 || minute < 0 || minute > 59) {
                     alert("Invalid time input!");
                     return;
@@ -140,33 +137,50 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Validate against the current date and time
                 if (startDateTime < currentDateTime) {
                     alert("You cannot add an event in the past!");
-                    return; // Stop submission
+                    return;
                 }
 
-                fetch('/api/add-event/', {
+                // Check for event conflicts at the same time
+                fetch('/api/event-conflict/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
                     },
-                    body: JSON.stringify({ title, start: startDateTime.toISOString(), contact, group })
+                    body: JSON.stringify({ date: startDateTime.toISOString() })
                 })
-                .then(response => {
-                    if (!response.ok) throw new Error(response.statusText);
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
-                    if (data.success) {
-                        alert('Event added successfully!');
-                        modal.remove();
-                        calendar.refetchEvents(); // Refresh the calendar
+                    if (data.conflict) {
+                        alert('An event already exists at this time. Please select a different time.');
                     } else {
-                        alert(`Error adding event: ${data.error}`);
+                        // Add the event
+                        fetch('/api/add-event/', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                            },
+                            body: JSON.stringify({ title, start: startDateTime.toISOString(), contact, group })
+                        })
+                        .then(response => {
+                            if (!response.ok) throw new Error(response.statusText);
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.success) {
+                                alert('Event added successfully!');
+                                modal.remove();
+                                calendar.refetchEvents(); // Refresh the calendar
+                            } else {
+                                alert(`Error adding event: ${data.error}`);
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
                     }
                 })
-                .catch(error => console.error('Error:', error));
+                .catch(error => console.error('Error checking event conflict:', error));
             });
         }).catch(error => console.error('Error fetching contacts or groups:', error));
     }
-
 });
