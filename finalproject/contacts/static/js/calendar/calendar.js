@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         headerToolbar: {
-            left: 'prev,next today',
+            left: 'prev,next',
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
@@ -33,16 +33,14 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         eventClick: function(info) {
             const eventTitle = info.event.title;  // Get event title
-            const eventStart = info.event.start;  // Get event start time (Date object)
-        
-            // Format the start time as 'YYYY-MM-DDTHH:MM'
-            const formattedStartTime = eventStart.toISOString().slice(0, 16); // Get the first 16 characters (YYYY-MM-DDTHH:MM)
-        
-            console.log('Event clicked:', eventTitle, formattedStartTime);
-        
+            const eventStart = info.event.start.toISOString();  // Get event start time as an ISO string
+            
+            console.log('Event clicked:', eventTitle, eventStart);
+            
             // Redirect to the event details page using title and formatted start time
-            window.location.href = `/event-details/${encodeURIComponent(eventTitle)}/${formattedStartTime}/`;
+            window.location.href = `/event-details/${encodeURIComponent(eventTitle)}/${encodeURIComponent(eventStart)}/`;
         },
+        
         
         eventClassNames: function (arg) {
             const currentDate = new Date();
@@ -54,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             return [];
         }
+        
     });
 
     calendar.render();

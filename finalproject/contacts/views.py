@@ -377,17 +377,18 @@ def event_conflict(request):
 
 @login_required
 def event_details(request, title, start_time):
-    # Decode the start_time from URL format (YYYY-MM-DDTHH:MM)
-    start_time = datetime.strptime(start_time, "%Y-%m-%dT%H:%M")
-
     try:
+        # Convert the ISO 8601 string to a datetime object
+        start_time = datetime.fromisoformat(start_time.replace("Z", "+00:00"))  # Make sure it's timezone-aware
+        
+        # Query the event from the database
         event = Event.objects.get(title=title, start=start_time)
+        
+        # Render the event details page
         return render(request, 'calendar/event_details.html', {'event': event})
     except Event.DoesNotExist:
         # Handle case where event does not exist
         return render(request, 'event_not_found.html', {'message': 'Event not found.'})
-
-
 
 
 def login_view(request):

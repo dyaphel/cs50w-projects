@@ -11,8 +11,9 @@
 {% block body %}
 <h1>Event Details</h1>
     <p><strong>Title:</strong> {{ event.title }}</p>
-    <p><strong>Date:</strong> {{ event.start }}</p>
-    <p><strong>Description:</strong> {{ event.description }}</p>
+    <p><strong>Date:</strong> {{ event.start.time }} - {{ event.end.time }}</p>
+    <p><strong>Day:</strong> {{ event.start.date}}</p>
+    
 {% endblock %}
 
 {% block script %}
