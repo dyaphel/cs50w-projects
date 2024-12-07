@@ -330,19 +330,30 @@ def add_event(request):
             title = data['title']
             start = data['start']
             end = data['end']
-            contact_id = data.get('contact')
-            group_id = data.get('group')
+            contact_id = data.get('contact')  # Optional
+            group_id = data.get('group')  # Optional
 
+            # Retrieve the contact and group if they are provided
             contact = Contact.objects.get(id=contact_id) if contact_id else None
             group = Group.objects.get(id=group_id) if group_id else None
 
-            Event.objects.create(title=title, start=start, end=end)
+            # Create the event with associated contact and group if provided
+            event = Event.objects.create(
+                title=title,
+                start=start,
+                end=end,
+                contact=contact,
+                group=group
+            ) 
+            event.save()
+
+            # Return a success response
             return JsonResponse({'success': True})
+
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)}, status=400)
 
     return JsonResponse({'success': False}, status=400)
-
 @login_required
 def contacts_api(request):
     contacts = list(Contact.objects.values("id", "name"))

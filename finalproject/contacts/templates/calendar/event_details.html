@@ -29,7 +29,7 @@
     </div>
 
    
-    <div class="group-info">
+        <div class="group-info">
             <div class="description-row">
                 <span class="label">Start:</span> 
                 <label id="description">{{ event.start.time }}</label>
@@ -40,48 +40,41 @@
                 <label id="pinned-message">{{ event.end.time }}</label>
             </div>
         
-        <div class="members">
-            {% for contact in event.contact %}
-                <div class="profile-wrapper contact-info" data-contact-id="{{ contact.id }}" 
-                     data-name="{{ contact.name }}" data-surname="{{ contact.surname }}">
+            <div class="members">
+                <div class="profile-wrapper contact-info" >
                     <div class="profile-container-member">
-                      <!-- Hidden by default, will appear on button click -->
-                            <div class="select-checkbox" style="display: none;">
-                                <input type="checkbox" class="select-contact-checkbox" data-contact-id="{{ contact.id }}">
-                            </div>
+
                         <div class="profile-picture-member">
-                            {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
+                            {{ event.contact.name.0|upper }}{{ event.contact.surname.0|upper }}
                         </div>
         
                         <div class="memeber-name-row">
                             <div class="main-info">
-                                <span class="name">{{ contact.name }}</span>
-                                <span class="surname">{{ contact.surname }}</span>
+                                <span class="name">{{ event.contact.name }}</span>
+                                <span class="surname">{{ event.contact.surname }}</span>
                             </div>
                             <div class="memeber-sub-info">
-                                <span class="nickname">{{ contact.nickname }}</span>
-                                <span class="phone">{{ contact.phone_number_1 }}</span>
+                                <span class="nickname">{{ event.contact.nickname }}</span>
+                                <span class="phone">{{ event.contact.phone_number_1 }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            {% endfor %}
-        </div>       
+            </div> 
 
 
+<!--ADJUST USE THE GROUP STYLE -->
 
-        <div class="members">
-            {% for contact in event.group %}
+            <div class="members">   
                 <div class="profile-wrapper contact-info">
                     <div class="profile-container-member">
                         <div class="profile-picture-member">
-                            {{ contact.name.0|upper }}
+                            {{ event.group.name|upper }}
                         </div>
                     </div>
                 </div>
-            {% endfor %}
+            </div>
         </div>
-    </div>
 </div>
 {% endblock %}
 
