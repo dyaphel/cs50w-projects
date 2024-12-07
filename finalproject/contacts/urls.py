@@ -34,7 +34,7 @@ urlpatterns = [
     path('api/groups/', views.groups_api, name='groups_api'),
      path('api/event-conflict/', views.event_conflict, name='check_event_conflict'),
 
-    #path('event-details/<int:id>/', views.event_details, name='event_details'),
+    path('event-details/<str:title>/<str:start_time>/', views.event_details, name='event_details'),
 
     path("login", views.login_view, name="login"),
     path("logout", views.logout_view, name="logout"),

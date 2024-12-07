@@ -374,14 +374,17 @@ def event_conflict(request):
         else:
             return JsonResponse({'conflict': False})
 
-# @login_required
-# def event_details(request, id):
-#     event = Event.objects.get(id=id)
-#     return render(request,'event_details.html', {
-#         'event': event
-#     })
+@login_required
+def event_details(request, title, start_time):
+    # Decode the start_time from URL format (YYYY-MM-DDTHH:MM)
+    start_time = datetime.strptime(start_time, "%Y-%m-%dT%H:%M")
 
-
+    try:
+        event = Event.objects.get(title=title, start=start_time)
+        return render(request, 'calendar/event_details.html', {'event': event})
+    except Event.DoesNotExist:
+        # Handle case where event does not exist
+        return render(request, 'event_not_found.html', {'message': 'Event not found.'})
 
 
 

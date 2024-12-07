@@ -31,6 +31,19 @@ document.addEventListener('DOMContentLoaded', function () {
             // Open modal for adding an event
             showEventForm(info.dateStr);
         },
+        eventClick: function(info) {
+            const eventTitle = info.event.title;  // Get event title
+            const eventStart = info.event.start;  // Get event start time (Date object)
+        
+            // Format the start time as 'YYYY-MM-DDTHH:MM'
+            const formattedStartTime = eventStart.toISOString().slice(0, 16); // Get the first 16 characters (YYYY-MM-DDTHH:MM)
+        
+            console.log('Event clicked:', eventTitle, formattedStartTime);
+        
+            // Redirect to the event details page using title and formatted start time
+            window.location.href = `/event-details/${encodeURIComponent(eventTitle)}/${formattedStartTime}/`;
+        },
+        
         eventClassNames: function (arg) {
             const currentDate = new Date();
             const eventDate = new Date(arg.event.start);
