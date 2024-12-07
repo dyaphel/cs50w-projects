@@ -86,15 +86,25 @@ document.addEventListener('DOMContentLoaded', function () {
                             <label for="event-title">Title:</label>
                             <input type="text" id="event-title" name="title" required>
                             
-                            <label for="event-time">Time:</label>
-                            <div style="display: flex; align-items: center;">
-                                <input type="number" id="event-hour" name="hour" min="1" max="12" required placeholder="HH">
-                                <input type="number" id="event-minute" name="minute" min="0" max="59" required placeholder="MM">
-                                <select id="event-period" name="period">
-                                    <option value="AM">AM</option>
-                                    <option value="PM">PM</option>
-                                </select>
-                            </div>
+                        <label for="event-time">Start Time:</label>
+                        <div style="display: flex; align-items: center;">
+                            <input type="number" id="event-hour" name="hour" min="1" max="12" required placeholder="HH">
+                            <input type="number" id="event-minute" name="minute" min="0" max="59" required placeholder="MM">
+                            <select id="event-period" name="period">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
+
+                        <label for="event-end-hour">End Time:</label>
+                        <div style="display: flex; align-items: center;">
+                            <input type="number" id="event-end-hour" name="end_hour" min="1" max="12" required placeholder="HH">
+                            <input type="number" id="event-end-minute" name="end_minute" min="0" max="59" required placeholder="MM">
+                            <select id="event-end-period" name="end_period">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
     
                             <label for="event-contact">Contact:</label>
                             <select id="event-contact" name="contact">
@@ -145,6 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Combine date and time
                 const startDateTime = new Date(`${date}T${String(adjustedHour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:00`);
+                const endDateTime = new Date(`${date}T${String(adjustedHour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:00`);
                 const currentDateTime = new Date();
 
                 // Validate against the current date and time
@@ -174,7 +185,12 @@ document.addEventListener('DOMContentLoaded', function () {
                                 'Content-Type': 'application/json',
                                 'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
                             },
-                            body: JSON.stringify({ title, start: startDateTime.toISOString(), contact, group })
+                            body: JSON.stringify(
+                                { title, 
+                                    start: startDateTime.toISOString(),
+                                    end: endDateTime.toISOString(),
+                                    contact,
+                                    group })
                         })
                         .then(response => {
                             if (!response.ok) throw new Error(response.statusText);

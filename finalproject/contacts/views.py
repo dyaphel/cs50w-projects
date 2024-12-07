@@ -329,13 +329,14 @@ def add_event(request):
             data = json.loads(request.body)
             title = data['title']
             start = data['start']
+            end = data['end']
             contact_id = data.get('contact')
             group_id = data.get('group')
 
             contact = Contact.objects.get(id=contact_id) if contact_id else None
             group = Group.objects.get(id=group_id) if group_id else None
 
-            Event.objects.create(title=title, start=start)
+            Event.objects.create(title=title, start=start, end=end)
             return JsonResponse({'success': True})
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)}, status=400)
