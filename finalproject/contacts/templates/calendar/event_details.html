@@ -9,57 +9,66 @@
 <link href="{% static 'contact_style/components/header_buttons.css' %}" rel="stylesheet">
 <link href="{% static 'contact_style/components/profile_pictures.css' %}" rel="stylesheet">
 <link href="{% static 'contact_style/components/add_card.css' %}" rel="stylesheet">
+
 {% endblock %}
 
 {% block body %}
 
 <div class="header-section">
     <div class="profile-icons">
-        <button id="deleteEventButton">
+        <button id="deleteButtonGroup">
             <img src="{% static 'img/delete.png' %}" class="icon" alt="Delete">
             {% csrf_token %}
         </button>
     </div>
 </div>
 
-<div class="event-details-container">
-    <div class="event-title">
+<div class="profile-container">
+    <div class="profile-picture-group-list">
         {{ event.title|upper }}
     </div>
 
-    <div class="event-info">
-        <div class="event-row">
-            <span class="label">Start:</span> 
-            <label>{{ event_start|date:"g:i a" }}</label>
-        </div>
-        
-        <div class="event-row">
-            <span class="label">End:</span> 
-            <label>{{ event_end|date:"g:i a" }}</label>
-        </div>
-        
-        <div class="contact-info">
-            {% if event.contact %}
-                <div class="contact-profile">
-                    <div class="contact-picture">
-                        {{ event.contact.name.0|upper }}{{ event.contact.surname.0|upper }}
-                    </div>
+   
+        <div class="group-info">
 
-                    <div class="contact-details">
-                        <div class="contact-name">
-                            <span class="name">{{ event.contact.name }}</span>
-                            <span class="surname">{{ event.contact.surname }}</span>
-                        </div>
-                        <div class="contact-sub-info">
-                            <span class="nickname">{{ event.contact.nickname }}</span>
-                            <span class="phone">{{ event.contact.phone_number_1 }}</span>
+            <div class="description-row">
+                <span class="label">Start:</span> 
+                <label>{{ event_start|date:"g:i a" }}</label>
+            </div>
+            
+            <div class="pinned-message-row">
+                <span class="label">End:</span> 
+                <label>{{ event_end|date:"g:i a" }}</label>
+            </div>
+            
+            
+        
+            <div class="members">
+                {% if event.contact %}
+                    <div class="profile-wrapper contact-info">
+                        <div class="profile-container-member">
+                            <div class="profile-picture-member">
+                                {{ event.contact.name.0|upper }}{{ event.contact.surname.0|upper }}
+                            </div>
+            
+                            <div class="memeber-name-row">
+                                <div class="main-info">
+                                    <span class="name">{{ event.contact.name }}</span>
+                                    <span class="surname">{{ event.contact.surname }}</span>
+                                </div>
+                                <div class="memeber-sub-info">
+                                    <span class="nickname">{{ event.contact.nickname }}</span>
+                                    <span class="phone">{{ event.contact.phone_number_1 }}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endif %}
-        </div>
-    </div>
+                {% endif %}
+            </div>
+            
 
+
+<!--ADJUST USE THE GROUP STYLE -->
 
             <div class="members">   
             {% if event.group %}
