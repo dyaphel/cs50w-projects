@@ -321,6 +321,7 @@ def calendar_events_api(request):
     events = list(Event.objects.values("title", "start"))  # Fetch all events
     return JsonResponse(events, safe=False)
 
+
 @login_required
 def add_event(request):
     """Add a new event to the database."""
@@ -354,6 +355,7 @@ def add_event(request):
             return JsonResponse({'success': False, 'error': str(e)}, status=400)
 
     return JsonResponse({'success': False}, status=400)
+
 @login_required
 def contacts_api(request):
     contacts = list(Contact.objects.values("id", "name"))
@@ -388,18 +390,8 @@ def event_conflict(request):
 
 @login_required
 def event_details(request, title, start_time):
-    try:
-        # Convert the ISO 8601 string to a datetime object
-        start_time = datetime.fromisoformat(start_time.replace("Z", "+00:00"))  # Make sure it's timezone-aware
-        
-        # Query the event from the database
         event = Event.objects.get(title=title, start=start_time)
-        
-        # Render the event details page
         return render(request, 'calendar/event_details.html', {'event': event})
-    except Event.DoesNotExist:
-        # Handle case where event does not exist
-        return render(request, 'event_not_found.html', {'message': 'Event not found.'})
 
 
 def login_view(request):
