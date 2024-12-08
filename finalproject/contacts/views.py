@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.utils import timezone
 from .models import User, Contact, Group, Event
 from .forms import ContactForm, GroupForm
 
@@ -390,8 +391,19 @@ def event_conflict(request):
 
 @login_required
 def event_details(request, title, start_time):
-        event = Event.objects.get(title=title, start=start_time)
-        return render(request, 'calendar/event_details.html', {'event': event})
+    event = Event.objects.get(title=title, start=start_time)
+
+    # Convert to local time if it's timezone-aware
+    event_start = timezone.localtime(event.start)
+    event_end = timezone.localtime(event.end)
+
+    return render(request, 'calendar/event_details.html', {
+        'event': event,
+        'event_start': event_start,
+        'event_end': event_end,
+    })
+
+
 
 
 def login_view(request):
