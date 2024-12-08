@@ -35,6 +35,7 @@ urlpatterns = [
      path('api/event-conflict/', views.event_conflict, name='check_event_conflict'),
 
     path('event-details/<str:title>/<str:start_time>/', views.event_details, name='event_details'),
+    path('events/delete/<str:title>/<str:starttime>/', views.delete_event, name='delete_event'),
 
     path("login", views.login_view, name="login"),
     path("logout", views.logout_view, name="logout"),

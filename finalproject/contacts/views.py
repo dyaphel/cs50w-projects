@@ -404,6 +404,25 @@ def event_details(request, title, start_time):
     })
 
 
+def delete_event(request, title, starttime):
+    if request.method == "POST":
+        try:
+            # Parse the starttime string received from JavaScript
+            starttime_obj = datetime.strptime(starttime, "%Y-%m-%d %H:%M:%S")
+
+            # Retrieve event by title and starttime safely
+            event = Event.objects.get( title=title)
+
+            # Perform delete action
+            event.delete()
+
+            return JsonResponse({"success": True})
+        except Exception as e:
+            print(e)  # Debugging error log
+            return JsonResponse({"success": False, "message": str(e)})
+    else:
+        return JsonResponse({"success": False, "message": "Invalid request method"})
+    
 
 
 def login_view(request):

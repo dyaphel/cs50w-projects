@@ -15,8 +15,8 @@
     <div class="header-section">
         <div class="profile-icons">
             <button id="deleteButtonGroup">
-                <img src="{% static 'img/delete.png' %}" class="icon" alt="Delete">
                 {% csrf_token %}
+                <img src="{% static 'img/delete.png' %}" class="icon" alt="Delete">
             </button>
         </div>
     </div>
@@ -25,12 +25,14 @@
         <div class="profile-picture">
             <span class = description>Description:</span>
            <textarea> {{ event.title|upper }}</textarea>
+           <span id="eventTitle" style="display:none">{{ event.title|escapejs }}</span>
         </div>
 
         <div class="event-info">
             <div class="start-row">
                 <span class="label">Start:</span>
                 <p>{{ event_start|date:"g:i a" }}</p>
+                <span id="eventStartTime" style="display:none">{{ event.start|date:'Y-m-d H:i:s' }}</span> <!-- Hidden starttime for JS -->
             </div>
 
             <div class="end-row">
@@ -60,7 +62,7 @@
                     </div>
                 {% endif %}
             </div>
-
+        {% if event.group%}
         <div class="profile-wrapper">
           <div class="profile-container-group">
              <!-- Group Profile Picture -->
@@ -74,9 +76,11 @@
                 <textarea id="description" readonly >{{ event.group.description }}</textarea>
             </div>
         </div>
+        {%endif%}
     </div>
 </div>
 {% endblock %}
 
 {% block script %}
+<script src="{% static  'js/calendar/event_details.js' %}" ></script>
 {% endblock %}
