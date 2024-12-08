@@ -5,52 +5,47 @@
 {% block title %}Contact{% endblock %}
 
 {% block head %}
-<link href="{% static 'contact_style/calendar/events_details.css' %}" rel="stylesheet">
-<link href="{% static 'contact_style/components/header_buttons.css' %}" rel="stylesheet">
-<link href="{% static 'contact_style/components/profile_pictures.css' %}" rel="stylesheet">
-<link href="{% static 'contact_style/components/add_card.css' %}" rel="stylesheet">
-
+    <link href="{% static 'contact_style/calendar/events_details.css' %}" rel="stylesheet">
+    <link href="{% static 'contact_style/components/header_buttons.css' %}" rel="stylesheet">
+    <link href="{% static 'contact_style/components/profile_pictures.css' %}" rel="stylesheet">
+    <link href="{% static 'contact_style/components/add_card.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
-
-<div class="header-section">
-    <div class="profile-icons">
-        <button id="deleteButtonGroup">
-            <img src="{% static 'img/delete.png' %}" class="icon" alt="Delete">
-            {% csrf_token %}
-        </button>
-    </div>
-</div>
-
-<div class="profile-container">
-    <div class="profile-picture-group-list">
-        {{ event.title|upper }}
+    <div class="header-section">
+        <div class="profile-icons">
+            <button id="deleteButtonGroup">
+                <img src="{% static 'img/delete.png' %}" class="icon" alt="Delete">
+                {% csrf_token %}
+            </button>
+        </div>
     </div>
 
-   
-        <div class="group-info">
+    <div class="profile-container">
+        <div class="profile-picture">
+            <span class = description>Description:</span>
+           <textarea> {{ event.title|upper }}</textarea>
+        </div>
 
-            <div class="description-row">
-                <span class="label">Start:</span> 
-                <label>{{ event_start|date:"g:i a" }}</label>
+        <div class="event-info">
+            <div class="start-row">
+                <span class="label">Start:</span>
+                <p>{{ event_start|date:"g:i a" }}</p>
             </div>
-            
-            <div class="pinned-message-row">
-                <span class="label">End:</span> 
-                <label>{{ event_end|date:"g:i a" }}</label>
+
+            <div class="end-row">
+                <span class="label">End:</span>
+                <p>{{ event_end|date:"g:i a" }}</p>
             </div>
-            
-            
-        
+
             <div class="members">
                 {% if event.contact %}
-                    <div class="profile-wrapper contact-info">
+                    <div class="profile-wrapper">
                         <div class="profile-container-member">
                             <div class="profile-picture-member">
                                 {{ event.contact.name.0|upper }}{{ event.contact.surname.0|upper }}
                             </div>
-            
+
                             <div class="memeber-name-row">
                                 <div class="main-info">
                                     <span class="name">{{ event.contact.name }}</span>
@@ -65,26 +60,23 @@
                     </div>
                 {% endif %}
             </div>
-            
 
+        <div class="profile-wrapper">
+          <div class="profile-container-group">
+             <!-- Group Profile Picture -->
+             <div class="profile-picture-group-list" style="width: auto;">
+                {{ event.group.name|upper }}
+            </div>
+            <!-- Group Name and Description -->
+            <div class="text-container">
+                    <span class="member-count">({{ event.group.members.count }} Members)</span>
 
-<!--ADJUST USE THE GROUP STYLE -->
-
-            <div class="members">   
-            {% if event.group %}
-                <div class="profile-wrapper contact-info">
-                    <div class="profile-container-member">
-                        <div class="profile-picture-member">
-                            {{ event.group.name|upper }}
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+                <textarea id="description" readonly >{{ event.group.description }}</textarea>
             </div>
         </div>
+    </div>
 </div>
 {% endblock %}
 
 {% block script %}
-
 {% endblock %}
