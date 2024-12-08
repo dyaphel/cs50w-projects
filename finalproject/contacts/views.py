@@ -411,7 +411,7 @@ def delete_event(request, title, starttime):
             starttime_obj = datetime.strptime(starttime, "%Y-%m-%d %H:%M:%S")
 
             # Retrieve event by title and starttime safely
-            event = Event.objects.get( title=title)
+            event = Event.objects.get( title=title, start=starttime)
 
             # Perform delete action
             event.delete()
