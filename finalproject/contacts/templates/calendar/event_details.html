@@ -17,6 +17,7 @@
             <button id="deleteButtonGroup">
                 {% csrf_token %}
                 <img src="{% static 'img/delete.png' %}" class="icon" alt="Delete">
+                <div id="calendar-url" data-url="{% url 'calendar' %}"></div>
             </button>
         </div>
     </div>

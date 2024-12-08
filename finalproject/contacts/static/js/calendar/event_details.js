@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // URL for deletion request
             const url = `/events/delete/${encodeURIComponent(title)}/${encodeURIComponent(startTime)}/`;
+            const calendarUrl = document.getElementById("calendar-url").getAttribute("data-url");
            
 
             // Create the fetch request to delete the event
@@ -45,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 if (data.success) {
                     alert("Event deleted successfully!");
-                    window.location.href = "calendar.html";
+                    window.location.href = calendarUrl;
                 } else {
                     alert("Error deleting event: " + data.message);
                 }
