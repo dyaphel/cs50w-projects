@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 import json
-from datetime import datetime, timedelta
+from datetime import datetime
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -16,7 +16,7 @@ from .forms import ContactForm, GroupForm
 
 def index(request):
     if request.user.is_authenticated:
-        # Ottieni le informazioni dell'utente
+
         user_info = {
             'username': request.user.username,
             'name': request.user.first_name,
@@ -27,8 +27,6 @@ def index(request):
             'phone_number_1': request.user.phone_number_1,
             'phone_number_2': request.user.phone_number_2,
         }
-        
-        # Passa le informazioni dell'utente al template
         return render(request, "contacts/index.html", {
             'user_info': user_info
         })
@@ -52,7 +50,6 @@ def update_profile(request):
         user.phone_number_1 = data.get('phone1', user.phone_number_1)
         user.phone_number_2 = data.get('phone2', user.phone_number_2)
 
-        # Save user to database
         user.save()
 
         return JsonResponse({'success': True})
@@ -64,7 +61,6 @@ def update_profile(request):
 def contacts(request):
     user = request.user
     user_contacts = Contact.objects.filter(owner=user)
-    #print(f"Contatti trovati: {user_contacts.count()}")
     return render(request, 'contacts/contact_list.html', {
         'contacts': user_contacts
     })
@@ -106,19 +102,19 @@ def delete_contacts(request):
     if request.method == "POST":
         data = json.loads(request.body)
         contact_ids = data.get("contacts", [])
-        # Delete contacts with IDs in contact_ids
         Contact.objects.filter(id__in=contact_ids).delete()
         return JsonResponse({"success": True})
     return JsonResponse({"success": False})
+
+
 
 
 @login_required
 def edit_contact(request, id):
     if request.method == 'POST':
         data = json.loads(request.body)
-        # Get the contact by ID
         contact = Contact.objects.get(id=id)
-        # Update fields from the incoming data
+
         contact.name = data.get('firstName', contact.name)
         contact.surname = data.get('lastName', contact.surname)
         contact.nickname = data.get('nickname', contact.nickname)
@@ -127,7 +123,7 @@ def edit_contact(request, id):
         contact.email = data.get('email', contact.email)
         contact.phone_number_1 = data.get('phone1', contact.phone_number_1)
         contact.phone_number_2 = data.get('phone2', contact.phone_number_2)
-        # Save the updated contact
+        
         contact.save()
         return JsonResponse({'success': True})
     return JsonResponse({'success': False, 'error': 'Invalid request method or unauthorized'})
@@ -137,9 +133,9 @@ def edit_contact(request, id):
 def toggle_favorite_contact(request, contact_id):
     if request.method == 'POST':
         contact = Contact.objects.get(id=contact_id)
-        # Toggle is_favorite status
         contact.isFavorite = not contact.isFavorite
-        contact.save()  # Save to ensure the update is persisted
+
+        contact.save() 
         return JsonResponse({
             "success": True, 
             "is_favorite": contact.isFavorite
@@ -156,6 +152,7 @@ def favorites(request):
         'groups': groups,
     })
 
+
 @login_required
 def groups(request):
     groups = Group.objects.filter(admins=request.user)
@@ -163,14 +160,13 @@ def groups(request):
         'groups': groups
     })
 
+
 @login_required
 def delete_groups(request):
     if request.method == "POST":
         try:
             data = json.loads(request.body)
-            group_ids = data.get("group", [])  # Get group IDs from the request body
-            
-            # Delete groups with IDs in group_ids
+            group_ids = data.get("group", []) 
             Group.objects.filter(id__in=group_ids).delete()
             return JsonResponse({"success": True})
         except Exception as e:
@@ -184,14 +180,12 @@ def add_group(request):
         form = GroupForm(request.POST)
         if form.is_valid():
             group = form.save(commit=False)
-            group.save()  # Save the group instance first
-            form.save_m2m()  # Save ManyToMany relationships (members)
-            group.admins.add(request.user)  # Automatically make the logged-in user an admin
-            return redirect('groups')  # Redirect to a relevant page (e.g., a list of groups)
+            group.save()  
+            form.save_m2m()  
+            group.admins.add(request.user) 
+            return redirect('groups') 
     else:
         form = GroupForm()
-    
-    # Pass the form and a list of the user's contacts to the template
     contacts = Contact.objects.filter(owner=request.user)
     return render(request, 'groups/add_group.html', {
         'form': form, 
@@ -216,7 +210,6 @@ def group_detail(request, id):
     admins = group.admins.all()
     contactall= Contact.objects.all()
     contacts = contactall.exclude(id__in=members.values_list('id', flat=True))
-
     return render(request, 'groups/group_details.html', {
         'group': group,
         'members':members,
@@ -252,14 +245,12 @@ def remove_members(request, id):
                 not_in_group.append(contact)
 
         if not_in_group:
-            not_in_group_names = ", ".join([contact.name for contact in not_in_group if contact])  # Evita contatti nulli
+            not_in_group_names = ", ".join([contact.name for contact in not_in_group if contact])
             return JsonResponse({"success": False, "error": f"Some selected memebers are not in the group: {not_in_group_names}"})
 
-        # Verifica se il gruppo sarà vuoto dopo la rimozione
         if len(group.members.all()) <= len(selected_contacts):
             return JsonResponse({"success": False, "error": "this is the last memeber just delete the group"})
 
-        # Rimuovi i membri selezionati dal gruppo
         for contact_id in selected_contacts:
             contact = Contact.objects.filter(id=contact_id).first()
             if contact:
@@ -271,42 +262,32 @@ def remove_members(request, id):
 
 
 @login_required
-def add_members(request, id):  # Same 'id' parameter to get the group
+def add_members(request, id): 
     if request.method == "POST":
         data = json.loads(request.body)
         selected_contacts = data.get("contacts", [])
-        group = Group.objects.get(id=id)  # Get the group by ID
-
+        group = Group.objects.get(id=id) 
         # Lists to separate contacts already in the group and those not in the group
         already_in_group = []
         not_in_group = []
-
-        # Check each selected contact
         for contact_id in selected_contacts:
-            contact = Contact.objects.filter(id=contact_id).first()  # Safely get the contact
+            contact = Contact.objects.filter(id=contact_id).first()
             if contact:
                 if contact in group.members.all():
                     already_in_group.append(contact)
                 else:
                     not_in_group.append(contact)
-
-        # If there are any contacts already in the group, return an error
         if already_in_group:
             return JsonResponse({
                 "success": False,
                 "error": "Some selected members are already in the group",
                 "already_in_group": [contact.id for contact in already_in_group]
             })
-
-        # If no contacts are already in the group, add the ones that aren't
         if not_in_group:
             for contact in not_in_group:
-                group.members.add(contact)  # Add the contact to the group's members
+                group.members.add(contact)
             return JsonResponse({"success": True, "message": "Members added successfully"})
-
-        # If no contacts are selected to add
         return JsonResponse({"success": False, "error": "No members selected to add"})
-
     return JsonResponse({"success": False, "error": "Invalid request method"})
 
 
@@ -319,27 +300,22 @@ def calendar(request):
 
 @login_required
 def calendar_events_api(request):
-    events = list(Event.objects.values("title", "start"))  # Fetch all events
+    events = list(Event.objects.values("title", "start"))
     return JsonResponse(events, safe=False)
 
 
 @login_required
 def add_event(request):
-    """Add a new event to the database."""
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
             title = data['title']
             start = data['start']
             end = data['end']
-            contact_id = data.get('contact')  # Optional
-            group_id = data.get('group')  # Optional
-
-            # Retrieve the contact and group if they are provided
+            contact_id = data.get('contact')
+            group_id = data.get('group') 
             contact = Contact.objects.get(id=contact_id) if contact_id else None
             group = Group.objects.get(id=group_id) if group_id else None
-
-            # Create the event with associated contact and group if provided
             event = Event.objects.create(
                 title=title,
                 start=start,
@@ -348,14 +324,11 @@ def add_event(request):
                 group=group
             ) 
             event.save()
-
-            # Return a success response
             return JsonResponse({'success': True})
-
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)}, status=400)
-
     return JsonResponse({'success': False}, status=400)
+
 
 @login_required
 def contacts_api(request):
@@ -382,8 +355,6 @@ def event_conflict(request):
             start__hour=requested_datetime.hour,
             start__minute=requested_datetime.minute
         )
-
-        # If there's an event with the same time, return a conflict response
         if existing_events.exists():
             return JsonResponse({'conflict': True})
         else:
@@ -392,8 +363,6 @@ def event_conflict(request):
 @login_required
 def event_details(request, title, start_time):
     event = Event.objects.get(title=title, start=start_time)
-
-    # Convert to local time if it's timezone-aware
     event_start = timezone.localtime(event.start)
     event_end = timezone.localtime(event.end)
 
@@ -407,13 +376,7 @@ def event_details(request, title, start_time):
 def delete_event(request, title, starttime):
     if request.method == "POST":
         try:
-            # Parse the starttime string received from JavaScript
-            starttime_obj = datetime.strptime(starttime, "%Y-%m-%d %H:%M:%S")
-
-            # Retrieve event by title and starttime safely
             event = Event.objects.get( title=title, start=starttime)
-
-            # Perform delete action
             event.delete()
 
             return JsonResponse({"success": True})
@@ -427,12 +390,12 @@ def delete_event(request, title, starttime):
 
 def login_view(request):
     if request.method == "POST":
-        # Prova a autenticare l'utente
-        nickname = request.POST["username"]  # Cambiato da username a nickname
+       
+        nickname = request.POST["username"] 
         password = request.POST["password"]
         user = authenticate(request, username=nickname, password=password)
 
-        # Controlla se l'autenticazione è andata a buon fine
+        
         if user is not None:
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
@@ -462,16 +425,16 @@ def register(request):
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
         
-        # Assicurati che le password corrispondano
+       
         if password != confirmation:
             return render(request, "standard/register.html", {
                 "message": "Le password devono corrispondere."
             })
 
-        # Prova a creare un nuovo utente
+        
         try:
             user = User.objects.create_user(
-                username=username,  # Puoi usare nickname come username
+                username=username, 
                 email=email,
                 password=password,
                 Name=name,
