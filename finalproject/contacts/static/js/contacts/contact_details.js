@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return;
     }
 
-    // Retrieve contact ID from the data attribute
+
     const contactContainer = document.querySelector('.profile-container');
     const contactId = contactContainer.getAttribute('data-contact-id');
 
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
             input.classList.add('editable-field');
             input.id = span.id;
 
-            // Specifically handle phone numbers
+            
             if (span.id === "phone1" || span.id === "phone2") {
                 input.setAttribute("data-phone", span.getAttribute("data-phone"));
             }
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Save changes and send data to the backend
+    
     function replaceInputsWithSpans() {
         const data = {};
 
@@ -51,11 +51,11 @@ document.addEventListener("DOMContentLoaded", function() {
             span.setAttribute("contenteditable", "false");
 
             if (span.id === "nickname" || span.id === "company" || span.id === "jobPosition") {
-                span.style.fontSize = "19px"; // Apply 19px font for nickname, company, and jobPosition
+                span.style.fontSize = "19px"; 
             } else if (span.id === "birthday") {
-                span.style.fontSize = "18px"; // Apply 18px font for birthday
+                span.style.fontSize = "18px"; 
             } else {
-                span.style.fontSize = "20px"; // Apply 20px font for other fields
+                span.style.fontSize = "20px";
             }
     
             input.replaceWith(span);
@@ -90,11 +90,11 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(error => console.error("Error:", error));
     }
 
-    // Attach events to the edit and save buttons
+   
     editButton.addEventListener("click", enableEditMode);
     saveButton.addEventListener("click", replaceInputsWithSpans);
     
-    // Handle the phone call button click
+   
     document.getElementById("primaryPhoneButton").addEventListener("click", function() {
         const phoneNumber = document.getElementById("phone1").getAttribute("data-phone");
         const phoneLink = document.createElement("a");
@@ -108,9 +108,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById("primaryMessageButton").addEventListener("click", function() {
         const phoneNumber = document.getElementById("phone1").getAttribute("data-phone");
-        // Open the SMS app with the phone number pre-filled (fallback)
         const messageLink = document.createElement("a");
-        messageLink.href = `sms:${phoneNumber}`; // Open SMS with the phone number pre-filled
+        messageLink.href = `sms:${phoneNumber}`; 
         messageLink.style.display = "none";
         document.body.appendChild(messageLink);
         messageLink.click();
@@ -118,7 +117,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     
 
-    // Handle secondary phone and message button click
     document.getElementById("secondaryPhoneButton").addEventListener("click", function() {
         const phoneNumber = document.getElementById("phone2").getAttribute("data-phone");
         const phoneLink = document.createElement("a");

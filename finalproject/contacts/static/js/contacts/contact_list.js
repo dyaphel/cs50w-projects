@@ -1,7 +1,6 @@
 let global = false
 
 function toggleContactDetails(element) {
-    // Toggle the expanded class on the profile footer
     const footer = element;
     const details = footer.querySelector('.contact-details');
 
@@ -16,7 +15,7 @@ function toggleContactDetails(element) {
 
 function openContactDetails(contactId) {
     if (global) return; 
-    window.location.href = `/contact/${contactId}/`; // Assumes URL pattern is '/contact/<id>/'
+    window.location.href = `/contact/${contactId}/`;
 }
     
 function toggleCheckboxes() {
@@ -24,15 +23,14 @@ function toggleCheckboxes() {
     const checkboxes = document.querySelectorAll('.checkbox');
     checkboxes.forEach(checkbox => {
       checkbox.hidden = !checkbox.hidden;
-      checkbox.checked = false; // Reset checkboxes when toggling
+      checkbox.checked = false; 
     });
-    updateDeleteButton(); // Update button status on toggle
+    updateDeleteButton(); 
 }
 
 function updateDeleteButton() {
         const checkboxes = document.querySelectorAll('.checkbox');
         const deleteButton = document.getElementById('deleteButtonContact');
-        // Enable delete button if at least one checkbox is checked
         deleteButton.disabled = !Array.from(checkboxes).some(checkbox => checkbox.checked);
 }
 
@@ -41,7 +39,6 @@ function deleteSelectedContacts() {
 }
 
 function confirmDelete() {
-    // Esegue l'eliminazione dei contatti selezionati
     const selectedContacts = [];
     document.querySelectorAll('.checkbox:checked').forEach(checkbox => {
         selectedContacts.push(checkbox.getAttribute('data-contact-id'));
@@ -69,12 +66,12 @@ function confirmDelete() {
         .catch(error => console.error("Error:", error));
     }
 
-    // Nasconde la finestra di conferma
+
     document.getElementById('confirmModal').style.display = 'none';
 }
 
 function cancelDelete() {
-    // Nasconde la finestra di conferma e resetta i checkbox
+    
     document.getElementById('confirmModal').style.display = 'none';
     toggleCheckboxes(); // Nasconde e deseleziona i checkbox
 }

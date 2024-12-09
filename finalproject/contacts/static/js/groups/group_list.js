@@ -1,7 +1,7 @@
 let groupglobal = false
 
 function toggleGroupDetails(element) {
-    // Toggle the expanded class on the profile footer
+    
     const footer = element;
     const details = footer.querySelector('.details');
     console.log("Toggling details:", details);
@@ -19,7 +19,7 @@ function openGroupDetails(groupId) {
     console.log("Group ID:", groupId);
     console.log("Global state before opening group:", groupglobal);
     if (groupglobal) return; 
-    window.location.href = `/group/${groupId}/`; // Assumes URL pattern is '/contact/<id>/'
+    window.location.href = `/group/${groupId}/`;
  }
 
 
@@ -28,9 +28,9 @@ function toggleCheckboxes() {
     const checkboxes = document.querySelectorAll('.checkbox');
     checkboxes.forEach(checkbox => {
       checkbox.hidden = !checkbox.hidden;
-      checkbox.checked = false; // Reset checkboxes when toggling
+      checkbox.checked = false; 
     });
-    updateDeleteButton(); // Update button status on toggle
+    updateDeleteButton(); 
 }
 
 function updateDeleteButton() {
@@ -46,10 +46,10 @@ function deleteSelectedGroup() {
 }
 
 function confirmDelete() {
-    // Execute deletion of selected groups
+   
     const selectedGroups = [];
     document.querySelectorAll('.checkbox:checked').forEach(checkbox => {
-        selectedGroups.push(checkbox.getAttribute('data-group-id')); // Collect group IDs
+        selectedGroups.push(checkbox.getAttribute('data-group-id')); 
     });
     if (selectedGroups.length > 0) {
 
@@ -59,7 +59,7 @@ function confirmDelete() {
                 "Content-Type": "application/json",
                 "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value,
             },
-            body: JSON.stringify({ group: selectedGroups }) // Send group IDs to backend
+            body: JSON.stringify({ group: selectedGroups }) 
         })
             .then(response => response.json())
             .then(data => {
@@ -67,20 +67,19 @@ function confirmDelete() {
                     console.error("Failed to delete groups:", data.error);
                     alert("Failed to delete groups: " + data.error);
                 } else {
-                    window.location.reload(); // Reload page after deletion
+                    window.location.reload();
                     console.log("Groups deleted successfully");
                 }
             })
             .catch(error => console.error("Error:", error));        
     }
 
-    // Hide the confirmation modal
+
     document.getElementById('confirmModal').style.display = 'none';
 }
 
 function cancelDelete() {
-    // Hide the confirmation modal and reset checkboxes
     document.getElementById('confirmModal').style.display = 'none';
-    toggleCheckboxes(); // Hide and deselect checkboxes
+    toggleCheckboxes(); 
 }
 

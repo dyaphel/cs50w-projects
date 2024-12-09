@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         locale: 'en',
-        events: '/api/calendar-events/', // Fetch events from Django API
-        eventTimeFormat: { // Customize how time is displayed
+        events: '/api/calendar-events/',
+        eventTimeFormat: { 
             hour: '2-digit',
             minute: '2-digit',
             meridiem: 'short' // Display AM/PM
@@ -25,27 +25,21 @@ document.addEventListener('DOMContentLoaded', function () {
             // Prevent adding events in the past
             if (clickedDate < currentDateTime.setHours(0, 0, 0, 0)) {
                 alert("You cannot add events in the past!");
-                return; // Stop the form from opening
+                return;
             }
-
-            // Open modal for adding an event
             showEventForm(info.dateStr);
         },
         eventClick: function(info) {
-            const eventTitle = info.event.title;  // Get event title
-            const eventStart = info.event.start.toISOString();  // Get event start time as an ISO string
+            const eventTitle = info.event.title;  
+            const eventStart = info.event.start.toISOString();
             
-            console.log('Event clicked:', eventTitle, eventStart);
-            
-            // Redirect to the event details page using title and formatted start time
+            //console.log('Event clicked:', eventTitle, eventStart);
             window.location.href = `/event-details/${encodeURIComponent(eventTitle)}/${encodeURIComponent(eventStart)}/`;
         },
         
         eventClassNames: function (arg) {
             const currentDate = new Date();
             const eventDate = new Date(arg.event.start);
-
-            // Add class for past events
             if (eventDate < currentDate) {
                 return ['fc-event-past'];
             }
@@ -59,8 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Opening modal for:', date);
         const existingModal = document.getElementById('event-modal');
         if (existingModal) existingModal.remove();
-
-        // Fetch contacts and groups via API calls
         Promise.all([
             fetch('/api/contacts/').then(response => response.json()),
             fetch('/api/groups/').then(response => response.json())
@@ -73,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 `<option value="${group.id}">${group.name}</option>`
             ).join('');
 
-            // Create modal HTML
+            //modal HTML
             const modalHTML = `
                 <div id="event-modal" class="modal">
                     <div class="modal-content">
@@ -125,10 +117,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const modal = document.getElementById('event-modal');
             modal.style.display = 'block';
 
-            // Close modal functionality
             modal.querySelector('.close').addEventListener('click', () => modal.remove());
 
-            // Handle form submission
             document.getElementById('event-form').addEventListener('submit', function (e) {
                 e.preventDefault();
 
@@ -169,7 +159,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     return;
                 }
 
-                // Check for event conflicts at the same time
                 fetch('/api/event-conflict/', {
                     method: 'POST',
                     headers: {
@@ -183,7 +172,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (data.conflict) {
                         alert('An event already exists at this time. Please select a different time.');
                     } else {
-                        // Add the event
                         fetch('/api/add-event/', {
                             method: 'POST',
                             headers: {
@@ -205,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             if (data.success) {
                                 alert('Event added successfully!');
                                 modal.remove();
-                                calendar.refetchEvents(); // Refresh the calendar
+                                calendar.refetchEvents(); 
                             } else {
                                 alert(`Error adding event: ${data.error}`);
                             }

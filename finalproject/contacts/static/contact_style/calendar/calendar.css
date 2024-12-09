@@ -4,10 +4,9 @@
     color: #333;
 }
 
-/* Add !important to change */
 .fc-button {
-    background-color: #2200fd ; /* Button background */
-    color: white ; /* Button text */
+    background-color: #2200fd ; 
+    color: white ;
     border: none ;
     border-radius: 4px ;
 }

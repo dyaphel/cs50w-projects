@@ -1,7 +1,6 @@
 
 function toggleFavoriteContact(button, contactId) {
-    global = true;
-     // Prevent toggling contact details
+    global = true;// Prevent toggling contact details
 
     const img = button.querySelector("img");
     const whiteSrc = img.getAttribute("data-white-src");
@@ -23,10 +22,10 @@ function toggleFavoriteContact(button, contactId) {
         if (!response.ok) {
             throw new Error(`Server responded with status: ${response.status}`);
         }
-        return response.json();  // Convert response to JSON
+        return response.json();
     })
     .then(data => {
-        console.log(data);  // Log data to verify the JSON structure
+        console.log(data); 
         if (data.success) {
             console.log("Favorite status updated successfully");
         } else {
@@ -51,7 +50,7 @@ function toggleFavoriteGroup(button, groupId) {
     const whiteSrc = img.getAttribute("data-white-src");
     const redSrc = img.getAttribute("data-red-src");
 
-    const currentSrc = img.src.split('/').pop(); // Extract the file name
+    const currentSrc = img.src.split('/').pop(); 
     const isFavorite = currentSrc === "whiteFavorite.png";
 
     img.src = isFavorite ? redSrc : whiteSrc;

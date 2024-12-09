@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Select both Favorite buttons for contacts and groups
+   
     document.querySelectorAll("#FavoriteButtonContact, #FavoriteButtonGroup").forEach(button => {
         button.addEventListener("click", function (event) {
             event.stopPropagation(); // Prevent the click from triggering other events
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const img = button.querySelector("img");
             const isFavorite = img.getAttribute("data-favorite") === "true";
 
-            // Toggle favorite status
+        
             if (isFavorite) {
                 img.setAttribute("data-favorite", "false");
                 img.src = img.getAttribute("data-white-src");

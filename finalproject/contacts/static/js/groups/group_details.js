@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // DOM Elements
     const editButtonGroup = document.querySelector('#editButtonGroup');
     const saveButtonGroup = document.querySelector('#saveButtonGroup');
     const groupInfo = document.querySelector('.group-info');
@@ -13,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const contactsWrapper = document.querySelector('#contactsWrapper');
     const meeting = document.querySelector('.Meeting-row')
 
-    // Retrieve group ID from the data attribute
+    
     const groupContainer = document.querySelector('.profile-container');
     const groupId = groupContainer.getAttribute('data-group-id');
     const memberId = groupContainer.getAttribute('data-contact-id');
@@ -23,45 +22,44 @@ document.addEventListener("DOMContentLoaded", function () {
     function enableEditMode() {
         selectButton.style.display = 'block';
         if (addMemberButton.style.display === 'block' && deleteMemberButton.style.display === 'block') {
-            selectButton.style.display = 'none'; // Ensure it shows when not in use
+            selectButton.style.display = 'none'; 
         } 
         meeting.style.display = 'none'
-        nameContainer.style.display = 'block';  // Show name input
+        nameContainer.style.display = 'block';  
         favorite.disabled = true;
         favorite.style.display = 'none';
         admin.disabled = true;
         admin.style.display = 'none';
-        profilePicture.style.display = 'none';  // Hide profile picture
+        profilePicture.style.display = 'none';  
         saveButtonGroup.disabled = false;
         groupInfo.classList.add("edit-mode");
         enableTextAreas();
     }
 
-    // Function to enable textareas by removing the readonly attribute
+    
     function enableTextAreas() {
         document.querySelectorAll('.group-info textarea[readonly]').forEach(textarea => {
             textarea.removeAttribute('readonly'); // Remove readonly to allow editing
         });
     }
 
-    // Attach event listeners to edit and save buttons
+   
     editButtonGroup.addEventListener("click", enableEditMode);
     saveButtonGroup.addEventListener("click", saveData);
 
-    // Function to save data
     function saveData() {
         const groupName = document.querySelector("#group-name").value;
         const description = document.querySelector("#description").value;
         const pinnedMessage = document.querySelector("#pinned-message").value;
 
-        // Create a data object to send to the server
+        
         const data = {
             'name': groupName,
             'description': description,
             'pinned_message': pinnedMessage,
         };
 
-        // Send data via AJAX
+
         fetch(`/group/${groupId}/edit_group/`, {
             method: 'POST',
             headers: {
@@ -74,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             if (data.success) {
                 disableEditMode();
-               // Exit edit mode after successful save
             }
         })
         .catch(error => {
@@ -83,12 +80,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Disable edit mode and restore readonly
     function disableEditMode() {
         favorite.disabled = false;
         favorite.style.display = 'block';
-        profilePicture.style.display = 'block';  // Show profile picture again
-        nameContainer.style.display = 'none';  // Hide name input again
+        profilePicture.style.display = 'block';
+        nameContainer.style.display = 'none';  
         admin.disabled = false;
         admin.style.display = 'block';
         saveButtonGroup.disabled = true;
@@ -97,13 +93,9 @@ document.addEventListener("DOMContentLoaded", function () {
         location.reload();
     }
 
-    // Function to restore readonly on textareas
     function disableTextAreas() {
         document.querySelectorAll('.group-info textarea').forEach(textarea => {
-            textarea.setAttribute('readonly', 'true'); // Re-add readonly to prevent further edits
+            textarea.setAttribute('readonly', 'true'); 
         });
     }
-
-    // Ensure that the select button is visible when the document is ready
-    //selectButton.addEventListener("click", selectClick); // Add event listener to select button
 });

@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // DOM Elements
     const selectButton = document.querySelector('#selectButtonGroup');
     const addMemberButton = document.querySelector('#addMemeberButtonGroup');
     const deleteMemberButton = document.querySelector('#DeleteMemberButtonGroup');
@@ -7,32 +6,29 @@ document.addEventListener("DOMContentLoaded", function () {
     
     let isSelected = false;
     
-    // Retrieve group ID from the data attribute
+    
     const groupContainer = document.querySelector('.profile-container');
     const groupId = groupContainer.getAttribute('data-group-id');
 
  
-    // Function to show/hide buttons and contacts on select click
     function selectClick() {
         isSelected = !isSelected; 
         
-        // Show or hide the contacts based on the button click
         if (isSelected) {
-            contactsWrapper.style.display = 'block';  // Show contacts
-            const checkboxes = document.querySelectorAll('.select-checkbox'); // Select all checkboxes
+            contactsWrapper.style.display = 'block';  
+            const checkboxes = document.querySelectorAll('.select-checkbox'); 
             checkboxes.forEach(function (checkbox) {
-                checkbox.style.display = 'inline-block';  // Show all checkboxes
+                checkbox.style.display = 'inline-block';  
             });
         } else {
-            contactsWrapper.style.display = 'none';  // Hide contacts
-            selectButton.textContent = "Select Member";  // Reset button text
-            const checkboxes = document.querySelectorAll('.select-checkbox'); // Select all checkboxes
+            contactsWrapper.style.display = 'none';  
+            selectButton.textContent = "Select Member";  
+            const checkboxes = document.querySelectorAll('.select-checkbox'); 
             checkboxes.forEach(function (checkbox) {
-                checkbox.style.display = 'none';  // Hide all checkboxes
+                checkbox.style.display = 'none';  
             });
         }
 
-        // Show the add and delete buttons, and hide select button
         if (addMemberButton.style.display === 'none' && deleteMemberButton.style.display === 'none') {
             addMemberButton.style.display = 'block';
             deleteMemberButton.style.display = 'block';
@@ -41,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
     }
 
-    // Attach event listener to select button once when DOM is loaded
+    
     if (selectButton) {
         selectButton.addEventListener("click", selectClick);
     }
@@ -78,13 +74,13 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 if (data.success) {
                     alert('Contacts added successfully');
-                    // Update the member list (add the new member)
+                    // Update the member list
                     selectedContacts.forEach(contactId => {
                         const contactElement = document.querySelector(`[data-contact-id="${contactId}"]`);
                         contactElement.remove();  // Remove the contact from the available contacts list
                         addContactToMembers(contactElement);  // Add the contact to the member list
                     });
-                    clearCheckboxes();  // Clear all checkboxes
+                    clearCheckboxes(); 
                 } else {
                     alert(data.error);
                 }
@@ -104,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function deleteSelectedMembers() {
         const selectedContacts = [];
         
-        // Retrieve selected contacts for deletion
         document.querySelectorAll('.select-contact-checkbox:checked').forEach(checkbox => {
             selectedContacts.push(checkbox.getAttribute('data-contact-id'));
         });
@@ -142,7 +137,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Attach event listeners for add and delete member buttons
     if (addMemberButton) {
         addMemberButton.addEventListener("click", addSelectedMembers);
     }
@@ -153,13 +147,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Function to handle adding a contact to the members list
     function addContactToMembers(contactElement) {
-        const contactsList = document.querySelector('.members');  // Available contacts
+        const contactsList = document.querySelector('.members'); 
         contactsList.appendChild(contactElement); 
     }
     
         // Function to add a contact to the contacts list
     function addContactToContacts(contactElement) {
-        const contactsList = document.querySelector('.contacts-wrapper');  // Available contacts
-        contactsList.appendChild(contactElement);  // Add the contact back to the list
+        const contactsList = document.querySelector('.contacts-wrapper'); 
+        contactsList.appendChild(contactElement);  
     }
 });

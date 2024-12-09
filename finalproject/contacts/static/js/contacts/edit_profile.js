@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function replaceInputsWithSpans() {
         const data = {};
 
-        // Replace inputs with spans and gather data to be sent to the server
+        
         document.querySelectorAll('.user-info input.editable-field').forEach(input => {
             const span = document.createElement('span');
             span.textContent = input.value.trim();
@@ -37,12 +37,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 data[span.id] = span.textContent.trim();
             }
 
-            // Log each field to check its data
-            console.log(`Field ID: ${span.id}, Field Value: ${span.textContent}`);
+            //console.log(`Field ID: ${span.id}, Field Value: ${span.textContent}`);
         });
 
         // Log the entire data object before sending
-        console.log("Data to be sent to the server:", data);
+        //console.log("Data to be sent to the server:", data);
 
         if (Object.keys(data).length === 0) {
             console.error("No data collected to send");
@@ -53,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function() {
         saveButton.disabled = true;
         userInfo.classList.remove("edit-mode");
 
-        // Send the collected data to the server
         fetch("update_profile", {
             method: 'POST',
             headers: {
