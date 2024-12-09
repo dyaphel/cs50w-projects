@@ -54,7 +54,7 @@ p{
 
 .profile-wrapper {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 30px 0;
     width: 100%;
 }
@@ -77,8 +77,8 @@ p{
     display: flex;
     justify-content: flex-start;
     width: 100%;
-    padding: 15px;
     background-color: #fff;
+    padding: auto;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -162,13 +162,16 @@ textarea {
     font-size: 16px;
     font-weight: 500;
     color: #777;
-    margin-left: 5px;
+    margin-left: -30%;
 }
 
 #description {
     font-size: 16px;
     font-weight: 400;
     color: #353535;
+    width: 120%;
+    margin-left: -40%;
+   
 }
 
 
