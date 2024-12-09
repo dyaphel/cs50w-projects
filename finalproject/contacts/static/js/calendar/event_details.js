@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const deleteButton = document.getElementById("deleteButtonGroup");
 
+   
     // Make sure the deleteButton exists on the page
     if (!deleteButton) {
         console.error("Delete button not found!");
@@ -57,4 +58,5 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
     });
+
 });

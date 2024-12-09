@@ -44,7 +44,7 @@
             <div class="members">
                 {% if event.contact %}
                     <div class="profile-wrapper">
-                        <div class="profile-container-member">
+                        <div class="profile-container-member" onclick="openContactDetails({{ event.contact.id }})">
                             <div class="profile-picture-member">
                                 {{ event.contact.name.0|upper }}{{ event.contact.surname.0|upper }}
                             </div>
@@ -65,7 +65,7 @@
             </div>
         {% if event.group%}
         <div class="profile-wrapper">
-          <div class="profile-container-group">
+          <div class="profile-container-group" onclick="openGroupDetails({{ event.group.id }})">
              <!-- Group Profile Picture -->
              <div class="profile-picture-group-list" style="width: auto;">
                 {{ event.group.name|upper }}
@@ -82,5 +82,15 @@
 {% endblock %}
 
 {% block script %}
-<script src="{% static  'js/calendar/event_details.js' %}" ></script>
+<script src="{% static  'js/calendar/event_details.js' %}" ></script>ù
+<script> 
+function openContactDetails(contactId) {
+    window.location.href = `/contact/${contactId}/`; // Assumes URL pattern is '/contact/<id>/'
+}
+function openGroupDetails(groupId) {
+    console.log("Group ID:", groupId);
+    window.location.href = `/group/${groupId}/`; // Assumes URL pattern is '/contact/<id>/'
+ }
+</script>
+
 {% endblock %}
