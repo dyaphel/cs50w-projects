@@ -51,6 +51,37 @@
         <p><strong>Secondary Phone:</strong> <span id="phone2" contenteditable="false">{{ user_info.phone_number_2|default:"N/A" }}</span></p>
     </div>
 </div>
+
+
+<div class="events-container">
+    <h2>Upcoming Events (Next 7 Days)</h2>
+    {% if upcoming_events %}
+        <div class="event-cards">
+            {% for event in upcoming_events %}
+                <div class="event-card">
+                    <div class="event-row">
+                        <span class="label">Title:</span>
+                        <div class="content event-title">{{ event.title }}</div>
+                    </div>
+                    <div class="event-row">
+                        <span class="label">Day:</span>
+                        <div class="content event-date">{{ event.start|date:"M d, Y" }}</div>
+                    </div>
+                    <div class="event-row">
+                        <span class="label">Start at:</span>
+                        <div class="content event-time">{{ event.start|time:"H:i" }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No events scheduled for the next 7 days.</p>
+    {% endif %}
+</div>
+
+
+
+
 {% endblock %}
 
 {% block script %}

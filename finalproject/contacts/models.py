@@ -42,7 +42,7 @@ class Group(models.Model):
 class Event(models.Model):
     title = models.CharField(max_length=200)
     start = models.DateTimeField()
-    end = models.DateTimeField(null = True)
+    end = models.DateTimeField()
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE, null = True)
     group = models.ForeignKey(Group, on_delete=models.CASCADE, null = True)
 

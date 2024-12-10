@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 import json
+from django.utils.timezone import now, timedelta
 from datetime import datetime
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -27,13 +28,20 @@ def index(request):
             'phone_number_1': request.user.phone_number_1,
             'phone_number_2': request.user.phone_number_2,
         }
+        today = now()
+        one_week_later = today + timedelta(days=7)
+        upcoming_events = Event.objects.filter(
+        start__date__gte=today.date(), 
+        start__date__lte=(one_week_later).date()
+        ).order_by('start')
+
         return render(request, "contacts/index.html", {
-            'user_info': user_info
+            'user_info': user_info,
+            'upcoming_events':upcoming_events
         })
     else:
         return render(request, "standard/login.html")
-
-
+    
 
 @login_required
 def update_profile(request):
