@@ -46,7 +46,7 @@
 }
 
 .profile-picture-group-list {
-    width: 30%;
+    width: auto%;
     height: 60px;
     font-size: 24px;
     background-color: #933ebb;
