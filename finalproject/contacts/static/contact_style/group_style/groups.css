@@ -34,6 +34,8 @@
     justify-content: center;
     align-items: flex-start; /* Align text to the left */
     width: 100%;
+    margin-top: -5%;
+    margin-left: -5%;
 }
 
 /* Group Name Styling */
@@ -62,6 +64,11 @@ textarea {
     color: #353535; /* Text color */
     width: 100%; /* Full width of the container */
     cursor: default;
+    overflow: hidden;
+    height: 1.2em; /* Match the line-height */
+    line-height: 1.2em; /* Set line-height */
+    white-space: nowrap; 
+
 }
 
 /* Specific Styling for Description Textarea */
