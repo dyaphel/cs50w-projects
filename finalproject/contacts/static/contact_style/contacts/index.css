@@ -17,7 +17,7 @@
     width: 90%;
     height: auto;
     max-width: 700px;
-    margin: 5% auto;
+    margin: 1% auto;
     transition: box-shadow 0.3s ease;
 }
 
@@ -114,12 +114,17 @@ p strong{
 
 /*///////EVENT CSS//////*/
 .events-container {
+    justify-self: center;
     margin: 20px;
     padding: 20px;
     background-color: #fff;
     border: 1px solid #3870ac;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    height: auto;
+    max-width: 700px;
+   
 }
 
 .events-container h2 {
