@@ -22,6 +22,8 @@ urlpatterns = [
     path('delete_groups', views.delete_groups, name='delete_groups'),
     path("add_group",views.add_group, name="add_group"),
     path('toggle_favorite_groups/<int:id>/', views.toggle_favorite_group, name='toggle_favorite_group'),
+    path('send-fake-link/<int:id>/', views.send_fake_link, name='send_fake_link'),
+
 
     path("group/<int:id>/remove/",views.remove_members, name="remove_members"),
     path("group/<int:id>/add/", views.add_members, name="add_members"),

@@ -98,4 +98,36 @@ document.addEventListener("DOMContentLoaded", function () {
             textarea.setAttribute('readonly', 'true'); 
         });
     }
+
+    document.querySelectorAll(".Meeting-row button").forEach(button => {
+        button.addEventListener("click", function () {
+            let meetingType = button.id === 'meetingGoogle' ? 'google meet' : 'zoom';
+    
+            fetch(`/send-fake-link/${groupId}/`, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                },
+                body: JSON.stringify({ type: meetingType })
+            })
+            .then(response => {
+                // Check if the response is JSON
+                if (response.ok && response.headers.get("Content-Type").includes("application/json")) {
+                    return response.json(); // Parse JSON if valid
+                } else {
+                    return Promise.reject('Invalid JSON response');
+                }
+            })
+            .then(data => {
+                if (data.success) {
+                    console.log(data.message); // Success message
+                } else {
+                    console.error(data.error); // Error message
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+    
 });

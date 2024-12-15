@@ -9,6 +9,7 @@ from datetime import datetime
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.core.mail import send_mail
 from django.utils import timezone
 from .models import User, Contact, Group, Event
 from .forms import ContactForm, GroupForm
@@ -297,6 +298,63 @@ def add_members(request, id):
             return JsonResponse({"success": True, "message": "Members added successfully"})
         return JsonResponse({"success": False, "error": "No members selected to add"})
     return JsonResponse({"success": False, "error": "Invalid request method"})
+
+
+
+def send_fake_link(request, id):
+    if request.method == "POST":
+        try:
+            # Parse the JSON body
+            data = json.loads(request.body)
+            meeting_type = data.get("type")
+
+            if not meeting_type:
+                return JsonResponse({"success": False, "error": "Meeting type is required."})
+
+            # Generate a fake link based on meeting type
+            if meeting_type == "google meet":
+                fake_link = "https://meet.google.com/fake-link"
+            elif meeting_type == "zoom":
+                fake_link = "https://zoom.us/fake-link"
+            else:
+                return JsonResponse({"success": False, "error": "Invalid meeting type."})
+
+            # Fetch group and associated members
+            group = Group.objects.get(id=id)
+            members = group.members.all()  # Assuming members is a ManyToManyField
+            user = User.objects.get(id = request.id)
+            # Extract emails
+            email_list = [member.email for member in members if member.email]
+
+            if not email_list:
+                return JsonResponse({"success": False, "error": "No members with valid emails found."})
+
+            # Send emails
+            send_mail(
+                subject=f"{meeting_type.capitalize()} Meeting Link",
+                message=f"Here is your {meeting_type.capitalize()} meeting link: {fake_link}",
+                from_email=user.email,
+                recipient_list=email_list,
+            )
+
+            return JsonResponse({"success": True, "message": f"Fake {meeting_type.capitalize()} link sent to members."})
+
+        except Group.DoesNotExist:
+            return JsonResponse({"success": False, "error": "Group not found."})
+        except Exception as e:
+            return JsonResponse({"success": False, "error": str(e)})
+
+    return JsonResponse({"success": False, "error": "Invalid request method."})
+
+
+
+
+
+
+
+
+
+
 
 
 
