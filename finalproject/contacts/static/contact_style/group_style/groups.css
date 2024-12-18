@@ -64,10 +64,10 @@ textarea {
     color: #353535; /* Text color */
     width: 100%; /* Full width of the container */
     cursor: default;
-    overflow: hidden;
-    height: 1.2em; /* Match the line-height */
+    
+    height: auto ; /* Match the line-height */
     line-height: 1.2em; /* Set line-height */
-    white-space: nowrap; 
+   
 
 }
 
