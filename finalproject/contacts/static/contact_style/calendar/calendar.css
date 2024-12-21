@@ -153,3 +153,56 @@ button:hover {
         transform: scale(1);
     }
 }
+
+
+/* Responsive Design for Phones */
+@media (max-width: 600px) {
+    /* Calendar Container Adjustments */
+    .calendar-container {
+        padding: 10px; /* Reduce padding */
+    }
+
+    #calendar {
+        font-size: 14px; /* Smaller font for better fit */
+    }
+
+    /* Adjust Buttons */
+    .fc-button {
+        font-size: 12px; /* Smaller text on buttons */
+        padding: 5px 10px; /* Reduce padding */
+    }
+
+    /* Modal Adjustments */
+    .modal-content {
+        width: 90%; /* Make modal fit smaller screens */
+        margin: 15% auto; /* Adjust centering */
+        padding: 15px; /* Reduce padding for content */
+    }
+
+    .close {
+        font-size: 24px; /* Adjust close button size */
+    }
+
+    /* Input and Buttons */
+    input,
+    select,
+    button {
+        font-size: 14px; /* Smaller text size */
+        padding: 8px; /* Reduce padding */
+    }
+
+    button {
+        width: auto; /* Allow buttons to shrink */
+        padding: 8px 15px;
+    }
+
+    /* Label Adjustments */
+    label {
+        font-size: 14px; /* Smaller label text */
+    }
+
+    /* Event Styling */
+    .fc-event {
+        font-size: 12px; /* Smaller event text */
+    }
+}
