@@ -35,7 +35,7 @@
 
     .navbar .nav-item .nav-link {
        margin-right: 8px;
-        font-size: 15px; /* Reduce font size for smaller screens */
+       font-size: 20px; /* Reduce font size for smaller screens */
     }
 
     /* Sidebar toggle for phone view */
