@@ -11,6 +11,7 @@
     font-size: 18px;
     margin-right: 20px;
     transition: color 0.3s ease;
+    margin-right: 10px;
 }
 
 /* Hover effect */
@@ -22,7 +23,7 @@
 @media screen and (max-width: 768px) {
     /* Navbar adjustments */
     .navbar {
-        flex-direction: column; /* Stack items vertically */
+        /* Stack items vertically */
         padding: 5px;
         text-align: center;
     }
@@ -35,7 +36,7 @@
 
     .navbar .nav-item .nav-link {
        margin-right: 8px;
-       font-size: 20px; /* Reduce font size for smaller screens */
+       font-size: 15px; /* Reduce font size for smaller screens */
     }
 
     /* Sidebar toggle for phone view */
