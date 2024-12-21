@@ -66,11 +66,13 @@
             </div>
             
             <div class="Meeting-row">
+                
                 <span class="label">Meeting:</span> 
-                <button id="meetingGoogle">
+                <button id="meetingGoogle" data-group-id="{{ group.id }}">
                     <img src="{% static 'img/meet.png' %}" class="icon" alt="Edit">
+                    {% csrf_token %}
                 </button>
-                <button id="meetingZoom">
+                <button id="meetingZoom" data-group-id="{{ group.id }}">
                     <img src="{% static 'img/zoom.png' %}" class="icon" alt="Edit">
                 </button>
             </div>

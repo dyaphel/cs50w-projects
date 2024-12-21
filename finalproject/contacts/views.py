@@ -4,10 +4,12 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 import json
+from django.utils.timezone import now, timedelta
 from datetime import datetime
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.core.mail import send_mail
 from django.utils import timezone
 from .models import User, Contact, Group, Event
 from .forms import ContactForm, GroupForm
@@ -27,13 +29,20 @@ def index(request):
             'phone_number_1': request.user.phone_number_1,
             'phone_number_2': request.user.phone_number_2,
         }
+        today = now()
+        one_week_later = today + timedelta(days=7)
+        upcoming_events = Event.objects.filter(
+        start__date__gte=today.date(), 
+        start__date__lte=(one_week_later).date()
+        ).order_by('start')
+
         return render(request, "contacts/index.html", {
-            'user_info': user_info
+            'user_info': user_info,
+            'upcoming_events':upcoming_events
         })
     else:
         return render(request, "standard/login.html")
-
-
+    
 
 @login_required
 def update_profile(request):
@@ -289,6 +298,63 @@ def add_members(request, id):
             return JsonResponse({"success": True, "message": "Members added successfully"})
         return JsonResponse({"success": False, "error": "No members selected to add"})
     return JsonResponse({"success": False, "error": "Invalid request method"})
+
+
+
+def send_fake_link(request, id):
+    if request.method == "POST":
+        try:
+            # Parse the JSON body
+            data = json.loads(request.body)
+            meeting_type = data.get("type")
+
+            if not meeting_type:
+                return JsonResponse({"success": False, "error": "Meeting type is required."})
+
+            # Generate a fake link based on meeting type
+            if meeting_type == "google meet":
+                fake_link = "https://meet.google.com/fake-link"
+            elif meeting_type == "zoom":
+                fake_link = "https://zoom.us/fake-link"
+            else:
+                return JsonResponse({"success": False, "error": "Invalid meeting type."})
+
+            # Fetch group and associated members
+            group = Group.objects.get(id=id)
+            members = group.members.all()  # Assuming members is a ManyToManyField
+            user = User.objects.get(id = request.id)
+            # Extract emails
+            email_list = [member.email for member in members if member.email]
+
+            if not email_list:
+                return JsonResponse({"success": False, "error": "No members with valid emails found."})
+
+            # Send emails
+            send_mail(
+                subject=f"{meeting_type.capitalize()} Meeting Link",
+                message=f"Here is your {meeting_type.capitalize()} meeting link: {fake_link}",
+                from_email=user.email,
+                recipient_list=email_list,
+            )
+
+            return JsonResponse({"success": True, "message": f"Fake {meeting_type.capitalize()} link sent to members."})
+
+        except Group.DoesNotExist:
+            return JsonResponse({"success": False, "error": "Group not found."})
+        except Exception as e:
+            return JsonResponse({"success": False, "error": str(e)})
+
+    return JsonResponse({"success": False, "error": "Invalid request method."})
+
+
+
+
+
+
+
+
+
+
 
 
 

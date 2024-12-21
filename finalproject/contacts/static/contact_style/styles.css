@@ -1,4 +1,4 @@
-/* Navbar styling with a lighter shade */
+/* General navbar styling */
 .navbar {
     background-color: #d1e2f5; /* Slightly lighter than #6e94bc */
     color: #ffffff;
@@ -11,6 +11,7 @@
     font-size: 18px;
     margin-right: 20px;
     transition: color 0.3s ease;
+    margin-right: 10px;
 }
 
 /* Hover effect */
@@ -18,3 +19,30 @@
     color: #1e00ff; /* Lightened hover effect */
 }
 
+/* Media query for phone view */
+@media screen and (max-width: 768px) {
+    /* Navbar adjustments */
+    .navbar {
+        /* Stack items vertically */
+        padding: 5px;
+        text-align: center;
+    }
+
+    /* Adjust the link styles */
+    .navbar .nav-item {
+        
+        margin-bottom: 15px; /* Add spacing between items */
+    }
+
+    .navbar .nav-item .nav-link {
+       margin-right: 8px;
+       font-size: 15px; /* Reduce font size for smaller screens */
+    }
+
+    /* Sidebar toggle for phone view */
+    #sidebar {
+        width: 20%;
+    }
+
+
+}

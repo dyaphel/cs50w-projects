@@ -208,3 +208,118 @@
     outline: none;
 }
 
+/* Responsive styles for phone view */
+@media screen and (max-width: 768px) {
+
+    /* Profile container adjustments */
+    .profile-container {
+        width: 95%; /* Use most of the screen width */
+        padding: 15px; /* Reduce padding */
+        margin: 10px auto; /* Reduce margin */
+        flex-direction: column; /* Stack content vertically */
+        align-items: center; /* Center align content */
+    }
+
+    /* User info section for smaller screens */
+    .user-info {
+        width: 100%; /* Take full width */
+        font-size: 16px; /* Reduce font size */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .label {
+        font-size: 18px; /* Adjust label font size */
+    }
+
+    .contact-detail {
+       
+        align-items: flex-start; /* Align to the left */
+        padding: 10px; /* Add padding for touch-friendliness */
+        width: 100%; /* Use full width */
+        margin-left: 0; /* Remove left margin */
+    }
+
+    .contact-detail .label {
+        margin-bottom: 5px; /* Add spacing below labels */
+    }
+
+    .contact-detail .value {
+        font-size: 16px; /* Reduce value font size */
+        margin-bottom: 10px; /* Add spacing below each value */
+    }
+
+    /* Buttons */
+    #primaryPhoneButton, #secondaryPhoneButton, 
+    #primaryMessageButton, #secondaryMessageButton {
+        margin-left: 0; /* Reset button alignment */
+        margin-top: 10px; /* Add spacing above buttons */
+    }
+
+    #primaryPhoneButton img.icon, 
+    #secondaryPhoneButton img.icon,
+    #primaryMessageButton img.icon, 
+    #secondaryMessageButton img.icon {
+        width: 35px; /* Slightly smaller icons */
+        height: auto;
+    }
+
+    /* Favorite button adjustments */
+    #FavoriteButtonContact {
+        top: 10px; /* Adjust position */
+        right: 10px; /* Keep it closer to the edge */
+        width: 40px; /* Reduce size */
+        height: 40px;
+    }
+
+    #FavoriteButtonContact img.Favorite {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Profile picture adjustments */
+    .profile-picture-contact-details {
+        font-size: 24px; /* Smaller initials */
+        width: 60px; /* Reduce size */
+        height: 60px; /* Keep it square */
+        display: flex;
+        background-color: #bb3e5b;
+        color: white;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
+
+    /* Editable fields */
+    .editable-field {
+        width: 100%; /* Ensure full width on smaller screens */
+        font-size: 14px; /* Reduce font size */
+        padding: 8px; /* Adjust padding */
+    }
+
+    /* Adjust name row and job row spacing */
+    .name-row, .job-row {
+        flex-direction: column; /* Stack fields vertically */
+        align-items: flex-start; /* Align to the left */
+    }
+
+    .name-row span, .job-row span {
+        margin-bottom: 5px; /* Add spacing between fields */
+    }
+
+    /* Header section adjustments */
+    .header-section {
+        display: flex;
+        justify-content: space-between; /* Space out elements */
+        align-items: center;
+        padding: 10px; /* Reduce padding */
+    }
+
+    .profile-icons {
+        flex-direction: row; /* Ensure icons are side by side */
+    }
+
+    .profile-icons button {
+        margin-right: 5px; /* Add spacing between buttons */
+    }
+}
+
+
