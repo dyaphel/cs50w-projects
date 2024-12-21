@@ -175,3 +175,67 @@ p strong{
     text-overflow: ellipsis; /* Add ellipsis if content is too long */
 }
 
+
+@media screen and (max-width: 768px) {
+
+    /* Border for icon images only */
+    .profile-icons .icon {
+        border: 1px solid #3870ac; /* Reduce border thickness */
+        width: 40px; /* Adjust icon size */
+        height: 40px;
+    }
+
+    /* Profile container adjustments for small screens */
+    .profile-container {
+        flex-direction: column; /* Stack elements vertically */
+        padding: 15px;
+        width: 95%;
+        max-width: none; /* Remove fixed max-width */
+        margin: 10px auto; /* Add slight margin */
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Reduce shadow effect */
+    }
+
+    .user-info {
+        text-align: center; /* Center-align text for better readability */
+    }
+
+    /* User info fields */
+    .name-row,
+    .nickname-row,
+    .job-row {
+        font-size: 18px; /* Adjust font size */
+    }
+
+    /* Editable field styling for mobile */
+    .editable-field {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    /* Events container adjustments for small screens */
+    .events-container {
+        padding: 15px;
+        width: 95%;
+        max-width: none; /* Remove fixed max-width */
+        margin: 10px auto; /* Adjust margin */
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Reduce shadow effect */
+    }
+
+    .event-card {
+        flex-direction: column; /* Stack rows inside the card */
+        padding: 10px;
+    }
+
+    .event-row {
+        flex-direction: column; /* Stack label and content */
+        text-align: center;
+    }
+
+    .event-row .label {
+        margin-bottom: 5px; /* Add space below the label */
+    }
+
+    .event-row .content {
+        text-align: center; /* Center-align text */
+    }
+}
