@@ -1,0 +1,37 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<h2>Items in <span style="font-style: italic;">{{ category_name }}:</span></h2>
+<div class="container">
+    {% if items %}
+        {% for item in items %}
+            <a href="{% url 'listing' item.id %}" style="text-decoration: none; color: inherit;">
+                <div class="card" style="margin-left: -15%;">
+                    {% if item.image_url %}
+                    <div class="card-img-container">
+                        <img class="card-img" src="{{ item.image_url }}" alt="{{ item.title }}">
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h2 class="card-title">{{ item.title }}</h2>
+                        <p class="card-description">{{ item.description }}</p>
+                        <h3 class="card-bid">
+                            {% if item.current_bid %}
+                            Current Bid: ${{ item.current_bid }}
+                            {% else %}
+                            Price: ${{ item.starting_bid }}
+                            {% endif %}
+                        </h3>
+                        <p class="card-createdat"><strong>Created at:</strong> {{ item.created_at }}</p>
+                        <p class="card-endat"><strong>End at:</strong> {{ item.end_time }}</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    {% else %}
+        <h3 style=" margin-left: -8%; font-size: 1.5em; color: gray;">There are no items available in this category.</h3>
+    {% endif %}
+</div>
+
+{% endblock %}

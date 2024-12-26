@@ -1,0 +1,14 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<h2>Categories:</h2>
+<ul class="category-list">
+    {% for name, count in category_data %}
+        <li>
+            <a href="{% url 'category_items' name %}" class="category-link">
+                {{ name }}: <span class="item-count">{{ count }} items</span>
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

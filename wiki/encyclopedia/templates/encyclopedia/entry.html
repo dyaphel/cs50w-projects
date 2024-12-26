@@ -1,0 +1,19 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia: {{ title }}
+{% endblock %}
+
+{% block body %}
+
+{{ content | safe }}
+
+<a href="{% url 'edit' title=title %}" 
+class="btn btn-outline-info" 
+role="button" data-bs-toggle="button"
+style="margin-top: 20px; align-items: start;">
+<img style="width: 16px; height: 16px; margin-top: -4px; margin-right: 5px;" 
+src="../../static/encyclopedia/edit.png"> 
+Edit
+</a>
+{% endblock %}
