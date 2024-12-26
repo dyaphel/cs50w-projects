@@ -124,16 +124,46 @@ The calendar is a core feature of this app, designed to allow users to schedule,
      - **Deleted**: Remove events from the calendar if they are no longer needed.
 
 ---
-<<<<<<< Updated upstream
+# Project Structure
 
-## Personal Notes
+## Overview
+This project follows a standard Django application structure with additional directories for static files and templates, the organization is:
 
-This app provides a solution for managing contacts, groups, and calendars, all in one platform. It is designed to help users stay organized and connected with their professional and personal networks through their computer instead of relying on a phone. This app was not designed to mimic or replicate the existing Microsoft Phone Link app. In fact, I was not even aware of its existence during development.
+### Static Folder
+The `static` folder contains the following subdirectories:
 
-Future improvements could include fully integrating with the existing Microsoft Phone Link app to directly import contacts from the user's phone. Another enhancement could be adding a notepad function, allowing users to take notes and attach them to a specific contact and/or group. Additionally, implementing a group chat feature, instead of relying solely on meetings, would be beneficial. Completing the necessary API integrations for scheduling and communication functionalities should also be prioritized.
+1. **contact_style**: Contains the CSS directories for styling different parts of the application. Inside this folder:
+   - **calendar**: Styles related to the calendar functionality.
+   - **components**: Styles for common components like the profile picture, card styles, etc.
+   - **contacts**: Styles for the contacts-related pages.
+   - **group_style**: Styles for the group-related pages.
+   - `favorites.css`: Styles specific to the favorites feature.
+   - `style.css`: General styles applied across the application.
 
-=======
-## Difference between projects
+2. **img**: Contains various icons and images used in the application.
+
+3. **js**: Contains JavaScript files for managing the functionality of different parts of the application. Inside this folder and files:
+   - **calendar**: JavaScript for calendar-related features.
+   - **contacts**: JavaScript for managing contacts.
+   - **group**: JavaScript for managing groups.
+   - `favorites.js`: Handles the favorites feature.
+   - `isFavorite.js`: Adds functionality for marking items as favorites.
+
+### Templates Folder
+The `templates` folder mirrors the structure of the `js` folder and includes:
+
+1. **calendar/**: folder for HTML templates for the calendar pages.
+2. **contacts/**: folder containing the HTML templates for contacts-related pages.
+3. **group/**: folder whit HTML templates for group-related pages.
+4. **favorites/**: HTML files for favorites.
+5. **standard/**: Contains templates for general functionalities:
+   - `login.html`: The login page.
+   - `logout.html`: The logout page.
+   - `layout.html`: The base layout template used across the app.
+   - `register.html`: The registration page.
+
+---
+## Distinctiveness and Complexity
 This project is distinct from the previous coursework projects, 
 particularly the **social network app** and the **e-commerce platform**, both in purpose and implementation.
 Unlike the **e-commerce app**, which allowed users to interact with each other’s items by viewing, purchasing, or commenting, 
@@ -163,7 +193,6 @@ Future improvements could include fully integrating with the existing Microsoft 
 Another enhancement could be adding a notepad function, allowing users to take notes and attach them to a specific contact and/or group. 
 Additionally, implementing a group chat feature, instead of relying solely on meetings, would be beneficial. 
 Completing the necessary API integrations for scheduling and communication functionalities should also be prioritized.
->>>>>>> Stashed changes
 Further consideration is required to determine whether to keep the app private or make it public, with necessary adjustments.
 
 ---
