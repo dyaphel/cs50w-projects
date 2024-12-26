@@ -1,0 +1,190 @@
+/* General styling remains the same */
+.profile-icons .icon {
+    border: 2px solid #933ebb;
+}
+
+.profile-container {
+    border: 1px solid #933ebb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 90%;
+    max-width: 800px;
+    margin: 5% auto;
+    margin-top: 10px;
+    transition: box-shadow 0.3s ease;
+    position: relative;
+    font-family: 'Arial', sans-serif;
+   
+}
+
+.event-info {
+    display: flex;
+    flex-direction: column;
+    color: #333;
+    margin-top: 5px;
+   
+}
+
+.label {
+    font-size: 18px;
+    font-weight: 500;
+    color: #933ebb;
+    width: 120px;
+   
+}
+
+.start-row, .end-row {
+    margin-top: -5%;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+p{
+    margin-top: 5%;
+}
+
+.profile-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    margin: 30px 0;
+    width: 100%;
+    margin-top: -2%;
+}
+
+.profile-container-member {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 25px;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.profile-container-group {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    background-color: #fff;
+    padding: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 25px;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+
+.profile-picture-member {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #bb3e5b;
+    border-radius: 50%;
+    text-transform: uppercase;
+}
+
+.memeber-name-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.main-info {
+    display: flex;
+    gap: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #353535;
+}
+
+.memeber-sub-info {
+    font-size: 14px;
+    color: #555;
+    display: flex;
+    gap: 25px;
+}
+
+.nickname, .phone {
+    font-weight: 500;
+    color: #777;
+}
+
+/* General Textarea Styling */
+textarea {
+    border: 1px solid #e0e0e0;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    font-weight: 400;
+    color: #353535;
+    padding: 10px;
+    width: 100%;
+    border-radius: 8px;
+    resize: vertical;
+    min-height: 40px;
+    margin-bottom: 20px;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+#name {
+    font-size: 22px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.member-count {
+    font-size: 16px;
+    font-weight: 500;
+    color: #777;
+    margin-left: -20%;
+}
+
+#description {
+    font-size: 18px;
+    font-weight: 500;
+    color: #933ebb;
+    width: 100%;
+    margin-left: -20%;
+}
+
+.description {
+    font-size: 18px;
+    font-weight: 500;
+    color: #933ebb;
+    width: 100%;
+   
+}
+
+/* Delete Button */
+#deleteButtonGroup {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+

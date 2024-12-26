@@ -1,0 +1,241 @@
+/* Border for icon images only */
+.profile-icons .icon {
+    border: 2px solid #3870ac; /* Pastel blue border */
+
+}
+
+
+/* Profile container */
+.profile-container {
+    display: flex;
+    align-items: flex-start;
+    background-color: #fff;
+    border: 1px solid #3870ac;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 90%;
+    height: auto;
+    max-width: 700px;
+    margin: 1% auto;
+    transition: box-shadow 0.3s ease;
+}
+
+
+
+
+/* User info section */
+.user-info {
+    display: flex;
+    flex-direction: column;
+    color: #000000;
+}
+
+.label {
+    font-weight: 600;
+    color: #3870ac;
+}
+
+.name-row {
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.nickname-row {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 2px;
+}
+
+.job-row {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+p strong{
+    color: #3870ac;
+    font-size: 20px;
+    font-weight: 600;
+
+}
+
+.user-info p span {
+
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+    margin: 5px 0;
+}
+
+/* Column layout for edit mode */
+/* General styles for edit mode */
+.edit-mode .name-row,
+.edit-mode .nickname-row,
+.edit-mode .job-row,
+.edit-mode p {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* Style adjustments for editable fields */
+.editable-field {
+    border: 1px solid #3870ac;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 5px 0;
+}
+
+
+.edit-mode #firstName{
+    margin-bottom: -25px;
+}
+.edit-mode #lastName{
+    margin-bottom: -2px;
+}
+.edit-mode #nickname{
+    margin-bottom: 10px;
+}
+.edit-mode #company{
+    margin-bottom: -25px;
+}
+
+.edit-mode #jobPosition{
+    margin-bottom: 10px;
+}
+
+
+/*///////EVENT CSS//////*/
+.events-container {
+    justify-self: center;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #3870ac;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    height: auto;
+    max-width: 700px;
+   
+}
+
+.events-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.event-card {
+    display: flex;
+    flex-direction: row; /* Each row inside the card */
+    gap: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.event-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+    transition: all 0.3s ease-in-out;
+}
+
+.event-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between the label and content */
+    margin: 5px 0;
+   margin-right: 10%;
+   
+}
+
+.event-row .label {
+    font-weight: bold;
+    margin-right: 10px;
+    flex-shrink: 0; /* Prevent label from shrinking */
+}
+
+.event-row .content {
+    flex-grow: 1; /* Content expands to fill available space */
+    color: #555555;
+    text-align: left; /* Ensures text is aligned properly */
+    white-space: nowrap; /* Prevent content from wrapping */
+    overflow: hidden; /* Truncate overflow text */
+    text-overflow: ellipsis; /* Add ellipsis if content is too long */
+}
+
+
+@media screen and (max-width: 768px) {
+
+    /* Border for icon images only */
+    .profile-icons .icon {
+        border: 1px solid #3870ac; /* Reduce border thickness */
+        width: 40px; /* Adjust icon size */
+        height: 40px;
+    }
+
+    /* Profile container adjustments for small screens */
+    .profile-container {
+        flex-direction: column; /* Stack elements vertically */
+        padding: 15px;
+        width: 95%;
+        max-width: none; /* Remove fixed max-width */
+        margin: 10px auto; /* Add slight margin */
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Reduce shadow effect */
+    }
+
+    .user-info {
+        text-align: center; /* Center-align text for better readability */
+    }
+
+    /* User info fields */
+    .name-row,
+    .nickname-row,
+    .job-row {
+        font-size: 18px; /* Adjust font size */
+    }
+
+    /* Editable field styling for mobile */
+    .editable-field {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    /* Events container adjustments for small screens */
+    .events-container {
+        padding: 15px;
+        width: 95%;
+        max-width: none; /* Remove fixed max-width */
+        margin: 10px auto; /* Adjust margin */
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Reduce shadow effect */
+    }
+
+    .event-card {
+        flex-direction: column; /* Stack rows inside the card */
+        padding: 10px;
+    }
+
+    .event-row {
+        flex-direction: column; /* Stack label and content */
+        text-align: center;
+    }
+
+    .event-row .label {
+        margin-bottom: 5px; /* Add space below the label */
+    }
+
+    .event-row .content {
+        text-align: center; /* Center-align text */
+    }
+}

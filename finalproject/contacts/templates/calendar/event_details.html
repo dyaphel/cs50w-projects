@@ -1,0 +1,94 @@
+{% extends "standard/layout.html" %}
+
+{% load static %}
+
+{% block title %}Contact{% endblock %}
+
+{% block head %}
+    <link href="{% static 'contact_style/calendar/events_details.css' %}" rel="stylesheet">
+    <link href="{% static 'contact_style/components/header_buttons.css' %}" rel="stylesheet">
+    <link href="{% static 'contact_style/components/profile_pictures.css' %}" rel="stylesheet">
+    <link href="{% static 'contact_style/components/add_card.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="header-section">
+        <div class="profile-icons">
+            <button id="deleteButtonGroup">
+                {% csrf_token %}
+                <img src="{% static 'img/delete.png' %}" class="icon" alt="Delete">
+                <div id="calendar-url" data-url="{% url 'calendar' %}"></div>
+            </button>
+        </div>
+    </div>
+
+    <div class="profile-container">
+        <div class="profile-picture">
+            <span class = description>Description:</span>
+           <textarea> {{ event.title|upper }}</textarea>
+           <span id="eventTitle" style="display:none">{{ event.title|escapejs }}</span>
+        </div>
+
+        <div class="event-info">
+            <div class="start-row">
+                <span class="label">Start:</span>
+                <p>{{ event_start|date:"g:i a" }}</p>
+                <span id="eventStartTime" style="display:none">{{ event.start|date:'Y-m-d H:i:s' }}</span>
+            </div>
+
+            <div class="end-row">
+                <span class="label">End:</span>
+                <p>{{ event_end|date:"g:i a" }}</p>
+            </div>
+
+            <div class="members">
+                {% if event.contact %}
+                    <div class="profile-wrapper">
+                        <div class="profile-container-member" onclick="openContactDetails({{ event.contact.id }})">
+                            <div class="profile-picture-member">
+                                {{ event.contact.name.0|upper }}{{ event.contact.surname.0|upper }}
+                            </div>
+
+                            <div class="memeber-name-row">
+                                <div class="main-info">
+                                    <span class="name">{{ event.contact.name }}</span>
+                                    <span class="surname">{{ event.contact.surname }}</span>
+                                </div>
+                                <div class="memeber-sub-info">
+                                    <span class="nickname">{{ event.contact.nickname }}</span>
+                                    <span class="phone">{{ event.contact.phone_number_1 }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% if event.group%}
+        <div class="profile-wrapper">
+          <div class="profile-container-group" onclick="openGroupDetails({{ event.group.id }})">
+             <div class="profile-picture-group-list" style="width: auto;">
+                {{ event.group.name|upper }}
+            </div>
+            <div class="text-container">
+                <span class="member-count">({{ event.group.members.count }} Members)</span>
+                <textarea id="description" readonly >{{ event.group.description }}</textarea>
+            </div>
+        </div>
+        {%endif%}
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static  'js/calendar/event_details.js' %}" ></script>ù
+<script> 
+function openContactDetails(contactId) {
+    window.location.href = `/contact/${contactId}/`;
+}
+function openGroupDetails(groupId) {
+    console.log("Group ID:", groupId);
+    window.location.href = `/group/${groupId}/`;
+ }
+</script>
+
+{% endblock %}

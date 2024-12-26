@@ -1,0 +1,40 @@
+.profile-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Allinea al centro del contenitore */
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto; /* Centra la wrapper orizzontalmente */
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: row; /* Organizza elementi in riga */
+    align-items: center; /* Allinea verticalmente al centro */
+    position: relative; /* Added to position the favorite button relative to this container */
+    width: 100%;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+}
+
+.profile-footer {
+    width: 100%; /* Si adatta alla larghezza della wrapper */
+    padding: 10px;
+    text-align: center;
+    background-color: #f0f0f0;
+    color: #a3a3a3;
+    border: 1px solid #e0e0e0;
+    border-top: none; /* Rimuove il bordo superiore per un aspetto continuo */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: height 1s ease;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  
+}

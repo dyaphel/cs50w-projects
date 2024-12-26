@@ -1,0 +1,114 @@
+/* Border for icon images only */
+.profile-icons .icon {
+    border: 2px solid #bb833e; 
+}
+
+
+.contact-details {
+    padding: 10px;
+    margin-top: -2px;
+}
+
+.label {
+    font-weight: 700;
+    color: #bb3e5b;
+    font-size: 20px;
+}
+
+.contact-info {
+    font-size: 18px; /* Font più grande */
+    color: #353535; /* Colore nero */
+    font-weight: 600;
+}
+
+.arrow {
+    font-size: 18px;
+    cursor: default;
+}
+
+.checkbox {
+    transform: scale(1.5); /* Ingrandisce la checkbox */
+    margin-left: 20px; /* Sposta la checkbox più a destra */
+    margin-right: -10px;
+}
+
+
+
+.name-row {
+    font-size: 20px;
+    font-weight: 600;
+    color: #353535;
+}
+
+
+.details {
+    padding: 10px;
+    margin-top: -2px;
+}
+
+.message {
+    font-weight: 700;
+    color: #933ebb;
+    font-size: 20px;
+}
+
+.groupmessage {
+    font-size: 18px; /* Font più grande */
+    color: #353535; /* Colore nero */
+    font-weight: 600;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center;
+    align-items: flex-start; /* Align text to the left */
+    width: 100%;
+}
+
+/* Group Name Styling */
+#name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+}
+
+/* Member Count Styling */
+.member-count {
+    font-size: 18px;
+    font-weight: 400;
+    color: #353535;
+    margin-left: 8px; /* Space between name and member count */
+}
+
+/* Group Description Styling */
+#description {
+    margin-bottom: -10%;
+    font-size: 18px;
+    font-weight: 400;
+    color: #353535;
+    white-space: normal; /* Allow wrapping */
+    overflow: visible; /* No truncation */
+    margin-top: 5px; /* Space between name and description */
+}
+
+textarea {
+    border: none; /* Remove the border */
+    outline: none; /* Remove the focus outline */
+    resize: none; /* Disable resizing */
+    background-color: transparent; /* Match background to parent */
+    font-size: 18px; /* Match font size to surrounding text */
+    font-weight: 400; /* Keep text weight normal */
+    color: #353535; /* Text color */
+    width: 100%; /* Full width of the container */
+}
+
+
+
+
+
+
+
+
+
+

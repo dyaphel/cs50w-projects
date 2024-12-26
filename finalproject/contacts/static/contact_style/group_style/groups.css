@@ -1,0 +1,93 @@
+/* Border for icon images only */
+.profile-icons .icon {
+    border: 2px solid #933ebb; 
+}
+
+.checkbox {
+    transform: scale(1.5); /* Ingrandisce la checkbox */
+    margin-left: 20px; /* Sposta la checkbox più a destra */
+    margin-right: -10px;
+}
+
+
+
+.details {
+    padding: 10px;
+    margin-top: -2px;
+}
+
+.label {
+    font-weight: 700;
+    color: #933ebb;
+    font-size: 20px;
+}
+
+.arrow {
+    font-size: 18px;
+    cursor: default;
+}
+
+
+.text-container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center;
+    align-items: flex-start; /* Align text to the left */
+    width: 100%;
+    margin-top: -5%;
+    margin-left: -5%;
+}
+
+/* Group Name Styling */
+#name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+}
+
+/* Member Count Styling */
+.member-count {
+    font-size: 18px;
+    font-weight: 400;
+    color: #353535;
+    margin-left: 8px; /* Space between name and member count */
+}
+
+/* General Textarea Styling */
+textarea {
+    border: none; /* Remove the border */
+    outline: none; /* Remove the focus outline */
+    resize: none; /* Disable resizing */
+    background-color: transparent; /* Match background to parent */
+    font-size: 18px; /* Match font size to surrounding text */
+    font-weight: 400; /* Keep text weight normal */
+    color: #353535; /* Text color */
+    width: 100%; /* Full width of the container */
+    cursor: default;
+    height: auto ; /* Match the line-height */
+    line-height: 1.2em; /* Set line-height */
+   
+
+}
+
+/* Specific Styling for Description Textarea */
+#description {
+    margin-bottom: -10%;
+    font-size: 18px;
+    font-weight: 400;
+    color: #353535;
+    white-space: normal; /* Allow text to wrap naturally */
+    overflow: visible; /* Prevent truncation */
+    margin-top: 5px; /* Space between group name and description */
+}
+
+/* Specific Styling for Group Message Textarea */
+.groupmessage {
+    font-size: 18px;
+    color: #353535;
+    font-weight: 600;
+    background-color: #f9f9f9; /* Slightly different background for visibility */
+    padding: 10px; /* Add inner spacing */
+    border-radius: 5px; /* Rounded edges */
+    width: 100%;
+}

@@ -1,4 +1,96 @@
-{% extends "contacts/layout.html" %}
+{% extends "standard/layout.html" %}
+
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{%block head%}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="{% static 'contact_style/contacts/index.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/header_buttons.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/profile_pictures.css' %}" rel="stylesheet">
+{%endblock%}
 
 {% block body %}
+<div class="header-section">
+    <div class="profile-icons">
+        <button id="saveButton" disabled="true"><img src="{% static 'img/save.png' %}" class="icon" alt="Save">
+            {% csrf_token %}
+        </button>
+        <button id="editButton"><img src="{% static 'img/edit.png' %}" class="icon" alt="Edit"></button>
+    </div>
+</div>
+
+<div class="profile-container">
+    <div class="profile-picture-personal">
+        {{ user_info.name.0|upper }}{{ user_info.surname.0|upper }}
+    </div>
+
+    <div class="user-info">
+        <div class="name-row">
+            <span class="label">Name:</span> 
+            <span id="firstName" contenteditable="false">{{ user_info.name }}</span>
+            &nbsp &nbsp &nbsp &nbsp
+            <span class="label">Surname:</span>
+            <span id="lastName" contenteditable="false">{{ user_info.surname }}</span>
+        </div>
+
+        <div class="nickname-row">
+            <span class="label">Nickname:</span> 
+            <span id="nickname" contenteditable="false">{{ user_info.username }}</span>
+        </div>
+        
+        <div class="job-row">
+            <span class="label">Company:</span>
+            <span id="company" contenteditable="false">{{ user_info.company }}</span>
+            &nbsp &nbsp 
+            <span class="label">Position:</span>
+            <span id="jobPosition" contenteditable="false">{{ user_info.job_position }}</span>
+        </div>
+        <p><strong>Email:</strong> <span id="email" contenteditable="false">{{ user_info.email }}</span></p>
+        <p><strong>Primary Phone:</strong> <span id="phone1" contenteditable="false">{{ user_info.phone_number_1 }}</span></p>
+        <p><strong>Secondary Phone:</strong> <span id="phone2" contenteditable="false">{{ user_info.phone_number_2|default:"N/A" }}</span></p>
+    </div>
+</div>
+
+
+<div class="events-container">
+    <h2>Upcoming Events (Next 7 Days)</h2>
+    {% if upcoming_events %}
+        <div class="event-cards">
+            {% for event in upcoming_events %}
+                <div class="event-card">
+                    <div class="event-row">
+                        <span class="label">Title:</span>
+                        <div class="content event-title">{{ event.title }}</div>
+                    </div>
+                    <div class="event-row">
+                        <span class="label">Day:</span>
+                        <div class="content event-date">{{ event.start|date:"M d, Y" }}</div>
+                    </div>
+                    <div class="event-row">
+                        <span class="label">Start at:</span>
+                        <div class="content event-time">{{ event.start|time:"H:i" }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No events scheduled for the next 7 days.</p>
+    {% endif %}
+</div>
+
+
+
+
 {% endblock %}
+
+{% block script %}
+<script src="{% static  'js/contacts/edit_profile.js' %}"></script>
+{% endblock %}
+
+
+
+
+

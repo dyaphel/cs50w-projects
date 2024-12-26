@@ -1,0 +1,40 @@
+
+.profile-icons .icon {
+    border: 2px solid #bb3e5b; /* Pastel blue border */   
+}
+
+.contact-details {
+    padding: 10px;
+    margin-top: -2px;
+}
+
+.label {
+    font-weight: 700;
+    color: #bb3e5b;
+    font-size: 20px;
+}
+
+.contact-info {
+    font-size: 18px; /* Font più grande */
+    color: #353535; /* Colore nero */
+    font-weight: 600;
+}
+
+.arrow {
+    font-size: 18px;
+    cursor: default;
+}
+
+.checkbox {
+    transform: scale(1.5); /* Ingrandisce la checkbox */
+    margin-left: 20px; /* Sposta la checkbox più a destra */
+    margin-right: -10px;
+}
+
+
+
+.name-row {
+    font-size: 20px;
+    font-weight: 600;
+    color: #353535;
+}

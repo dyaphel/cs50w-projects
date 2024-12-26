@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=0.9">
+
+        <title>{% block title %}Contacts{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'contact_style/styles.css' %}" rel="stylesheet">
+    {%block head%}
+    {%endblock%}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg" style="justify-content: space-evenly;">          
+            <div class="d-flex">
+                <ul class="navbar-nav mr-auto d-flex flex-row">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contacts' %}">Contacts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'groups' %}">Groups</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'favorites' %}">Favorites</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'calendar' %}">Calendar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">logout</a>
+                </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                {% endif %}
+              </ul>
+            </div>
+          </nav>
+
+          <div id="sidebar" class="sidebar">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <button class="btn btn-sidebar">
+                        {% block sidebar %}
+                        {% endblock %}
+                    </button>
+                </li>
+            </ul>
+        </div>
+           
+        <div class="body">
+            {% block body %}
+            {% endblock %}
+        </div>
+        {% block script %}
+        {% endblock %}
+    </body>
+
+</html>

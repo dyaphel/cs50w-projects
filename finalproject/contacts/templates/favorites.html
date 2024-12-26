@@ -1,0 +1,103 @@
+{% extends "standard/layout.html" %}
+
+{% load static %}
+
+{% block title %}Contacts{% endblock %}
+
+{% block head %}
+{% csrf_token %}
+<meta name="viewport" content="width=device-width, initial-scale=0.75">
+
+
+<link href="{% static 'contact_style/favorites.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/favoritebutton.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/list_card.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/modal.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/header_buttons.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/profile_pictures.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+
+{% for contact in contacts %}
+<div class="profile-wrapper" data-contact-id="{{ contact.id }}">
+
+    <div class="profile-container" onclick="openContactDetails({{ contact.id }})">
+
+        <button id="FavoriteButtonContact" onclick="toggleFavoriteContact(this, {{ contact.id }})">
+            {% if contact.isFavorite %}
+            <img src="{% static 'img/redFavorite.png' %}" data-favorite="true" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+            {% else %}
+            <img src="{% static 'img/whiteFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+            {% endif %}
+        </button>
+        
+        <div class="profile-picture-contact-list">
+            {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
+        </div>
+        <div class="name-row">
+            <span id="firstName">{{ contact.name }}</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="lastName">{{ contact.surname }}</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="nickname">{{ contact.nickname }}</span>
+        </div>
+    </div>
+
+    <div class="profile-footer" onclick="toggleContactDetails(this)">
+        <div class="contact-details" style="display: none;">
+            <span class="label">Email:</span> <span class="contact-info">{{ contact.email }}</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="label">Phone:</span> <span class="contact-info">{{ contact.phone_number_1 }}</span>
+        </div>
+        <span class="arrow">&#9660;</span>
+    </div>
+</div>
+{% endfor %}
+
+{% for group in groups %}
+    <div class="profile-wrapper">
+        <div class="profile-container" onclick="openGroupDetails({{ group.id }})">
+
+            <button id="FavoriteButtonGroup" onclick="toggleFavoriteGroup(this,{{ group.id }})">
+                {% if group.isFavorite %}
+                <img src="{% static 'img/redFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+                {% else %}
+                <img src="{% static 'img/whiteFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+                {% endif %}
+            </button>
+            
+            
+          
+            <div class="profile-picture-group-list ">
+                {{ group.name|upper }}
+            </div>
+
+            <div class="text-container">
+                <span id="name">
+                    {{ group.name|upper }}
+                    <span class="member-count">({{ group.members.count }} Members)</span>
+                </span>
+                <textarea id="description" readonly>{{ group.description }}</textarea>
+            </div>
+        </div>
+
+        <div class="profile-footer" onclick="toggleGroupDetails(this)">
+            <div class="details" style="display: none;">
+                <span class="message">Message:</span>
+                <textarea class="groupmessage" readonly>{{ group.pinned_message }}</textarea>
+            </div>
+            <span class="arrow">&#9660;</span>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static  'js/contacts/contact_list.js' %}"></script>
+<script src="{% static 'js/groups/group_list.js' %}"></script>
+<script src="{% static  'js/isFavorite.js' %}"></script>
+<script src="{% static  'js/favorite.js' %}"></script>
+{% endblock %}

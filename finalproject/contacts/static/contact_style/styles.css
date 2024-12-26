@@ -1,0 +1,48 @@
+/* General navbar styling */
+.navbar {
+    background-color: #d1e2f5; /* Slightly lighter than #6e94bc */
+    color: #ffffff;
+    padding: 10px;
+}
+
+/* Navbar link color adjustments */
+.navbar .nav-item .nav-link {
+    color: #000000;
+    font-size: 18px;
+    margin-right: 90px;
+    transition: color 0.3s ease;
+  
+}
+
+/* Hover effect */
+.navbar .nav-item .nav-link:hover {
+    color: #1e00ff; /* Lightened hover effect */
+}
+
+/* Media query for phone view */
+@media screen and (max-width: 768px) {
+    /* Navbar adjustments */
+    .navbar {
+        /* Stack items vertically */
+        padding: 5px;
+        text-align: center;
+    }
+
+    /* Adjust the link styles */
+    .navbar .nav-item {
+        
+        margin-right: 15px; /* Add spacing between items */
+    }
+
+    .navbar .nav-item .nav-link {
+       margin-right: 8px;
+       font-size: 15px; /* Reduce font size for smaller screens */
+    }
+
+    /* Sidebar toggle for phone view */
+    #sidebar {
+        width: 20%;
+    }
+
+
+}

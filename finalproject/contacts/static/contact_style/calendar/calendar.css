@@ -1,0 +1,208 @@
+/* Calendar Base */
+#calendar {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+.fc-button {
+    background-color: #2200fd ; 
+    color: white ;
+    border: none ;
+    border-radius: 4px ;
+}
+
+.fc-button:hover {
+    background-color: #bd3535 !; /* Hover effect for buttons */
+}
+
+/*///////////////////////////////////*/
+
+/* Day Headers */
+.fc-col-header-cell {
+    background-color: #e6e6e6; /* Header background */
+    color: #333; /* Header text */
+    font-weight: bold;
+}
+
+/* Today's Date Highlight */
+.fc-day-today {
+    background-color: #ffe4b5  /* Highlight for today */
+}
+
+/* Event Colors */
+.fc-event {
+    background-color: #f77ce5; /* Default event background */
+    color: white; /* Default event text */
+    border: none; /* Remove borders */
+}
+
+.fc-event:hover {
+    background-color: #357abd; /* Hover effect for events */
+}
+
+/* Past Event Colors */
+.fc-event-past {
+    background-color: gray; /* Gray background for past events */
+    color: white; /* Text color for contrast */
+    border: none; /* Remove borders */
+    opacity: 0.6; /* Slightly faded appearance */
+}
+
+/* Remove the blue dot for past events */
+.fc-event-past::before {
+    display: none; /* Removes any pseudo-elements like dots */
+}
+/* Change the blue dot to black or gray for past events */
+.fc-event-past .fc-daygrid-event-dot {
+    background-color: black !important; /* Make the dot black */
+    border-color: black !important;    /* Ensure the border matches */
+}
+
+
+
+/*////////////////////////////////////*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000; /* Higher priority */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker background overlay */
+    backdrop-filter: blur(5px); /* Add a subtle blur effect */
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #ffffff, #f3f3f3); /* Subtle gradient */
+    margin: 10% auto; /* Adjusted for better centering */
+    padding: 25px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Modern shadow effect */
+    width: 50%;
+    max-width: 600px; /* Limit width on large screens */
+    animation: fadeIn 0.3s ease-out; /* Smooth animation */
+}
+
+.close {
+    color: #555;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: #ff6b6b; /* A vibrant hover color */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333; /* Enhanced text contrast */
+}
+
+input,
+select,
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease;
+    margin-right: 2%;
+}
+
+input:focus,
+select:focus {
+    box-shadow: 0 0 8px rgba(63, 81, 181, 0.5); /* Blue focus glow */
+    outline: none;
+}
+
+button {
+    background-color: #3f51b5; /* Primary button color */
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #5c6bc0; /* Slightly lighter hover effect */
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Responsive Design for Phones */
+@media (max-width: 600px) {
+    /* Calendar Container Adjustments */
+    .calendar-container {
+        padding: 10px; /* Reduce padding */
+    }
+
+    #calendar {
+        font-size: 14px; /* Smaller font for better fit */
+    }
+
+    /* Adjust Buttons */
+    .fc-button {
+        font-size: 12px; /* Smaller text on buttons */
+        padding: 5px 10px; /* Reduce padding */
+    }
+
+    /* Modal Adjustments */
+    .modal-content {
+        width: 90%; /* Make modal fit smaller screens */
+        margin: 15% auto; /* Adjust centering */
+        padding: 15px; /* Reduce padding for content */
+    }
+
+    .close {
+        font-size: 24px; /* Adjust close button size */
+    }
+
+    /* Input and Buttons */
+    input,
+    select,
+    button {
+        font-size: 14px; /* Smaller text size */
+        padding: 8px; /* Reduce padding */
+    }
+
+    button {
+        width: auto; /* Allow buttons to shrink */
+        padding: 8px 15px;
+    }
+
+    /* Label Adjustments */
+    label {
+        font-size: 14px; /* Smaller label text */
+    }
+
+    /* Event Styling */
+    .fc-event {
+        font-size: 12px; /* Smaller event text */
+    }
+}

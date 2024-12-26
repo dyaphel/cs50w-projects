@@ -1,0 +1,325 @@
+
+/* Border for icon images only */
+.profile-icons .icon {
+    border: 2px solid #bb3e5b; 
+}
+
+/* Profile container */
+.profile-container {
+    display: flex;
+    align-items: flex-start;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 90%;
+    height: auto;
+    max-width: 700px;
+    margin: 5% auto;
+    margin-top: 15px;
+    transition: box-shadow 0.3s ease;
+    position: relative;
+}
+/* User info section */
+.user-info {
+    display: flex;
+    flex-direction: column;
+    color: #000000;
+}
+
+.label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #bb3e5b;
+}
+
+.name-row {
+    margin-top: 12px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.nickname-row {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 2px;
+}
+
+.job-row {
+    margin-top: 15px;
+    font-size: 19px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.birthday-row{
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Styling for individual contact details */
+.contact-detail {
+    display: flex;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 8px 12px;
+    background-color: #f9f7f6;
+    border-left: 4px solid #bb3e5b;
+    border-radius: 8px;
+    margin-left: -35%;
+    width: auto;
+    max-width: 600px;
+}
+
+/* Styling for labels within each contact detail */
+.contact-detail .label{
+    font-weight: 700;
+    font-size: 20px;
+    color: #bb3e5b;
+    margin-right: 5px;
+  
+    
+}
+
+/* Styling for the values in each contact detail */
+.contact-detail .value {
+    font-size: 20px;
+    color: #000000;
+    font-weight: 500;
+}
+
+/* Common button styling for both primary and secondary phone buttons */
+#primaryPhoneButton, #secondaryPhoneButton{
+    background-color: transparent; /* Remove default button styling */
+    border: none;
+    outline: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Hover effect for both primary and secondary phone buttons */
+#primaryPhoneButton:hover, #secondaryPhoneButton:hover{
+    background-color: #e0e0e0;
+    background-color: transparent;
+    border-radius: 4px;
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* Icon styling for both buttons */
+#primaryPhoneButton img.icon, #secondaryPhoneButton img.icon{
+    width: 40px; /* Adjust icon size */
+    height: auto;
+    vertical-align: middle;
+    margin-left: 15px;
+    outline: none;
+}
+
+#primaryMessageButton , #secondaryMessageButton{
+    background-color: transparent; /* Remove default button styling */
+    border: none;
+    outline: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#primaryMessageButton:hover, #secondaryMessageButton:hover {
+    background-color: #e0e0e0;
+    background-color: transparent;
+    border-radius: 4px;
+    transform: scale(1.1); 
+
+}
+
+#primaryMessageButton img.icon, #secondaryMessageButton img.icon {
+    width: 40px; /* Adjust icon size */
+    height: auto;
+    outline: none;
+}
+
+
+/* Column layout for edit mode */
+/* General styles for edit mode */
+.edit-mode .name-row,
+.edit-mode .nickname-row,
+.edit-mode .job-row,
+.edit-mode p {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* Style adjustments for editable fields */
+.editable-field {
+    border: 1px solid #bb3e5b;
+    border-radius: 10px;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 5px 0;
+}
+
+
+.edit-mode #firstName{
+    margin-bottom: -25px;
+}
+.edit-mode #lastName{
+    margin-bottom: -2px;
+}
+.edit-mode #nickname{
+    margin-bottom: 10px;
+}
+.edit-mode #company{
+    margin-bottom: -25px;
+}
+
+.edit-mode #jobPosition{
+    margin-bottom: 10px;
+}
+
+
+
+#FavoriteButtonContact {
+    position: absolute; /* Positioned absolutely within the .profile-container */
+    top: 30px; /* Adjust vertical position within the profile container */
+    right: 50px; /* Adjust horizontal position within the profile container */
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Ensure button has height for better alignment */
+    background: none; /* Remove button background */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Make it look clickable */
+    z-index: 1; /* Ensure it's above other elements within the profile container */
+}
+
+#FavoriteButtonContact img.Favorite {
+    transition: opacity 0.2s ease;
+    width: 100%; /* Ensure the icon scales within the button */
+    height: 100%; /* Ensure the icon scales within the button */
+    object-fit: contain; /* Ensures the image scales without distortion */
+}
+
+/* Remove the focus outline (black square) on button click */
+#FavoriteButtonContact:focus {
+    outline: none;
+}
+
+/* Responsive styles for phone view */
+@media screen and (max-width: 768px) {
+
+    /* Profile container adjustments */
+    .profile-container {
+        width: 95%; /* Use most of the screen width */
+        padding: 15px; /* Reduce padding */
+        margin: 10px auto; /* Reduce margin */
+        flex-direction: column; /* Stack content vertically */
+        align-items: center; /* Center align content */
+    }
+
+    /* User info section for smaller screens */
+    .user-info {
+        width: 100%; /* Take full width */
+        font-size: 16px; /* Reduce font size */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .label {
+        font-size: 18px; /* Adjust label font size */
+    }
+
+    .contact-detail {
+       
+        align-items: flex-start; /* Align to the left */
+        padding: 10px; /* Add padding for touch-friendliness */
+        width: 100%; /* Use full width */
+        margin-left: 0; /* Remove left margin */
+    }
+
+    .contact-detail .label {
+        margin-bottom: 5px; /* Add spacing below labels */
+    }
+
+    .contact-detail .value {
+        font-size: 16px; /* Reduce value font size */
+        margin-bottom: 10px; /* Add spacing below each value */
+    }
+
+    /* Buttons */
+    #primaryPhoneButton, #secondaryPhoneButton, 
+    #primaryMessageButton, #secondaryMessageButton {
+        margin-left: 0; /* Reset button alignment */
+        margin-top: 10px; /* Add spacing above buttons */
+    }
+
+    #primaryPhoneButton img.icon, 
+    #secondaryPhoneButton img.icon,
+    #primaryMessageButton img.icon, 
+    #secondaryMessageButton img.icon {
+        width: 35px; /* Slightly smaller icons */
+        height: auto;
+    }
+
+    /* Favorite button adjustments */
+    #FavoriteButtonContact {
+        top: 10px; /* Adjust position */
+        right: 10px; /* Keep it closer to the edge */
+        width: 40px; /* Reduce size */
+        height: 40px;
+    }
+
+    #FavoriteButtonContact img.Favorite {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Profile picture adjustments */
+    .profile-picture-contact-details {
+        font-size: 24px; /* Smaller initials */
+        width: 60px; /* Reduce size */
+        height: 60px; /* Keep it square */
+        display: flex;
+        background-color: #bb3e5b;
+        color: white;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
+
+    /* Editable fields */
+    .editable-field {
+        width: 100%; /* Ensure full width on smaller screens */
+        font-size: 14px; /* Reduce font size */
+        padding: 8px; /* Adjust padding */
+    }
+
+    /* Adjust name row and job row spacing */
+    .name-row, .job-row {
+        flex-direction: column; /* Stack fields vertically */
+        align-items: flex-start; /* Align to the left */
+    }
+
+    .name-row span, .job-row span {
+        margin-bottom: 5px; /* Add spacing between fields */
+    }
+
+    /* Header section adjustments */
+    .header-section {
+        display: flex;
+        justify-content: space-between; /* Space out elements */
+        align-items: center;
+        padding: 10px; /* Reduce padding */
+    }
+
+    .profile-icons {
+        flex-direction: row; /* Ensure icons are side by side */
+    }
+
+    .profile-icons button {
+        margin-right: 5px; /* Add spacing between buttons */
+    }
+}
+
+

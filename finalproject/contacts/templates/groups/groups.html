@@ -1,0 +1,92 @@
+{% extends "standard/layout.html" %}
+
+{% load static %}
+
+{% block title %}Groups{% endblock %}
+
+{% block head %}
+<meta name="viewport" content="width=device-width, initial-scale=0.75">
+
+
+<link href="{% static 'contact_style/group_style/groups.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/favoritebutton.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/list_card.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/modal.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/header_buttons.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/profile_pictures.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="header-section">
+    <div class="profile-icons">
+        <button id="deleteButtonGroup" disabled onclick="deleteSelectedGroup()">
+            <img src="{% static 'img/delete.png' %}" class="icon" alt="Delete">
+            {% csrf_token %}
+        </button>
+        <button id="selectButtonGroup" onclick="toggleCheckboxes()">
+            <img src="{% static 'img/select.png' %}" class="icon" alt="Select">
+        </button>
+        <button id="addButton" onclick="window.location.href='{% url 'add_group' %}'">
+            <img src="{% static 'img/add.png' %}" class="icon" alt="Add">
+        </button>
+    </div>
+</div>
+
+<div id="confirmModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <p>Are you sure you want to delete the selected group?</p>
+        <button class="btn btn-info" id="confirmDeleteButton" onclick="confirmDelete()">OK</button>
+        <button class="btn btn-info" onclick="cancelDelete()">Cancel</button>
+    </div>
+</div>
+
+{% for group in groups %}
+    <div class="profile-wrapper">
+        <div class="profile-container" onclick="openGroupDetails({{ group.id }})">
+            <input type="checkbox" class="checkbox" hidden data-group-id="{{ group.id }}" onchange="updateDeleteButton()">
+
+            <button id="FavoriteButtonGroup" onclick="toggleFavoriteGroup(this,{{group.id}})">
+                {% if group.isFavorite %}
+                <img src="{% static 'img/redFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+                {% else %}
+                <img src="{% static 'img/whiteFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+                {% endif %}
+            </button>
+            
+            
+            <!-- Group Profile Picture -->
+            <div class="profile-picture-group-list">
+                {{ group.name|upper }}
+            </div>
+
+            <!-- Group Name and Description -->
+            <div class="text-container">
+                <span id="name">
+                    {{ group.name|upper }}
+                    <span class="member-count">({{ group.members.count }} Members)</span>
+                </span>
+                <textarea id="description" readonly >{{ group.description }}</textarea>
+            </div>
+        </div>
+
+        <!-- Group Footer with Expandable Details -->
+        <div class="profile-footer" onclick="toggleGroupDetails(this)">
+            <div class="details" style="display: none;">
+                <span class="label">Message:</span>
+                <textarea class="groupmessage" readonly>{{ group.pinned_message }}</textarea>
+            </div>
+            <span class="arrow">&#9660;</span>
+        </div>
+    </div>
+{% empty %}
+    <li>No groups found.</li>
+{% endfor %}
+
+
+
+{% endblock %}
+
+{%block script%}
+<script src="{% static  'js/groups/group_list.js' %}"></script>
+<script src="{% static  'js/isFavorite.js' %}" ></script>
+{%endblock%}

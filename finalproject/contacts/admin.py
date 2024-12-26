@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import User, Contact, Group,Event
 
-# Register your models here.
+admin.site.register(User)
+admin.site.register(Contact)
+admin.site.register(Group)
+admin.site.register(Event)

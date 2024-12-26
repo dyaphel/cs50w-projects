@@ -1,0 +1,101 @@
+{% extends "standard/layout.html" %}
+
+{% load static %}
+
+{% block title %}Contact{% endblock %}
+
+{% block head %}
+
+<link href="{% static 'contact_style/contacts/contact_details.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/header_buttons.css' %}" rel="stylesheet">
+<link href="{% static 'contact_style/components/profile_pictures.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="header-section">
+    <div class="profile-icons">
+        <button id="saveButtonContact" disabled="true"><img src="{% static 'img/save.png' %}" class="icon" alt="Save">
+            {% csrf_token %}
+        </button>
+        <button id="editButtonContact"><img src="{% static 'img/edit.png' %}" class="icon" alt="Edit">
+        </button>
+    </div>
+</div>
+
+<div class="profile-container" data-contact-id="{{ contact.id }}">
+
+    <div class="profile-picture-contact-details">
+        {{ contact.name.0|upper }}{{ contact.surname.0|upper }}
+    </div>
+
+    <button id="FavoriteButtonContact"  onclick="toggleFavoriteContact(this, {{ contact.id }})">
+        {% if contact.isFavorite %}
+        <img src="{% static 'img/redFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+        {% else %}
+        <img src="{% static 'img/whiteFavorite.png' %}" data-white-src="{% static 'img/whiteFavorite.png' %}" data-red-src="{% static 'img/redFavorite.png' %}" class="Favorite" alt="Favorite Icon">
+        {% endif %}
+    </button>  
+
+    <div class="user-info">
+        <div class="name-row">
+            <span class="label">Name:</span> 
+            <span id="firstName" contenteditable="false">{{ contact.name }}</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="label">Surname:</span>
+            <span id="lastName" contenteditable="false">{{ contact.surname }}</span>
+        </div>
+
+        <div class="nickname-row">
+            <span class="label">Nickname:</span> 
+            <span id="nickname" contenteditable="false">{{ contact.nickname }}</span>
+        </div>
+
+        <div class="job-row">
+            <span class="label">Company:</span>
+            <span id="company" contenteditable="false">{{ contact.company }}</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="label">Position:</span>
+            <span id="jobPosition" contenteditable="false">{{ contact.job_position }}</span>
+        </div>
+
+        <div class="birthday-row">
+            <span class="label">Birthday:</span> 
+            <span id="birthday" contenteditable="false">{{ contact.birthday }}</span>
+        </div>
+        
+        <div class="contact-detail">
+            <span class="label">Email:</span> 
+            <span id="email" contenteditable="false" class="value" >{{ contact.email }}</span>
+        </div>
+
+        <div class="contact-detail">
+            <span class="label">Primary Phone:</span> 
+            <span id="phone1" contenteditable="false" class="value"  data-phone="{{ contact.phone_number_1 }}">{{ contact.phone_number_1 }}</span>
+            <button id="primaryPhoneButton">
+                <img src="{% static 'img/phone.png' %}" class="icon" alt="Call Primary">
+            </button>
+            <button id="primaryMessageButton">
+                <img src="{% static 'img/message.png' %}" class="icon" alt="Message Primary">
+            </button> 
+        </div>
+    
+        {% if contact.phone_number_2 %}
+        <div class="contact-detail">
+            <span class="label">Secondary Phone:</span> 
+            <span id="phone2" contenteditable="false" class="value"  data-phone="{{ contact.phone_number_2 }}">{{ contact.phone_number_2 }}</span>
+            <button id="secondaryPhoneButton">
+                <img src="{% static 'img/phone.png' %}" class="icon" alt="Call Secondary">
+            </button>
+            <button id="secondaryMessageButton">
+                <img src="{% static 'img/message.png' %}" class="icon" alt="Message Secondary">
+            </button> 
+        </div>
+        {% endif %}   
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/contacts/contact_details.js' %}"></script>
+<script src="{% static 'js/isFavorite.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "standard/layout.html" %}
+
+{% load static %}
+
+{% block title %}Calendar{% endblock %}
+
+{% block head %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+<link href="{% static 'contact_style/calendar/calendar.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+<div class="calendar-container">
+    <div id="calendar"></div>
+    {% csrf_token %}
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/calendar/calendar.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+{% endblock %}
+
+
