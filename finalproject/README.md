@@ -124,6 +124,7 @@ The calendar is a core feature of this app, designed to allow users to schedule,
      - **Deleted**: Remove events from the calendar if they are no longer needed.
 
 ---
+<<<<<<< Updated upstream
 
 ## Personal Notes
 
@@ -131,6 +132,38 @@ This app provides a solution for managing contacts, groups, and calendars, all i
 
 Future improvements could include fully integrating with the existing Microsoft Phone Link app to directly import contacts from the user's phone. Another enhancement could be adding a notepad function, allowing users to take notes and attach them to a specific contact and/or group. Additionally, implementing a group chat feature, instead of relying solely on meetings, would be beneficial. Completing the necessary API integrations for scheduling and communication functionalities should also be prioritized.
 
+=======
+## Difference between projects
+This project is distinct from the previous coursework projects, 
+particularly the **social network app** and the **e-commerce platform**, both in purpose and implementation.
+Unlike the **e-commerce app**, which allowed users to interact with each other’s items by viewing, purchasing, or commenting, 
+this Contacts Management App is strictly individualistic. 
+Users cannot share or showcase their contacts, events, or groups with other users. 
+Every interaction is confined to their personal database. 
+Additionally, the e-commerce project utilized HTML forms and server-side rendering for editing or managing items. 
+In contrast, this project leverages JavaScript for dynamic front-end management, such as editing profiles and events.
+Compared to the **social network app**, while at first glance this project may seem similar, the interaction paradigm is fundamentally different. 
+The social network app was designed to allow communication and engagement between users, encouraging them to connect, comment, or react to each other’s posts.
+Here, however, there is no user-to-user interaction. 
+Instead, users engage with their contacts, groups, and personal calendar.
+Importantly, this engagement is one-directional; contacts cannot interact with the user unless they are also users themselves.
+ This focus on individual organization, rather than social connectivity, establishes a unique purpose for the app.
+
+Additionally, while this app bears some resemblance to the **Microsoft Phone Link** app due to its functionality, 
+the similarity was entirely unintentional. 
+During development, I only became aware of the Microsoft app while researching APIs for making phone calls.
+---
+## Personal Notes
+
+This app provides a solution for managing contacts, groups, and calendars, all in one platform. 
+It is designed to help users stay organized and connected with their professional and personal networks through their computer instead of relying
+on a phone. This app was not designed to mimic or replicate the existing Microsoft Phone Link app. 
+In fact, I was not even aware of its existence during development.
+Future improvements could include fully integrating with the existing Microsoft Phone Link app to directly import contacts from the user's phone.
+Another enhancement could be adding a notepad function, allowing users to take notes and attach them to a specific contact and/or group. 
+Additionally, implementing a group chat feature, instead of relying solely on meetings, would be beneficial. 
+Completing the necessary API integrations for scheduling and communication functionalities should also be prioritized.
+>>>>>>> Stashed changes
 Further consideration is required to determine whether to keep the app private or make it public, with necessary adjustments.
 
 ---
