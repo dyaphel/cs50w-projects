@@ -28,35 +28,42 @@ Each project showcases different aspects of **web development**, including Djang
 
 ## 📜 How to Run the Projects  
 
-```bash
-# 1. Clone the repository  
+## 1. Clone the repository 
+``` bash
 git clone https://github.com/dyaphel/cs50w-projects.git  
 cd cs50w-projects  
-
-# 2. Navigate into a specific project folder  
+```
+## 2. Navigate into a specific project folder
+```bash
 cd project-name  # Replace "project-name" with the actual project folder  
-
-# 3. Set up a virtual environment  
+```
+## 3. Set up a virtual environment
+```bash 
 python -m venv venv  
 source venv/bin/activate  # On Windows: venv\Scripts\activate  
-
-# 4. Install dependencies  
+```
+## 4. Install dependencies
+```bash
 pip install -r requirements.txt  
-
-# 5. Apply migrations  
+```
+## 5. Apply migrations
+```bash
+python manage.py makemigration  
 python manage.py migrate  
-
-# 6. Create a superuser (for admin access)  
-python manage.py createsuperuser  
-# Follow the prompts to set up an admin account.  
-
-# 7. Run the Django server  
+```
+## 6. Create a superuser for admin access
+```bash 
+py manage.py createsuperuser
+```
+## 7. Run the Django server
+```bash
 python manage.py runserver  
-
-# 8. Open your browser and go to:  
+```
+## 8. Open your browser and go to:
+```bash
 # http://127.0.0.1:8000/ 🚀
-
-📩 Contact
+```
+#📩 Contact
 If you have any questions or feedback, feel free to reach out!
 
 🐙 GitHub: dyaphel
