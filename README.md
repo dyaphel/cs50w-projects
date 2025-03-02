@@ -63,10 +63,12 @@ python manage.py runserver
 ```bash
 # http://127.0.0.1:8000/ 🚀
 ```
-# 📩 Contact
+# 📩 Contact  
 If you have any questions or feedback, feel free to reach out!
 
+📩 e-mail: dyaphel00@gmail.com  
 🐙 GitHub: dyaphel
+
 
 
 
