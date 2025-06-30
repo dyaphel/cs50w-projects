@@ -67,7 +67,6 @@ python manage.py runserver
 If you have any questions or feedback, feel free to reach out!
 
 📩 e-mail: dyaphel00@gmail.com  
-🐙 GitHub: dyaphel
 
 
 
